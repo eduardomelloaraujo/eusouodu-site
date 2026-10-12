@@ -1,0 +1,71 @@
+{
+  "inicio": "2026-10-12",
+  "fim": "2026-10-18",
+  "rotuloDatas": "12 a 18 de outubro",
+  "titulo": "Depois da Lua Nova em Libra",
+  "paragrafos": [
+    "A Lua acabou de renascer em Libra, e a semana ainda carrega o escuro fértil dos começos. Libra é o signo da balança, mas a balança só funciona para quem aceita pesar.",
+    "O que pede atenção agora são os acordos que a gente fez calado. Com as pessoas, com o trabalho, com a imagem que a gente sustenta para continuar sendo querido.",
+    "A Lua cresce devagar. E o primeiro peso que aparece no prato quase nunca é o que a gente esperava."
+  ],
+  "dias": [
+    {
+      "data": "2026-10-12",
+      "dia": "segunda",
+      "fase": 0.0643,
+      "luaSigno": "Escorpião"
+    },
+    {
+      "data": "2026-10-13",
+      "dia": "terça",
+      "fase": 0.0961,
+      "luaSigno": "Escorpião"
+    },
+    {
+      "data": "2026-10-14",
+      "dia": "quarta",
+      "fase": 0.1272,
+      "luaSigno": "Sagitário"
+    },
+    {
+      "data": "2026-10-15",
+      "dia": "quinta",
+      "fase": 0.1579,
+      "luaSigno": "Sagitário"
+    },
+    {
+      "data": "2026-10-16",
+      "dia": "sexta",
+      "fase": 0.1882,
+      "luaSigno": "Capricórnio"
+    },
+    {
+      "data": "2026-10-17",
+      "dia": "sábado",
+      "fase": 0.2183,
+      "luaSigno": "Capricórnio"
+    },
+    {
+      "data": "2026-10-18",
+      "dia": "domingo",
+      "fase": 0.2485,
+      "luaSigno": "Capricórnio"
+    }
+  ],
+  "fasesDaLua": [
+    {
+      "fase": "Lua Crescente",
+      "data": "2026-10-18",
+      "hora": "13:13",
+      "dia": "domingo",
+      "signo": "Capricórnio",
+      "grau": "25°18'"
+    }
+  ],
+  "chamada": {
+    "texto": "Cada mapa recebe essa semana de um jeito. A leitura de como esses dias tocam o mapa de cada pessoa, dia a dia, chega em breve.",
+    "rotulo": "Quero ser avisado",
+    "link": "https://wa.me/5571982872284?text=Oi%20Eduardo%2C%20quero%20saber%20como%20a%20semana%20cai%20no%20meu%20mapa"
+  },
+  "instagram": "https://instagram.com/eusouodu"
+}
