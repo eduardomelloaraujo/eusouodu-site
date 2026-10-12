@@ -6,7 +6,9 @@
     "efemerides": "node scripts/efemerides.mjs"
   },
   "dependencies": {
+    "@sparticuz/chromium": "^131.0.1",
     "@vercel/functions": "2.2.2",
-    "astronomy-engine": "2.1.19"
+    "astronomy-engine": "2.1.19",
+    "puppeteer-core": "^23.10.4"
   }
 }

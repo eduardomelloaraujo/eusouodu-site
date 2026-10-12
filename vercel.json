@@ -2,8 +2,31 @@
   "buildCommand": "",
   "outputDirectory": ".",
   "redirects": [
-    { "source": "/lib/:path*", "destination": "/", "permanent": false },
-    { "source": "/scripts/:path*", "destination": "/", "permanent": false }
+    {
+      "source": "/lib/:path*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/scripts/:path*",
+      "destination": "/",
+      "permanent": false
+    }
   ],
-  "headers": [ { "source": "/semana.json", "headers": [ { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" } ] } ]
+  "headers": [
+    {
+      "source": "/semana.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "functions": {
+    "api/mapa-*.js": {
+      "includeFiles": "{lib/fontes/**,node_modules/@sparticuz/chromium/bin/**}"
+    }
+  }
 }
