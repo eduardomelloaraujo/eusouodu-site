@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Cortesia · A semana no seu mapa</title>
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Albert+Sans:wght@300;400;500&display=swap">
+<style>
+:root{color-scheme:light;--tinta:#333230;--cinza:#6F6B62;--ouro:#9C7A44;--pedra:#E4E1D8;--areia:#F6F5F1;--erro:#8E4E3F;--ok:#4F6F4B}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--tinta);font-family:'Albert Sans','Helvetica Neue',Arial,sans-serif;font-weight:300;line-height:1.6;padding:0 16px}
+main{max-width:560px;margin:0 auto;padding-block:48px 80px;display:flex;flex-direction:column;gap:22px}
+.marca{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;text-decoration:none;color:inherit}.marca i{color:var(--ouro)}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:42px;line-height:1.05;margin:0}
+p{margin:0;color:var(--cinza)}
+form{display:flex;flex-direction:column;gap:18px}
+.campo{display:flex;flex-direction:column;gap:6px;position:relative;min-width:0}
+label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;color:var(--cinza)}
+input,select{font:inherit;font-weight:400;font-size:16px;padding:12px 14px;border:1px solid var(--pedra);background:#fff;color:var(--tinta);border-radius:0;width:100%}
+input:focus,select:focus{outline:none;border-color:var(--tinta)}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sug{position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid var(--tinta);border-top:none;z-index:5}
+.sug button{display:block;width:100%;text-align:left;font:inherit;font-size:14px;padding:10px 14px;border:none;background:none;cursor:pointer}
+.sug button:hover{background:var(--areia)}
+.botao{min-height:52px;background:var(--tinta);color:#fff;border:1px solid var(--tinta);font:inherit;font-weight:500;letter-spacing:.06em;cursor:pointer}
+.botao[disabled]{opacity:.6}
+#msg{font-size:15px;min-height:1.2em}
+.chave{background:var(--areia);padding:16px}
+</style>
+</head>
+<body>
+<main>
+  <a class="marca" href="/">eu<i>sou</i>odu</a>
+  <h1>Relatório de cortesia</h1>
+  <p>Página só do Eduardo. Gera um relatório sem pagamento e envia para o e-mail informado, começando amanhã.</p>
+  <form id="f">
+    <div class="campo chave"><label for="chave">Senha de administrador (ADMIN_KEY)</label><input id="chave" type="password" autocomplete="current-password" required></div>
+    <div class="campo"><label for="plano">Período</label><select id="plano"><option value="7">Os próximos 7 dias</option><option value="30">Os próximos 30 dias</option></select></div>
+    <div class="campo"><label for="nome">Nome</label><input id="nome" required></div>
+    <div class="campo"><label for="email">E-mail que vai receber</label><input id="email" type="email" required></div>
+    <div class="dupla"><div class="campo"><label for="data">Nascimento</label><input id="data" type="date" required></div><div class="campo"><label for="hora">Hora</label><input id="hora" type="time" required></div></div>
+    <div class="campo"><label for="cidade">Cidade de nascimento</label><input id="cidade" autocomplete="off" placeholder="Digite e escolha na lista"><div class="sug" id="sug" hidden></div></div>
+    <button class="botao" id="bt" type="submit">Gerar e enviar</button>
+    <p id="msg" role="status"></p>
+  </form>
+</main>
+<script>
+const $=id=>document.getElementById(id); let esc=null,t;
+$('cidade').addEventListener('input',()=>{esc=null;clearTimeout(t);const q=$('cidade').value.trim();if(q.length<3){$('sug').hidden=true;return}
+  t=setTimeout(async()=>{const j=await fetch('https://geocoding-api.open-meteo.com/v1/search?count=6&language=pt&format=json&name='+encodeURIComponent(q)).then(r=>r.json()).catch(()=>({}));const rs=j.results||[];
+    $('sug').innerHTML=rs.map((c,i)=>`<button type="button" data-i="${i}">${c.name} · ${[c.admin1,c.country].filter(Boolean).join(', ')}</button>`).join('');$('sug').hidden=!rs.length;
+    $('sug').querySelectorAll('button').forEach(b=>b.onclick=()=>{const c=rs[+b.dataset.i];esc={rotulo:[c.name,c.admin1,c.country].filter(Boolean).join(', '),lat:c.latitude,lon:c.longitude,tz:c.timezone};$('cidade').value=esc.rotulo;$('sug').hidden=true});},300)});
+$('f').addEventListener('submit',async e=>{e.preventDefault();const m=$('msg');m.style.color='';
+  if(!esc){m.textContent='Escolha a cidade na lista.';return}
+  $('bt').disabled=true;m.textContent='Enviando o pedido…';
+  try{const r=await fetch('/api/mapa-cortesia',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({chave:$('chave').value,plano:$('plano').value,nome:$('nome').value,email:$('email').value,data:$('data').value,hora:$('hora').value,cidade:esc.rotulo,lat:esc.lat,lon:esc.lon,tz:esc.tz})});
+    const j=await r.json(); if(!r.ok) throw new Error(j.erro||'Não deu certo.');
+    m.style.color='var(--ok)';m.textContent='Pedido aceito. O relatório está sendo escrito e chega no e-mail em alguns minutos (o de 30 dias pode levar até 5).';
+  }catch(err){m.style.color='var(--erro)';m.textContent=err.message}finally{$('bt').disabled=false}});
+</script>
+</body>
+</html>
