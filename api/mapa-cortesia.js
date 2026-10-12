@@ -3,12 +3,13 @@ import { waitUntil } from '@vercel/functions';
 import { gerarEEnviar, diaSeguinte } from '../lib/processar.mjs';
 import { enviarEmail } from '../lib/email.mjs';
 
+const norm = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().toLowerCase();
 export const config = { maxDuration: 300 };
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ erro: 'Use POST.' });
   const b = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
-  if (!process.env.ADMIN_KEY || String(b.chave || '') !== process.env.ADMIN_KEY) return res.status(403).json({ erro: 'Senha de administrador incorreta.' });
+  if (!process.env.ADMIN_KEY || norm(b.chave) !== norm(process.env.ADMIN_KEY)) return res.status(403).json({ erro: 'Senha de administrador incorreta.' });
   const plano = Number(b.plano) === 30 ? 30 : 7;
   const email = String(b.email || '').trim();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ erro: 'Confira o e-mail.' });
