@@ -5,10 +5,8 @@
   "scripts": {
     "efemerides": "node scripts/efemerides.mjs"
   },
-  "devDependencies": {
-    "astronomy-engine": "^2.1.19"
-  },
   "dependencies": {
-    "@vercel/functions": "^2.2.2"
+    "@vercel/functions": "2.2.2",
+    "astronomy-engine": "2.1.19"
   }
 }
