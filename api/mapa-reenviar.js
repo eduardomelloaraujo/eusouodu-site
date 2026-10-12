@@ -5,6 +5,7 @@ const norm = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '
 export const config = { maxDuration: 300 };
 
 export default async function handler(req, res) {
+  res.setHeader('cache-control', 'no-store');
   const { id, chave, para } = req.query || {};
   if (!process.env.ADMIN_KEY || norm(chave) !== norm(process.env.ADMIN_KEY)) return res.status(403).send('Chave inválida.');
   if (!id) return res.status(400).send('Falta o id do pagamento.');

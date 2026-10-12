@@ -54,6 +54,11 @@ input:focus,select:focus{outline:none;border-color:var(--tinta)}
     <button class="botao" id="bt2" type="submit">Reenviar relatório</button>
     <p id="msg2" role="status"></p>
   </form>
+  <hr style="border:none;border-top:1px solid var(--pedra);margin:20px 0">
+  <h1 style="font-size:32px">Verificar o sistema</h1>
+  <p>Confere se a IA tem créditos, se o Mercado Pago e o envio de e-mail estão funcionando. Usa a senha lá do topo.</p>
+  <button class="botao" id="bt3" type="button">Verificar agora</button>
+  <div id="msg3" role="status" style="font-size:15px;line-height:1.8"></div>
 </main>
 <script>
 const $=id=>document.getElementById(id); let esc=null,t;
@@ -72,11 +77,16 @@ $('r').addEventListener('submit',async e=>{e.preventDefault();const m=$('msg2');
   const k=$('chave').value; if(!k){m.textContent='Preencha a senha de administrador lá em cima.';return}
   $('bt2').disabled=true;m.textContent='Gerando e enviando, isso leva de 1 a 5 minutos. Não feche a página.';
   try{const u='/api/mapa-reenviar?id='+encodeURIComponent($('op').value.trim())+'&chave='+encodeURIComponent(k)+($('para').value?'&para='+encodeURIComponent($('para').value.trim()):'');
-    const r=await fetch(u);const txt=await r.text();let j={};try{j=JSON.parse(txt)}catch(_){}
+    const r=await fetch(u+'&t='+Date.now(),{cache:'no-store'});const txt=await r.text();let j={};try{j=JSON.parse(txt)}catch(_){}
     if(!r.ok) throw new Error(j.erro||txt||'Não deu certo.');
     if(j.ignorado) throw new Error(j.ignorado==='outro produto'?'Essa operação é de outro produto (Mitologia ou Livros).':'O pagamento não está aprovado: '+j.ignorado);
     m.style.color='var(--ok)';m.textContent='Enviado para '+j.enviado+'.';
   }catch(err){m.style.color='var(--erro)';m.textContent=err.message}finally{$('bt2').disabled=false}});
+$('bt3').addEventListener('click',async()=>{const m=$('msg3');const k=$('chave').value;if(!k){m.textContent='Preencha a senha de administrador lá em cima.';return}
+  m.textContent='Verificando…';try{const r=await fetch('/api/mapa-status?chave='+encodeURIComponent(k)+'&t='+Date.now(),{cache:'no-store'});const j=await r.json();if(!r.ok)throw new Error(j.erro||'Não deu certo.');
+  const cor=v=>v==='funcionando'?'var(--ok)':'var(--erro)';
+  m.innerHTML=`<div>IA (créditos da Anthropic): <b style="color:${cor(j.ia)}">${j.ia}</b></div><div>Mercado Pago: <b style="color:${cor(j.mercadoPago)}">${j.mercadoPago}</b></div><div>E-mail (Resend): <b style="color:${cor(j.email)}">${j.email}</b></div>`;
+  }catch(e){m.style.color='var(--erro)';m.textContent=e.message}});
 </script>
 </body>
 </html>
