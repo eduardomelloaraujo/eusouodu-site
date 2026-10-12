@@ -2,6 +2,13 @@
   "name": "eusouodu-site",
   "private": true,
   "type": "module",
-  "scripts": { "efemerides": "node scripts/efemerides.mjs" },
-  "devDependencies": { "astronomy-engine": "2.1.19" }
+  "scripts": {
+    "efemerides": "node scripts/efemerides.mjs"
+  },
+  "devDependencies": {
+    "astronomy-engine": "^2.1.19"
+  },
+  "dependencies": {
+    "@vercel/functions": "^2.2.2"
+  }
 }

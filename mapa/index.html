@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>A semana no seu mapa · eusouodu</title>
+<meta name="description" content="Os trânsitos dos próximos 7 ou 30 dias cruzados com o seu mapa natal, dia a dia, com a carta do Tarot de Marselha, a cor, o incenso e o óleo essencial de cada semana.">
+<meta property="og:title" content="A semana no seu mapa · eusouodu">
+<meta property="og:description" content="Os próximos 7 ou 30 dias lidos no seu mapa natal, dia a dia.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Albert+Sans:wght@300;400;500&display=swap">
+<style>
+/* Mesma família visual do eusouodu.com: branco, tinta, um dourado; serifa para títulos */
+:root{
+  color-scheme:light;
+  --papel:#FFFFFF; --areia:#F6F5F1; --pedra:#E4E1D8; --tinta:#333230; --cinza:#6F6B62; --ouro:#9C7A44; --noite:#252421; --noite-texto:#F2EFE2;
+  --fluida:#4F6F4B; --fluida-f:#EDF2EA; --mista:#7A6A45; --mista-f:#F4F0E4; --desaf:#8E4E3F; --desaf-f:#F6EAE6;
+  --display:'Cormorant Garamond','Iowan Old Style','Times New Roman',serif; --texto:'Albert Sans','Helvetica Neue',Arial,sans-serif;
+  --gutter:clamp(16px,4vw,48px);
+}
+*{box-sizing:border-box}
+html{padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--texto);font-weight:300;font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:1px solid var(--tinta);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;line-height:1.08;text-wrap:balance}
+p{margin:0}
+.rotulo{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--cinza)}
+.envelope{max-width:1180px;margin:0 auto;padding-inline:var(--gutter)}
+.cabecalho{border-bottom:1px solid var(--pedra)}
+.cabecalho .envelope{display:flex;justify-content:space-between;align-items:center;min-height:64px;gap:16px}
+.marca{font-family:var(--display);font-size:26px;text-decoration:none;line-height:1}
+.marca i{color:var(--ambar,var(--ouro))}
+.voltar{font-size:13px;letter-spacing:.04em;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px}
+
+.abertura{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center;padding-block:clamp(48px,8vw,112px)}
+.abertura h1{font-size:clamp(44px,6vw,80px)}
+.abertura h1 em{color:var(--ouro)}
+.abertura .lead{color:var(--cinza);font-size:16px;max-width:46ch;margin-top:24px}
+.amostra{background:var(--areia);padding:28px;display:flex;flex-direction:column;gap:16px}
+.ritmo{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.ritmo div{display:flex;flex-direction:column;align-items:center;padding:10px 2px;font-size:11px;line-height:1.3;border:1px solid transparent}
+.ritmo b{font-size:15px;font-weight:500}
+.f{background:var(--fluida-f);color:var(--fluida)} .m{background:var(--mista-f);color:var(--mista)} .d{background:var(--desaf-f);color:var(--desaf)}
+.ritmo .top{border-color:var(--ouro)}
+.amostra .carta{display:flex;gap:16px;align-items:center;border-top:1px solid var(--pedra);padding-top:16px}
+.amostra .carta span{font-family:var(--display);font-size:22px}
+.sentidos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;border-top:1px solid var(--pedra);padding-top:16px;font-size:12px;color:var(--cinza)}
+.sentidos b{display:block;font-family:var(--display);font-weight:400;font-size:19px;color:var(--tinta)}
+.bola{width:18px;height:18px;border-radius:50%;background:#5B6E8C;display:inline-block;vertical-align:-3px;margin-right:6px}
+@media (max-width:860px){.abertura{grid-template-columns:1fr}}
+
+.inclui{background:var(--areia);padding-block:clamp(56px,8vw,104px)}
+.inclui h2{font-size:clamp(34px,4.4vw,56px);max-width:18ch;margin-bottom:40px}
+.grade4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.grade4 div{border-top:1px solid var(--tinta);padding-top:16px;display:flex;flex-direction:column;gap:8px}
+.grade4 h3{font-size:24px}
+.grade4 p{color:var(--cinza);font-size:14.5px}
+@media (max-width:900px){.grade4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.grade4{grid-template-columns:1fr}}
+
+.comprar{padding-block:clamp(56px,8vw,112px)}
+.comprar .grade{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(32px,6vw,96px);align-items:start}
+.comprar h2{font-size:clamp(36px,4.6vw,60px);margin-bottom:18px}
+.comprar .lado p{color:var(--cinza);max-width:42ch}
+.aviso-respeito{margin-top:28px;font-family:var(--display);font-style:italic;font-size:21px;line-height:1.4;color:var(--tinta);max-width:30ch}
+form{display:flex;flex-direction:column;gap:22px}
+.planos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.plano{position:relative;border:1px solid var(--pedra);padding:20px;cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:border-color .2s}
+.plano input{position:absolute;opacity:0;pointer-events:none}
+.plano:has(input:checked){border-color:var(--tinta);box-shadow:inset 0 0 0 1px var(--tinta)}
+.plano:has(input:focus-visible){outline:1px solid var(--tinta);outline-offset:3px}
+.plano .nome{font-family:var(--display);font-size:24px;line-height:1.1}
+.plano .preco{font-family:var(--display);font-size:32px}
+.plano small{color:var(--cinza);font-size:13px;line-height:1.5}
+.plano .selo{position:absolute;top:-10px;right:12px;background:var(--ouro);color:#fff;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px}
+@media (max-width:480px){.planos{grid-template-columns:1fr}}
+.campo{display:flex;flex-direction:column;gap:6px;position:relative}
+.campo label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:500;color:var(--cinza)}
+.campo input{font:inherit;font-weight:400;font-size:16px;padding:13px 14px;border:1px solid var(--pedra);background:#fff;color:var(--tinta);border-radius:0;width:100%}
+.campo input:focus{outline:none;border-color:var(--tinta)}
+.campo .ajuda{font-size:12.5px;color:var(--cinza)}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sugestoes{position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid var(--tinta);border-top:none;z-index:5;max-height:260px;overflow:auto}
+.sugestoes button{display:block;width:100%;text-align:left;font:inherit;font-size:14px;padding:11px 14px;border:none;background:none;cursor:pointer;color:var(--tinta)}
+.sugestoes button:hover,.sugestoes button:focus{background:var(--areia);outline:none}
+.sugestoes small{color:var(--cinza)}
+.aceite{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;color:var(--cinza);line-height:1.55}
+.aceite input{margin-top:4px;accent-color:var(--tinta);width:16px;height:16px;flex:none}
+.botao{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 28px;background:var(--tinta);color:#fff;border:1px solid var(--tinta);font:inherit;font-weight:500;font-size:14px;letter-spacing:.06em;cursor:pointer;transition:background .25s,color .25s}
+.botao:hover{background:transparent;color:var(--tinta)}
+.botao[disabled]{opacity:.6;cursor:wait}
+.erro{color:var(--desaf);font-size:14px;min-height:1em}
+.seguro{font-size:12.5px;color:var(--cinza)}
+
+.perguntas{border-top:1px solid var(--pedra);padding-block:clamp(56px,8vw,96px)}
+.perguntas h2{font-size:clamp(32px,4vw,48px);margin-bottom:28px}
+details{border-top:1px solid var(--pedra);padding:18px 0;max-width:760px}
+details:last-of-type{border-bottom:1px solid var(--pedra)}
+summary{cursor:pointer;font-family:var(--display);font-size:22px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::after{content:'+';color:var(--ouro)}
+details[open] summary::after{content:'–'}
+details p{color:var(--cinza);margin-top:10px;max-width:64ch}
+footer{background:var(--noite);color:var(--noite-texto);padding-block:48px;font-size:13px}
+footer .envelope{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{text-decoration:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="cabecalho"><div class="envelope"><a class="marca" href="/">eu<i>sou</i>odu</a><a class="voltar" href="/">Voltar ao site</a></div></header>
+
+<main>
+  <section class="envelope abertura">
+    <div>
+      <p class="rotulo">Leitura personalizada · 7 ou 30 dias</p>
+      <h1 style="margin-top:16px">A semana no <em>seu</em> mapa</h1>
+      <p class="lead">Os movimentos do céu dos próximos dias, cruzados com o mapa natal de quem compra. Cada trânsito lido pelas casas e pelos planetas desse mapa, dia a dia, com a chave central do período, a carta do Tarot de Marselha, a cor, o incenso e o óleo essencial de cada semana.</p>
+      <p style="margin-top:28px"><a class="botao" href="#comprar">Quero a minha leitura</a></p>
+    </div>
+    <div class="amostra" aria-label="Exemplo do que chega no e-mail">
+      <p class="rotulo">Exemplo · o ritmo da semana</p>
+      <div class="ritmo">
+        <div class="m">ter<b>13</b></div><div class="f top">qua<b>14</b><span style="color:var(--ouro)">★</span></div><div class="m">qui<b>15</b></div><div class="f top">sex<b>16</b><span style="color:var(--ouro)">★</span></div><div class="d">sáb<b>17</b></div><div class="m">dom<b>18</b></div><div class="f">seg<b>19</b></div>
+      </div>
+      <p style="font-size:12px;color:var(--cinza)">Dias de energia mais fluida, mista e mais desafiadora. As estrelas marcam os dias de destaque.</p>
+      <div class="carta"><svg width="40" height="64" viewBox="0 0 40 64" aria-hidden="true"><rect x=".5" y=".5" width="39" height="63" fill="#fff" stroke="#333230"/><rect x="4" y="4" width="32" height="56" fill="none" stroke="#9C7A44"/><circle cx="20" cy="27" r="7" fill="none" stroke="#9C7A44"/><path d="M12 50h16" stroke="#333230"/></svg><div><p class="rotulo">A carta da semana</p><span>A Estrela · XVII</span></div></div>
+      <div class="sentidos">
+        <div><b><span class="bola"></span>Azul-ardósia</b>a cor</div>
+        <div><b>Olíbano</b>o incenso</div>
+        <div><b>Lavanda</b>o óleo</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="inclui">
+    <div class="envelope">
+      <p class="rotulo" style="margin-bottom:14px">O que chega no e-mail</p>
+      <h2>Um relatório inteiro, lido no mapa de cada pessoa</h2>
+      <div class="grade4">
+        <div><h3>Dia a dia</h3><p>O que vale trabalhar, os pontos fortes e os desafiadores de cada dia, com a marcação dos dias mais fluidos e dos mais desafiadores.</p></div>
+        <div><h3>Os dez planetas</h3><p>Do Sol a Plutão, os trânsitos que tocam os planetas natais e as casas por onde cada um passa, calculados com efemérides astronômicas.</p></div>
+        <div><h3>As fases da Lua</h3><p>Lua Nova, Crescente, Cheia e Minguante do período, com o signo, o horário e a casa do mapa onde cada uma acontece.</p></div>
+        <div><h3>Carta, cor e aromas</h3><p>Uma carta do Tarot de Marselha por semana, e uma cor, um incenso e um óleo essencial escolhidos pela energia do momento.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="envelope comprar" id="comprar">
+    <div class="grade">
+      <div class="lado">
+        <h2>Escolher o período</h2>
+        <p>O relatório começa sempre no dia seguinte ao da compra e chega inteiro no e-mail informado, em poucos minutos depois da confirmação do pagamento.</p>
+        <p style="margin-top:14px">A hora de nascimento é indispensável: é ela que define as casas do mapa. Se ela estiver na certidão de nascimento, melhor ainda.</p>
+        <p class="aviso-respeito">Isto é aconselhamento simbólico. Cada decisão continua sendo pessoal e intransferível.</p>
+      </div>
+
+      <form id="form" novalidate>
+        <div class="planos" role="radiogroup" aria-label="Período">
+          <label class="plano"><input type="radio" name="plano" value="7" id="plano7" checked><span class="nome">Os próximos 7 dias</span><span class="preco">R$ 37</span><small>Uma chave central para a semana, uma carta, a cor, o incenso e o óleo.</small></label>
+          <label class="plano"><span class="selo">Mais completo</span><input type="radio" name="plano" value="30" id="plano30"><span class="nome">Os próximos 30 dias</span><span class="preco">R$ 97</span><small>Uma chave, uma carta, uma cor, um incenso e um óleo para cada semana.</small></label>
+        </div>
+        <div class="campo"><label for="nome">Nome</label><input id="nome" name="nome" autocomplete="name" required></div>
+        <div class="campo"><label for="email">E-mail para receber o relatório</label><input id="email" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+        <div class="dupla">
+          <div class="campo"><label for="data">Data de nascimento</label><input id="data" name="data" type="date" min="1900-01-01" required></div>
+          <div class="campo"><label for="hora">Hora de nascimento</label><input id="hora" name="hora" type="time" required></div>
+        </div>
+        <div class="campo">
+          <label for="cidade">Cidade de nascimento</label>
+          <input id="cidade" name="cidade" autocomplete="off" placeholder="Digite e escolha na lista" required aria-autocomplete="list" aria-controls="sugestoes">
+          <div class="sugestoes" id="sugestoes" hidden></div>
+          <span class="ajuda" id="cidade-ok">A cidade define o fuso e a posição exata das casas.</span>
+        </div>
+        <label class="aceite"><input type="checkbox" id="aceite" required><span>Entendo que este relatório é aconselhamento simbólico para o meu processo, que aponta tendências e não destinos, e que as decisões são minhas.</span></label>
+        <p class="erro" id="erro" role="alert"></p>
+        <button class="botao" id="pagar" type="submit">Ir para o pagamento</button>
+        <p class="seguro">Pagamento seguro pelo Mercado Pago, com Pix ou cartão.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="envelope perguntas">
+    <h2>Perguntas frequentes</h2>
+    <details><summary>Quando o relatório chega?</summary><p>Logo depois que o Mercado Pago confirma o pagamento. Com Pix e cartão, costuma levar poucos minutos. Se não aparecer, vale olhar a caixa de spam ou promoções, ou escrever para falecom@eusouodu.com.</p></details>
+    <details><summary>E se eu não souber a hora de nascimento?</summary><p>Sem a hora não é possível calcular as casas, que são o centro desta leitura. A hora costuma constar na certidão de nascimento ou no cartão da maternidade.</p></details>
+    <details><summary>A partir de quando o relatório vale?</summary><p>Do dia seguinte ao da compra. Os horários das fases da Lua estão em horário de Brasília.</p></details>
+    <details><summary>Posso comprar para outra pessoa?</summary><p>Pode. Basta preencher os dados de nascimento dela e o e-mail que vai receber.</p></details>
+  </section>
+</main>
+
+<footer><div class="envelope"><a href="/" style="font-family:var(--display);font-size:24px">eu<i style="color:#E4CF9F">sou</i>odu</a><span>falecom@eusouodu.com · <a href="https://instagram.com/eusouodu">@eusouodu</a></span></div></footer>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  const cidade=$('cidade'), box=$('sugestoes'), ok=$('cidade-ok'), erro=$('erro');
+  let escolha=null, t=null;
+  const params=new URLSearchParams(location.search);
+  if(params.get('falhou')) erro.textContent='O pagamento não foi concluído. Os dados continuam aqui, é só tentar de novo.';
+  try{ const sv=JSON.parse(sessionStorage.getItem('mapa-form')||'null'); if(sv){ for(const k of ['nome','email','data','hora']) if(sv[k]) $(k).value=sv[k]; if(sv.escolha){escolha=sv.escolha; cidade.value=sv.escolha.rotulo; ok.textContent='Cidade escolhida: '+sv.escolha.rotulo;} if(sv.plano) $('plano'+sv.plano).checked=true; } }catch(e){}
+  if(params.get('plano')==='30') $('plano30').checked=true;
+
+  function fechar(){ box.hidden=true; box.innerHTML=''; }
+  cidade.addEventListener('input',()=>{
+    escolha=null; ok.textContent='A cidade define o fuso e a posição exata das casas.';
+    clearTimeout(t); const q=cidade.value.trim(); if(q.length<3){fechar();return;}
+    t=setTimeout(async()=>{
+      try{
+        const r=await fetch('https://geocoding-api.open-meteo.com/v1/search?count=7&language=pt&format=json&name='+encodeURIComponent(q));
+        const j=await r.json(); const res=(j.results||[]);
+        if(!res.length){ box.innerHTML='<button type="button" disabled>Nenhuma cidade encontrada</button>'; box.hidden=false; return; }
+        box.innerHTML=res.map((c,i)=>`<button type="button" data-i="${i}">${c.name}<small> · ${[c.admin1,c.country].filter(Boolean).join(', ')}</small></button>`).join('');
+        box.hidden=false;
+        box.querySelectorAll('button[data-i]').forEach(b=>b.addEventListener('click',()=>{
+          const c=res[+b.dataset.i]; escolha={rotulo:[c.name,c.admin1,c.country].filter(Boolean).join(', '),lat:c.latitude,lon:c.longitude,tz:c.timezone};
+          cidade.value=escolha.rotulo; ok.textContent='Cidade escolhida: '+escolha.rotulo; fechar();
+        }));
+      }catch(e){ ok.textContent='Não foi possível buscar a cidade agora. Tente de novo.'; }
+    },300);
+  });
+  document.addEventListener('click',e=>{ if(!box.contains(e.target)&&e.target!==cidade) fechar(); });
+  cidade.addEventListener('keydown',e=>{ if(e.key==='ArrowDown'){ const b=box.querySelector('button[data-i]'); if(b){e.preventDefault();b.focus();} } if(e.key==='Escape') fechar(); });
+  box.addEventListener('keydown',e=>{ const bs=[...box.querySelectorAll('button[data-i]')], i=bs.indexOf(document.activeElement); if(e.key==='ArrowDown'&&bs[i+1]){e.preventDefault();bs[i+1].focus();} if(e.key==='ArrowUp'){e.preventDefault();(bs[i-1]||cidade).focus();} if(e.key==='Escape'){fechar();cidade.focus();} });
+
+  $('form').addEventListener('submit',async e=>{
+    e.preventDefault(); erro.textContent='';
+    const d={ plano:document.querySelector('input[name=plano]:checked').value, nome:$('nome').value.trim(), email:$('email').value.trim(), data:$('data').value, hora:$('hora').value };
+    if(d.nome.length<2) return erro.textContent='Informe o nome.';
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) return erro.textContent='Confira o e-mail.';
+    if(!d.data) return erro.textContent='Informe a data de nascimento.';
+    if(!d.hora) return erro.textContent='Informe a hora de nascimento.';
+    if(!escolha) return erro.textContent='Escolha a cidade de nascimento na lista que aparece ao digitar.';
+    if(!$('aceite').checked) return erro.textContent='Marque a caixa de aceite para continuar.';
+    try{ sessionStorage.setItem('mapa-form',JSON.stringify({...d,escolha})); }catch(e){}
+    const bt=$('pagar'); bt.disabled=true; bt.textContent='Abrindo o pagamento…';
+    try{
+      const r=await fetch('/api/mapa-checkout',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({...d,cidade:escolha.rotulo,lat:escolha.lat,lon:escolha.lon,tz:escolha.tz})});
+      const j=await r.json(); if(!r.ok||!j.url) throw new Error(j.erro||'Não foi possível abrir o pagamento.');
+      location.href=j.url;
+    }catch(err){ erro.textContent=err.message; bt.disabled=false; bt.textContent='Ir para o pagamento'; }
+  });
+})();
+</script>
+</body>
+</html>

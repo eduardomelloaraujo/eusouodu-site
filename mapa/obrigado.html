@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Obrigado · A semana no seu mapa</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Albert+Sans:wght@300;400;500&display=swap">
+<style>
+:root{color-scheme:light;--tinta:#333230;--cinza:#6F6B62;--ouro:#9C7A44;--pedra:#E4E1D8}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--tinta);font-family:'Albert Sans','Helvetica Neue',Arial,sans-serif;font-weight:300;line-height:1.7;padding:0 16px}
+main{max-width:620px;margin:0 auto;padding-block:clamp(56px,12vw,140px);display:flex;flex-direction:column;gap:22px}
+.marca{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;text-decoration:none;color:inherit}
+.marca i{color:var(--ouro)}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(40px,7vw,64px);line-height:1.05;margin:0}
+p{margin:0;color:var(--cinza);font-size:16px}
+.frase{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:22px;color:var(--tinta);border-top:1px solid var(--pedra);padding-top:22px}
+a.link{color:var(--tinta);font-size:14px;font-weight:500;text-decoration:none;border-bottom:1px solid currentColor;align-self:flex-start;padding-bottom:3px}
+</style>
+</head>
+<body>
+<main>
+  <a class="marca" href="/">eu<i>sou</i>odu</a>
+  <h1 id="t">O relatório está sendo preparado</h1>
+  <p id="m">Assim que o pagamento é confirmado, os trânsitos são calculados no mapa informado e o relatório é escrito. Em poucos minutos ele chega no e-mail. Se não aparecer, vale olhar a caixa de spam ou de promoções.</p>
+  <p class="frase">Enquanto isso, o céu continua andando.</p>
+  <p>Dúvidas: falecom@eusouodu.com</p>
+  <a class="link" href="/">Voltar ao site</a>
+</main>
+<script>
+if(new URLSearchParams(location.search).get('pendente')){document.getElementById('t').textContent='Pagamento em análise';document.getElementById('m').textContent='O Mercado Pago ainda está confirmando o pagamento. Assim que ele for aprovado, o relatório é preparado e enviado para o e-mail informado, sem precisar fazer mais nada.';}
+try{sessionStorage.removeItem('mapa-form')}catch(e){}
+</script>
+</body>
+</html>
