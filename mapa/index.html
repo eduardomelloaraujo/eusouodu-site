@@ -68,6 +68,8 @@ p{margin:0}
 .comprar .grade{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(32px,6vw,96px);align-items:start}
 .comprar h2{font-size:clamp(36px,4.6vw,60px);margin-bottom:18px}
 .comprar .lado p{color:var(--cinza);max-width:42ch}
+.comprar .grade>*{min-width:0}
+@media (max-width:860px){.comprar .grade{grid-template-columns:1fr}}
 .aviso-respeito{margin-top:28px;font-family:var(--display);font-style:italic;font-size:21px;line-height:1.4;color:var(--tinta);max-width:30ch}
 form{display:flex;flex-direction:column;gap:22px}
 .planos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
