@@ -150,6 +150,33 @@ p{margin:0}
 .lista span{color:var(--cinza);font-size:14px}
 @media (max-width:760px){.breve .grade{grid-template-columns:1fr}}
 
+
+/* Novo produto em destaque */
+.acoes-abertura{display:flex;flex-wrap:wrap;gap:20px 28px;align-items:center}
+.novo{padding-block:clamp(64px,9vw,128px);border-bottom:1px solid var(--pedra)}
+.novo .grade{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center}
+.novo h2{font-size:clamp(46px,6vw,84px);margin:18px 0 22px}
+.novo h2 em{font-style:italic;color:var(--ambar)}
+.novo .lead{color:var(--cinza);font-size:16px;max-width:48ch}
+.selo-novo{display:inline-block;background:var(--ambar);color:#fff;padding:3px 9px;margin-right:10px;letter-spacing:.14em}
+.precos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:30px 0 28px;max-width:460px}
+.preco-op{display:flex;flex-direction:column;gap:4px;border:1px solid var(--pedra);padding:16px 18px;text-decoration:none;transition:border-color .2s}
+.preco-op:hover{border-color:var(--tinta)}
+.preco-op span{font-size:13px;color:var(--cinza)}
+.preco-op b{font-family:var(--display);font-weight:400;font-size:32px;line-height:1}
+.novo-amostra{background:var(--areia);padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:18px}
+.novo-amostra .ritmo{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.novo-amostra .ritmo div{display:flex;flex-direction:column;align-items:center;padding:10px 2px;font-size:11px;line-height:1.3;border:1px solid transparent}
+.novo-amostra .ritmo b{font-size:15px;font-weight:500}
+.novo-amostra .ritmo i{font-style:normal;color:var(--ambar)}
+.novo-amostra .f{background:#EDF2EA;color:#4F6F4B}.novo-amostra .m{background:#F4F0E4;color:#7A6A45}.novo-amostra .d{background:#F6EAE6;color:#8E4E3F}
+.novo-amostra .top{border-color:var(--ambar)!important}
+.novo-amostra ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--pedra)}
+.novo-amostra li{padding:12px 0;border-bottom:1px solid var(--pedra);font-size:14px;color:var(--cinza)}
+.novo-amostra li b{display:block;font-family:var(--display);font-weight:400;font-size:21px;color:var(--tinta)}
+@media (max-width:860px){.novo .grade{grid-template-columns:1fr}}
+@media (max-width:420px){.precos{grid-template-columns:1fr}}
+
 /* Atendimento */
 .atendimento{background:var(--papel);border-top:1px solid var(--pedra)}
 .atendimento .grade{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center}
@@ -204,14 +231,15 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
   </defs>
 </svg>
 
-<div class="aviso">Odisseia, o Retorno · pré-venda a R$ 297 até 26 de outubro · <a href="https://pay.hotmart.com/T107852297P" target="_blank" rel="noopener">garantir a vaga</a></div>
+<div class="aviso">Novo · A semana no seu mapa: os próximos 7 ou 30 dias lidos no mapa natal · <a href="/mapa/">ver o meu</a></div>
 
 <header class="cabecalho">
   <div class="envelope">
     <a class="marca" href="#topo">eu<i>sou</i>odu</a>
     <nav class="menu" aria-label="Seções">
+      <a href="#seu-mapa" class="sempre">Seu mapa</a>
       <a href="#semana">A semana</a>
-      <a href="#leituras" class="sempre">Leituras</a>
+      <a href="#leituras">Leituras</a>
       <a href="#odisseia">Odisseia</a>
       <a href="#atendimento" class="sempre">Atendimento</a>
     </nav>
@@ -226,7 +254,34 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
       <p class="rotulo">Astrologia · Simbolismo · Mitologia</p>
       <h1>O mapa como um <em>caminho de volta</em></h1>
       <p class="lead">Há mais de dez anos o Eduardo lê o céu ao lado dos mitos e do simbolismo. Aqui estão as leituras, os produtos e a energia astrológica de cada semana.</p>
-      <a class="link" href="#leituras">Conhecer as leituras <span aria-hidden="true">→</span></a>
+      <div class="acoes-abertura"><a class="botao" href="/mapa/">Ver os próximos dias no meu mapa</a><a class="link" href="#leituras">Conhecer as leituras <span aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
+
+  <section class="novo" id="seu-mapa" aria-labelledby="t-novo">
+    <div class="envelope grade">
+      <div class="novo-texto">
+        <p class="rotulo"><span class="selo-novo">Novo</span> Leitura personalizada</p>
+        <h2 id="t-novo">A semana no <em>seu</em> mapa</h2>
+        <p class="lead">Os movimentos do céu dos próximos 7 ou 30 dias cruzados com o mapa natal de cada pessoa. Os dez planetas lidos pelas casas do mapa, as fases da Lua, o que trabalhar em cada dia e os dias mais fluidos e mais desafiadores. Tudo num e-mail, logo depois da compra.</p>
+        <div class="precos">
+          <a class="preco-op" href="/mapa/?plano=7#comprar"><span>Os próximos 7 dias</span><b>R$ 37</b></a>
+          <a class="preco-op" href="/mapa/?plano=30#comprar"><span>Os próximos 30 dias</span><b>R$ 97</b></a>
+        </div>
+        <a class="botao" href="/mapa/">Quero a minha leitura</a>
+      </div>
+      <div class="novo-amostra" aria-label="Exemplo do relatório">
+        <p class="rotulo">Exemplo · o ritmo da semana</p>
+        <div class="ritmo">
+          <div class="m">ter<b>13</b></div><div class="f top">qua<b>14</b><i>★</i></div><div class="m">qui<b>15</b></div><div class="f top">sex<b>16</b><i>★</i></div><div class="d">sáb<b>17</b></div><div class="m">dom<b>18</b></div><div class="f">seg<b>19</b></div>
+        </div>
+        <ul>
+          <li><b>A chave da semana</b>o trabalho central do período no mapa</li>
+          <li><b>A carta</b>um arcano do Tarot de Marselha por semana</li>
+          <li><b>A cor, o incenso e o óleo</b>escolhidos pela energia do momento</li>
+          <li><b>Dia a dia</b>o que trabalhar, pontos fortes e desafios</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -248,8 +303,8 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
         <p class="nota" id="s-fases">A Lua de cada dia, desenhada como aparece no céu do hemisfério sul.</p>
         <div class="chamada">
           <p class="rotulo">A semana no seu mapa</p>
-          <p id="s-chamada">Cada mapa recebe essa semana de um jeito. A leitura de como esses dias tocam o mapa de cada pessoa, dia a dia, chega em breve.</p>
-          <a class="link" id="s-chamada-link" href="https://wa.me/5571982872284?text=Oi%20Eduardo%2C%20quero%20saber%20como%20a%20semana%20cai%20no%20meu%20mapa" target="_blank" rel="noopener"><span id="s-chamada-rotulo">Quero ser avisado</span> <span aria-hidden="true">→</span></a>
+          <p id="s-chamada">Cada mapa recebe essa semana de um jeito. A leitura de como esses dias tocam as casas e os planetas de cada pessoa, dia a dia, já está disponível.</p>
+          <a class="link" id="s-chamada-link" href="/mapa/"><span id="s-chamada-rotulo">Ver a semana no meu mapa</span> <span aria-hidden="true">→</span></a>
         </div>
         <p style="margin-top:32px"><a class="link" href="https://instagram.com/eusouodu" target="_blank" rel="noopener">Assistir no Instagram <span aria-hidden="true">→</span></a></p>
       </div>
@@ -409,34 +464,6 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
     </div>
   </section>
 
-  <section class="secao breve" aria-labelledby="t-breve">
-    <div class="envelope grade">
-      <div>
-        <p class="rotulo">Em breve</p>
-        <h2 id="t-breve">A semana no seu mapa</h2>
-        <p class="lead">Um relatório que chega antes de a semana começar, dizendo como os movimentos do céu tocam o mapa de cada pessoa, dia a dia. Por semana ou por mês.</p>
-        <a class="link" href="https://wa.me/5571982872284?text=Oi%20Eduardo%2C%20quero%20ser%20avisado%20quando%20o%20relat%C3%B3rio%20da%20semana%20abrir" target="_blank" rel="noopener">Quero ser avisado <span aria-hidden="true">→</span></a>
-      </div>
-      <ul class="lista">
-        <li>
-          <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="var(--tinta)"/><path d="M16 4 a12 12 0 0 0 0 24z" fill="var(--tinta)"/></svg>
-          <div><strong>As quatro fases da Lua</strong><span>Lua Nova, Crescente, Cheia e Minguante, e onde cada uma cai no mapa.</span></div>
-        </li>
-        <li>
-          <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="5" fill="none" stroke="var(--tinta)"/><circle cx="16" cy="16" r="12" fill="none" stroke="var(--tinta)" stroke-dasharray="2 3"/><circle cx="28" cy="16" r="2" fill="var(--tinta)"/></svg>
-          <div><strong>Os planetas pessoais</strong><span>Sol, Lua, Mercúrio, Vênus e Marte conversando com o mapa natal.</span></div>
-        </li>
-        <li>
-          <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="9" y="4" width="14" height="24" fill="none" stroke="var(--tinta)"/><path d="M16 10 l3 6 -3 6 -3 -6z" fill="var(--tinta)"/></svg>
-          <div><strong>A carta da semana</strong><span>Uma carta tirada para a energia que ressoa naqueles sete dias.</span></div>
-        </li>
-        <li>
-          <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="var(--ambar)"/><circle cx="16" cy="16" r="12" fill="none" stroke="var(--tinta)"/></svg>
-          <div><strong>A cor da semana</strong><span>Escolhida pela energia do momento e pela psicologia das cores.</span></div>
-        </li>
-      </ul>
-    </div>
-  </section>
 
   <section class="secao atendimento" id="atendimento" aria-labelledby="t-atendimento">
     <div class="envelope grade">
@@ -718,7 +745,7 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
   if('IntersectionObserver' in window){new IntersectionObserver(es=>{visivel=es[0].isIntersecting;if(visivel&&!calmo)iniciar()}).observe(cv)}
 
   /* ---------- Semana: lê semana.json e desenha a Lua de cada dia (hemisfério sul) ---------- */
-  const SEMANA_PADRAO={"inicio": "2026-10-12", "fim": "2026-10-18", "rotuloDatas": "12 a 18 de outubro", "titulo": "Depois da Lua Nova em Libra", "paragrafos": ["A Lua acabou de renascer em Libra, e a semana ainda carrega o escuro fértil dos começos. Libra é o signo da balança, mas a balança só funciona para quem aceita pesar.", "O que pede atenção agora são os acordos que a gente fez calado. Com as pessoas, com o trabalho, com a imagem que a gente sustenta para continuar sendo querido.", "A Lua cresce devagar. E o primeiro peso que aparece no prato quase nunca é o que a gente esperava."], "dias": [{"data": "2026-10-12", "dia": "segunda", "fase": 0.0643, "luaSigno": "Escorpião"}, {"data": "2026-10-13", "dia": "terça", "fase": 0.0961, "luaSigno": "Escorpião"}, {"data": "2026-10-14", "dia": "quarta", "fase": 0.1272, "luaSigno": "Sagitário"}, {"data": "2026-10-15", "dia": "quinta", "fase": 0.1579, "luaSigno": "Sagitário"}, {"data": "2026-10-16", "dia": "sexta", "fase": 0.1882, "luaSigno": "Capricórnio"}, {"data": "2026-10-17", "dia": "sábado", "fase": 0.2183, "luaSigno": "Capricórnio"}, {"data": "2026-10-18", "dia": "domingo", "fase": 0.2485, "luaSigno": "Capricórnio"}], "fasesDaLua": [{"fase": "Lua Crescente", "data": "2026-10-18", "hora": "13:13", "dia": "domingo", "signo": "Capricórnio", "grau": "25°18'"}], "chamada": {"texto": "Cada mapa recebe essa semana de um jeito. A leitura de como esses dias tocam o mapa de cada pessoa, dia a dia, chega em breve.", "rotulo": "Quero ser avisado", "link": "https://wa.me/5571982872284?text=Oi%20Eduardo%2C%20quero%20saber%20como%20a%20semana%20cai%20no%20meu%20mapa"}, "instagram": "https://instagram.com/eusouodu"};
+  const SEMANA_PADRAO={"inicio": "2026-10-12", "fim": "2026-10-18", "rotuloDatas": "12 a 18 de outubro", "titulo": "Depois da Lua Nova em Libra", "paragrafos": ["A Lua acabou de renascer em Libra, e a semana ainda carrega o escuro fértil dos começos. Libra é o signo da balança, mas a balança só funciona para quem aceita pesar.", "O que pede atenção agora são os acordos que a gente fez calado. Com as pessoas, com o trabalho, com a imagem que a gente sustenta para continuar sendo querido.", "A Lua cresce devagar. E o primeiro peso que aparece no prato quase nunca é o que a gente esperava."], "dias": [{"data": "2026-10-12", "dia": "segunda", "fase": 0.0643, "luaSigno": "Escorpião"}, {"data": "2026-10-13", "dia": "terça", "fase": 0.0961, "luaSigno": "Escorpião"}, {"data": "2026-10-14", "dia": "quarta", "fase": 0.1272, "luaSigno": "Sagitário"}, {"data": "2026-10-15", "dia": "quinta", "fase": 0.1579, "luaSigno": "Sagitário"}, {"data": "2026-10-16", "dia": "sexta", "fase": 0.1882, "luaSigno": "Capricórnio"}, {"data": "2026-10-17", "dia": "sábado", "fase": 0.2183, "luaSigno": "Capricórnio"}, {"data": "2026-10-18", "dia": "domingo", "fase": 0.2485, "luaSigno": "Capricórnio"}], "fasesDaLua": [{"fase": "Lua Crescente", "data": "2026-10-18", "hora": "13:13", "dia": "domingo", "signo": "Capricórnio", "grau": "25°18'"}], "chamada": {"texto": "Cada mapa recebe essa semana de um jeito. A leitura de como esses dias tocam as casas e os planetas de cada pessoa, dia a dia, já está disponível.", "rotulo": "Ver a semana no meu mapa", "link": "/mapa/"}, "instagram": "https://instagram.com/eusouodu"};
   const abrev={segunda:'seg','terça':'ter',quarta:'qua',quinta:'qui',sexta:'sex','sábado':'sáb',domingo:'dom'};
   function desenhoLua(p){
     const r=15,c=18,k=Math.cos(2*Math.PI*p),rx=Math.abs(k)*r;

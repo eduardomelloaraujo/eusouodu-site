@@ -63,9 +63,9 @@
     }
   ],
   "chamada": {
-    "texto": "Cada mapa recebe essa semana de um jeito. A leitura de como esses dias tocam o mapa de cada pessoa, dia a dia, chega em breve.",
-    "rotulo": "Quero ser avisado",
-    "link": "https://wa.me/5571982872284?text=Oi%20Eduardo%2C%20quero%20saber%20como%20a%20semana%20cai%20no%20meu%20mapa"
+    "texto": "Cada mapa recebe essa semana de um jeito. A leitura de como esses dias tocam as casas e os planetas de cada pessoa, dia a dia, já está disponível.",
+    "rotulo": "Ver a semana no meu mapa",
+    "link": "/mapa/"
   },
   "instagram": "https://instagram.com/eusouodu"
 }
