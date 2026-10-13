@@ -183,7 +183,7 @@ p{margin:0}
 .roda{aspect-ratio:1/1;max-width:min(100%,520px);width:100%;justify-self:center}
 .atendimento h2{font-size:clamp(40px,5vw,66px);margin-block:14px 22px}
 .atendimento p{color:var(--cinza);max-width:46ch;font-size:16px}
-.contato{display:flex;flex-direction:column;gap:18px;margin-top:32px}
+.contato{display:flex;flex-direction:column;align-items:flex-start;gap:22px;margin-top:32px}
 .numero{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:14px}
 .numero span{font-family:var(--display);font-size:24px;font-variant-numeric:lining-nums tabular-nums;color:var(--tinta);user-select:all}
 .copiar{background:none;border:none;border-bottom:1px solid var(--cinza);padding:0 0 2px;font:inherit;font-size:12px;letter-spacing:.06em;color:var(--cinza);cursor:pointer}
@@ -471,10 +471,10 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
       <div>
         <p class="rotulo">Atendimento individual</p>
         <h2 id="t-atendimento">Leitura de mapa com o Eduardo</h2>
-        <p>Uma conversa terapêutica a partir do mapa natal, para olhar com cuidado o que se repete, o que pede passagem e o que ainda não tem nome. Valores e horários pelo WhatsApp.</p>
+        <p>Uma conversa terapêutica a partir do mapa natal e da Revolução Solar, para olhar com cuidado o que se repete, o que pede passagem e o que ainda não tem nome. Sessão de 1h15 pelo Google Meet, gravada e enviada depois.</p>
         <div class="contato">
-          <a class="botao" href="https://wa.me/5571982872284?text=Oi%20Eduardo%2C%20quero%20agendar%20uma%20leitura%20de%20mapa" target="_blank" rel="noopener">Agendar pelo WhatsApp</a>
-          <div class="numero"><span id="tel">+55 71 98287-2284</span><button class="copiar" id="copiar" type="button">Copiar número</button></div>
+          <a class="botao" href="https://agenda.eusouodu.com">Ver horários e agendar</a>
+          <a class="link" href="https://wa.me/5571982872284?text=Oi%20Eduardo%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20a%20leitura%20de%20mapa" target="_blank" rel="noopener">Dúvidas pelo WhatsApp <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </div>
@@ -492,6 +492,7 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
       <div>
         <h4>Leituras</h4>
         <ul>
+          <li><a href="https://agenda.eusouodu.com">Leitura de mapa</a></li>
           <li><a href="https://mitologia.eusouodu.com" target="_blank" rel="noopener">Mitologia do Mapa</a></li>
           <li><a href="https://livros.eusouodu.com" target="_blank" rel="noopener">7 Livros para 2027</a></li>
           <li><a href="https://pay.hotmart.com/T107852297P" target="_blank" rel="noopener">Odisseia, o Retorno</a></li>
@@ -798,7 +799,7 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
 
   /* ---------- Copiar número ---------- */
   const bt=document.getElementById('copiar'),tel=document.getElementById('tel');
-  bt.addEventListener('click',()=>{
+  if(bt)bt.addEventListener('click',()=>{
     const ok=()=>{bt.textContent='Número copiado';setTimeout(()=>bt.textContent='Copiar número',2200)};
     const sel=()=>{const r=document.createRange();r.selectNodeContents(tel);const s=getSelection();s.removeAllRanges();s.addRange(r);bt.textContent='Número selecionado'};
     try{navigator.clipboard.writeText('+5571982872284').then(ok,sel)}catch(e){sel()}
