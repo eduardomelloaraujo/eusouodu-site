@@ -10,4 +10,5 @@ Página central de eusouodu.com.
 
 - Vênus é o planeta, sempre no masculino: "o Vênus", "Vênus retrógrado", "ao Vênus natal". Nunca "Vênus retrógrada".
 - Retrógrado não é "andar para trás": é movimento aparente visto da Terra. Não escrever "para trás" nem "volta".
+- Nunca usar a fórmula "a pergunta é".
 - Dizer "energia astrológica da semana". Sem travessões. Coletivo com "a gente".
