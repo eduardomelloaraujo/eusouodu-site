@@ -36,6 +36,9 @@
   "functions": {
     "api/mapa-*.js": {
       "includeFiles": "{lib/fontes/**,node_modules/@sparticuz/chromium/bin/**}"
+    },
+    "api/musica-*.js": {
+      "includeFiles": "{musica/motor.js,musica/catalogo.json,lib/vendor/**}"
     }
   },
   "rewrites": [
@@ -48,6 +51,12 @@
         }
       ],
       "destination": "/musica/index.html"
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/musica-diario",
+      "schedule": "0 9 * * *"
     }
   ]
 }

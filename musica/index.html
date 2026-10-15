@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Instrument+Sans:wght@400;500;600&display=swap">
 <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
 <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+<script src="/musica/motor.js"></script>
 <style>
 html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
 /* Layout: duas colunas, dados à esquerda e o mapa nascendo à direita; no fim o mapa vira o selo de um vinil */
@@ -119,6 +120,17 @@ h1 i{color:var(--gold)}
   .wheel{max-width:300px}
 }
 @media (prefers-reduced-motion:reduce){.spin{animation:none}#rot{transition:none}.pop,.hint{animation:none}}
+.toast{margin:0;font-size:14px;color:var(--ink);background:var(--gold-soft);border-radius:6px;padding:10px 12px}
+.mail{display:flex;flex-direction:column;gap:10px;padding:18px;border:1px solid var(--line);border-radius:6px;background:var(--paper)}
+.mtxt{margin:0;font-size:14px;color:var(--muted)}
+.mail input[type=email]{font:16px var(--body);padding:12px 14px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);width:100%;min-width:0}
+.freq{display:flex;gap:16px;flex-wrap:wrap;font-size:14px}
+.freq input{accent-color:var(--gold)}
+.mmsg{font-size:13px;color:var(--muted)}
+.visually{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.82);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:50;padding:max(16px,env(safe-area-inset-top,0px)) 16px}
+.lightbox img{max-height:72vh;width:auto;border-radius:8px}
+.lightbox p{color:#fff;margin:0;text-align:center;font-size:14px}
 .spot{width:100%;min-height:80px;border-radius:12px;overflow:hidden}
 .spot iframe{display:block;border:0;border-radius:12px}
 .mark a{color:inherit;text-decoration:none}
@@ -164,8 +176,21 @@ h1 i{color:var(--gold)}
         <div id="pA" hidden></div>
         <div class="row">
           <a class="btn" id="play" href="#" target="_blank" rel="noopener" style="text-decoration:none;text-align:center">Tocar</a>
-          <button class="btn ghost" id="redo">Trocar os dados</button>
+          <button class="btn ghost" id="share">Compartilhar no story</button>
         </div>
+        <p class="toast" id="toast" hidden></p>
+        <form class="mail" id="mail" novalidate>
+          <div class="eyebrow">Receber a música por e-mail</div>
+          <p class="mtxt">Todo dia de manhã, a música do dia chega no e-mail, com o trânsito que escolheu ela.</p>
+          <div class="mrow"><label class="visually" for="m-email">E-mail</label><input id="m-email" type="email" inputmode="email" autocomplete="email" placeholder="seu@email.com" required></div>
+          <div class="freq" role="radiogroup" aria-label="Frequência">
+            <label><input type="radio" name="freq" value="diario" checked> Todo dia</label>
+            <label><input type="radio" name="freq" value="semanal"> Só aos domingos</label>
+          </div>
+          <label class="check"><input type="checkbox" id="m-ok"> Aceito receber os e-mails do eusouodu. Dá pra sair a qualquer momento, pelo link no fim de cada e-mail.</label>
+          <div class="row"><button class="btn" type="submit" id="m-go">Quero receber</button><span class="mmsg" id="m-msg"></span></div>
+        </form>
+        <div class="row"><button class="btn ghost" id="redo">Trocar os dados</button></div>
         <div class="spot" id="spot" hidden></div>
         <p class="note" id="spnote">Quem entra com a conta do Spotify ouve a música inteira. Sem entrar, toca um trecho.</p>
       </div>
@@ -175,356 +200,7 @@ h1 i{color:var(--gold)}
 </div>
 
 <script>
-const S=[
-// Áries
-["Áries","Como Nossos Pais","Elis Regina","Marte","a recusa de repetir a geração anterior"],
-["Áries","Metamorfose Ambulante","Raul Seixas","Marte","o direito de mudar de ideia"],
-["Áries","Ovelha Negra","Rita Lee","Marte","sair de casa para virar quem se é"],
-["Áries","Admirável Chip Novo","Pitty","Urano","acordar dentro do sistema"],
-["Áries","Lucro (Descomprimindo)","BaianaSystem","Marte","a pressão que vira dança"],
-["Áries","Don't Stop Me Now","Queen","Sol","a euforia de quem não pede licença"],
-["Áries","Run the World (Girls)","Beyoncé","Marte","a força que marcha"],
-["Áries","Que País É Este","Legião Urbana","Marte","a raiva como pergunta"],
-// Touro
-["Touro","Chega de Saudade","João Gilberto","Vênus","o tempo lento do afeto"],
-["Touro","Gostava Tanto de Você","Tim Maia","Vênus","o amor que fica no corpo"],
-["Touro","Ainda Bem","Marisa Monte","Vênus","a gratidão de ter alguém"],
-["Touro","Flor de Lis","Djavan","Vênus","o jardim, a perda, a beleza"],
-["Touro","Baby","Gal Costa","Vênus","o prazer das coisas simples"],
-["Touro","Smooth Operator","Sade","Vênus","a sensualidade sem pressa"],
-["Touro","Esperando na Janela","Gilberto Gil","Lua","a espera como estação"],
-["Touro","Malemolência","Céu","Vênus","o balanço de quem está em casa no próprio ritmo"],
-// Gêmeos
-["Gêmeos","Construção","Chico Buarque","Mercúrio","a palavra que monta e desmonta"],
-["Gêmeos","Alegria, Alegria","Caetano Veloso","Mercúrio","a cidade em fragmentos"],
-["Gêmeos","Taj Mahal","Jorge Ben Jor","Mercúrio","a história contada em loop"],
-["Gêmeos","A Minha Menina","Os Mutantes","Mercúrio","a leveza que brinca"],
-["Gêmeos","Jimmy, Renda-se","Tom Zé","Urano","o jogo com a própria língua"],
-["Gêmeos","Come Together","The Beatles","Mercúrio","o enigma feito de palavras"],
-["Gêmeos","Não Existe Amor em SP","Criolo","Mercúrio","a cidade que fala demais"],
-["Gêmeos","Preta Pretinha","Novos Baianos","Vênus","o diálogo de quem se procura"],
-// Câncer
-["Câncer","Cajuína","Caetano Veloso","Lua","o luto que vira cuidado"],
-["Câncer","Drão","Gilberto Gil","Lua","o amor que acaba e continua família"],
-["Câncer","Atrás da Porta","Elis Regina","Lua","a dor que se agarra"],
-["Câncer","Reconvexo","Maria Bethânia","Lua","a origem que a gente carrega"],
-["Câncer","O Mar","Dorival Caymmi","Netuno","o mar que dá e que leva"],
-["Câncer","Canção da América","Milton Nascimento","Lua","a amizade como casa"],
-["Câncer","Landslide","Fleetwood Mac","Saturno","envelhecer olhando para trás e para dentro"],
-["Câncer","Fico Assim Sem Você","Adriana Calcanhotto","Lua","a falta que é quase infância"],
-// Leão
-["Leão","Tropicália","Caetano Veloso","Sol","o Brasil inteiro num palco"],
-["Leão","O Canto da Cidade","Daniela Mercury","Sol","a cidade que se assume"],
-["Leão","Toda Menina Baiana","Gilberto Gil","Sol","a graça que nasce com a pessoa"],
-["Leão","Homem com H","Ney Matogrosso","Sol","a performance como verdade"],
-["Leão","A Carne","Elza Soares","Marte","o orgulho que denuncia"],
-["Leão","País Tropical","Jorge Ben Jor","Sol","a alegria de pertencer"],
-["Leão","Starman","David Bowie","Urano","o brilho que vem de fora"],
-["Leão","Zero","Liniker","Vênus","o coração exposto"],
-// Virgem
-["Virgem","Águas de Março","Tom Jobim e Elis Regina","Mercúrio","a vida listada coisa por coisa"],
-["Virgem","Cotidiano","Chico Buarque","Saturno","a rotina que prende e protege"],
-["Virgem","O Sol Nascerá","Cartola","Saturno","a paciência de quem trabalha a dor"],
-["Virgem","Foi um Rio que Passou em Minha Vida","Paulinho da Viola","Mercúrio","o cuidado com o que passou"],
-["Virgem","Paciência","Lenine","Saturno","o tempo certo das coisas"],
-["Virgem","Diz que Fui por Aí","Nara Leão","Mercúrio","a discrição de quem sabe de si"],
-["Virgem","No Surprises","Radiohead","Saturno","o desejo de uma vida em ordem"],
-["Virgem","Pink Moon","Nick Drake","Lua","o detalhe que salva o dia"],
-// Libra
-["Libra","Garota de Ipanema","Tom Jobim","Vênus","a beleza que passa"],
-["Libra","Velha Infância","Tribalistas","Vênus","o par como brincadeira"],
-["Libra","Amor I Love You","Marisa Monte","Vênus","o amor em duas línguas"],
-["Libra","Oceano","Djavan","Vênus","o encontro que atravessa distância"],
-["Libra","Você É Linda","Caetano Veloso","Vênus","olhar o outro inteiro"],
-["Libra","Detalhes","Roberto Carlos","Lua","o que fica de uma relação"],
-["Libra","Isn't She Lovely","Stevie Wonder","Vênus","a alegria de ver alguém existir"],
-["Libra","Ain't No Mountain High Enough","Marvin Gaye e Tammi Terrell","Vênus","o pacto a dois"],
-// Escorpião
-["Escorpião","Cálice","Chico Buarque e Milton Nascimento","Plutão","o silêncio imposto e o grito"],
-["Escorpião","O Tempo Não Para","Cazuza","Plutão","a urgência de quem encarou a morte"],
-["Escorpião","Sangue Latino","Secos & Molhados","Marte","o desejo que não se domestica"],
-["Escorpião","Negue","Maria Bethânia","Plutão","a paixão que ninguém confessa"],
-["Escorpião","Amor, Meu Grande Amor","Angela Ro Ro","Vênus","a entrega sem rede"],
-["Escorpião","Sinnerman","Nina Simone","Plutão","a fuga que termina no espelho"],
-["Escorpião","Glory Box","Portishead","Vênus","o desejo de ser só mulher, só pessoa"],
-["Escorpião","Hurt","Johnny Cash","Plutão","o balanço de uma vida no fim"],
-// Sagitário
-["Sagitário","Encontros e Despedidas","Milton Nascimento","Júpiter","a estação como metáfora da vida"],
-["Sagitário","Andar com Fé","Gilberto Gil","Júpiter","a fé que não precisa de nome"],
-["Sagitário","Gita","Raul Seixas","Júpiter","o divino em tudo"],
-["Sagitário","Sol de Primavera","Beto Guedes","Sol","o recomeço que chega"],
-["Sagitário","Mistério do Planeta","Novos Baianos","Júpiter","a estrada como filosofia"],
-["Sagitário","Tempos Modernos","Lulu Santos","Júpiter","o otimismo de olhar adiante"],
-["Sagitário","Three Little Birds","Bob Marley","Júpiter","a confiança sem garantia"],
-["Sagitário","What a Wonderful World","Louis Armstrong","Júpiter","o espanto diante do mundo"],
-// Capricórnio
-["Capricórnio","Apenas um Rapaz Latino-Americano","Belchior","Saturno","a dignidade de quem veio de baixo"],
-["Capricórnio","Sinal Fechado","Paulinho da Viola","Saturno","a pressa que impede o encontro"],
-["Capricórnio","O Que É, O Que É?","Gonzaguinha","Saturno","a vida como trabalho bonito"],
-["Capricórnio","Tempo Rei","Gilberto Gil","Saturno","o tempo como senhor"],
-["Capricórnio","Juízo Final","Nelson Cavaquinho","Saturno","a justiça que demora"],
-["Capricórnio","Negro Drama","Racionais MC's","Plutão","a estrutura vista de dentro"],
-["Capricórnio","Hallelujah","Leonard Cohen","Saturno","a fé que sobrevive à derrota"],
-["Capricórnio","My Way","Frank Sinatra","Saturno","o balanço de quem fez do próprio jeito"],
-// Aquário
-["Aquário","Panis et Circenses","Os Mutantes","Urano","a família que não ouve"],
-["Aquário","Divino, Maravilhoso","Gal Costa","Urano","o alerta coletivo"],
-["Aquário","Sociedade Alternativa","Raul Seixas","Urano","a utopia que provoca"],
-["Aquário","A Praieira","Chico Science & Nação Zumbi","Urano","o mangue com antena"],
-["Aquário","Comida","Titãs","Urano","o que a gente realmente quer"],
-["Aquário","Space Oddity","David Bowie","Urano","a solidão de quem foi longe demais"],
-["Aquário","Hyperballad","Björk","Urano","a estranheza como intimidade"],
-["Aquário","Imagine","John Lennon","Júpiter","o futuro como desejo comum"],
-// Peixes
-["Peixes","Cais","Milton Nascimento","Netuno","partir para dentro"],
-["Peixes","Wave","Tom Jobim","Netuno","a onda que não se explica"],
-["Peixes","Oração ao Tempo","Caetano Veloso","Netuno","rezar para o que passa"],
-["Peixes","Trem Azul","Lô Borges","Netuno","a viagem sem destino"],
-["Peixes","É Doce Morrer no Mar","Dorival Caymmi","Netuno","a dissolução como entrega"],
-["Peixes","Tarde em Itapuã","Vinicius de Moraes e Toquinho","Netuno","o tempo que se dissolve na Bahia"],
-["Peixes","Teardrop","Massive Attack","Lua","o amor como água"],
-["Peixes","Heaven or Las Vegas","Cocteau Twins","Netuno","a beleza que não precisa de palavra"]
-];
 
-// Playlist EUSOUODU do Eduardo (versões repetidas juntadas numa linha só)
-const E=[
-["Capricórnio","Good Riddance (Time of Your Life)","Green Day","Saturno","o tempo que escolhe o que fica"],
-["Sagitário","Walk On","U2","Júpiter","seguir mesmo deixando tudo"],
-["Leão","Sol Que Faltava","Tiago Iorc","Sol","a luz que chega pelo outro"],
-["Gêmeos","Pra Você Dar o Nome","5 a Seco","Mercúrio","dar nome ao que se sente"],
-["Peixes","Ilusión","Julieta Venegas e Marisa Monte","Netuno","o amor como miragem"],
-["Sagitário","Don't Worry Be Happy","Bobby McFerrin","Júpiter","a leveza diante do problema"],
-["Aquário","Cósmica","Baby do Brasil","Urano","o corpo que se sabe cósmico"],
-["Leão","You Can't Stop the Beat","Elenco de Hairspray","Sol","a festa que ninguém segura"],
-["Capricórnio","Mais Uma Vez","Renato Russo","Saturno","insistir depois da queda"],
-["Áries","Dona de Mim","IZA","Marte","a autonomia conquistada"],
-["Capricórnio","Trem-Bala","Ana Vilela","Saturno","a vida que passa rápido"],
-["Peixes","Esquecimento","Skank","Netuno","o que a memória solta"],
-["Câncer","Casinha Branca","Roberta Campos","Lua","o lar sonhado"],
-["Touro","Gold","Elenco de Once","Vênus","o valor de quem a gente ama"],
-["Gêmeos","Meia Lua Inteira","Caetano Veloso (e Silva)","Mercúrio","a ginga da capoeira"],
-["Libra","Planeta Vênus","Baby do Brasil","Vênus","o amor como planeta"],
-["Aquário","A Novidade","Paralamas do Sucesso (e Gilberto Gil)","Urano","a beleza e a fome lado a lado"],
-["Escorpião","Vivir Sin Aire","Maná","Plutão","o amor que sufoca"],
-["Touro","Gratidão (Eu Agradeço)","Marie Gabriella e Nicole Salmi","Vênus","agradecer o que se tem"],
-["Peixes","When You Wish Upon a Star","David Burnham","Netuno","o desejo como estrela"],
-["Touro","If I Ain't Got You","Alicia Keys","Vênus","o amor acima das posses"],
-["Câncer","Amor de Índio","Pedro Sol e Estrela Blanco","Lua","o amor como natureza"],
-["Libra","La Vie en Rose","Lady Gaga (e Michael Bublé)","Vênus","o mundo cor de rosa a dois"],
-["Sagitário","Tocando em Frente","ANAVITÓRIA","Júpiter","a vida como caminhada"],
-["Câncer","Is This Love","Bob Marley & The Wailers","Lua","dividir o teto e o pão"],
-["Escorpião","Um Dia, um Adeus","Vanessa da Mata","Plutão","a despedida que liberta"],
-["Leão","Fight the Dragons","Norbert Leo Butz","Sol","o pai como herói"],
-["Libra","Diga a Ela","Nenhum de Nós","Vênus","o recado de amor"],
-["Libra","Lucky","Jason Mraz e Colbie Caillat","Vênus","a sorte de estar com alguém"],
-["Leão","Fly Me to the Moon","Michael Bublé (e Diana Krall)","Sol","o romance como espetáculo"],
-["Peixes","Amar Pelos Dois","Salvador Sobral","Netuno","amar por quem não ama"],
-["Escorpião","Odio Por Amor","Juanes","Plutão","o amor que vira ódio"],
-["Capricórnio","Podres Poderes","Caetano Veloso","Plutão","o poder visto por dentro"],
-["Capricórnio","Marvin","Titãs","Saturno","o filho que vira pai cedo"],
-["Sagitário","Redescobrir","Maria Rita","Júpiter","aprender de novo a viver"],
-["Sagitário","Forasteiro","Tiago Iorc e Silva","Júpiter","o estrangeiro em si"],
-["Câncer","Rayando el Sol","Maná e Pablo Alborán","Lua","a espera de quem não volta"],
-["Virgem","Fix You","Coldplay","Lua","cuidar de quem quebrou"],
-["Peixes","Estrella del Alba","Lulacruza","Netuno","a estrela da manhã"],
-["Escorpião","Piece of My Heart","Janis Joplin","Marte","a entrega que dói"],
-["Leão","Electricity","Elenco de Billy Elliot","Sol","o corpo que vira luz"],
-["Touro","De Onde Vem a Calma","Los Hermanos","Lua","a calma que vem de dentro"],
-["Sagitário","Olhos Certos","Detonautas","Júpiter","ver com outros olhos"],
-["Touro","As Coisas Tão Mais Lindas","Cássia Eller e Nando Reis","Vênus","o amor nas coisas pequenas"],
-["Touro","Pecado É Lhe Deixar de Molho","Silva","Vênus","o desejo sem culpa"],
-["Leão","Linha do Equador","Mart'nália","Sol","o amor tropical"],
-["Touro","Primavera (Vai Chuva)","Tim Maia","Vênus","o amor que floresce"],
-["Libra","You're Beautiful","James Blunt","Vênus","a beleza vista de passagem"],
-["Áries","Sai de Casa","Tais Alvarenga","Marte","sair do conforto"],
-["Sagitário","Vai Valer","Paralamas do Sucesso","Júpiter","a aposta no futuro"],
-["Sagitário","Peça Felicidade","Melim","Júpiter","pedir o simples"],
-["Escorpião","Feito Borboleta","Walgra Maria e Fernando Guimarães","Plutão","a metamorfose"],
-["Áries","Livin' on a Prayer","Bon Jovi","Marte","a luta a dois"],
-["Áries","Tudo Novo de Novo","Paulinho Moska","Marte","recomeçar"],
-["Libra","Charme do Mundo","Marina Lima","Vênus","a elegância de existir"],
-["Aquário","Outras Frequências","Engenheiros do Hawaii","Urano","sintonizar outra estação"],
-["Câncer","For Good","Elenco de Wicked","Lua","quem nos muda para sempre"],
-["Libra","Encontro","Maria Gadú","Vênus","o encontro"],
-["Leão","O Sol","Jota Quest","Sol","o sol depois da chuva"],
-["Gêmeos","Você Não Entende Nada","Gal Costa","Mercúrio","o desencontro na palavra"],
-["Peixes","A Idade do Céu","Paulinho Moska e Kevin Johansen (e Jorge Drexler)","Netuno","a pequenez diante do céu"],
-["Peixes","Planeta Água","Tom Chris","Netuno","a água que circula"],
-["Câncer","Lua de Cristal","Xuxa","Lua","a infância e o sonho"],
-["Câncer","Lua Cheia","Papas da Língua","Lua","a lua como saudade"],
-["Gêmeos","Carta","Toranja","Mercúrio","a palavra escrita ao outro"],
-["Libra","Dessa Vez","Nando Reis","Vênus","tentar de novo o amor"],
-["Libra","Romance Ideal","Paralamas do Sucesso","Vênus","o amor idealizado"],
-["Capricórnio","Vamos Construir","Sandy e Junior e Chitãozinho & Xororó","Saturno","construir junto"],
-["Peixes","Pescador de Ilusões","O Rappa","Netuno","pescar o que não existe"],
-["Câncer","Casa","Lulu Santos","Lua","a casa como abrigo"],
-["Escorpião","Open Your Eyes","Snow Patrol","Plutão","olhar de frente o fim"],
-["Câncer","Tendo a Lua","Paralamas do Sucesso (e Pitty)","Lua","a lua como companhia"],
-["Peixes","Nascente","Milton Nascimento e Flavio Venturini","Netuno","a fonte das coisas"],
-["Gêmeos","Macaé","Clarice Falcão","Mercúrio","o humor que desmonta o amor"],
-["Aquário","Para Lennon e McCartney","Pedro Sol","Urano","o Brasil que fala com o mundo"],
-["Libra","Vambora","Adriana Calcanhotto","Vênus","a espera de quem a gente ama"],
-["Capricórnio","Closing Time","Semisonic","Saturno","todo fim é começo"],
-["Peixes","Miss You Love","Silverchair","Netuno","a falta que confunde"],
-["Gêmeos","Fake News","Gustavo Mioto","Mercúrio","a mentira no amor"],
-["Câncer","Someone You Loved","Lewis Capaldi","Lua","o vazio de quem se foi"],
-["Capricórnio","Epitáfio","Titãs","Saturno","o que se faria diferente"],
-["Câncer","We Can Always Come Back to This","Brian Tyree Henry","Lua","o lugar seguro"],
-["Virgem","O Caderno","Toquinho","Mercúrio","o caderno que acompanha a vida"],
-["Câncer","Ilumina Minha Mãe","Marie Gabriella","Lua","a mãe como luz"],
-["Libra","Paula e Bebeto","Milton Nascimento (e Gal Costa)","Vênus","qualquer maneira de amor"],
-["Aquário","Não Identificado","Gal Costa","Urano","a canção como disco voador"],
-["Câncer","João e Maria","Chico Buarque","Lua","a infância como reino"],
-["Câncer","Memories","Maroon 5","Lua","brindar a quem não está"],
-["Peixes","Dream a Little Dream of Me","Ella Fitzgerald e Louis Armstrong","Netuno","o sonho como despedida"],
-["Câncer","Lua Cheia","5 a Seco","Lua","a lua que ilumina a falta"],
-["Libra","Say You, Say Me","Lionel Richie","Vênus","o pacto de amizade"],
-["Câncer","Dona Cila","Maria Gadú","Lua","a avó que fica"],
-["Gêmeos","Aquarela","Toquinho","Mercúrio","a imaginação que desenha o mundo"],
-["Escorpião","Todo Se Transforma","Jorge Drexler","Plutão","nada se perde"],
-["Touro","Unicamente","Deborah Blando","Vênus","o amor único"],
-["Aquário","Fusión","Jorge Drexler","Urano","a mistura que cria"],
-["Áries","Beat Acelerado","Metrô","Marte","o coração acelerado"],
-["Aquário","Wind of Change","Scorpions","Urano","o vento da história"],
-["Virgem","Everything's Alright","Elenco de Jesus Christ Superstar","Lua","o cuidado que acalma"],
-["Sagitário","I'm Like a Bird","Nelly Furtado","Júpiter","o amor que não se prende"],
-["Escorpião","Blues da Piedade","Cazuza","Plutão","a compaixão pelos covardes"],
-["Aquário","Smells Like Teen Spirit","Emmelie de Forest","Urano","a geração entediada"],
-["Leão","Gente Bonita","Fióti","Sol","a beleza preta que se afirma"],
-["Sagitário","Save the People","Elenco de Godspell","Júpiter","a fé que pede socorro"],
-["Sagitário","Caçador de Mim","Estevão Queiroga","Júpiter","a busca de si"],
-["Capricórnio","Tiempo al Tiempo","Fito Páez","Saturno","dar tempo ao tempo"],
-["Aquário","Velha Roupa Colorida","Belchior","Urano","o passado que não serve mais"],
-["Leão","Soul de Verão","Sandra Sá","Sol","o verão no corpo"],
-["Touro","Price Tag","Jessie J","Vênus","o que não tem preço"],
-["Capricórnio","Tempo Perdido","Tiago Iorc","Saturno","o tempo que é nosso"],
-["Câncer","In My Place","Coldplay","Lua","esperar no mesmo lugar"],
-["Peixes","Se Eu Quiser Falar com Deus","Gilberto Gil (e Margareth Menezes)","Netuno","o silêncio para chegar a Deus"],
-["Gêmeos","Palavras ao Vento","Cássia Eller","Mercúrio","o que se diz sem pensar"],
-["Escorpião","Sina","Djavan","Vênus","o destino do desejo"],
-["Libra","Por Que Nós?","Marcelo Jeneci e Laura Lavieri","Vênus","o espanto de ser par"],
-["Gêmeos","Garotos","Kid Abelha","Mercúrio","o jogo da paquera"],
-["Touro","Pétala","Cássia Eller","Vênus","a delicadeza do amor"],
-["Peixes","Call It Dreaming","Iron & Wine","Netuno","chamar de sonho"],
-["Câncer","Time After Time","Iron & Wine","Lua","estar lá sempre"],
-["Sagitário","Jingle Bell Rock","George Strait","Júpiter","a festa de fim de ano (sazonal, revisar)"],
-["Peixes","Have You Ever Seen the Rain","Creedence Clearwater Revival","Netuno","a chuva num dia de sol"],
-["Áries","Tente Outra Vez","Barão Vermelho (e Dudu Fileti)","Marte","levantar de novo"],
-["Virgem","Clarity","John Mayer","Mercúrio","a clareza que chega"],
-["Virgem","Message in a Bottle","John Mayer","Mercúrio","o recado escrito com cuidado"],
-["Libra","Better Together","Jack Johnson","Vênus","ser melhor a dois"],
-["Libra","Você e Eu, Eu e Você (Juntinhos)","Ivete Sangalo e Criolo","Vênus","o par que dança"],
-["Virgem","Cuide-se Bem","Vanessa da Mata","Lua","o cuidado de quem fica"],
-["Libra","Say a Little Prayer","Lianne La Havas","Vênus","pensar no outro o dia inteiro"],
-["Sagitário","Monte Castelo","Jay Vaquer","Júpiter","o amor como texto sagrado"],
-["Escorpião","Glycerine","Bush","Plutão","o amor corrosivo"],
-["Peixes","Luna","Zoé","Netuno","a lua como sonho"],
-["Sagitário","Infinita Highway","Engenheiros do Hawaii","Júpiter","a estrada sem fim"],
-["Gêmeos","Lindo Balão Azul","Guilherme Arantes","Mercúrio","a imaginação da criança"],
-["Câncer","You Are My Sunshine","Jasmine Thompson","Lua","o medo de perder quem se ama"],
-["Aquário","Salvapantallas","Jorge Drexler","Urano","a vida na tela"],
-["Aquário","Mesmo Que Mude","Bidê ou Balde","Urano","aceitar que o outro muda"],
-["Leão","December, 1963 (Oh, What a Night)","The Four Seasons","Sol","a noite inesquecível"],
-["Aquário","Aquarius","Elenco de Hair","Urano","a era de Aquário"],
-["Sagitário","Free Fallin'","John Mayer","Júpiter","a liberdade da queda"],
-["Touro","Unforgettable","Nat King Cole","Vênus","o amor que não se esquece"],
-["Capricórnio","A Promessa","Engenheiros do Hawaii","Saturno","a promessa que pesa"],
-["Peixes","Quem Sabe Isso Quer Dizer Amor","Roberta Campos","Netuno","o amor que não se nomeia"],
-["Leão","Clareia","Marie Gabriella","Sol","a luz que abre"],
-["Leão","Raça","Elenco de Nada Será Como Antes","Sol","a força de um povo que canta"],
-["Peixes","Yemanjá Rainha do Mar","Maria Bethânia","Netuno","a mãe das águas"],
-["Leão","Luz do Sol","Caetano Veloso","Sol","a luz que alimenta"],
-["Escorpião","Perigo","Zizi Possi","Plutão","o perigo do desejo"],
-["Escorpião","Os Cegos do Castelo","Nando Reis","Plutão","o que não se quer ver"],
-["Touro","Espatódea","Gilberto Gil, Nando Reis e Gal Costa","Vênus","a flor como desejo"],
-["Escorpião","Pérola Negra","Gilberto Gil, Nando Reis e Gal Costa","Vênus","a beleza escura"],
-["Capricórnio","The General","Dispatch","Saturno","o comando que se recusa"],
-["Peixes","Can't Help Falling in Love","Haley Reinhart","Vênus","o amor inevitável"],
-["Câncer","Canções e Momentos","Milton Nascimento","Lua","a canção como memória"],
-["Escorpião","Mariposa Traicionera","Maná","Vênus","o amor que trai"],
-["Leão","Mas Que Nada","Jorge Ben Jor","Sol","a alegria que pede passagem"],
-["Escorpião","Secret Smile","Semisonic","Lua","o segredo que sustenta"],
-["Câncer","Yesterday","The Beatles","Saturno","o ontem que pesa"],
-["Câncer","Mãe Lua","Marie Gabriella e Nicole Salmi","Lua","a lua como mãe"],
-["Escorpião","Mr. Brightside","Run River North","Plutão","o ciúme que consome"],
-["Capricórnio","Somos Quem Podemos Ser","Engenheiros do Hawaii","Saturno","o limite do possível"],
-["Leão","Abre Coração","Cheiro de Amor","Sol","o carnaval do coração"],
-["Peixes","Espelhos d'Água","Patricia Marx e Seu Jorge","Netuno","o reflexo na água"],
-["Câncer","To Build a Home","The Cinematic Orchestra","Lua","a casa construída e perdida"],
-["Touro","La Única","Juanes","Vênus","a única"],
-["Sagitário","It's a Beautiful Day","Michael Bublé","Júpiter","o dia bonito depois do fim"],
-["Peixes","Santa Chuva","Marcelo Camelo","Netuno","a chuva que limpa"],
-["Áries","Mesmo Que Seja Eu","Marina Lima","Marte","a ousadia de se oferecer"],
-["Leão","Baila Comigo","Rita Lee","Sol","a dança como convite"],
-["Gêmeos","Metade","Oswaldo Montenegro","Mercúrio","a metade que fica"],
-["Leão","Exagerado","Cazuza","Sol","o excesso como assinatura"],
-["Touro","Curumim Chama Cunhatã Que Eu Vou Contar","Baby do Brasil","Lua","a terra originária"],
-["Leão","Greatest Love of All","Whitney Houston","Sol","amar a si mesma"],
-["Aquário","Ideologia","Cazuza","Urano","a ideologia que falta"],
-["Câncer","Stand By Me","Florence + The Machine","Lua","ficar junto"],
-["Aquário","Admirável Gado Novo","Zé Ramalho","Urano","a massa que acorda"],
-["Áries","Pra Não Dizer Que Não Falei das Flores","Geraldo Vandré","Marte","a coragem coletiva"],
-["Touro","Pingos de Amor","Kid Abelha","Vênus","o amor em gotas"],
-["Capricórnio","Sobre o Tempo","Nenhum de Nós","Saturno","o tempo que ensina"],
-["Aquário","Nada Será Como Antes","Elis Regina","Urano","a mudança sem volta"],
-["Peixes","Todo Azul do Mar","DoContra e Flavio Venturini","Netuno","o azul que dissolve"],
-["Escorpião","Retrograde","Pearl Jam","Plutão","o que volta para ser visto"],
-["Leão","Um Girassol da Cor do Seu Cabelo","Lô Borges","Sol","o amor que segue o sol"],
-["Peixes","Donde Van","Diego Torres","Netuno","para onde vão os sonhos"],
-["Capricórnio","Terra de Gigantes","Engenheiros do Hawaii","Saturno","crescer entre gigantes"],
-["Gêmeos","Anything Goes","Tony Bennett e Lady Gaga","Mercúrio","tudo vale"],
-["Libra","Por Que Não Eu?","Leoni e Herbert Vianna","Vênus","o amor que escolhe outro"],
-["Escorpião","Torn","Natalie Imbruglia","Plutão","a desilusão que rasga"],
-["Câncer","Home","Phillip Phillips","Lua","a casa como promessa"],
-["Aquário","Maluco Beleza","Raul Seixas","Urano","a lucidez da loucura"],
-["Peixes","Por uma Folha","Margareth Menezes","Netuno","a folha como fé"],
-["Gêmeos","Te Ver","Skank","Mercúrio","a vontade de ver"],
-["Câncer","Somewhere Only We Know","Keane","Lua","o lugar que só nós sabemos"],
-["Sagitário","Fly Away","Lenny Kravitz","Júpiter","voar para longe"],
-["Capricórnio","Till I'm Old and Gray","Tiago Iorc","Vênus","envelhecer junto"],
-["Escorpião","Betterman","Pearl Jam","Plutão","o amor que prende"],
-["Aquário","Não Vou Me Adaptar","Nando Reis","Urano","não caber no mundo"],
-["Sagitário","Extranjero","Maria Gadú","Júpiter","ser estrangeiro"],
-["Câncer","Benditas","Zélia Duncan","Lua","o feminino que abençoa"],
-["Gêmeos","Cups","Lulu & The Lampshades","Mercúrio","o ritmo da partida"],
-["Sagitário","Blowin' in the Wind","Bob Dylan","Júpiter","a resposta no vento"],
-["Libra","Leve e Suave","Lenine","Vênus","a leveza do amor"],
-["Sagitário","Get Along","Kenny Chesney","Júpiter","a vida curta demais para brigar"],
-["Câncer","Boys Don't Cry","The Cure","Lua","o choro proibido"],
-["Aquário","Polvo de Estrellas","Jorge Drexler","Urano","a poeira de estrelas que somos"],
-["Gêmeos","Pra Ver Se Cola","Trem da Alegria","Mercúrio","a brincadeira da infância"],
-["Áries","Medo Bobo","Rubel","Marte","o medo de começar"],
-["Escorpião","Say Something","Pentatonix","Plutão","o fim que não se diz"],
-["Peixes","Quando Fui Chuva","Maria Gadú","Netuno","ser água antes de ser gente"],
-["Câncer","Retrato pra Iaiá","Los Hermanos","Lua","a saudade como retrato"],
-["Escorpião","Faltando um Pedaço","Gal Costa","Vênus","a falta que corta"],
-["Escorpião","The Blower's Daughter","Damien Rice","Plutão","não conseguir tirar os olhos"],
-["Leão","Tive Razão","Seu Jorge","Sol","a altivez de quem foi embora"],
-["Capricórnio","Inverno","A Banda Mais Bonita da Cidade","Saturno","o frio que recolhe"],
-["Peixes","Dois Rios","Skank","Netuno","o rio que divide e junta"],
-["Capricórnio","Por Enquanto","Cássia Eller","Saturno","o que dura por enquanto"],
-["Sagitário","Outro Lugar","Milton Nascimento","Júpiter","o lugar que a gente procura"],
-["Sagitário","A Seta e o Alvo","Paulinho Moska","Júpiter","o alvo e o caminho"],
-["Câncer","Canção pra Você Viver Mais","Pato Fu","Lua","cantar para alguém ficar"],
-["Gêmeos","Esquadros","Adriana Calcanhotto","Mercúrio","o mundo visto em quadros"],
-["Escorpião","O Último Dia","Paulinho Moska","Plutão","viver como se fosse o último"],
-["Leão","Aquilo Que Dá no Coração","Lenine","Sol","o impulso do coração"],
-["Gêmeos","Quase Sem Querer","Zélia Duncan","Mercúrio","a dúvida de quem se descobre"],
-["Sagitário","Estrela","Gilberto Gil","Júpiter","a estrela que guia"],
-["Virgem","Gravity","John Mayer","Saturno","o peso que puxa e o que mantém de pé"],
-["Virgem","Stop This Train","John Mayer","Saturno","o medo de ver os pais envelhecerem"],
-["Virgem","The Heart of Life","John Mayer","Lua","a dor que passa e a vida que segue"],
-["Virgem","Why Georgia","John Mayer","Mercúrio","revisar a vida que escolheu"],
-["Virgem","Love Is a Verb","John Mayer","Vênus","o amor como prática"],
-["Câncer","Daughters","John Mayer","Lua","o pai que molda a filha"],
-["Aquário","Waiting on the World to Change","John Mayer","Urano","a geração que espera mudar"],
-["Escorpião","Slow Dancing in a Burning Room","John Mayer","Plutão","dançar enquanto tudo acaba"]
-];
-// Músicas que já estavam nas duas listas
-const BOTH=new Set(["Como Nossos Pais","Ovelha Negra","Run the World (Girls)","Baby","Cotidiano","Paciência","O Tempo Não Para","Tempos Modernos","Trem Azul","Oração ao Tempo","Alegria, Alegria","Imagine","What a Wonderful World"]);
-S.forEach(s=>s.push(BOTH.has(s[1])?"a":"c"));
-E.forEach(s=>{s.push("e");S.push(s)});
-const CAT=S;
 
 /* ---------- cidades: todas do Brasil e as do mundo com mais de 15 mil habitantes ---------- */
 const ALIAS={"Lisbon":"Lisboa","New York City":"Nova York","London":"Londres","Rome":"Roma","Madrid":"Madri","Tokyo":"Tóquio","Munich":"Munique","Milan":"Milão","Geneva":"Genebra","Brussels":"Bruxelas","Vienna":"Viena","Berlin":"Berlim","Warsaw":"Varsóvia","Moscow":"Moscou","Beijing":"Pequim","Mexico City":"Cidade do México","Philadelphia":"Filadélfia","New Orleans":"Nova Orleans","Asunción":"Assunção","Montevideo":"Montevidéu","Athens":"Atenas","Copenhagen":"Copenhague","Stockholm":"Estocolmo","Johannesburg":"Joanesburgo","Cape Town":"Cidade do Cabo","Edinburgh":"Edimburgo","Amsterdam":"Amsterdã","Zurich":"Zurique","Florence":"Florença","Venice":"Veneza","Naples":"Nápoles","Seville":"Sevilha","San Francisco":"São Francisco","Jerusalem":"Jerusalém","Istanbul":"Istambul","New Delhi":"Nova Délhi","Havana":"Havana","Dublin":"Dublin","Cairo":"Cairo","Barcelona":"Barcelona","Paris":"Paris","Turin":"Turim","Hamburg":"Hamburgo","Cologne":"Colônia","Frankfurt am Main":"Frankfurt","Prague":"Praga","Budapest":"Budapeste","Oslo":"Oslo","Helsinki":"Helsinque","Saint Petersburg":"São Petersburgo","Bogotá":"Bogotá","Santiago":"Santiago","Lima":"Lima","Quito":"Quito","La Paz":"La Paz","Caracas":"Caracas","Panamá":"Cidade do Panamá","Montreal":"Montreal","Toronto":"Toronto","Miami":"Miami","Orlando":"Orlando","Boston":"Boston","Chicago":"Chicago","Los Angeles":"Los Angeles","Washington, D.C.":"Washington","Sydney":"Sydney","Seoul":"Seul","Singapore":"Singapura","Lyon":"Lyon","Marseille":"Marselha","Porto":"Porto","Coimbra":"Coimbra","Braga":"Braga","Funchal":"Funchal","Luanda":"Luanda","Maputo":"Maputo","Praia":"Praia"};
@@ -556,24 +232,12 @@ function searchCities(q){
 }
 
 
-const SG=[["Áries","♈︎"],["Touro","♉︎"],["Gêmeos","♊︎"],["Câncer","♋︎"],["Leão","♌︎"],["Virgem","♍︎"],["Libra","♎︎"],["Escorpião","♏︎"],["Sagitário","♐︎"],["Capricórnio","♑︎"],["Aquário","♒︎"],["Peixes","♓︎"]];
-const signOf=l=>SG[Math.floor(((l%360)+360)%360/30)][0];
 const deg=l=>Math.floor(((l%360)+360)%360%30)+"°";
-const PLANETS=[["Sol","☉︎","Sun","o"],["Lua","☽︎","Moon","a"],["Mercúrio","☿︎","Mercury","o"],["Vênus","♀︎","Venus","o"],["Marte","♂︎","Mars","o"],["Júpiter","♃︎","Jupiter","o"],["Saturno","♄︎","Saturn","o"]];
 const ELEM={"Áries":"fogo","Leão":"fogo","Sagitário":"fogo","Touro":"terra","Virgem":"terra","Capricórnio":"terra","Gêmeos":"ar","Libra":"ar","Aquário":"ar","Câncer":"água","Escorpião":"água","Peixes":"água"};
 const SUNTXT={fogo:"um centro que acende antes de pensar",terra:"um centro que precisa de chão e de tempo",ar:"um centro que se move pela palavra e pelo encontro",água:"um centro que sente primeiro e entende depois"};
 const MOONTXT={fogo:"emoção que pede movimento",terra:"emoção que se acalma no corpo e na rotina",ar:"emoção que precisa ser conversada",água:"emoção funda, que guarda tudo"};
 const ASCTXT={fogo:"chega no mundo com impulso",terra:"chega no mundo com cautela e presença",ar:"chega no mundo pela conversa",água:"chega no mundo sentindo o ambiente"};
 
-function tzOff(t,tz){const p={};new Intl.DateTimeFormat("en-US",{timeZone:tz,hourCycle:"h23",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit"}).formatToParts(new Date(t)).forEach(x=>p[x.type]=x.value);return Date.UTC(+p.year,p.month-1,+p.day,+p.hour,+p.minute,+p.second)-t}
-function toUTC(y,m,d,h,mi,tz){const g=Date.UTC(y,m-1,d,h,mi);let u=g-tzOff(g,tz);u=g-tzOff(u,tz);return new Date(u)}
-function lon(body,date){
-  if(body==="Sun")return Astronomy.SunPosition(date).elon;
-  if(body==="Moon")return Astronomy.EclipticGeoMoon(date).lon;
-  return Astronomy.Ecliptic(Astronomy.GeoVector(body,date,true)).elon;
-}
-function ascOf(date,lat,lo){const gst=Astronomy.SiderealTime(date);const r=((gst*15+lo)%360)*Math.PI/180;const e=23.4392911*Math.PI/180,f=lat*Math.PI/180;return (Math.atan2(Math.cos(r),-(Math.sin(r)*Math.cos(e)+Math.tan(f)*Math.sin(e)))*180/Math.PI+360)%360}
-function hash(s){let h=2166136261;for(const c of s){h^=c.codePointAt(0);h=Math.imul(h,16777619)}return h>>>0}
 
 /* ---------- estado ---------- */
 const $=id=>document.getElementById(id);
@@ -585,13 +249,7 @@ function read(){
 }
 function compute(v){
   if(!v.d||typeof Astronomy==="undefined")return null;
-  const [y,m,dd]=v.d.split("-").map(Number);if(!y||y<1900)return null;
-  const tz=v.city?v.city[3]:"America/Sao_Paulo";
-  const [h,mi]=v.t?v.t.split(":").map(Number):[12,0];
-  const date=toUTC(y,m,dd,h,mi,tz);
-  const p={};PLANETS.forEach(([n,,b])=>p[n]=lon(b,date));
-  const asc=(v.t&&v.city)?ascOf(date,v.city[1],v.city[2]):null;
-  return {p,asc,exact:!!v.t,date};
+  return chartFrom(v);
 }
 
 /* ---------- roda ---------- */
@@ -630,7 +288,6 @@ function drawHints(v,ch){
   else if(!v.sem)h+=`<p class="wait">${v.t?"Agora a cidade, para o Ascendente aparecer.":"A hora e a cidade trazem o Ascendente."}</p>`;
   H.innerHTML=h;
 }
-const cap=s=>s[0].toUpperCase()+s.slice(1);
 
 function update(){
   const v=read(),ch=compute(v);chart=ch;
@@ -666,44 +323,6 @@ $("sug").addEventListener("mousedown",e=>{const li=e.target.closest("li");if(li)
 $("cidade").addEventListener("blur",()=>setTimeout(()=>{if(!chosen&&sugL.length===1)choose(sugL[0]);sugL=[];showSug();update()},150));
 
 /* ---------- escolha das músicas ---------- */
-function pick(list,seed){return list.length?list[hash(seed)%list.length]:null}
-function songFor(sign,planet,seed){
-  let c=CAT.filter(s=>s[0]===sign&&s[3]===planet);
-  if(!c.length)c=CAT.filter(s=>s[0]===sign);
-  return pick(c,seed);
-}
-const ASPS=[[0,8,"conj"],[180,7,"opos"],[90,6,"quad"],[120,6,"trig"],[60,4,"sext"]];
-const WEIGHT={Sol:1.1,Lua:1,Mercúrio:1.1,Vênus:1.2,Marte:1.2,Júpiter:1.25,Saturno:1.25};
-const MEAN={Sol:"a vontade",Lua:"o que a gente sente",Mercúrio:"a palavra e o pensamento",Vênus:"o afeto e o desejo",Marte:"o impulso",Júpiter:"a vontade de crescer e de dar sentido",Saturno:"o tempo e o limite"};
-const NATAL={Sol:["o","Sol","quem a gente é"],Lua:["a","Lua","o que a gente precisa para se sentir em casa"],Asc:["o","Ascendente","o jeito de chegar no mundo"]};
-function todayTransit(ch,seed){
-  const now=new Date();const tp={};PLANETS.forEach(([n,,b])=>tp[n]=lon(b,now));
-  const pts={Sol:ch.p.Sol,Lua:ch.p.Lua};if(ch.asc!=null)pts.Asc=ch.asc;
-  let best=null;
-  PLANETS.forEach(([n])=>Object.entries(pts).forEach(([k,l])=>{
-    const d=Math.abs(((tp[n]-l+540)%360)-180);
-    ASPS.forEach(([a,orb,code])=>{const diff=Math.abs(d-a);if(diff<=orb){const sc=(1-diff/orb)*WEIGHT[n];if(!best||sc>best.sc)best={n,k,code,sc,diff}}});
-  }));
-  if(!best)best={n:"Lua",k:"Sol",code:"none",diff:null};
-  best.sign=signOf(tp[best.n]);
-  return best;
-}
-const emP=m=>m.startsWith("o ")?"no "+m.slice(2):"em "+m;
-const aP=m=>m.startsWith("o ")?"ao "+m.slice(2):"a "+m;
-function art(n){return n==="Lua"?"a":"o"}
-function em(g){return g==="a"?"na":"no"}
-function readingFor(t){
-  const [g,name,mean]=NATAL[t.k];const P=`${cap(art(t.n))} ${t.n} em ${t.sign}`;
-  const tgt=`${g} ${name}`;
-  const l1={conj:`${P} encosta ${em(g)} ${name} do mapa.`,opos:`${P} fica de frente para ${tgt} do mapa.`,quad:`${P} tensiona ${tgt} do mapa.`,trig:`${P} flui com ${tgt} do mapa.`,sext:`${P} abre uma porta para ${tgt} do mapa.`,none:`${P} atravessa o dia sem grandes encontros com o mapa.`}[t.code];
-  const l2={conj:`${cap(MEAN[t.n])} se mistura com ${mean}, e a música de hoje nasce desse encontro.`,
-    opos:`${cap(MEAN[t.n])} aparece do lado de fora, no outro, e espelha ${mean}.`,
-    quad:`${cap(MEAN[t.n])} pede ajuste ${emP(mean)}. O atrito também é movimento.`,
-    trig:`${cap(MEAN[t.n])} conversa fácil com ${mean}. Dia de deixar ir.`,
-    sext:`${cap(MEAN[t.n])} oferece uma chance ${aP(mean)}, se a gente topar.`,
-    none:`O dia pede escuta. A música vem da Lua, que muda de signo a cada dois dias e meio.`}[t.code];
-  return [l1,l2];
-}
 const spot=s=>"https://open.spotify.com/search/"+encodeURIComponent(s[1]+" "+s[2]);
 
 /* ---------- leitura do tom (escrita na hora) ---------- */
@@ -760,14 +379,8 @@ async function loadTrack(s){
 /* ---------- vinil ---------- */
 let state=null;
 function showRecord(v,ch){
-  const seed=v.nome+"|"+v.d+"|"+v.t;
-  const today=new Date().toISOString().slice(0,10);
-  const sol=signOf(ch.p.Sol),lua=signOf(ch.p.Lua),asc=ch.asc!=null?signOf(ch.asc):null;
-  const A=[["☉︎","Sol em "+sol,songFor(sol,"Sol",seed+"A1")||songFor(sol,"",seed+"A1")],["☽︎","Lua em "+lua,songFor(lua,"Lua",seed+"A2")]];
-  if(asc)A.push(["↑","Ascendente em "+asc,songFor(asc,"",seed+"A3")]);
-  const t=todayTransit(ch,seed);
-  const B=songFor(t.sign,t.n,seed+today)||songFor(t.sign,"",seed+today);
-  const [l1,l2]=readingFor(t);
+  const today=diaLocal();
+  const {seed,sol,lua,asc,A,t,B,l1,l2}=discoDoDia(v,ch,today);
   const dt=new Date().toLocaleDateString("pt-BR",{weekday:"long",day:"numeric",month:"long"});
   $("pB").innerHTML=`<div class="song"><div class="eyebrow">${esc(v.nome)} · ${dt}</div><h2>${esc(B[1])}</h2><div class="by">${esc(B[2])}</div></div>
     <div class="key" id="key">Lendo o tom da música...</div>
@@ -775,7 +388,7 @@ function showRecord(v,ch){
     <a class="link" href="${spot(B)}" target="_blank" rel="noopener">Ouvir no Spotify</a>`;
   $("pA").innerHTML=`<div class="eyebrow">O disco de ${esc(v.nome)}</div><ul class="tracks">${A.map(([g,lbl,s])=>s?`<li><span class="n">${g}</span><div><div class="t">${esc(s[1])}</div><div class="s">${esc(s[2])} · ${lbl}</div></div><button class="link" data-a="${A.indexOf(A.find(x=>x[2]===s))}" style="background:none;border:0;border-bottom:1px solid var(--gold);cursor:pointer;font:inherit;font-size:13px;color:var(--ink);padding:0">ouvir</button></li>`:"").join("")}</ul>
     <div class="why">A música fixa, que é do mapa e não muda. Ela sai do Sol, da Lua e do Ascendente.</div>`;
-  state={B,A};
+  state={B,A,v,ch,t,l1,today};
   loadTrack(B);
   explain({v,ch,t,B,l1,seed,today,sol,lua,asc});
   $("pA").querySelectorAll("button[data-a]").forEach(b=>b.onclick=()=>{const s=A[+b.dataset.a][2];$("play").href=spot(s);loadTrack(s).then(()=>spCtl&&spCtl.play())});
@@ -800,11 +413,88 @@ $("f").addEventListener("submit",e=>{
   setTimeout(()=>{w.style.transform="";w.style.opacity="";showRecord(v,ch)},850);
 });
 
+/* ---------- imagem para o story ---------- */
+const LIGHT={"--paper":"#faf8f4","--bg":"#ffffff","--gold":"#a8843f","--line":"#e8e2d6","--ink":"#1d1a16"};
+function wrap(ctx,text,x,y,maxW,lh,maxLines){
+  const words=String(text).split(" ");let line="",n=0;
+  for(const w of words){const test=line?line+" "+w:w;if(ctx.measureText(test).width>maxW&&line){ctx.fillText(line,x,y);y+=lh;line=w;if(++n>=maxLines-1){break}}else line=test}
+  if(line){ctx.fillText(line,x,y);y+=lh}return y;
+}
+async function storyImage(){
+  const W=1080,H=1920,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");
+  try{await Promise.all(['600 96px "Cormorant Garamond"','italic 500 60px "Cormorant Garamond"','500 34px "Instrument Sans"'].map(f=>document.fonts.load(f)))}catch(e){}
+  x.fillStyle="#faf8f4";x.fillRect(0,0,W,H);
+  x.textAlign="center";x.fillStyle="#1d1a16";
+  x.font='500 58px "Cormorant Garamond", Georgia, serif';
+  const a="eu",b="sou",cc="odu";x.font='500 58px "Cormorant Garamond", Georgia, serif';const wa=x.measureText(a).width,wc=x.measureText(cc).width;x.font='italic 500 58px "Cormorant Garamond", Georgia, serif';const wb=x.measureText(b).width;
+  let sx=W/2-(wa+wb+wc)/2;x.textAlign="left";x.font='500 58px "Cormorant Garamond", Georgia, serif';x.fillText(a,sx,150);x.fillStyle="#a8843f";x.font='italic 500 58px "Cormorant Garamond", Georgia, serif';x.fillText(b,sx+wa,150);x.fillStyle="#1d1a16";x.font='500 58px "Cormorant Garamond", Georgia, serif';x.fillText(cc,sx+wa+wb,150);
+  x.textAlign="center";x.fillStyle="#6f685d";x.font='500 28px "Instrument Sans", Arial, sans-serif';x.fillText("M Ú S I C A   A S T R A L",W/2,210);
+  // disco
+  const cx=W/2,cy=720,R=430;
+  x.save();x.shadowColor="rgba(0,0,0,.28)";x.shadowBlur=50;x.shadowOffsetY=24;x.beginPath();x.arc(cx,cy,R,0,Math.PI*2);x.fillStyle="#161412";x.fill();x.restore();
+  x.strokeStyle="rgba(255,255,255,.06)";x.lineWidth=1.2;for(let r=200;r<R-8;r+=6){x.beginPath();x.arc(cx,cy,r,0,Math.PI*2);x.stroke()}
+  const gr=x.createLinearGradient(cx-R,cy-R,cx+R,cy+R);gr.addColorStop(.35,"rgba(255,255,255,0)");gr.addColorStop(.5,"rgba(255,255,255,.09)");gr.addColorStop(.65,"rgba(255,255,255,0)");x.fillStyle=gr;x.beginPath();x.arc(cx,cy,R,0,Math.PI*2);x.fill();
+  const tmp=document.createElement("div");drawWheel(state.ch,tmp,{still:true,id:"st"});
+  let svg=tmp.innerHTML.replace("<svg ",'<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" ');
+  for(const [k,v] of Object.entries(LIGHT))svg=svg.split("var("+k+")").join(v);
+  const img=new Image();img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg);
+  try{await img.decode()}catch(e){}
+  const LR=190;x.save();x.beginPath();x.arc(cx,cy,LR,0,Math.PI*2);x.fillStyle="#efe4cc";x.fill();x.clip();x.drawImage(img,cx-LR*1.06,cy-LR*1.06,LR*2.12,LR*2.12);x.restore();
+  x.lineWidth=6;x.strokeStyle="#a8843f";x.beginPath();x.arc(cx,cy,LR,0,Math.PI*2);x.stroke();
+  // textos
+  const B=state.B,v=state.v;
+  const dt=new Date(state.today+"T12:00:00").toLocaleDateString("pt-BR",{day:"numeric",month:"long"});
+  x.fillStyle="#a8843f";x.font='600 30px "Instrument Sans", Arial, sans-serif';x.fillText(("Lado B · a música de "+(v.nome||"hoje")+" · "+dt).toUpperCase(),W/2,1260);
+  x.fillStyle="#1d1a16";x.font='600 104px "Cormorant Garamond", Georgia, serif';let y=wrap(x,B[1],W/2,1380,940,104,2);
+  x.fillStyle="#6f685d";x.font='500 40px "Instrument Sans", Arial, sans-serif';x.fillText(B[2],W/2,y+6);
+  x.fillStyle="#1d1a16";x.font='italic 500 46px "Cormorant Garamond", Georgia, serif';wrap(x,state.l1,W/2,y+100,900,58,2);
+  x.fillStyle="#1d1a16";x.font='500 34px "Instrument Sans", Arial, sans-serif';x.fillText("Descubra a música do seu mapa",W/2,1760);
+  x.fillStyle="#a8843f";x.font='600 38px "Instrument Sans", Arial, sans-serif';x.fillText("eusouodu.com/musica  ·  @eusouodu",W/2,1815);
+  return await new Promise(r=>c.toBlob(r,"image/png"));
+}
+function toast(msg){const t=$("toast");t.textContent=msg;t.hidden=false;clearTimeout(toast.k);toast.k=setTimeout(()=>t.hidden=true,7000)}
+$("share").onclick=async()=>{
+  const btn=$("share");btn.disabled=true;btn.textContent="Preparando a imagem...";
+  try{
+    const blob=await storyImage();const file=new File([blob],"musica-astral.png",{type:"image/png"});
+    let copiado=false;try{await navigator.clipboard.writeText("@eusouodu");copiado=true}catch(e){}
+    if(navigator.canShare&&navigator.canShare({files:[file]})){
+      try{await navigator.share({files:[file],title:"Música Astral",text:"A música do meu mapa hoje · @eusouodu"})}catch(e){}
+      toast(copiado?"@eusouodu copiado. No story, cola na figurinha de menção pra marcar.":"No story, usa a figurinha de menção com @eusouodu pra marcar.");
+    }else{
+      const url=URL.createObjectURL(blob);const lb=document.createElement("div");lb.className="lightbox";
+      lb.innerHTML=`<img src="${url}" alt="Imagem do disco para o story"><p>No celular, segura a imagem para salvar e posta no story marcando @eusouodu.</p><div class="row"><a class="btn" href="${url}" download="musica-astral.png" style="text-decoration:none;background:#fff;color:#000;border-color:#fff">Baixar imagem</a><button class="btn ghost" style="color:#fff;border-color:#fff">Fechar</button></div>`;
+      lb.querySelector("button").onclick=()=>{lb.remove();URL.revokeObjectURL(url)};document.body.appendChild(lb);
+    }
+  }catch(e){toast("Não consegui gerar a imagem. Tenta de novo.")}
+  btn.disabled=false;btn.textContent="Compartilhar no story";
+};
+
+/* ---------- e-mail ---------- */
+try{if(localStorage.getItem("musica-astral-inscrito"))$("mail").hidden=true}catch(e){}
+$("mail").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const email=$("m-email").value.trim(),msg=$("m-msg"),go=$("m-go");
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){msg.textContent="Confere o e-mail.";return}
+  if(!$("m-ok").checked){msg.textContent="Marca o aceite pra gente poder mandar.";return}
+  const freq=document.querySelector('input[name=freq]:checked').value;
+  const v=state.v;go.disabled=true;msg.textContent="Guardando...";
+  try{
+    const r=await fetch("/api/musica-inscrever",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({email,freq,perfil:{nome:v.nome,d:v.d,t:v.t,sem:v.sem,city:v.city}})});
+    const j=await r.json().catch(()=>({}));
+    if(r.ok){$("mail").innerHTML=`<div class="eyebrow">Combinado</div><p class="mtxt">${freq==="diario"?"Amanhã de manhã":"No domingo de manhã"} a música chega em <b>${esc(email)}</b>. Se não aparecer, olha a caixa de promoções.</p>`;try{localStorage.setItem("musica-astral-inscrito","1")}catch(e){}}
+    else msg.textContent=r.status===503?"O envio por e-mail abre em breve.":(j.erro||"Não deu certo. Tenta de novo.");
+  }catch(err){msg.textContent="Sem conexão. Tenta de novo."}
+  go.disabled=false;
+});
+
 /* ---------- início: exemplo preenchido ou visita de volta ---------- */
 function fill(o){$("nome").value=o.nome;$("data").value=o.d;$("hora").value=o.t||"";$("semhora").checked=!!o.sem;$("hora").disabled=!!o.sem;$("cidade").value=o.cn;chosen=o.city?{label:o.city[0],lat:o.city[1],lon:o.city[2],tz:o.city[3]}:null}
-function boot(){
+async function boot(){
   if(typeof Astronomy==="undefined"){$("err").textContent="Não consegui carregar o cálculo do mapa. Recarrega a página.";return}
+  try{setCatalogo(await fetch("/musica/catalogo.json").then(r=>r.json()))}catch(e){$("err").textContent="Não consegui carregar as músicas. Recarrega a página.";return}
   let saved=null;try{saved=JSON.parse(localStorage.getItem("musica-astral")||"null")}catch(e){}
+  try{const q=new URLSearchParams(location.search).get("p");if(q){const o=JSON.parse(decodeURIComponent(escape(atob(q.replace(/-/g,"+").replace(/_/g,"/")))));if(o&&o.d&&o.city){saved={nome:o.nome,d:o.d,t:o.t||"",sem:!!o.sem,cn:o.city[0],city:o.city};try{localStorage.setItem("musica-astral",JSON.stringify(saved));localStorage.setItem("musica-astral-inscrito","1")}catch(e){}}}}catch(e){}
   if(saved){fill(saved);update();const v=read(),ch=compute(v);if(ch&&v.city)showRecord(v,ch);return}
   fill({nome:"Exemplo",d:"1990-03-21",t:"07:30",sem:false,cn:"Salvador, BA",city:["Salvador, BA",-12.972,-38.501,"America/Bahia"]});update();
   $("wait")&&($("wait").textContent="");
