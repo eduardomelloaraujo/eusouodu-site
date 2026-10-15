@@ -22,11 +22,32 @@
           "value": "public, max-age=0, must-revalidate"
         }
       ]
+    },
+    {
+      "source": "/musica/cidades.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
     }
   ],
   "functions": {
     "api/mapa-*.js": {
       "includeFiles": "{lib/fontes/**,node_modules/@sparticuz/chromium/bin/**}"
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "musica.eusouodu.com"
+        }
+      ],
+      "destination": "/musica/index.html"
+    }
+  ]
 }
