@@ -59,9 +59,14 @@ TEXTO:
     }
     const j = await r.json();
     const bruto = (j.content || []).filter(c => c.type === 'text').map(c => c.text).join('');
-    const tm = bruto.match(/TOM:\s*(.+)/i), xm = bruto.match(/TEXTO:\s*([\s\S]+)/i);
-    const d = xm ? { tom: tm ? tm[1].trim() : '', texto: xm[1].trim() } : null;
-    if (!d || !d.texto) return res.status(502).json({ erro: 'resposta vazia' });
+    const semMd = bruto.replace(/\*\*/g, '');
+    const tm = semMd.match(/TOM:\s*(.+)/i), xm = semMd.match(/TEXTO:\s*([\s\S]+)/i);
+    const texto = (xm ? xm[1] : semMd.replace(/^.*TOM:.*$/im, '')).trim();
+    const d = { tom: tm ? tm[1].trim() : '', texto };
+    if (!d.texto) {
+      console.error('musica-leitura: vazia', j.stop_reason, JSON.stringify(j.content || []).slice(0, 300));
+      return res.status(502).json({ erro: 'resposta vazia', motivo: j.stop_reason, tipos: (j.content || []).map(c => c.type) });
+    }
     const tira = s => String(s || '').replace(/\s*[—–]\s*/g, ', ');
     res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=3600');
     return res.status(200).json({ tom: tira(d.tom).slice(0, 40), texto: tira(d.texto) });
