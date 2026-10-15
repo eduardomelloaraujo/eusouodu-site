@@ -726,7 +726,7 @@ async function explain(o){
   }catch(e){K.textContent="";R.classList.remove("loading")}
   function paint(x){
     K.innerHTML=x.tom?`Tom original <b>${esc(x.tom)}</b>`:"";
-    R.innerHTML=`<p>${esc(o.l1)}</p>`+x.texto.split(/\n\s*\n/).map(p=>`<p>${esc(p.trim())}</p>`).join("");
+    R.innerHTML=x.texto.split(/\n\s*\n/).map(p=>`<p>${esc(p.trim())}</p>`).join("");
     R.classList.remove("loading");
   }
 }
