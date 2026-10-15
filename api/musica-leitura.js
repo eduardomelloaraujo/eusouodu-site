@@ -51,7 +51,7 @@ TEXTO:
     const r = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: { 'content-type': 'application/json', 'x-api-key': process.env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
-      body: JSON.stringify({ model: MODELO, max_tokens: 900, system: VOZ, messages: [{ role: 'user', content: pedido }] }),
+      body: JSON.stringify({ model: MODELO, max_tokens: 5000, system: VOZ, messages: [{ role: 'user', content: pedido }] }),
     });
     if (!r.ok) {
       console.error('musica-leitura: api', r.status, (await r.text()).slice(0, 300));
