@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><script>(function(m){try{var u="/api/musica-diag?m="+encodeURIComponent(m);navigator.sendBeacon?navigator.sendBeacon(u):(new Image().src=u)}catch(e){}})("TESTE-2 carregou")</script>
+<meta charset="utf-8">
+<script>window.__d=function(m){try{if(!/diag/.test(location.search))return;var u="/api/musica-diag?m="+encodeURIComponent(m+" #"+(window.__n=(window.__n||0)+1));if(navigator.sendBeacon)navigator.sendBeacon(u);else{var i=new Image();i.src=u}}catch(e){}};__d("inicio do head");window.addEventListener("error",function(e){__d("ERRO "+e.message+" @"+e.lineno)});</script>
+
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Música Astral · eusouodu</title>
+<meta name="description" content="O mapa vira um disco. Lado A, a música do mapa. Lado B, a música de hoje, escolhida pelo trânsito do dia.">
+<meta property="og:title" content="Música Astral · eusouodu">
+<meta property="og:description" content="O mapa vira um disco: a música do mapa e a música de hoje.">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Instrument+Sans:wght@400;500;600&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+<script>__d("antes motor; Astronomy="+typeof Astronomy)</script>
+<script src="/musica/motor.js"></script>
+<script>__d("depois motor")</script>
+
+<script>__d("fim do head")</script>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top"><div class="mark"><a href="https://eusouodu.com">eu<i>sou</i>odu</a></div><div class="proto">Astrologia · Simbolismo · Mitologia</div></div>
+
+  <section id="v-in">
+    <h1>Música <i>Astral</i></h1>
+    <p class="lede">Os dados entram, o mapa vai se desenhando, e no fim ele vira um disco. Lado A, a música do mapa. Lado B, a música de hoje.</p>
+    <div class="stage">
+      <form class="form" id="f" autocomplete="off">
+        <div class="field"><label for="nome">Nome</label><input id="nome" placeholder="Como a gente te chama"></div>
+        <div class="field"><label for="data">Data de nascimento</label><input id="data" type="date" min="1900-01-01" max="2026-12-31"></div>
+        <div class="field"><label for="hora">Hora</label><input id="hora" type="time"></div>
+        <label class="check"><input type="checkbox" id="semhora"> Não sei a hora</label>
+        <div class="field ta"><label for="cidade">Cidade de nascimento</label><input id="cidade" placeholder="Comece a digitar" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="sug"><ul id="sug" role="listbox" hidden></ul></div>
+        <p class="err" id="err"></p>
+        <button class="btn" type="submit" id="go" disabled>Virar o disco</button>
+      </form>
+      <div class="sky">
+        <div class="wheel" id="wheel"></div>
+        <div class="hints" id="hints"><p class="wait" id="wait">Coloca a data de nascimento e repara no mapa.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="v-out" hidden>
+    <div class="player">
+      <div class="deck">
+        <div class="record" id="record"><div class="label" id="label"></div></div>
+        <svg class="arm" id="arm" viewBox="0 0 100 160" aria-hidden="true"><circle cx="78" cy="18" r="13" fill="var(--paper)" stroke="var(--gold)" stroke-width="2"/><circle cx="78" cy="18" r="4" fill="var(--gold)"/><path d="M78 18 L60 120 L46 146" fill="none" stroke="var(--gold)" stroke-width="5" stroke-linecap="round"/><rect x="34" y="140" width="22" height="14" rx="2" fill="var(--ink)" transform="rotate(25 45 147)"/></svg>
+      </div>
+      <div class="side">
+        <div class="tabs" role="tablist">
+          <button class="tab" role="tab" id="tB" aria-selected="true">Lado B · hoje</button>
+          <button class="tab" role="tab" id="tA" aria-selected="false">Lado A · o mapa</button>
+        </div>
+        <div id="pB"></div>
+        <div id="pA" hidden></div>
+        <div class="row">
+          <a class="btn" id="play" href="#" target="_blank" rel="noopener" style="text-decoration:none;text-align:center">Tocar</a>
+          <button class="btn ghost" id="share">Compartilhar no story</button>
+        </div>
+        <p class="toast" id="toast" hidden></p>
+        <form class="mail" id="mail" novalidate>
+          <div class="eyebrow">Receber a música por e-mail</div>
+          <p class="mtxt">Todo dia de manhã, a música do dia chega no e-mail, com o trânsito que escolheu ela.</p>
+          <div class="mrow"><label class="visually" for="m-email">E-mail</label><input id="m-email" type="email" inputmode="email" autocomplete="email" placeholder="seu@email.com" required></div>
+          <div class="freq" role="radiogroup" aria-label="Frequência">
+            <label><input type="radio" name="freq" value="diario" checked> Todo dia</label>
+            <label><input type="radio" name="freq" value="semanal"> Só aos domingos</label>
+          </div>
+          <label class="check"><input type="checkbox" id="m-ok"> Aceito receber os e-mails do eusouodu. Dá pra sair a qualquer momento, pelo link no fim de cada e-mail.</label>
+          <div class="row"><button class="btn" type="submit" id="m-go">Quero receber</button><span class="mmsg" id="m-msg"></span></div>
+        </form>
+        <div class="row"><button class="btn ghost" id="redo">Trocar os dados</button></div>
+        <div class="spot" id="spot" hidden></div>
+        <p class="note" id="spnote">Quem entra com a conta do Spotify ouve a música inteira. Sem entrar, toca um trecho.</p>
+      </div>
+    </div>
+    <div class="cross"><p>Quer a semana inteira no mapa, dia a dia?</p><a class="link" href="https://eusouodu.com/mapa/">A semana no seu mapa</a></div>
+  </section>
+</div>
+
+<script>
+
+
+/* ---------- cidades: todas do Brasil e as do mundo com mais de 15 mil habitantes ---------- */
+const ALIAS={"Lisbon":"Lisboa","New York City":"Nova York","London":"Londres","Rome":"Roma","Madrid":"Madri","Tokyo":"Tóquio","Munich":"Munique","Milan":"Milão","Geneva":"Genebra","Brussels":"Bruxelas","Vienna":"Viena","Berlin":"Berlim","Warsaw":"Varsóvia","Moscow":"Moscou","Beijing":"Pequim","Mexico City":"Cidade do México","Philadelphia":"Filadélfia","New Orleans":"Nova Orleans","Asunción":"Assunção","Montevideo":"Montevidéu","Athens":"Atenas","Copenhagen":"Copenhague","Stockholm":"Estocolmo","Johannesburg":"Joanesburgo","Cape Town":"Cidade do Cabo","Edinburgh":"Edimburgo","Amsterdam":"Amsterdã","Zurich":"Zurique","Florence":"Florença","Venice":"Veneza","Naples":"Nápoles","Seville":"Sevilha","San Francisco":"São Francisco","Jerusalem":"Jerusalém","Istanbul":"Istambul","New Delhi":"Nova Délhi","Havana":"Havana","Dublin":"Dublin","Cairo":"Cairo","Barcelona":"Barcelona","Paris":"Paris","Turin":"Turim","Hamburg":"Hamburgo","Cologne":"Colônia","Frankfurt am Main":"Frankfurt","Prague":"Praga","Budapest":"Budapeste","Oslo":"Oslo","Helsinki":"Helsinque","Saint Petersburg":"São Petersburgo","Bogotá":"Bogotá","Santiago":"Santiago","Lima":"Lima","Quito":"Quito","La Paz":"La Paz","Caracas":"Caracas","Panamá":"Cidade do Panamá","Montreal":"Montreal","Toronto":"Toronto","Miami":"Miami","Orlando":"Orlando","Boston":"Boston","Chicago":"Chicago","Los Angeles":"Los Angeles","Washington, D.C.":"Washington","Sydney":"Sydney","Seoul":"Seul","Singapore":"Singapura","Lyon":"Lyon","Marseille":"Marselha","Porto":"Porto","Coimbra":"Coimbra","Braga":"Braga","Funchal":"Funchal","Luanda":"Luanda","Maputo":"Maputo","Praia":"Praia"};
+const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
+let CITY=[],cityReady=null,chosen=null;
+const REG=(()=>{try{return new Intl.DisplayNames(["pt-BR"],{type:"region"})}catch(e){return null}})();
+function loadCities(){
+  if(cityReady)return cityReady;
+  cityReady=fetch("/musica/cidades.json").then(r=>r.json()).then(d=>{
+    d.br.forEach(c=>CITY.push({label:c[0]+", "+c[1],n:norm(c[0]),lat:c[2],lon:c[3],tz:d.tz[c[4]],rank:1e9+(c[5]||0)}));
+    d.w.forEach(c=>{const pt=ALIAS[c[0]];const country=REG?REG.of(c[1]):c[1];
+      const label=(pt||c[0])+(c[6]?", "+c[6]:"")+", "+country;
+      CITY.push({label,n:norm(c[0])+(pt?" | "+norm(pt):""),lat:c[2],lon:c[3],tz:d.tz[c[4]],rank:c[5]+(pt?5e8:0)})});
+    return CITY;
+  });
+  return cityReady;
+}
+function searchCities(q){
+  q=norm(q);if(q.length<2)return [];
+  const out=[];
+  for(const c of CITY){
+    const parts=c.n.split(" | ");let sc=-1;
+    for(const s of parts){if(s===q)sc=c.rank>=1e5?4:3;else if(s.startsWith(q))sc=Math.max(sc,3);else if((" "+s).includes(" "+q))sc=Math.max(sc,2)}
+    if(sc<0&&norm(c.label).startsWith(q))sc=1;
+    if(sc>=0)out.push([sc,c]);
+  }
+  out.sort((a,b)=>b[0]-a[0]||b[1].rank-a[1].rank||a[1].label.localeCompare(b[1].label));
+  return out.slice(0,8).map(x=>x[1]);
+}
+
+
+const deg=l=>Math.floor(((l%360)+360)%360%30)+"°";
+const ELEM={"Áries":"fogo","Leão":"fogo","Sagitário":"fogo","Touro":"terra","Virgem":"terra","Capricórnio":"terra","Gêmeos":"ar","Libra":"ar","Aquário":"ar","Câncer":"água","Escorpião":"água","Peixes":"água"};
+const SUNTXT={fogo:"um centro que acende antes de pensar",terra:"um centro que precisa de chão e de tempo",ar:"um centro que se move pela palavra e pelo encontro",água:"um centro que sente primeiro e entende depois"};
+const MOONTXT={fogo:"emoção que pede movimento",terra:"emoção que se acalma no corpo e na rotina",ar:"emoção que precisa ser conversada",água:"emoção funda, que guarda tudo"};
+const ASCTXT={fogo:"chega no mundo com impulso",terra:"chega no mundo com cautela e presença",ar:"chega no mundo pela conversa",água:"chega no mundo sentindo o ambiente"};
+
+
+/* ---------- estado ---------- */
+const $=id=>document.getElementById(id);
+let chart=null;
+function read(){
+  const d=$("data").value,t=$("hora").value,sem=$("semhora").checked,cn=$("cidade").value.trim();
+  const city=chosen&&chosen.label===cn?[chosen.label,chosen.lat,chosen.lon,chosen.tz]:null;
+  return {nome:$("nome").value.trim(),d,t:sem?"":t,sem,city,cn};
+}
+function compute(v){
+  if(!v.d||typeof Astronomy==="undefined")return null;
+  return chartFrom(v);
+}
+
+/* ---------- roda ---------- */
+const C=150;
+function pt(l,r,ref){const a=(180+(l-ref))*Math.PI/180;return [C+r*Math.cos(a),C-r*Math.sin(a)]}
+let lastKeys=new Set();
+function drawWheel(ch,target,opts={}){
+  const ref=ch&&ch.asc!=null?ch.asc:0;
+  let s=`<svg viewBox="-10 -10 320 320" role="img" aria-label="Mapa astral"><g id="${opts.id||"rot"}">`;
+  s+=`<circle cx="150" cy="150" r="146" fill="var(--paper)" stroke="var(--gold)" stroke-width="1.2"/><circle cx="150" cy="150" r="116" fill="var(--bg)" stroke="var(--line)"/><circle cx="150" cy="150" r="40" fill="none" stroke="var(--line)"/>`;
+  for(let i=0;i<12;i++){const [x1,y1]=pt(i*30,116,ref),[x2,y2]=pt(i*30,146,ref),[gx,gy]=pt(i*30+15,131,ref);
+    s+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="var(--gold)" stroke-width=".8"/><text x="${gx}" y="${gy}" text-anchor="middle" dominant-baseline="central" font-size="15" fill="var(--gold)" font-family="Georgia,serif">${SG[i][1]}</text>`}
+  for(let i=0;i<360;i+=5){const [a,b]=pt(i,116,ref),[c,d]=pt(i,i%30===0?106:111,ref);s+=`<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="var(--line)" stroke-width=".7"/>`}
+  const keys=new Set();
+  if(ch){
+    if(ch.asc!=null){const [a,b]=pt(ch.asc,146,ref),[c,d]=pt(ch.asc+180,146,ref);keys.add("asc");
+      s+=`<g class="${lastKeys.has("asc")||opts.still?"":"pop"}"><line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="var(--ink)" stroke-width="1.2"/><text x="${a+4}" y="${b-8}" font-size="10" fill="var(--ink)" font-family="Instrument Sans,sans-serif" letter-spacing="1">ASC</text></g>`}
+    const placed=[];
+    PLANETS.forEach(([n,g])=>{let l=ch.p[n];let r=92;placed.forEach(q=>{let dd=Math.abs(((l-q.l+540)%360)-180);if(dd<9&&q.r===r)r=72});placed.push({l,r});
+      const [x,y]=pt(l,r,ref),[x2,y2]=pt(l,106,ref);const big=n==="Sol"||n==="Lua";keys.add(n);
+      s+=`<g class="${lastKeys.has(n)||opts.still?"":"pop"}" style="transform-origin:${x}px ${y}px"><line x1="${x}" y1="${y}" x2="${x2}" y2="${y2}" stroke="var(--line)" stroke-width=".7"/><circle cx="${x}" cy="${y}" r="${big?12:9}" fill="${big?"var(--gold)":"var(--bg)"}" stroke="var(--gold)"/><text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="${big?14:11}" fill="${big?"var(--bg)":"var(--ink)"}" font-family="Georgia,serif">${g}</text></g>`});
+  }
+  s+=`</g></svg>`;
+  target.innerHTML=s;
+  if(!opts.still)lastKeys=keys;
+}
+
+/* ---------- indícios ---------- */
+function drawHints(v,ch){
+  const H=$("hints");
+  if(!ch){H.innerHTML=`<p class="wait">Coloca a data de nascimento e repara no mapa.</p>`;return}
+  const sol=signOf(ch.p.Sol),lua=signOf(ch.p.Lua);
+  let h=`<div class="hint"><b>☉︎</b><div><strong>Sol em ${sol}</strong><span>${cap(SUNTXT[ELEM[sol]])}.</span></div></div>`;
+  h+=`<div class="hint"><b>☽︎</b><div><strong>Lua em ${lua}${ch.exact?"":" (aproximada)"}</strong><span>${cap(MOONTXT[ELEM[lua]])}.${ch.exact?"":" A hora deixa ela exata."}</span></div></div>`;
+  if(ch.asc!=null){const a=signOf(ch.asc);h+=`<div class="hint"><b>↑</b><div><strong>Ascendente em ${a}</strong><span>${cap(ASCTXT[ELEM[a]])}.</span></div></div>`}
+  else if(!v.sem)h+=`<p class="wait">${v.t?"Agora a cidade, para o Ascendente aparecer.":"A hora e a cidade trazem o Ascendente."}</p>`;
+  H.innerHTML=h;
+}
+
+function update(){
+  const v=read(),ch=compute(v);chart=ch;
+  drawWheel(ch,$("wheel"));
+  drawHints(v,ch);
+  let msg="";
+  if(v.cn&&!v.city&&$("sug").hidden)msg="Escolhe a cidade na lista que aparece enquanto digita.";
+  $("err").textContent=msg;
+  $("go").disabled=!(ch&&v.nome&&v.city&&(v.t||v.sem));
+}
+["nome","data","hora","semhora"].forEach(i=>$(i).addEventListener(i==="semhora"?"change":"input",()=>{if(i==="semhora")$("hora").disabled=$("semhora").checked;update()}));
+
+/* ---------- busca de cidade ---------- */
+let sugI=-1,sugL=[];
+function showSug(){
+  const ul=$("sug"),inp=$("cidade");
+  if(!sugL.length){ul.hidden=true;inp.setAttribute("aria-expanded","false");return}
+  ul.innerHTML=sugL.map((c,i)=>{const k=c.label.indexOf(", ");return `<li role="option" id="sug${i}" data-i="${i}" aria-selected="${i===sugI}">${esc(c.label.slice(0,k))}<small>${esc(c.label.slice(k))}</small></li>`}).join("");
+  ul.hidden=false;inp.setAttribute("aria-expanded","true");
+}
+function choose(c){chosen=c;$("cidade").value=c.label;sugL=[];showSug();update()}
+$("cidade").addEventListener("input",async()=>{
+  chosen=null;await loadCities();sugL=searchCities($("cidade").value);sugI=sugL.length?0:-1;showSug();update();
+});
+$("cidade").addEventListener("keydown",e=>{
+  if($("sug").hidden)return;
+  if(e.key==="ArrowDown"){sugI=Math.min(sugI+1,sugL.length-1);showSug();e.preventDefault()}
+  else if(e.key==="ArrowUp"){sugI=Math.max(sugI-1,0);showSug();e.preventDefault()}
+  else if(e.key==="Enter"&&sugI>=0){choose(sugL[sugI]);e.preventDefault()}
+  else if(e.key==="Escape"){sugL=[];showSug()}
+});
+$("sug").addEventListener("mousedown",e=>{const li=e.target.closest("li");if(li){e.preventDefault();choose(sugL[+li.dataset.i])}});
+$("cidade").addEventListener("blur",()=>setTimeout(()=>{if(!chosen&&sugL.length===1)choose(sugL[0]);sugL=[];showSug();update()},150));
+
+/* ---------- escolha das músicas ---------- */
+const spot=s=>"https://open.spotify.com/search/"+encodeURIComponent(s[1]+" "+s[2]);
+
+/* ---------- leitura do tom (escrita na hora) ---------- */
+const ASPN={conj:"conjunção",opos:"oposição",quad:"quadratura",trig:"trígono",sext:"sextil",none:"sem aspecto forte"};
+async function explain(o){
+  const key="ma-leitura|"+o.seed+"|"+o.today;
+  const R=$("reading"),K=$("key");
+  let cached=null;try{cached=JSON.parse(localStorage.getItem(key)||"null")}catch(e){}
+  if(cached){paint(cached);return}
+  R.classList.add("loading");
+  try{
+    const qs=new URLSearchParams({sol:o.sol,lua:o.lua,asc:o.asc||"",planeta:o.t.n,signo:o.t.sign,aspecto:o.t.code,ponto:o.t.k,musica:o.B[1],artista:o.B[2],tema:o.B[4],dia:o.today});
+    const resp=await fetch("/api/musica-leitura?"+qs);
+    if(!resp.ok)throw 0;
+    const r=await resp.json();
+    if(!r||!r.texto)throw 0;
+    const out={tom:String(r.tom||"").slice(0,40),texto:String(r.texto)};
+    try{localStorage.setItem(key,JSON.stringify(out))}catch(e){}
+    paint(out);
+  }catch(e){K.textContent="";R.classList.remove("loading")}
+  function paint(x){
+    K.innerHTML=x.tom?`Tom original <b>${esc(x.tom)}</b>`:"";
+    R.innerHTML=x.texto.split(/\n\s*\n/).map(p=>`<p>${esc(p.trim())}</p>`).join("");
+    R.classList.remove("loading");
+  }
+}
+
+/* ---------- player do Spotify ---------- */
+let spApi=null,spCtl=null,spWant=null,spPaused=true,spMaking=false;
+window.onSpotifyIframeApiReady=api=>{spApi=api;if(spWant&&spAtivo)loadTrack(spWant)};
+async function trackId(s){
+  if(s[6]&&/\/track\/([A-Za-z0-9]+)/.test(s[6]))return s[6].match(/\/track\/([A-Za-z0-9]+)/)[1];
+  try{const r=await fetch("/api/musica-faixa?m="+encodeURIComponent(s[1])+"&a="+encodeURIComponent(s[2]));if(!r.ok)return null;const j=await r.json();return j.id||null}catch(e){return null}
+}
+/* O player só nasce quando a pessoa aperta Tocar. No Safari, a música abre no Spotify (o player embutido trava o Safari). */
+const IS_SAFARI=/^((?!chrome|android|crios|fxios|edg).)*safari/i.test(navigator.userAgent);
+let spAtivo=false;
+function loadSpotifyApi(){
+  if(spApi||document.getElementById("sp-api"))return;
+  const sc=document.createElement("script");sc.id="sp-api";sc.src="https://open.spotify.com/embed/iframe-api/v1";sc.async=true;document.body.appendChild(sc);
+}
+async function loadTrack(s){
+  spWant=s;
+  const id=await trackId(s);
+  if(spWant!==s)return;
+  $("play").href=id?"https://open.spotify.com/track/"+id:spot(s);
+  if(!id||!spAtivo){return}
+  const uri="spotify:track:"+id;
+  $("spot").hidden=false;
+  if(spCtl){spCtl.loadUri(uri);return}
+  if(!spApi){loadSpotifyApi();return}
+  if(spMaking)return;
+  spMaking=true;
+  const el=document.createElement("div");$("spot").innerHTML="";$("spot").appendChild(el);
+  spApi.createController(el,{uri,width:"100%",height:80},ctl=>{
+    spCtl=ctl;spMaking=false;
+    ctl.addListener("ready",()=>{try{ctl.play()}catch(e){}});
+    if(spWant&&spWant!==s)loadTrack(spWant);
+    ctl.addListener("playback_update",e=>{
+      const p=e.data.isPaused;if(p===spPaused)return;spPaused=p;
+      if(p)stop();else{playing=true;$("arm").classList.add("on");$("label").classList.add("spin")}
+    });
+  });
+}
+
+/* ---------- vinil leve: ranhuras desenhadas uma vez, selo como imagem ---------- */
+function grooves(){
+  try{
+    const s=880,c=document.createElement("canvas");c.width=c.height=s;const x=c.getContext("2d"),m=s/2;
+    const cs=getComputedStyle(document.documentElement);
+    x.fillStyle=cs.getPropertyValue("--vinyl").trim()||"#161412";x.beginPath();x.arc(m,m,m,0,7);x.fill();
+    x.strokeStyle="rgba(255,255,255,.06)";x.lineWidth=1;for(let r=m*.33;r<m-6;r+=3.2){x.beginPath();x.arc(m,m,r,0,7);x.stroke()}
+    const g=x.createLinearGradient(0,0,s,s);g.addColorStop(.38,"rgba(255,255,255,0)");g.addColorStop(.5,"rgba(255,255,255,.07)");g.addColorStop(.62,"rgba(255,255,255,0)");
+    x.fillStyle=g;x.beginPath();x.arc(m,m,m,0,7);x.fill();
+    $("record").style.backgroundImage="url("+c.toDataURL("image/png")+")";
+  }catch(e){}
+}
+function labelImage(ch){
+  const tmp=document.createElement("div");drawWheel(ch,tmp,{still:true,id:"lbl"});
+  const cs=getComputedStyle(document.documentElement);
+  let svg=tmp.innerHTML.replace("<svg ",'<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" ');
+  ["--paper","--bg","--gold","--line","--ink"].forEach(k=>{svg=svg.split("var("+k+")").join(cs.getPropertyValue(k).trim()||"#a8843f")});
+  $("label").innerHTML='<img alt="O mapa no selo do disco" src="data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)+'">';
+}
+
+/* ---------- vinil ---------- */
+let state=null;
+function showRecord(v,ch){
+  __d("showRecord");
+  const today=diaLocal();
+  const {seed,sol,lua,asc,A,t,B,l1,l2}=discoDoDia(v,ch,today);
+  const dt=new Date().toLocaleDateString("pt-BR",{weekday:"long",day:"numeric",month:"long"});
+  $("pB").innerHTML=`<div class="song"><div class="eyebrow">${esc(v.nome)} · ${dt}</div><h2>${esc(B[1])}</h2><div class="by">${esc(B[2])}</div></div>
+    <div class="key" id="key">Lendo o tom da música...</div>
+    <div class="reading" id="reading"><p>${l1}</p><p>${l2}</p></div>
+    <a class="link" href="${spot(B)}" target="_blank" rel="noopener">Ouvir no Spotify</a>`;
+  $("pA").innerHTML=`<div class="eyebrow">O disco de ${esc(v.nome)}</div><ul class="tracks">${A.map(([g,lbl,s])=>s?`<li><span class="n">${g}</span><div><div class="t">${esc(s[1])}</div><div class="s">${esc(s[2])} · ${lbl}</div></div><button class="link" data-a="${A.indexOf(A.find(x=>x[2]===s))}" style="background:none;border:0;border-bottom:1px solid var(--gold);cursor:pointer;font:inherit;font-size:13px;color:var(--ink);padding:0">ouvir</button></li>`:"").join("")}</ul>
+    <div class="why">A música fixa, que é do mapa e não muda. Ela sai do Sol, da Lua e do Ascendente.</div>`;
+  state={B,A,v,ch,t,l1,today};
+  loadTrack(B);
+  explain({v,ch,t,B,l1,seed,today,sol,lua,asc});
+  $("pA").querySelectorAll("button[data-a]").forEach(b=>b.onclick=()=>{const s=A[+b.dataset.a][2];$("play").href=spot(s);if(IS_SAFARI){window.open(spot(s),"_blank","noopener");return}spAtivo=true;loadTrack(s).then(()=>spCtl&&spCtl.play())});
+  __d("antes selo");drawWheel(ch,$("label"),{still:true,id:"lbl"});__d("selo ok");
+  $("v-in").hidden=true;$("v-out").hidden=false;
+  setTab("B");stop();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function setTab(x){$("tA").setAttribute("aria-selected",x==="A");$("tB").setAttribute("aria-selected",x==="B");$("pA").hidden=x!=="A";$("pB").hidden=x!=="B";state&&(state.tab=x);if(state){const s=x==="A"?state.A[0][2]:state.B;$("play").href=spot(s);loadTrack(s)}}
+$("tA").onclick=()=>setTab("A");$("tB").onclick=()=>setTab("B");
+let playing=false;
+function stop(){playing=false;$("label").classList.remove("spin");$("arm").classList.remove("on");}
+$("play").onclick=e=>{
+  if(!IS_SAFARI&&state){
+    e.preventDefault();
+    if(spCtl&&!$("spot").hidden){spCtl.togglePlay();return}
+    spAtivo=true;loadTrack(state.tab==="A"?state.A[0][2]:state.B);return;
+  }
+  playing=true;$("arm").classList.add("on");setTimeout(()=>playing&&$("label").classList.add("spin"),700);
+};
+$("record").onclick=()=>{if(playing)stop();else{playing=true;$("arm").classList.add("on");$("label").classList.add("spin")}};
+$("redo").onclick=()=>{stop();$("v-out").hidden=true;$("v-in").hidden=false;lastKeys=new Set();update()};
+
+$("f").addEventListener("submit",e=>{
+  e.preventDefault();const v=read(),ch=compute(v);if(!ch)return;
+  try{localStorage.setItem("musica-astral",JSON.stringify({nome:v.nome,d:v.d,t:$("hora").value,sem:v.sem,cn:v.city[0],city:v.city}))}catch(err){}
+  const w=$("wheel");w.style.transition="transform .9s ease, opacity .9s";w.style.transform="scale(.6) rotate(200deg)";w.style.opacity="0";
+  setTimeout(()=>{w.style.transform="";w.style.opacity="";showRecord(v,ch)},850);
+});
+
+/* ---------- imagem para o story ---------- */
+const LIGHT={"--paper":"#faf8f4","--bg":"#ffffff","--gold":"#a8843f","--line":"#e8e2d6","--ink":"#1d1a16"};
+function wrap(ctx,text,x,y,maxW,lh,maxLines){
+  const words=String(text).split(" ");let line="",n=0;
+  for(const w of words){const test=line?line+" "+w:w;if(ctx.measureText(test).width>maxW&&line){ctx.fillText(line,x,y);y+=lh;line=w;if(++n>=maxLines-1){break}}else line=test}
+  if(line){ctx.fillText(line,x,y);y+=lh}return y;
+}
+async function storyImage(){
+  const W=1080,H=1920,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");
+  try{await Promise.all(['600 96px "Cormorant Garamond"','italic 500 60px "Cormorant Garamond"','500 34px "Instrument Sans"'].map(f=>document.fonts.load(f)))}catch(e){}
+  x.fillStyle="#faf8f4";x.fillRect(0,0,W,H);
+  x.textAlign="center";x.fillStyle="#1d1a16";
+  x.font='500 58px "Cormorant Garamond", Georgia, serif';
+  const a="eu",b="sou",cc="odu";x.font='500 58px "Cormorant Garamond", Georgia, serif';const wa=x.measureText(a).width,wc=x.measureText(cc).width;x.font='italic 500 58px "Cormorant Garamond", Georgia, serif';const wb=x.measureText(b).width;
+  let sx=W/2-(wa+wb+wc)/2;x.textAlign="left";x.font='500 58px "Cormorant Garamond", Georgia, serif';x.fillText(a,sx,150);x.fillStyle="#a8843f";x.font='italic 500 58px "Cormorant Garamond", Georgia, serif';x.fillText(b,sx+wa,150);x.fillStyle="#1d1a16";x.font='500 58px "Cormorant Garamond", Georgia, serif';x.fillText(cc,sx+wa+wb,150);
+  x.textAlign="center";x.fillStyle="#6f685d";x.font='500 28px "Instrument Sans", Arial, sans-serif';x.fillText("M Ú S I C A   A S T R A L",W/2,210);
+  // disco
+  const cx=W/2,cy=720,R=430;
+  x.save();x.shadowColor="rgba(0,0,0,.28)";x.shadowBlur=50;x.shadowOffsetY=24;x.beginPath();x.arc(cx,cy,R,0,Math.PI*2);x.fillStyle="#161412";x.fill();x.restore();
+  x.strokeStyle="rgba(255,255,255,.06)";x.lineWidth=1.2;for(let r=200;r<R-8;r+=6){x.beginPath();x.arc(cx,cy,r,0,Math.PI*2);x.stroke()}
+  const gr=x.createLinearGradient(cx-R,cy-R,cx+R,cy+R);gr.addColorStop(.35,"rgba(255,255,255,0)");gr.addColorStop(.5,"rgba(255,255,255,.09)");gr.addColorStop(.65,"rgba(255,255,255,0)");x.fillStyle=gr;x.beginPath();x.arc(cx,cy,R,0,Math.PI*2);x.fill();
+  const tmp=document.createElement("div");drawWheel(state.ch,tmp,{still:true,id:"st"});
+  let svg=tmp.innerHTML.replace("<svg ",'<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" ');
+  for(const [k,v] of Object.entries(LIGHT))svg=svg.split("var("+k+")").join(v);
+  const img=new Image();img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg);
+  try{await img.decode()}catch(e){}
+  const LR=190;x.save();x.beginPath();x.arc(cx,cy,LR,0,Math.PI*2);x.fillStyle="#efe4cc";x.fill();x.clip();x.drawImage(img,cx-LR*1.06,cy-LR*1.06,LR*2.12,LR*2.12);x.restore();
+  x.lineWidth=6;x.strokeStyle="#a8843f";x.beginPath();x.arc(cx,cy,LR,0,Math.PI*2);x.stroke();
+  // textos
+  const B=state.B,v=state.v;
+  const dt=new Date(state.today+"T12:00:00").toLocaleDateString("pt-BR",{day:"numeric",month:"long"});
+  x.fillStyle="#a8843f";x.font='600 30px "Instrument Sans", Arial, sans-serif';x.fillText(("Lado B · a música de "+(v.nome||"hoje")+" · "+dt).toUpperCase(),W/2,1260);
+  x.fillStyle="#1d1a16";x.font='600 104px "Cormorant Garamond", Georgia, serif';let y=wrap(x,B[1],W/2,1380,940,104,2);
+  x.fillStyle="#6f685d";x.font='500 40px "Instrument Sans", Arial, sans-serif';x.fillText(B[2],W/2,y+6);
+  x.fillStyle="#1d1a16";x.font='italic 500 46px "Cormorant Garamond", Georgia, serif';wrap(x,state.l1,W/2,y+100,900,58,2);
+  x.fillStyle="#1d1a16";x.font='500 34px "Instrument Sans", Arial, sans-serif';x.fillText("Descubra a música do seu mapa",W/2,1760);
+  x.fillStyle="#a8843f";x.font='600 38px "Instrument Sans", Arial, sans-serif';x.fillText("eusouodu.com/musica  ·  @eusouodu",W/2,1815);
+  return await new Promise(r=>c.toBlob(r,"image/png"));
+}
+function toast(msg){const t=$("toast");t.textContent=msg;t.hidden=false;clearTimeout(toast.k);toast.k=setTimeout(()=>t.hidden=true,7000)}
+$("share").onclick=async()=>{
+  const btn=$("share");btn.disabled=true;btn.textContent="Preparando a imagem...";
+  try{
+    const blob=await storyImage();const file=new File([blob],"musica-astral.png",{type:"image/png"});
+    let copiado=false;try{await navigator.clipboard.writeText("@eusouodu");copiado=true}catch(e){}
+    if(navigator.canShare&&navigator.canShare({files:[file]})){
+      try{await navigator.share({files:[file],title:"Música Astral",text:"A música do meu mapa hoje · @eusouodu"})}catch(e){}
+      toast(copiado?"@eusouodu copiado. No story, cola na figurinha de menção pra marcar.":"No story, usa a figurinha de menção com @eusouodu pra marcar.");
+    }else{
+      const url=URL.createObjectURL(blob);const lb=document.createElement("div");lb.className="lightbox";
+      lb.innerHTML=`<img src="${url}" alt="Imagem do disco para o story"><p>No celular, segura a imagem para salvar e posta no story marcando @eusouodu.</p><div class="row"><a class="btn" href="${url}" download="musica-astral.png" style="text-decoration:none;background:#fff;color:#000;border-color:#fff">Baixar imagem</a><button class="btn ghost" style="color:#fff;border-color:#fff">Fechar</button></div>`;
+      lb.querySelector("button").onclick=()=>{lb.remove();URL.revokeObjectURL(url)};document.body.appendChild(lb);
+    }
+  }catch(e){toast("Não consegui gerar a imagem. Tenta de novo.")}
+  btn.disabled=false;btn.textContent="Compartilhar no story";
+};
+
+/* ---------- e-mail ---------- */
+try{if(localStorage.getItem("musica-astral-inscrito"))$("mail").hidden=true}catch(e){}
+$("mail").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const email=$("m-email").value.trim(),msg=$("m-msg"),go=$("m-go");
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){msg.textContent="Confere o e-mail.";return}
+  if(!$("m-ok").checked){msg.textContent="Marca o aceite pra gente poder mandar.";return}
+  const freq=document.querySelector('input[name=freq]:checked').value;
+  const v=state.v;go.disabled=true;msg.textContent="Guardando...";
+  try{
+    const r=await fetch("/api/musica-inscrever",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({email,freq,perfil:{nome:v.nome,d:v.d,t:v.t,sem:v.sem,city:v.city}})});
+    const j=await r.json().catch(()=>({}));
+    if(r.ok){$("mail").innerHTML=`<div class="eyebrow">Combinado</div><p class="mtxt">${freq==="diario"?"Amanhã de manhã":"No domingo de manhã"} a música chega em <b>${esc(email)}</b>. Se não aparecer, olha a caixa de promoções.</p>`;try{localStorage.setItem("musica-astral-inscrito","1")}catch(e){}}
+    else msg.textContent=r.status===503?"O envio por e-mail abre em breve.":(j.erro||"Não deu certo. Tenta de novo.");
+  }catch(err){msg.textContent="Sem conexão. Tenta de novo."}
+  go.disabled=false;
+});
+
+/* ---------- início: exemplo preenchido ou visita de volta ---------- */
+function fill(o){$("nome").value=o.nome;$("data").value=o.d;$("hora").value=o.t||"";$("semhora").checked=!!o.sem;$("hora").disabled=!!o.sem;$("cidade").value=o.cn;chosen=o.city?{label:o.city[0],lat:o.city[1],lon:o.city[2],tz:o.city[3]}:null}
+async function boot(){
+  __d("boot");
+  try{if(localStorage.getItem("musica-astral-leve"))document.documentElement.classList.add("leve")}catch(e){}
+  if(typeof Astronomy==="undefined"){$("err").textContent="Não consegui carregar o cálculo do mapa. Recarrega a página.";return}
+  try{setCatalogo(await fetch("/musica/catalogo.json").then(r=>r.json()));__d("catalogo ok")}catch(e){$("err").textContent="Não consegui carregar as músicas. Recarrega a página.";return}
+  let saved=null;try{saved=JSON.parse(localStorage.getItem("musica-astral")||"null")}catch(e){}
+  try{const q=new URLSearchParams(location.search).get("p");if(q){const o=JSON.parse(decodeURIComponent(escape(atob(q.replace(/-/g,"+").replace(/_/g,"/")))));if(o&&o.d&&o.city){saved={nome:o.nome,d:o.d,t:o.t||"",sem:!!o.sem,cn:o.city[0],city:o.city};try{localStorage.setItem("musica-astral",JSON.stringify(saved));localStorage.setItem("musica-astral-inscrito","1")}catch(e){}}}}catch(e){}
+  let travou=false;try{travou=localStorage.getItem("musica-astral-abrindo")==="1"}catch(e){}
+  if(saved&&!travou){
+    try{localStorage.setItem("musica-astral-abrindo","1")}catch(e){}
+    setTimeout(()=>{try{localStorage.removeItem("musica-astral-abrindo")}catch(e){}},6000);
+    __d("disco salvo: mostrando");fill(saved);update();__d("update ok");const v=read(),ch=compute(v);__d("mapa ok");if(ch&&v.city)showRecord(v,ch);__d("disco ok");return}
+  if(saved&&travou){try{localStorage.removeItem("musica-astral-abrindo");localStorage.setItem("musica-astral-leve","1")}catch(e){}fill(saved);update();return}
+  __d("exemplo");fill({nome:"Exemplo",d:"1990-03-21",t:"07:30",sem:false,cn:"Salvador, BA",city:["Salvador, BA",-12.972,-38.501,"America/Bahia"]});update();
+  $("wait")&&($("wait").textContent="");
+}
+boot();
+__d("fim do script");loadCities().then(()=>__d("cidades ok "+CITY.length)).catch(()=>{$("err").textContent="Não consegui carregar a lista de cidades. Recarrega a página."});
+</script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><script>(function(m){try{var u="/api/musica-diag?m="+encodeURIComponent(m);navigator.sendBeacon?navigator.sendBeacon(u):(new Image().src=u)}catch(e){}})("TESTE-1 carregou")</script>
+<meta charset="utf-8">
+
+
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Música Astral · eusouodu</title>
+<meta name="description" content="O mapa vira um disco. Lado A, a música do mapa. Lado B, a música de hoje, escolhida pelo trânsito do dia.">
+<meta property="og:title" content="Música Astral · eusouodu">
+<meta property="og:description" content="O mapa vira um disco: a música do mapa e a música de hoje.">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Instrument+Sans:wght@400;500;600&display=swap">
+
+
+
+
+<style>
+html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: duas colunas, dados à esquerda e o mapa nascendo à direita; no fim o mapa vira o selo de um vinil */
+:root{
+  --bg:#ffffff; --paper:#faf8f4; --ink:#1d1a16; --muted:#6f685d; --line:#e8e2d6;
+  --gold:#a8843f; --gold-soft:#efe4cc; --vinyl:#161412; --groove:#2a2622;
+  --display:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --body:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#13110e; --paper:#1b1814; --ink:#f1ebe0; --muted:#a59c8c; --line:#2f2a23;
+  --gold:#d4b06a; --gold-soft:#3a2f1c; --vinyl:#0b0a09; --groove:#26221d; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#13110e; --paper:#1b1814; --ink:#f1ebe0; --muted:#a59c8c; --line:#2f2a23;
+  --gold:#d4b06a; --gold-soft:#3a2f1c; --vinyl:#0b0a09; --groove:#26221d; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1000px;margin:0 auto;padding-block:32px 64px}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.mark{font-family:var(--display);font-size:22px}
+.mark i{color:var(--gold)}
+.proto{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(38px,7vw,60px);line-height:1;margin:26px 0 8px;text-wrap:balance}
+h1 i{color:var(--gold)}
+.lede{color:var(--muted);max-width:52ch;margin:0}
+
+.stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px;margin-top:32px;align-items:start}
+.form{display:flex;flex-direction:column;gap:16px;min-width:0}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.field input{font:16px var(--body);padding:12px 14px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);width:100%;min-width:0}
+.field input:focus-visible,.btn:focus-visible,.tab:focus-visible,.link:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.ta{position:relative}
+#sug{position:absolute;left:0;right:0;top:100%;margin:4px 0 0;padding:4px;list-style:none;background:var(--bg);border:1px solid var(--line);border-radius:4px;box-shadow:0 10px 30px rgba(0,0,0,.12);z-index:10;max-height:320px;overflow:auto}
+#sug li{padding:9px 10px;border-radius:3px;cursor:pointer;font-size:15px}
+#sug li[aria-selected="true"],#sug li:hover{background:var(--gold-soft)}
+#sug li small{color:var(--muted)}
+.check{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
+.check input{accent-color:var(--gold);width:18px;height:18px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{font:600 15px var(--body);padding:14px 18px;border-radius:999px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer}
+.btn[disabled]{opacity:.35;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.err{font-size:13px;color:#b5452f;min-height:1em;margin:0}
+
+.sky{display:flex;flex-direction:column;align-items:center;gap:18px;min-width:0}
+.wheel{width:100%;max-width:400px;aspect-ratio:1;max-width:min(400px,100%)}
+.wheel svg{width:100%;height:100%;display:block;overflow:visible}
+#rot{transition:transform 1.4s cubic-bezier(.2,.7,.2,1);transform-origin:150px 150px}
+.pop{animation:pop .7s ease both}
+@keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.hints{display:flex;flex-direction:column;gap:8px;width:100%;max-width:400px}
+.hint{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;padding:10px 0;border-top:1px solid var(--line);animation:rise .6s ease both}
+.hint b{font-family:var(--display);font-size:22px;color:var(--gold);line-height:1}
+.hint strong{font-family:var(--display);font-size:19px;font-weight:600;display:block;line-height:1.2}
+.hint span{font-size:14px;color:var(--muted)}
+.wait{font-size:14px;color:var(--muted);text-align:center;max-width:32ch}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* Vinil */
+.player{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;margin-top:32px;align-items:center}
+.deck{position:relative;width:100%;max-width:440px;aspect-ratio:1;justify-self:center}
+.record{position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%,transparent 0 31%,var(--vinyl) 31.4% 100%),
+  repeating-radial-gradient(circle at 50% 50%,var(--groove) 0 1px,var(--vinyl) 1px 3px);
+  box-shadow:0 18px 40px rgba(0,0,0,.25),inset 0 0 0 2px rgba(255,255,255,.04);display:grid;place-items:center}
+
+.label{width:62%;aspect-ratio:1;border-radius:50%;background:var(--gold-soft);overflow:hidden;position:relative;z-index:1;box-shadow:0 0 0 3px var(--gold)}
+.label svg{width:100%;height:100%;display:block}
+.spin{animation:spin 3.2s linear infinite}
+.leve .spin{animation:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.arm{position:absolute;right:-4%;top:-6%;width:34%;transform-origin:78% 12%;transform:rotate(-24deg);transition:transform .9s ease;z-index:2;pointer-events:none}
+.arm.on{transform:rotate(4deg)}
+.side{display:flex;flex-direction:column;gap:16px;min-width:0}
+.tabs{display:flex;gap:6px}
+.tab{font:600 13px var(--body);letter-spacing:.06em;text-transform:uppercase;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:var(--bg)}
+.eyebrow{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.song h2{font-family:var(--display);font-weight:500;font-size:clamp(34px,5vw,46px);line-height:1.02;margin:6px 0 4px;text-wrap:balance}
+.song .by{color:var(--muted);font-size:15px}
+.reading{border-left:2px solid var(--gold);padding:2px 0 2px 14px;font-family:var(--display);font-size:20px;line-height:1.4}
+.reading p{margin:0 0 8px}
+.why{font-size:14px;color:var(--muted)}
+.key{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.key b{color:var(--gold);font-weight:600}
+.reading.loading{opacity:.55}
+.tracks{list-style:none;margin:0;padding:0}
+.tracks li{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.tracks .n{font-family:var(--display);font-size:24px;color:var(--gold);text-align:center}
+.tracks .t{font-family:var(--display);font-size:21px;font-weight:600;line-height:1.15}
+.tracks .s{font-size:13px;color:var(--muted)}
+.link{font-size:13px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--gold);white-space:nowrap}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.note{font-size:13px;color:var(--muted);margin:0}
+.cross{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.cross p{margin:0;font-family:var(--display);font-size:20px}
+
+@media (max-width:760px){
+  .stage,.player{grid-template-columns:1fr;gap:24px}
+  .sky{order:-1}
+  .wheel{max-width:300px}
+}
+@media (prefers-reduced-motion:reduce){.spin{animation:none}#rot{transition:none}.pop,.hint{animation:none}}
+.toast{margin:0;font-size:14px;color:var(--ink);background:var(--gold-soft);border-radius:6px;padding:10px 12px}
+.mail{display:flex;flex-direction:column;gap:10px;padding:18px;border:1px solid var(--line);border-radius:6px;background:var(--paper)}
+.mtxt{margin:0;font-size:14px;color:var(--muted)}
+.mail input[type=email]{font:16px var(--body);padding:12px 14px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);width:100%;min-width:0}
+.freq{display:flex;gap:16px;flex-wrap:wrap;font-size:14px}
+.freq input{accent-color:var(--gold)}
+.mmsg{font-size:13px;color:var(--muted)}
+.visually{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.82);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:50;padding:max(16px,env(safe-area-inset-top,0px)) 16px}
+.lightbox img{max-height:72vh;width:auto;border-radius:8px}
+.lightbox p{color:#fff;margin:0;text-align:center;font-size:14px}
+.spot{width:100%;min-height:80px;border-radius:12px;overflow:hidden}
+.spot iframe{display:block;border:0;border-radius:12px}
+.mark a{color:inherit;text-decoration:none}
+</style>
+
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top"><div class="mark"><a href="https://eusouodu.com">eu<i>sou</i>odu</a></div><div class="proto">Astrologia · Simbolismo · Mitologia</div></div>
+
+  <section id="v-in">
+    <h1>Música <i>Astral</i></h1>
+    <p class="lede">Os dados entram, o mapa vai se desenhando, e no fim ele vira um disco. Lado A, a música do mapa. Lado B, a música de hoje.</p>
+    <div class="stage">
+      <form class="form" id="f" autocomplete="off">
+        <div class="field"><label for="nome">Nome</label><input id="nome" placeholder="Como a gente te chama"></div>
+        <div class="field"><label for="data">Data de nascimento</label><input id="data" type="date" min="1900-01-01" max="2026-12-31"></div>
+        <div class="field"><label for="hora">Hora</label><input id="hora" type="time"></div>
+        <label class="check"><input type="checkbox" id="semhora"> Não sei a hora</label>
+        <div class="field ta"><label for="cidade">Cidade de nascimento</label><input id="cidade" placeholder="Comece a digitar" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="sug"><ul id="sug" role="listbox" hidden></ul></div>
+        <p class="err" id="err"></p>
+        <button class="btn" type="submit" id="go" disabled>Virar o disco</button>
+      </form>
+      <div class="sky">
+        <div class="wheel" id="wheel"></div>
+        <div class="hints" id="hints"><p class="wait" id="wait">Coloca a data de nascimento e repara no mapa.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="v-out" hidden>
+    <div class="player">
+      <div class="deck">
+        <div class="record" id="record"><div class="label" id="label"></div></div>
+        <svg class="arm" id="arm" viewBox="0 0 100 160" aria-hidden="true"><circle cx="78" cy="18" r="13" fill="var(--paper)" stroke="var(--gold)" stroke-width="2"/><circle cx="78" cy="18" r="4" fill="var(--gold)"/><path d="M78 18 L60 120 L46 146" fill="none" stroke="var(--gold)" stroke-width="5" stroke-linecap="round"/><rect x="34" y="140" width="22" height="14" rx="2" fill="var(--ink)" transform="rotate(25 45 147)"/></svg>
+      </div>
+      <div class="side">
+        <div class="tabs" role="tablist">
+          <button class="tab" role="tab" id="tB" aria-selected="true">Lado B · hoje</button>
+          <button class="tab" role="tab" id="tA" aria-selected="false">Lado A · o mapa</button>
+        </div>
+        <div id="pB"></div>
+        <div id="pA" hidden></div>
+        <div class="row">
+          <a class="btn" id="play" href="#" target="_blank" rel="noopener" style="text-decoration:none;text-align:center">Tocar</a>
+          <button class="btn ghost" id="share">Compartilhar no story</button>
+        </div>
+        <p class="toast" id="toast" hidden></p>
+        <form class="mail" id="mail" novalidate>
+          <div class="eyebrow">Receber a música por e-mail</div>
+          <p class="mtxt">Todo dia de manhã, a música do dia chega no e-mail, com o trânsito que escolheu ela.</p>
+          <div class="mrow"><label class="visually" for="m-email">E-mail</label><input id="m-email" type="email" inputmode="email" autocomplete="email" placeholder="seu@email.com" required></div>
+          <div class="freq" role="radiogroup" aria-label="Frequência">
+            <label><input type="radio" name="freq" value="diario" checked> Todo dia</label>
+            <label><input type="radio" name="freq" value="semanal"> Só aos domingos</label>
+          </div>
+          <label class="check"><input type="checkbox" id="m-ok"> Aceito receber os e-mails do eusouodu. Dá pra sair a qualquer momento, pelo link no fim de cada e-mail.</label>
+          <div class="row"><button class="btn" type="submit" id="m-go">Quero receber</button><span class="mmsg" id="m-msg"></span></div>
+        </form>
+        <div class="row"><button class="btn ghost" id="redo">Trocar os dados</button></div>
+        <div class="spot" id="spot" hidden></div>
+        <p class="note" id="spnote">Quem entra com a conta do Spotify ouve a música inteira. Sem entrar, toca um trecho.</p>
+      </div>
+    </div>
+    <div class="cross"><p>Quer a semana inteira no mapa, dia a dia?</p><a class="link" href="https://eusouodu.com/mapa/">A semana no seu mapa</a></div>
+  </section>
+</div>
+
+
+</body>
+</html>
