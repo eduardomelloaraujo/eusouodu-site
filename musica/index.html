@@ -79,14 +79,14 @@ h1 i{color:var(--gold)}
 .player{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;margin-top:32px;align-items:center}
 .deck{position:relative;width:100%;max-width:440px;aspect-ratio:1;justify-self:center}
 .record{position:absolute;inset:0;border-radius:50%;
-  background:var(--vinyl) center/cover no-repeat;
+  background:radial-gradient(circle at 50% 50%,transparent 0 31%,var(--vinyl) 31.4% 100%),
+  repeating-radial-gradient(circle at 50% 50%,var(--groove) 0 1px,var(--vinyl) 1px 3px);
   box-shadow:0 18px 40px rgba(0,0,0,.25),inset 0 0 0 2px rgba(255,255,255,.04);display:grid;place-items:center}
 
 .label{width:62%;aspect-ratio:1;border-radius:50%;background:var(--gold-soft);overflow:hidden;position:relative;z-index:1;box-shadow:0 0 0 3px var(--gold)}
 .label svg{width:100%;height:100%;display:block}
-.label img{width:100%;height:100%;display:block}
-.label{will-change:transform;transform:translateZ(0)}
 .spin{animation:spin 3.2s linear infinite}
+.leve .spin{animation:none}
 @keyframes spin{to{transform:rotate(360deg)}}
 .arm{position:absolute;right:-4%;top:-6%;width:34%;transform-origin:78% 12%;transform:rotate(-24deg);transition:transform .9s ease;z-index:2;pointer-events:none}
 .arm.on{transform:rotate(4deg)}
@@ -407,7 +407,6 @@ function labelImage(ch){
   ["--paper","--bg","--gold","--line","--ink"].forEach(k=>{svg=svg.split("var("+k+")").join(cs.getPropertyValue(k).trim()||"#a8843f")});
   $("label").innerHTML='<img alt="O mapa no selo do disco" src="data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)+'">';
 }
-grooves();
 
 /* ---------- vinil ---------- */
 let state=null;
@@ -425,7 +424,7 @@ function showRecord(v,ch){
   loadTrack(B);
   explain({v,ch,t,B,l1,seed,today,sol,lua,asc});
   $("pA").querySelectorAll("button[data-a]").forEach(b=>b.onclick=()=>{const s=A[+b.dataset.a][2];$("play").href=spot(s);if(IS_SAFARI){window.open(spot(s),"_blank","noopener");return}spAtivo=true;loadTrack(s).then(()=>spCtl&&spCtl.play())});
-  labelImage(ch);
+  drawWheel(ch,$("label"),{still:true,id:"lbl"});
   $("v-in").hidden=true;$("v-out").hidden=false;
   setTab("B");stop();
   window.scrollTo({top:0,behavior:"smooth"});
@@ -531,6 +530,7 @@ $("mail").addEventListener("submit",async e=>{
 /* ---------- início: exemplo preenchido ou visita de volta ---------- */
 function fill(o){$("nome").value=o.nome;$("data").value=o.d;$("hora").value=o.t||"";$("semhora").checked=!!o.sem;$("hora").disabled=!!o.sem;$("cidade").value=o.cn;chosen=o.city?{label:o.city[0],lat:o.city[1],lon:o.city[2],tz:o.city[3]}:null}
 async function boot(){
+  try{if(localStorage.getItem("musica-astral-leve"))document.documentElement.classList.add("leve")}catch(e){}
   if(typeof Astronomy==="undefined"){$("err").textContent="Não consegui carregar o cálculo do mapa. Recarrega a página.";return}
   try{setCatalogo(await fetch("/musica/catalogo.json").then(r=>r.json()))}catch(e){$("err").textContent="Não consegui carregar as músicas. Recarrega a página.";return}
   let saved=null;try{saved=JSON.parse(localStorage.getItem("musica-astral")||"null")}catch(e){}
@@ -540,7 +540,7 @@ async function boot(){
     try{localStorage.setItem("musica-astral-abrindo","1")}catch(e){}
     setTimeout(()=>{try{localStorage.removeItem("musica-astral-abrindo")}catch(e){}},6000);
     fill(saved);update();const v=read(),ch=compute(v);if(ch&&v.city)showRecord(v,ch);return}
-  if(saved&&travou){try{localStorage.removeItem("musica-astral-abrindo")}catch(e){}fill(saved);update();return}
+  if(saved&&travou){try{localStorage.removeItem("musica-astral-abrindo");localStorage.setItem("musica-astral-leve","1")}catch(e){}fill(saved);update();return}
   fill({nome:"Exemplo",d:"1990-03-21",t:"07:30",sem:false,cn:"Salvador, BA",city:["Salvador, BA",-12.972,-38.501,"America/Bahia"]});update();
   $("wait")&&($("wait").textContent="");
 }
