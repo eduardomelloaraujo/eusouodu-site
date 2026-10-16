@@ -162,14 +162,13 @@ p{margin:0}
 .musica-itens{list-style:none;margin:22px 0 30px;padding:0;border-top:1px solid color-mix(in srgb,var(--noite-texto) 18%,transparent)}
 .musica-itens li{padding:11px 0;border-bottom:1px solid color-mix(in srgb,var(--noite-texto) 18%,transparent);font-size:14px}
 .disco{display:grid;place-items:center;width:100%;max-width:420px;aspect-ratio:1;justify-self:center;border-radius:50%;text-decoration:none;
-  background:radial-gradient(circle,transparent 0 30%,#100f0d 30.5% 100%),repeating-radial-gradient(circle,#2b2723 0 1px,#100f0d 1px 4px);
-  box-shadow:0 30px 60px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.05);animation:gira 9s linear infinite}
-.selo-disco{width:60%;aspect-ratio:1;border-radius:50%;background:#EFE4CC;box-shadow:0 0 0 4px #9C7A44;display:grid;place-items:center;position:relative}
+  background:#100f0d;box-shadow:0 30px 60px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.05),inset 0 0 0 40px #141210,inset 0 0 0 41px rgba(255,255,255,.05),inset 0 0 0 80px #141210,inset 0 0 0 81px rgba(255,255,255,.05)}
+.selo-disco{will-change:transform;animation:gira 9s linear infinite;width:60%;aspect-ratio:1;border-radius:50%;background:#EFE4CC;box-shadow:0 0 0 4px #9C7A44;display:grid;place-items:center;position:relative}
 .selo-disco::after{content:"";position:absolute;width:6%;aspect-ratio:1;border-radius:50%;background:var(--noite)}
 .selo-disco i{font-style:normal;font-family:var(--display);font-size:clamp(20px,3vw,30px);color:#333230;transform:translateY(-38%)}
 .selo-disco em{font-style:italic;color:#9C7A44}
 @keyframes gira{to{transform:rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){.disco{animation:none}}
+@media (prefers-reduced-motion:reduce){.selo-disco{animation:none}}
 @media (max-width:760px){.musica .grade{grid-template-columns:1fr}.disco{max-width:280px}}
 .novo{padding-block:clamp(64px,9vw,128px);border-bottom:1px solid var(--pedra)}
 .novo .grade{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center}

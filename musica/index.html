@@ -80,12 +80,13 @@ h1 i{color:var(--gold)}
 .player{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;margin-top:32px;align-items:center}
 .deck{position:relative;width:100%;max-width:440px;aspect-ratio:1;justify-self:center}
 .record{position:absolute;inset:0;border-radius:50%;
-  background:radial-gradient(circle at 50% 50%,transparent 0 31%,var(--vinyl) 31.4% 100%),
-  repeating-radial-gradient(circle at 50% 50%,var(--groove) 0 1px,var(--vinyl) 1px 3px);
+  background:var(--vinyl) center/cover no-repeat;
   box-shadow:0 18px 40px rgba(0,0,0,.25),inset 0 0 0 2px rgba(255,255,255,.04);display:grid;place-items:center}
-.record::after{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 30deg,transparent 0 10%,rgba(255,255,255,.07) 14%,transparent 20% 60%,rgba(255,255,255,.05) 64%,transparent 70%)}
+
 .label{width:62%;aspect-ratio:1;border-radius:50%;background:var(--gold-soft);overflow:hidden;position:relative;z-index:1;box-shadow:0 0 0 3px var(--gold)}
 .label svg{width:100%;height:100%;display:block}
+.label img{width:100%;height:100%;display:block}
+.label{will-change:transform;transform:translateZ(0)}
 .spin{animation:spin 3.2s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .arm{position:absolute;right:-4%;top:-6%;width:34%;transform-origin:78% 12%;transform:rotate(-24deg);transition:transform .9s ease;z-index:2;pointer-events:none}
@@ -351,7 +352,7 @@ async function explain(o){
 }
 
 /* ---------- player do Spotify ---------- */
-let spApi=null,spCtl=null,spWant=null,spPaused=true;
+let spApi=null,spCtl=null,spWant=null,spPaused=true,spMaking=false;
 window.onSpotifyIframeApiReady=api=>{spApi=api;if(spWant)loadTrack(spWant)};
 async function trackId(s){
   if(s[6]&&/\/track\/([A-Za-z0-9]+)/.test(s[6]))return s[6].match(/\/track\/([A-Za-z0-9]+)/)[1];
@@ -365,16 +366,39 @@ async function loadTrack(s){
   const uri="spotify:track:"+id;
   $("spot").hidden=false;
   if(spCtl){spCtl.loadUri(uri);return}
-  if(!spApi)return;
+  if(!spApi||spMaking)return;
+  spMaking=true;
   const el=document.createElement("div");$("spot").innerHTML="";$("spot").appendChild(el);
   spApi.createController(el,{uri,width:"100%",height:80},ctl=>{
-    spCtl=ctl;
+    spCtl=ctl;spMaking=false;
+    if(spWant&&spWant!==s)loadTrack(spWant);
     ctl.addListener("playback_update",e=>{
       const p=e.data.isPaused;if(p===spPaused)return;spPaused=p;
       if(p)stop();else{playing=true;$("arm").classList.add("on");$("label").classList.add("spin")}
     });
   });
 }
+
+/* ---------- vinil leve: ranhuras desenhadas uma vez, selo como imagem ---------- */
+function grooves(){
+  try{
+    const s=880,c=document.createElement("canvas");c.width=c.height=s;const x=c.getContext("2d"),m=s/2;
+    const cs=getComputedStyle(document.documentElement);
+    x.fillStyle=cs.getPropertyValue("--vinyl").trim()||"#161412";x.beginPath();x.arc(m,m,m,0,7);x.fill();
+    x.strokeStyle="rgba(255,255,255,.06)";x.lineWidth=1;for(let r=m*.33;r<m-6;r+=3.2){x.beginPath();x.arc(m,m,r,0,7);x.stroke()}
+    const g=x.createLinearGradient(0,0,s,s);g.addColorStop(.38,"rgba(255,255,255,0)");g.addColorStop(.5,"rgba(255,255,255,.07)");g.addColorStop(.62,"rgba(255,255,255,0)");
+    x.fillStyle=g;x.beginPath();x.arc(m,m,m,0,7);x.fill();
+    $("record").style.backgroundImage="url("+c.toDataURL("image/png")+")";
+  }catch(e){}
+}
+function labelImage(ch){
+  const tmp=document.createElement("div");drawWheel(ch,tmp,{still:true,id:"lbl"});
+  const cs=getComputedStyle(document.documentElement);
+  let svg=tmp.innerHTML.replace("<svg ",'<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" ');
+  ["--paper","--bg","--gold","--line","--ink"].forEach(k=>{svg=svg.split("var("+k+")").join(cs.getPropertyValue(k).trim()||"#a8843f")});
+  $("label").innerHTML='<img alt="O mapa no selo do disco" src="data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg)+'">';
+}
+grooves();
 
 /* ---------- vinil ---------- */
 let state=null;
@@ -392,7 +416,7 @@ function showRecord(v,ch){
   loadTrack(B);
   explain({v,ch,t,B,l1,seed,today,sol,lua,asc});
   $("pA").querySelectorAll("button[data-a]").forEach(b=>b.onclick=()=>{const s=A[+b.dataset.a][2];$("play").href=spot(s);loadTrack(s).then(()=>spCtl&&spCtl.play())});
-  drawWheel(ch,$("label"),{still:true,id:"lbl"});
+  labelImage(ch);
   $("v-in").hidden=true;$("v-out").hidden=false;
   setTab("B");stop();
   window.scrollTo({top:0,behavior:"smooth"});
