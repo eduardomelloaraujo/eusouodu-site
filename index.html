@@ -153,6 +153,24 @@ p{margin:0}
 
 /* Novo produto em destaque */
 .acoes-abertura{display:flex;flex-wrap:wrap;gap:20px 28px;align-items:center}
+.musica{background:var(--noite);color:var(--noite-texto);padding-block:clamp(64px,9vw,120px)}
+.musica .grade{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,96px);align-items:center}
+.musica h2{font-size:clamp(46px,6vw,84px);margin:18px 0 22px;color:var(--noite-texto)}
+.musica h2 em{font-style:italic;color:#C9A66B}
+.musica .lead{color:color-mix(in srgb,var(--noite-texto) 78%,transparent);font-size:16px;max-width:50ch}
+.musica .rotulo{color:color-mix(in srgb,var(--noite-texto) 70%,transparent)}
+.musica-itens{list-style:none;margin:22px 0 30px;padding:0;border-top:1px solid color-mix(in srgb,var(--noite-texto) 18%,transparent)}
+.musica-itens li{padding:11px 0;border-bottom:1px solid color-mix(in srgb,var(--noite-texto) 18%,transparent);font-size:14px}
+.disco{display:grid;place-items:center;width:100%;max-width:420px;aspect-ratio:1;justify-self:center;border-radius:50%;text-decoration:none;
+  background:radial-gradient(circle,transparent 0 30%,#100f0d 30.5% 100%),repeating-radial-gradient(circle,#2b2723 0 1px,#100f0d 1px 4px);
+  box-shadow:0 30px 60px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.05);animation:gira 9s linear infinite}
+.selo-disco{width:60%;aspect-ratio:1;border-radius:50%;background:#EFE4CC;box-shadow:0 0 0 4px #9C7A44;display:grid;place-items:center;position:relative}
+.selo-disco::after{content:"";position:absolute;width:6%;aspect-ratio:1;border-radius:50%;background:var(--noite)}
+.selo-disco i{font-style:normal;font-family:var(--display);font-size:clamp(20px,3vw,30px);color:#333230;transform:translateY(-38%)}
+.selo-disco em{font-style:italic;color:#9C7A44}
+@keyframes gira{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.disco{animation:none}}
+@media (max-width:760px){.musica .grade{grid-template-columns:1fr}.disco{max-width:280px}}
 .novo{padding-block:clamp(64px,9vw,128px);border-bottom:1px solid var(--pedra)}
 .novo .grade{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center}
 .novo h2{font-size:clamp(46px,6vw,84px);margin:18px 0 22px}
@@ -231,13 +249,14 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
   </defs>
 </svg>
 
-<div class="aviso">Novo · A semana no seu mapa: os próximos 7 ou 30 dias lidos no mapa natal · <a href="/mapa/">ver o meu</a></div>
+<div class="aviso">Novidade · Música Astral: o mapa vira um disco e toca a música do dia · <a href="/musica/">ouvir a minha, grátis</a></div>
 
 <header class="cabecalho">
   <div class="envelope">
     <a class="marca" href="#topo">eu<i>sou</i>odu</a>
     <nav class="menu" aria-label="Seções">
-      <a href="#seu-mapa" class="sempre">Seu mapa</a>
+      <a href="/musica/" class="sempre">Música Astral</a>
+      <a href="#seu-mapa">Seu mapa</a>
       <a href="#semana">A semana</a>
       <a href="#leituras">Leituras</a>
       <a href="#odisseia">Odisseia</a>
@@ -255,6 +274,19 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
       <h1>O mapa como um <em>caminho de volta</em></h1>
       <p class="lead">Há mais de dez anos o Eduardo lê o céu ao lado dos mitos e do simbolismo. Aqui estão as leituras, os produtos e a energia astrológica de cada semana.</p>
       <div class="acoes-abertura"><a class="botao" href="/mapa/">Ver os próximos dias no meu mapa</a><a class="link" href="#leituras">Conhecer as leituras <span aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
+
+  <section class="musica" id="musica-astral" aria-labelledby="t-musica">
+    <div class="envelope grade">
+      <a class="disco" href="/musica/" aria-label="Abrir a Música Astral"><span class="selo-disco"><i>eu<em>sou</em>odu</i></span></a>
+      <div class="musica-texto">
+        <p class="rotulo"><span class="selo-novo">Novidade</span> Grátis</p>
+        <h2 id="t-musica">Música <em>Astral</em></h2>
+        <p class="lead">A data, a hora e a cidade entram, o mapa se desenha na tela e vira um disco. No Lado A, as músicas do Sol, da Lua e do Ascendente. No Lado B, a música de hoje, escolhida pelo trânsito que mais toca o mapa, com a leitura do tom explicando por quê.</p>
+        <ul class="musica-itens"><li>Uma música nova todo dia</li><li>A imagem do disco pronta para o story</li><li>A música do dia no e-mail, se quiser</li></ul>
+        <a class="botao claro" href="/musica/">Ouvir a música do meu mapa</a>
+      </div>
     </div>
   </section>
 
