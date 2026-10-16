@@ -14,7 +14,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Instrument+Sans:wght@400;500;600&display=swap">
 <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
-<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
 <script src="/musica/motor.js"></script>
 <style>
 html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
@@ -353,24 +352,34 @@ async function explain(o){
 
 /* ---------- player do Spotify ---------- */
 let spApi=null,spCtl=null,spWant=null,spPaused=true,spMaking=false;
-window.onSpotifyIframeApiReady=api=>{spApi=api;if(spWant)loadTrack(spWant)};
+window.onSpotifyIframeApiReady=api=>{spApi=api;if(spWant&&spAtivo)loadTrack(spWant)};
 async function trackId(s){
   if(s[6]&&/\/track\/([A-Za-z0-9]+)/.test(s[6]))return s[6].match(/\/track\/([A-Za-z0-9]+)/)[1];
   try{const r=await fetch("/api/musica-faixa?m="+encodeURIComponent(s[1])+"&a="+encodeURIComponent(s[2]));if(!r.ok)return null;const j=await r.json();return j.id||null}catch(e){return null}
+}
+/* O player só nasce quando a pessoa aperta Tocar. No Safari, a música abre no Spotify (o player embutido trava o Safari). */
+const IS_SAFARI=/^((?!chrome|android|crios|fxios|edg).)*safari/i.test(navigator.userAgent);
+let spAtivo=false;
+function loadSpotifyApi(){
+  if(spApi||document.getElementById("sp-api"))return;
+  const sc=document.createElement("script");sc.id="sp-api";sc.src="https://open.spotify.com/embed/iframe-api/v1";sc.async=true;document.body.appendChild(sc);
 }
 async function loadTrack(s){
   spWant=s;
   const id=await trackId(s);
   if(spWant!==s)return;
-  if(!id){$("spot").hidden=true;return}
+  $("play").href=id?"https://open.spotify.com/track/"+id:spot(s);
+  if(!id||!spAtivo){return}
   const uri="spotify:track:"+id;
   $("spot").hidden=false;
   if(spCtl){spCtl.loadUri(uri);return}
-  if(!spApi||spMaking)return;
+  if(!spApi){loadSpotifyApi();return}
+  if(spMaking)return;
   spMaking=true;
   const el=document.createElement("div");$("spot").innerHTML="";$("spot").appendChild(el);
   spApi.createController(el,{uri,width:"100%",height:80},ctl=>{
     spCtl=ctl;spMaking=false;
+    ctl.addListener("ready",()=>{try{ctl.play()}catch(e){}});
     if(spWant&&spWant!==s)loadTrack(spWant);
     ctl.addListener("playback_update",e=>{
       const p=e.data.isPaused;if(p===spPaused)return;spPaused=p;
@@ -415,7 +424,7 @@ function showRecord(v,ch){
   state={B,A,v,ch,t,l1,today};
   loadTrack(B);
   explain({v,ch,t,B,l1,seed,today,sol,lua,asc});
-  $("pA").querySelectorAll("button[data-a]").forEach(b=>b.onclick=()=>{const s=A[+b.dataset.a][2];$("play").href=spot(s);loadTrack(s).then(()=>spCtl&&spCtl.play())});
+  $("pA").querySelectorAll("button[data-a]").forEach(b=>b.onclick=()=>{const s=A[+b.dataset.a][2];$("play").href=spot(s);if(IS_SAFARI){window.open(spot(s),"_blank","noopener");return}spAtivo=true;loadTrack(s).then(()=>spCtl&&spCtl.play())});
   labelImage(ch);
   $("v-in").hidden=true;$("v-out").hidden=false;
   setTab("B");stop();
@@ -426,7 +435,14 @@ function setTab(x){$("tA").setAttribute("aria-selected",x==="A");$("tB").setAttr
 $("tA").onclick=()=>setTab("A");$("tB").onclick=()=>setTab("B");
 let playing=false;
 function stop(){playing=false;$("label").classList.remove("spin");$("arm").classList.remove("on");}
-$("play").onclick=e=>{if(spCtl&&!$("spot").hidden){e.preventDefault();spCtl.togglePlay();return}playing=true;$("arm").classList.add("on");setTimeout(()=>playing&&$("label").classList.add("spin"),700)};
+$("play").onclick=e=>{
+  if(!IS_SAFARI&&state){
+    e.preventDefault();
+    if(spCtl&&!$("spot").hidden){spCtl.togglePlay();return}
+    spAtivo=true;loadTrack(state.tab==="A"?state.A[0][2]:state.B);return;
+  }
+  playing=true;$("arm").classList.add("on");setTimeout(()=>playing&&$("label").classList.add("spin"),700);
+};
 $("record").onclick=()=>{if(playing)stop();else{playing=true;$("arm").classList.add("on");$("label").classList.add("spin")}};
 $("redo").onclick=()=>{stop();$("v-out").hidden=true;$("v-in").hidden=false;lastKeys=new Set();update()};
 
@@ -519,7 +535,12 @@ async function boot(){
   try{setCatalogo(await fetch("/musica/catalogo.json").then(r=>r.json()))}catch(e){$("err").textContent="Não consegui carregar as músicas. Recarrega a página.";return}
   let saved=null;try{saved=JSON.parse(localStorage.getItem("musica-astral")||"null")}catch(e){}
   try{const q=new URLSearchParams(location.search).get("p");if(q){const o=JSON.parse(decodeURIComponent(escape(atob(q.replace(/-/g,"+").replace(/_/g,"/")))));if(o&&o.d&&o.city){saved={nome:o.nome,d:o.d,t:o.t||"",sem:!!o.sem,cn:o.city[0],city:o.city};try{localStorage.setItem("musica-astral",JSON.stringify(saved));localStorage.setItem("musica-astral-inscrito","1")}catch(e){}}}}catch(e){}
-  if(saved){fill(saved);update();const v=read(),ch=compute(v);if(ch&&v.city)showRecord(v,ch);return}
+  let travou=false;try{travou=localStorage.getItem("musica-astral-abrindo")==="1"}catch(e){}
+  if(saved&&!travou){
+    try{localStorage.setItem("musica-astral-abrindo","1")}catch(e){}
+    setTimeout(()=>{try{localStorage.removeItem("musica-astral-abrindo")}catch(e){}},6000);
+    fill(saved);update();const v=read(),ch=compute(v);if(ch&&v.city)showRecord(v,ch);return}
+  if(saved&&travou){try{localStorage.removeItem("musica-astral-abrindo")}catch(e){}fill(saved);update();return}
   fill({nome:"Exemplo",d:"1990-03-21",t:"07:30",sem:false,cn:"Salvador, BA",city:["Salvador, BA",-12.972,-38.501,"America/Bahia"]});update();
   $("wait")&&($("wait").textContent="");
 }
