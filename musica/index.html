@@ -272,7 +272,7 @@ function drawWheel(ch,target,opts={}){
     const placed=[];
     PLANETS.forEach(([n,g])=>{let l=ch.p[n];let r=92;placed.forEach(q=>{let dd=Math.abs(((l-q.l+540)%360)-180);if(dd<9&&q.r===r)r=72});placed.push({l,r});
       const [x,y]=pt(l,r,ref),[x2,y2]=pt(l,106,ref);const big=n==="Sol"||n==="Lua";keys.add(n);
-      s+=`<g class="${lastKeys.has(n)||opts.still?"":"pop"}" style="transform-origin:${x}px ${y}px"><line x1="${x}" y1="${y}" x2="${x2}" y2="${y2}" stroke="var(--line)" stroke-width=".7"/><circle cx="${x}" cy="${y}" r="${big?12:9}" fill="${big?"var(--gold)":"var(--bg)"}" stroke="var(--gold)"/><text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="${big?14:11}" fill="${big?"var(--bg)":"var(--ink)"}" font-family="Georgia,serif">${g}</text></g>`});
+      s+=`<g class="${lastKeys.has(n)||opts.still?"":"pop"}"><line x1="${x}" y1="${y}" x2="${x2}" y2="${y2}" stroke="var(--line)" stroke-width=".7"/><circle cx="${x}" cy="${y}" r="${big?12:9}" fill="${big?"var(--gold)":"var(--bg)"}" stroke="var(--gold)"/><text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="${big?14:11}" fill="${big?"var(--bg)":"var(--ink)"}" font-family="Georgia,serif">${g}</text></g>`});
   }
   s+=`</g></svg>`;
   target.innerHTML=s;
