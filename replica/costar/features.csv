@@ -1,0 +1,32 @@
+feature,area,priority,original,clone,notes
+Cadastro com data hora e local de nascimento,onboarding,must,yes,no,mapaNatal e cidades.json já existem no eusouodu
+Opção "não sei a hora" com mapa sem casas,onboarding,must,yes,no,o original tem artigo de ajuda para isso
+Login por telefone ou conta social,conta,must,yes,no,no site pode começar por email com link mágico
+Leitura do dia em uma frase de abertura,hoje,must,yes,no,a primeira coisa que a pessoa vê; texto próprio na voz do eusouodu
+Texto do dia a partir dos trânsitos pessoais,hoje,must,yes,no,transitosPeriodo já gera os eventos; falta o texto
+Lista de 3 faça e 3 não faça do dia,hoje,must,yes,no,marca registrada do formato do original; escrever do zero
+Trânsitos ativos do dia com explicação,hoje,must,yes,no,mesmo motor do mapa do TimePassages
+Mapa natal em tabela,mapa,must,yes,no,
+Mapa natal em círculo,mapa,must,yes,no,desenhar em SVG próprio
+Detalhe de cada planeta e casa do mapa,mapa,must,yes,no,textos próprios
+Notificação diária com a frase do dia,notificações,must,yes,no,no site: web push ou email; nativo depois
+Plano pago mensal e anual,assinatura,must,yes,no,original: Pro-Star a US$ 8.99/mês na App Store
+Áreas da vida no dia (amor trabalho corpo etc),hoje,should,yes,no,categorias citadas em resenhas; nomes exatos não confirmados
+Previsão de longo prazo (próximos meses),hoje,should,yes,no,o original cita conselhos para os próximos meses
+Adicionar amigos,amigos,should,yes,no,rede social exige conta e privacidade (LGPD)
+Encontrar amigos pelos contatos do celular,amigos,should,yes,no,dado sensível; comparar só hash de telefone com consentimento
+Compatibilidade com amigo por categorias,amigos,should,yes,no,sinastria calculada; textos próprios
+Ver a leitura do dia dos amigos,amigos,should,yes,no,
+Amigos para encontrar ou evitar hoje,amigos,should,yes,no,
+Mapa de quem não tem o app (pago),amigos,should,yes,no,premium no original
+Perguntar às estrelas (pergunta livre com resposta),perguntas,should,yes,no,premium no original; resposta gerada por IA com limites claros
+Relatório do ano (pago avulso),relatórios,should,yes,no,original: Your Year Ahead a US$ 11.99; o eusouodu já vende relatório semanal
+Relatório de amor ou relação (pago),relatórios,could,yes,no,
+Guia para casais no dia a dia,relatórios,could,yes,no,"Eros" no original a US$ 6.99; nome e textos próprios
+Mapas avançados (pago),mapa,could,yes,no,original vende a US$ 8.99
+Escolher quais trânsitos mostrar pelo uso de cada pessoa,hoje,could,yes,no,FAQ do original diz que fazem isso; precisa de eventos de uso
+Configurações de notificação e conta,conta,must,yes,no,inclui apagar a conta (exigência das lojas e da LGPD)
+Textos e frases do Co-Star,conteúdo,could,yes,skip,conteúdo protegido; o eusouodu escreve os seus
+Tom provocador e as notificações irônicas do Co-Star,marca,could,yes,skip,é a voz deles; o eusouodu tem voz própria
+Nome logo e estética preto e branco do Co-Star,marca,could,yes,skip,pertence ao original; a marca é o orbe
+A rede de usuários e amigos do Co-Star,rede,could,yes,skip,a rede deles não se copia; cresce com os seus usuários
