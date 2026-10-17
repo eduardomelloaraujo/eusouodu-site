@@ -3,6 +3,17 @@
   "outputDirectory": ".",
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "app.eusouodu.com"
+        }
+      ],
+      "destination": "/app/",
+      "permanent": false
+    },
+    {
       "source": "/lib/:path*",
       "destination": "/",
       "permanent": false
@@ -31,6 +42,28 @@
           "value": "public, max-age=86400"
         }
       ]
+    },
+    {
+      "source": "/app/sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/app/"
+        }
+      ]
+    },
+    {
+      "source": "/app/manifest.webmanifest",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/manifest+json"
+        }
+      ]
     }
   ],
   "functions": {
@@ -39,6 +72,9 @@
     },
     "api/musica-*.js": {
       "includeFiles": "{musica/motor.js,musica/catalogo.json,lib/vendor/**}"
+    },
+    "api/app-*.js": {
+      "includeFiles": "lib/vendor/**"
     }
   },
   "rewrites": [
