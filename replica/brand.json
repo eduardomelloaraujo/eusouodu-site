@@ -1,0 +1,6 @@
+{
+  "name": "orbe",
+  "avoid": ["TimePassages", "Time Passages", "AstroGraph", "Astrograph"],
+  "domains": ["astrograph.com", "timepassages.app"],
+  "colors": []
+}
