@@ -1,0 +1,29 @@
+feature,area,priority,original,clone,notes
+Cadastro dos dados de nascimento (data hora local),onboarding,must,yes,no,lib/astro.mjs mapaNatal e musica/cidades.json já cobrem o cálculo e a busca de cidade
+Aceitar hora de nascimento desconhecida (sem casas nem ASC),onboarding,must,yes,no,não confirmado no original; quem não sabe a hora precisa de um caminho
+Mapa natal gratuito do usuário,perfil,must,yes,no,porta de entrada do plano grátis no original
+Horóscopo diário a partir dos trânsitos pessoais,horóscopo diário,must,yes,no,transitosPeriodo já gera os eventos do dia; falta a tela diária
+Trânsitos agrupados em curto prazo e longo prazo,horóscopo diário,must,yes,no,novidade da versão 3.1 do original
+Impacto geral do dia num relance (tom do dia),horóscopo diário,must,yes,no,transitosPeriodo já classifica fluida / mista / desafiadora
+Interpretação em texto de cada trânsito,horóscopo diário,must,yes,no,textos próprios na voz do eusouodu; nunca os do original
+Janela do trânsito: entra no orbe / exato / sai do orbe,detalhe do trânsito,must,yes,no,falta no motor atual; retrógrados podem ter 3 datas exatas
+Orbe atual e se está aplicando ou separando,detalhe do trânsito,must,yes,no,motor atual já calcula orbe e aplicando
+Céu de agora: posições do Sol e da Lua e dos planetas,céu atual,must,yes,no,longitude() já existe
+Fase da Lua de hoje,céu atual,must,yes,no,já existe em semana.json
+Lua fora de curso com início e fim,céu atual,should,yes,no,cálculo novo: último aspecto maior da Lua antes de mudar de signo
+Mercúrio retrógrado e demais retrogradações,céu atual,should,yes,no,retrogrado() já existe
+Ciclo da Lua de Nova a Nova numa linha do tempo,céu atual,should,yes,no,SearchMoonQuarter já usado no motor
+Navegar para outro dia (ontem amanhã data escolhida),horóscopo diário,should,yes,no,não confirmado no original; barato de fazer com o motor atual
+Mapa de trânsitos em roda dupla (natal + trânsitos),gráfico,should,yes,no,recurso Pro no original; desenhar o mapa em SVG próprio
+Aba Planetas: casa natal por onde cada planeta transita,gráfico,should,yes,no,posicoes[].casaNatal já existe
+Plano pago com previsões ilimitadas (mensal e anual),assinatura,should,yes,no,original cobra US$ 7.99/mês ou US$ 59.99/ano
+Conta para guardar o perfil entre visitas,conta,should,yes,no,o original guarda no app; no site precisa de login por email ou link mágico
+Lembrete diário (email ou push) com a energia do dia,notificações,could,yes,no,não confirmado no original; o eusouodu já envia email em lib/email.mjs
+Progressões secundárias,previsões,could,yes,no,fora da fatia de trânsitos
+Direções de arco solar,previsões,could,yes,no,fora da fatia de trânsitos
+Retorno solar do ano,previsões,could,yes,no,fora da fatia de trânsitos
+Glossário de signos planetas casas e aspectos,aprender,could,yes,no,escrever do zero
+Mapas de outras pessoas e compatibilidade,mapas,could,yes,skip,fora da fatia pedida (trânsitos e energias diárias)
+Textos de interpretação do TimePassages,conteúdo,could,yes,skip,conteúdo protegido do original; o eusouodu escreve os seus
+Atlas ACS embutido,dados,could,yes,skip,base licenciada; usar base aberta de cidades e fusos (cidades.json + IANA)
+Nome marca ícones e arte do mapa do TimePassages,marca,could,yes,skip,pertence ao original
