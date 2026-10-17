@@ -1,0 +1,17 @@
+{
+  "name": "eusouodu app",
+  "short_name": "eusouodu",
+  "description": "A energia astrológica do dia, lida por simbolismo e mito, cruzada com o seu mapa.",
+  "lang": "pt-BR",
+  "start_url": "/app/",
+  "scope": "/app/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#13110e",
+  "theme_color": "#13110e",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

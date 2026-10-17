@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>eusouodu app</title>
+<meta name="description" content="A energia astrológica do dia, lida por simbolismo e mito, cruzada com o seu mapa.">
+<meta property="og:title" content="eusouodu app">
+<meta property="og:description" content="A energia astrológica do dia, cruzada com o seu mapa.">
+<meta name="theme-color" content="#13110e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="eusouodu">
+<link rel="manifest" href="/app/manifest.webmanifest">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#13110e; --paper:#1b1814; --ink:#f1ebe0; --muted:#a59c8c; --line:#2f2a23;
+  --gold:#d4b06a; --gold-soft:#3a2f1c; --moon:#efe6d2; --shade:#26221d; color-scheme:dark;
+  --display:"Cormorant Garamond", Georgia, serif;
+  --body:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --top:env(safe-area-inset-top,0px); --bot:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
+  --bg:#ffffff; --paper:#faf8f4; --ink:#1d1a16; --muted:#6f685d; --line:#e8e2d6;
+  --gold:#a8843f; --gold-soft:#efe4cc; --moon:#f3ead6; --shade:#d9d1c2; color-scheme:light }}
+:root[data-theme="light"]{
+  --bg:#ffffff; --paper:#faf8f4; --ink:#1d1a16; --muted:#6f685d; --line:#e8e2d6;
+  --gold:#a8843f; --gold-soft:#efe4cc; --moon:#f3ead6; --shade:#d9d1c2; color-scheme:light }
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--body);min-height:100dvh}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  padding:calc(var(--top) + 12px) 16px 10px;display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid var(--line)}
+.mark{font-family:var(--display);font-size:22px;line-height:1}
+.mark i{color:var(--gold)}
+.date{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.inst{font:600 12px var(--body);letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);background:transparent;border-radius:999px;padding:7px 12px;cursor:pointer}
+
+main{max-width:620px;margin:0 auto;padding:22px 16px calc(var(--bot) + 96px)}
+.eyebrow{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin:0}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(36px,10vw,52px);line-height:1.02;margin:8px 0 14px;text-wrap:balance}
+h2{font-family:var(--display);font-weight:500;font-size:28px;line-height:1.1;margin:0 0 6px}
+.lede{color:var(--muted);margin:0 0 18px}
+.prose{font-family:var(--display);font-size:21px;line-height:1.45}
+.prose p{margin:0 0 14px}
+.moonrow{display:flex;gap:14px;align-items:center;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:4px 0 20px}
+.moonrow svg{width:54px;height:54px;flex:none}
+.moonrow strong{font-family:var(--display);font-size:22px;font-weight:600;display:block;line-height:1.15}
+.moonrow span{font-size:13px;color:var(--muted)}
+.call{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:6px;padding:16px 16px 14px;margin:6px 0 20px}
+.call .eyebrow{margin-bottom:6px}
+.call p{margin:0;font-size:16px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.chip{border:1px solid var(--line);border-radius:6px;padding:12px}
+.chip b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.chip span{font-family:var(--display);font-size:18px;line-height:1.25}
+.list{list-style:none;margin:0;padding:0}
+.list li{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:11px 0;border-top:1px solid var(--line);align-items:baseline}
+.list .h{font-variant-numeric:tabular-nums;color:var(--gold);font-size:14px}
+.sec{margin-top:26px}
+.sec>.eyebrow{margin-bottom:8px}
+
+.skel{height:14px;border-radius:4px;background:var(--line);margin:10px 0;animation:pulse 1.4s ease-in-out infinite}
+.skel.t{height:40px;width:70%}
+@keyframes pulse{50%{opacity:.45}}
+
+/* formulário */
+.form{display:flex;flex-direction:column;gap:14px}
+.field{display:flex;flex-direction:column;gap:6px;position:relative}
+.field label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.field input{font:16px var(--body);padding:12px 14px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);width:100%;min-width:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.check{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
+.check input{accent-color:var(--gold);width:18px;height:18px}
+#sug{position:absolute;left:0;right:0;top:100%;margin:4px 0 0;padding:4px;list-style:none;background:var(--paper);border:1px solid var(--line);border-radius:6px;z-index:10;max-height:280px;overflow:auto;box-shadow:0 12px 30px rgba(0,0,0,.3)}
+#sug li{padding:10px;border-radius:4px;cursor:pointer}
+#sug li:hover,#sug li[aria-selected="true"]{background:var(--gold-soft)}
+.btn{font:600 15px var(--body);padding:14px 18px;border-radius:999px;border:1px solid var(--gold);background:var(--gold);color:var(--bg);cursor:pointer;width:100%}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn[disabled]{opacity:.4}
+.err{font-size:13px;color:#d9775f;margin:0;min-height:1em}
+.who{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin-bottom:14px}
+.who button{background:none;border:0;color:var(--gold);cursor:pointer;padding:4px 0;text-decoration:underline;text-underline-offset:3px}
+.tone{display:inline-block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:4px 10px;border:1px solid var(--line);color:var(--muted);margin-bottom:6px}
+.tone.fluida{border-color:var(--gold);color:var(--gold)}
+
+/* trânsitos */
+.seg{display:flex;gap:6px;margin:4px 0 16px}
+.seg button{flex:1;padding:9px;border-radius:999px;border:1px solid var(--line);background:transparent;cursor:pointer;font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.seg button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--bg)}
+.tr{padding:14px 0;border-top:1px solid var(--line)}
+.tr .n{font-family:var(--display);font-size:21px;font-weight:600;line-height:1.2}
+.tr .m{font-size:13px;color:var(--muted);margin-top:2px}
+.bar{position:relative;height:4px;border-radius:2px;background:var(--line);margin:10px 0 6px}
+.bar i{position:absolute;inset:0 auto 0 0;border-radius:2px;background:var(--gold)}
+.bar b{position:absolute;top:-4px;width:2px;height:12px;background:var(--ink);border-radius:1px}
+.bar .x{position:absolute;top:-3px;width:10px;height:10px;margin-left:-5px;border-radius:50%;border:2px solid var(--gold);background:var(--bg)}
+.ends{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.hot{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--bg);background:var(--gold);border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle;font-family:var(--body);font-weight:600}
+.empty{color:var(--muted);font-size:14px;padding:12px 0}
+
+/* agora */
+.pl{display:grid;grid-template-columns:1fr auto;gap:10px;padding:12px 0;border-top:1px solid var(--line);align-items:baseline}
+.pl strong{font-family:var(--display);font-size:20px;font-weight:600}
+.pl span{color:var(--muted);font-variant-numeric:tabular-nums}
+.pl em{font-style:normal;color:var(--gold);font-size:12px;letter-spacing:.06em;margin-left:6px}
+
+/* barra de abas */
+nav{position:fixed;left:0;right:0;bottom:0;z-index:6;display:grid;grid-template-columns:repeat(4,1fr);
+  background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:6px 6px calc(var(--bot) + 6px)}
+nav a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.04em}
+nav a svg{width:22px;height:22px}
+nav a[aria-current="page"]{color:var(--gold)}
+
+/* instalação */
+.sheet{position:fixed;inset:0;z-index:20;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.55)}
+.sheet .box{width:100%;max-width:520px;background:var(--paper);border-radius:18px 18px 0 0;padding:22px 18px calc(var(--bot) + 20px);border-top:1px solid var(--line);animation:up .35s ease both}
+@keyframes up{from{transform:translateY(30px);opacity:0}}
+.sheet h3{font-family:var(--display);font-weight:500;font-size:30px;line-height:1.05;margin:0 0 6px}
+.sheet p{margin:0 0 14px;color:var(--muted)}
+.steps{list-style:none;margin:0 0 16px;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.steps li::before{content:counter(s);font-family:var(--display);font-size:22px;color:var(--gold);text-align:center}
+.steps svg{width:18px;height:18px;vertical-align:-3px;color:var(--gold)}
+.sheet .row{display:flex;gap:10px}
+.arrow{position:fixed;bottom:calc(var(--bot) + 4px);left:50%;transform:translateX(-50%);z-index:21;color:var(--gold);animation:bob 1.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translate(-50%,6px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <div class="mark">eu<i>sou</i>odu</div>
+    <div class="date" id="hoje-rotulo">&nbsp;</div>
+  </div>
+  <button class="inst" id="btn-inst" hidden>Instalar</button>
+</header>
+
+<main>
+  <!-- HOJE -->
+  <section id="v-hoje">
+    <p class="eyebrow">Energia astrológica do dia</p>
+    <div id="hoje-corpo"><div class="skel t"></div><div class="skel"></div><div class="skel"></div><div class="skel" style="width:60%"></div></div>
+  </section>
+
+  <!-- MEU DIA -->
+  <section id="v-meu" hidden>
+    <p class="eyebrow">O dia no meu mapa</p>
+    <div id="meu-corpo"></div>
+    <form class="form" id="form" hidden autocomplete="off">
+      <h1>Cruzar o dia com o mapa</h1>
+      <p class="lede">Os dados ficam só neste aparelho. É o que permite ler o que a energia do dia toca em cada mapa.</p>
+      <div class="field"><label for="nome">Nome</label><input id="nome" maxlength="40" autocomplete="given-name"></div>
+      <div class="two">
+        <div class="field"><label for="data">Nascimento</label><input id="data" type="date" required min="1900-01-01" max="2026-12-31"></div>
+        <div class="field"><label for="hora">Hora</label><input id="hora" type="time"></div>
+      </div>
+      <label class="check"><input type="checkbox" id="semhora"> Não sei a hora</label>
+      <div class="field"><label for="cidade">Cidade de nascimento</label>
+        <input id="cidade" placeholder="Digite e escolha na lista" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="sug">
+        <ul id="sug" role="listbox" hidden></ul></div>
+      <p class="err" id="err"></p>
+      <button class="btn" type="submit">Ver o meu dia</button>
+    </form>
+  </section>
+
+  <!-- TRÂNSITOS -->
+  <section id="v-tr" hidden>
+    <p class="eyebrow">Trânsitos no meu mapa</p>
+    <h1 style="font-size:40px">O que está ativo</h1>
+    <div class="seg" role="group" aria-label="Duração">
+      <button id="seg-c" aria-pressed="true">Dias</button>
+      <button id="seg-l" aria-pressed="false">Meses</button>
+    </div>
+    <div id="tr-corpo"></div>
+  </section>
+
+  <!-- AGORA -->
+  <section id="v-agora" hidden>
+    <p class="eyebrow">Posições de hoje</p>
+    <h1 style="font-size:40px">Os planetas agora</h1>
+    <div id="agora-corpo"></div>
+  </section>
+</main>
+
+<nav aria-label="Seções">
+  <a href="#hoje" data-v="hoje"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>Hoje</a>
+  <a href="#meu" data-v="meu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 3v18M3 12h18"/></svg>Meu dia</a>
+  <a href="#tr" data-v="tr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h12M3 12h18M3 17h8"/><circle cx="17" cy="7" r="2"/><circle cx="13" cy="17" r="2"/></svg>Trânsitos</a>
+  <a href="#agora" data-v="agora"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>Agora</a>
+</nav>
+
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-t">
+  <div class="box">
+    <h3 id="sheet-t">Leve o app para a tela inicial</h3>
+    <p id="sheet-p">Assim a energia astrológica do dia abre com um toque, em tela cheia, como um aplicativo.</p>
+    <ol class="steps" id="sheet-steps"></ol>
+    <div class="row">
+      <button class="btn" id="sheet-ok">Instalar agora</button>
+      <button class="btn ghost" id="sheet-no">Depois</button>
+    </div>
+  </div>
+</div>
+<div class="arrow" id="arrow" hidden aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v15M5 12l7 7 7-7"/></svg></div>
+
+<script>
+/* ---------- utilidades ---------- */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const paras=t=>String(t||"").split(/\n\s*\n/).map(p=>p.trim()).filter(Boolean).map(p=>`<p>${esc(p)}</p>`).join("");
+const guarda={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+const ISO=(()=>{const p={};new Intl.DateTimeFormat("en-US",{timeZone:"America/Sao_Paulo",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date()).forEach(x=>p[x.type]=x.value);return `${p.year}-${p.month}-${p.day}`})();
+const MESES=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+const curta=iso=>{const [y,m,d]=iso.split("-");return `${+d} ${MESES[m-1]}${y!==ISO.slice(0,4)?" "+y:""}`};
+const dias=(a,b)=>(new Date(b+"T12:00:00Z")-new Date(a+"T12:00:00Z"))/864e5;
+async function busca(url,chave){
+  const salvo=guarda.get(chave);
+  if(salvo&&salvo.texto)return salvo;
+  const r=await fetch(url);if(!r.ok)throw new Error(r.status);
+  const j=await r.json();guarda.set(chave,j);
+  // limpa dias antigos
+  try{Object.keys(localStorage).forEach(k=>{if(/^(dia|meu):/.test(k)&&!k.includes(ISO))localStorage.removeItem(k)})}catch(e){}
+  return j;
+}
+
+/* ---------- Lua desenhada (hemisfério sul: a parte crescente brilha à esquerda) ---------- */
+function lua(angulo){
+  const r=24,k=Math.cos(angulo*Math.PI/180),rx=Math.abs(k)*r,cres=angulo<180;
+  // desenho do hemisfério norte (crescente iluminada à direita), espelhado no fim
+  const fora=cres?1:0, term=cres?(k>0?0:1):(k>0?1:0);
+  const d=`M30 ${30-r} A${r} ${r} 0 0 ${fora} 30 ${30+r} A${rx.toFixed(2)} ${r} 0 0 ${term} 30 ${30-r}Z`;
+  return `<svg viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="${r}" fill="var(--shade)"/><path d="${d}" fill="var(--moon)" transform="translate(60 0) scale(-1 1)"/><circle cx="30" cy="30" r="${r}" fill="none" stroke="var(--gold)" stroke-width=".8"/></svg>`;
+}
+
+/* ---------- HOJE ---------- */
+let DIA=null;
+function frase(e){
+  if(e.tipo==="lunacao")return `${e.fase} em ${e.signo}`;
+  if(e.tipo==="ingresso")return `${e.planeta} entra em ${e.signo}`;
+  if(e.tipo==="estacao")return `${e.planeta} ${e.movimento} em ${e.signo}`;
+  return `${e.de} em ${e.aspecto} com ${e.para}`;
+}
+function renderHoje(d){
+  $("hoje-rotulo").textContent=d.rotulo;
+  const t=d.texto, L=d.lua;
+  let h="";
+  h+=`<h1>${esc(t?t.titulo:`Lua em ${L.signo}`)}</h1>`;
+  h+=`<div class="moonrow">${lua(L.angulo)}<div><strong>${esc(L.nome)} em ${esc(L.signo)}</strong><span>${L.luz}% iluminada · ${L.crescendo?"crescendo":"minguando"}</span></div></div>`;
+  if(t){
+    h+=`<div class="prose">${paras(t.texto)}</div>`;
+    if(t.chamado)h+=`<div class="call"><p class="eyebrow">O que o dia chama para trabalho</p><p>${esc(t.chamado)}</p></div>`;
+    if(t.cor||t.incenso)h+=`<div class="pair"><div class="chip"><b>Cor</b><span>${esc(t.cor||"")}</span></div><div class="chip"><b>Incenso</b><span>${esc(t.incenso||"")}</span></div></div>`;
+  }else{
+    h+=`<p class="lede">A leitura do dia está sendo escrita. Enquanto isso, os movimentos de hoje:</p>`;
+  }
+  if(d.eventos&&d.eventos.length){
+    h+=`<div class="sec"><p class="eyebrow">Movimentos de hoje</p><ul class="list">${d.eventos.map(e=>`<li><span class="h">${e.hora||"o dia"}</span><span>${esc(frase(e))}</span></li>`).join("")}</ul></div>`;
+  }
+  h+=`<div class="sec"><button class="btn ghost" onclick="location.hash='meu'">Ver o que isso toca no meu mapa</button></div>`;
+  $("hoje-corpo").innerHTML=h;
+}
+function renderAgora(d){
+  $("agora-corpo").innerHTML=`<div class="moonrow">${lua(d.lua.angulo)}<div><strong>${esc(d.lua.nome)}</strong><span>${d.lua.luz}% iluminada</span></div></div>`+
+    d.planetas.map(p=>`<div class="pl"><strong>${esc(p.nome)}${p.retro?'<em>RETRÓGRADO</em>':""}</strong><span>${esc(p.grau)} ${esc(p.signo)}</span></div>`).join("");
+}
+async function carregaDia(){
+  try{DIA=await busca(`/api/app-dia?d=${ISO}`,`dia:${ISO}`);renderHoje(DIA);renderAgora(DIA);oferecerInstalacao(4000)}
+  catch(e){$("hoje-corpo").innerHTML=`<p class="lede">Sem conexão agora. Tenta de novo em instantes.</p>`}
+}
+
+/* ---------- PERFIL E CIDADES ---------- */
+const ALIAS={"Lisbon":"Lisboa","New York City":"Nova York","London":"Londres","Rome":"Roma","Madrid":"Madri","Tokyo":"Tóquio","Paris":"Paris","Berlin":"Berlim","Buenos Aires":"Buenos Aires","Porto":"Porto","Miami":"Miami","Barcelona":"Barcelona","Amsterdam":"Amsterdã","Montevideo":"Montevidéu","Asunción":"Assunção","Mexico City":"Cidade do México","Florence":"Florença","Milan":"Milão","Munich":"Munique","Brussels":"Bruxelas","Vienna":"Viena","Geneva":"Genebra","Zurich":"Zurique","Luanda":"Luanda","Maputo":"Maputo"};
+const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
+const REG=(()=>{try{return new Intl.DisplayNames(["pt-BR"],{type:"region"})}catch(e){return null}})();
+let CITY=[],cityReady=null,escolhida=null,ativo=-1;
+function cidades(){
+  if(cityReady)return cityReady;
+  cityReady=fetch("/musica/cidades.json").then(r=>r.json()).then(d=>{
+    d.br.forEach(c=>CITY.push({label:c[0]+", "+c[1],n:norm(c[0]),lat:c[2],lon:c[3],tz:d.tz[c[4]],rank:1e9+(c[5]||0)}));
+    d.w.forEach(c=>{const pt=ALIAS[c[0]];const country=REG?REG.of(c[1]):c[1];
+      CITY.push({label:(pt||c[0])+(c[6]?", "+c[6]:"")+", "+country,n:norm(c[0])+(pt?" | "+norm(pt):""),lat:c[2],lon:c[3],tz:d.tz[c[4]],rank:c[5]+(pt?5e8:0)})});
+  });
+  return cityReady;
+}
+function procura(q){
+  q=norm(q);if(q.length<2)return [];
+  const out=[];
+  for(const c of CITY){let sc=-1;for(const s of c.n.split(" | ")){if(s===q)sc=4;else if(s.startsWith(q))sc=Math.max(sc,3);else if((" "+s).includes(" "+q))sc=Math.max(sc,2)}
+    if(sc>=0)out.push([sc,c])}
+  out.sort((a,b)=>b[0]-a[0]||b[1].rank-a[1].rank);
+  return out.slice(0,8).map(x=>x[1]);
+}
+function mostraSug(){
+  const lst=procura($("cidade").value),ul=$("sug");ativo=-1;
+  ul.innerHTML=lst.map((c,i)=>`<li role="option" id="op${i}" data-i="${i}">${esc(c.label)}</li>`).join("");
+  ul.hidden=!lst.length;$("cidade").setAttribute("aria-expanded",String(!!lst.length));ul._l=lst;
+}
+function escolhe(c){escolhida=c;$("cidade").value=c.label;$("sug").hidden=true;$("cidade").setAttribute("aria-expanded","false")}
+$("cidade").addEventListener("focus",()=>cidades());
+$("cidade").addEventListener("input",()=>{escolhida=null;cidades().then(mostraSug)});
+$("cidade").addEventListener("keydown",e=>{const ul=$("sug"),l=ul._l||[];if(ul.hidden||!l.length)return;
+  if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();ativo=(ativo+(e.key==="ArrowDown"?1:-1)+l.length)%l.length;[...ul.children].forEach((li,i)=>li.setAttribute("aria-selected",String(i===ativo)))}
+  else if(e.key==="Enter"&&ativo>=0){e.preventDefault();escolhe(l[ativo])}else if(e.key==="Escape")ul.hidden=true});
+$("sug").addEventListener("pointerdown",e=>{const li=e.target.closest("li");if(li){e.preventDefault();escolhe($("sug")._l[+li.dataset.i])}});
+$("semhora").addEventListener("change",e=>{$("hora").disabled=e.target.checked});
+$("form").addEventListener("submit",e=>{
+  e.preventDefault();
+  const d=$("data").value,h=$("hora").value,sem=$("semhora").checked;
+  if(!d)return $("err").textContent="Falta a data de nascimento.";
+  if(!sem&&!h)return $("err").textContent="Falta a hora. Se não souber, marque “Não sei a hora”.";
+  if(!escolhida)return $("err").textContent="Escolha a cidade na lista.";
+  $("err").textContent="";
+  guarda.set("perfil",{nome:$("nome").value.trim(),data:d,hora:sem?"":h,cidade:escolhida.label,lat:escolhida.lat,lon:escolhida.lon,tz:escolhida.tz});
+  MEU=null;carregaMeu();
+});
+
+/* ---------- MEU DIA ---------- */
+let MEU=null;
+function urlMeu(p){const q=new URLSearchParams({data:p.data,tz:p.tz,lat:p.lat,lon:p.lon,d:ISO});if(p.hora)q.set("hora",p.hora);return "/api/app-meu-dia?"+q}
+const TOM={fluida:"dia que flui",mista:"dia misto",desafiadora:"dia que pede atenção"};
+function renderMeu(m,p){
+  const t=m.texto;let h=`<div class="who"><span>${esc(p.nome||"Meu mapa")} · ${esc(p.cidade)}</span><button id="trocar">Trocar dados</button></div>`;
+  h+=`<span class="tone ${m.energia}">${TOM[m.energia]||""}</span>`;
+  h+=`<h1>${esc(t?t.titulo:"O dia no mapa")}</h1>`;
+  if(t){h+=`<div class="prose">${paras(t.texto)}</div>`;
+    if(t.trabalho)h+=`<div class="call"><p class="eyebrow">Trabalho de hoje</p><p>${esc(t.trabalho)}</p></div>`}
+  else h+=`<p class="lede">A leitura pessoal está sendo escrita. Os trânsitos ativos já estão na aba Trânsitos.</p>`;
+  h+=`<div class="sec"><p class="eyebrow">A Lua hoje</p><p style="margin:0">Em ${esc(m.lua.signo)}${m.lua.casaNatal?`, passando pela casa ${m.lua.casaNatal}`:""}${m.lua_aspectos.length?`, tocando ${m.lua_aspectos.map(a=>`${a.natal} natal`).join(", ")}`:""}.</p></div>`;
+  h+=`<div class="sec"><button class="btn ghost" onclick="location.hash='tr'">Ver os trânsitos ativos</button></div>`;
+  $("meu-corpo").innerHTML=h;$("trocar").onclick=()=>{guarda.del("perfil");MEU=null;mostraForm()};
+}
+function cartao(t){
+  const tot=Math.max(1,dias(t.inicio,t.fim)),pos=Math.min(100,Math.max(0,dias(t.inicio,ISO)/tot*100));
+  const marcas=t.exatos.map(x=>`<span class="x" style="left:${Math.min(100,Math.max(0,dias(t.inicio,x)/tot*100))}%" title="exato em ${curta(x)}"></span>`).join("");
+  return `<div class="tr"><div class="n">${esc(t.transito)}${t.retro?" ℞":""} ${esc(t.aspecto)} ${esc(t.natal)}${t.exatoHoje?'<span class="hot">exato hoje</span>':""}</div>
+    <div class="m">${t.casa?`casa ${t.casa} do mapa · `:""}${t.exatos.length?`exato em ${t.exatos.map(curta).join(" e ")}`:"no ápice, sem passagem exata nesta janela"}</div>
+    <div class="bar"><i style="width:${pos}%"></i>${marcas}<b style="left:calc(${pos}% - 1px)" title="hoje"></b></div><div class="ends"><span>${curta(t.inicio)}</span><span>${curta(t.fim)}</span></div></div>`;
+}
+let segLongo=false;
+function renderTr(){
+  if(!MEU){$("tr-corpo").innerHTML=`<p class="empty">Os trânsitos aparecem depois de cruzar o dia com o mapa.</p><button class="btn" onclick="location.hash='meu'">Colocar meus dados</button>`;return}
+  const l=segLongo?MEU.longos:MEU.curtos;
+  $("tr-corpo").innerHTML=(l.length?l.map(cartao).join(""):`<p class="empty">${segLongo?"Nenhum trânsito lento em orbe agora.":"Nenhum trânsito rápido em orbe hoje. O dia segue o tom da Lua."}</p>`)+
+    `<p class="empty">${segLongo?"Júpiter, Saturno, Urano, Netuno e Plutão: o pano de fundo de meses.":"Sol, Mercúrio, Vênus e Marte: o que muda em dias."} O traço marca hoje; o círculo, a data exata.</p>`;
+}
+$("seg-c").onclick=()=>{segLongo=false;$("seg-c").setAttribute("aria-pressed","true");$("seg-l").setAttribute("aria-pressed","false");renderTr()};
+$("seg-l").onclick=()=>{segLongo=true;$("seg-l").setAttribute("aria-pressed","true");$("seg-c").setAttribute("aria-pressed","false");renderTr()};
+function mostraForm(){$("meu-corpo").innerHTML="";$("form").hidden=false;renderTr()}
+async function carregaMeu(){
+  const p=guarda.get("perfil");if(!p)return mostraForm();
+  $("form").hidden=true;$("meu-corpo").innerHTML=`<div class="skel t"></div><div class="skel"></div><div class="skel"></div>`;
+  try{MEU=await busca(urlMeu(p),`meu:${ISO}:${p.data}${p.hora}${p.lat}`);renderMeu(MEU,p);renderTr()}
+  catch(e){$("meu-corpo").innerHTML=`<p class="lede">Não consegui ler o mapa agora. Tenta de novo em instantes.</p>`}
+}
+
+/* ---------- navegação ---------- */
+const VIEWS=["hoje","meu","tr","agora"];
+function rota(){
+  const v=VIEWS.includes(location.hash.slice(1))?location.hash.slice(1):"hoje";
+  VIEWS.forEach(x=>{$("v-"+x).hidden=x!==v});
+  document.querySelectorAll("nav a").forEach(a=>{if(a.dataset.v===v)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+  if((v==="meu"||v==="tr")&&!MEU)carregaMeu();
+  window.scrollTo(0,0);
+}
+addEventListener("hashchange",rota);
+
+/* ---------- instalação guiada ---------- */
+const ua=navigator.userAgent;
+const IOS=/iPhone|iPad|iPod/.test(ua)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
+const INAPP=/Instagram|FBAN|FBAV|Line\/|TikTok|musical_ly|WhatsApp/i.test(ua);
+const IOS_OUTRO=IOS&&/CriOS|FxiOS|EdgiOS/.test(ua);
+const INSTALADO=matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
+let pedido=null;
+addEventListener("beforeinstallprompt",e=>{e.preventDefault();pedido=e;$("btn-inst").hidden=false});
+addEventListener("appinstalled",()=>{$("btn-inst").hidden=true;fechaSheet();guarda.set("instalado",1)});
+const ICO_SHARE=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v8h14v-8"/></svg>`;
+const ICO_PLUS=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg>`;
+const ICO_DOTS=`<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>`;
+function abreSheet(){
+  let passos="",botao=false,seta=false;
+  if(INAPP){
+    $("sheet-p").textContent="Este link abriu dentro do Instagram. Para instalar, o app precisa abrir no navegador do celular.";
+    passos=`<li><span>Toque em ${ICO_DOTS} no canto da tela</span></li><li><span>Escolha <b>Abrir no navegador</b> ${IOS?"(Safari)":"(Chrome)"}</span></li><li><span>Lá, toque em Instalar</span></li>`;
+  }else if(IOS){
+    $("sheet-p").textContent="No iPhone, o app entra pela tela inicial. Abre em tela cheia, como um aplicativo, e pode avisar quando a energia do dia estiver pronta.";
+    passos=IOS_OUTRO?`<li><span>Toque em ${ICO_SHARE} Compartilhar</span></li><li><span>Escolha ${ICO_PLUS} <b>Adicionar à Tela de Início</b></span></li><li><span>Toque em <b>Adicionar</b></span></li>`
+      :`<li><span>Toque em ${ICO_SHARE} <b>Compartilhar</b> no Safari (no iOS mais novo, ele fica dentro do ${ICO_DOTS} da barra)</span></li><li><span>Role e escolha ${ICO_PLUS} <b>Adicionar à Tela de Início</b></span></li><li><span>Toque em <b>Adicionar</b>, no canto de cima</span></li>`;
+  }else if(pedido){
+    $("sheet-p").textContent="Um toque e o app fica na tela inicial, em tela cheia, como um aplicativo.";botao=true;
+  }else{
+    $("sheet-p").textContent="No Android, o app entra pela tela inicial.";
+    passos=`<li><span>Toque em ${ICO_DOTS} no canto do Chrome</span></li><li><span>Escolha <b>Instalar app</b> ou <b>Adicionar à tela inicial</b></span></li>`;
+  }
+  $("sheet-steps").innerHTML=passos;$("sheet-steps").hidden=!passos;
+  $("sheet-ok").hidden=!botao;$("sheet-no").textContent=botao?"Depois":"Entendi";
+  $("sheet").hidden=false;$("arrow").hidden=!seta;
+}
+function fechaSheet(){$("sheet").hidden=true;$("arrow").hidden=true}
+$("sheet-no").onclick=()=>{fechaSheet();guarda.set("instalacao-vista",Date.now())};
+$("sheet").addEventListener("click",e=>{if(e.target.id==="sheet")$("sheet-no").click()});
+$("sheet-ok").onclick=async()=>{if(!pedido)return;pedido.prompt();const r=await pedido.userChoice;pedido=null;fechaSheet();if(r.outcome!=="accepted")guarda.set("instalacao-vista",Date.now())};
+$("btn-inst").onclick=abreSheet;
+function oferecerInstalacao(ms){
+  if(INSTALADO)return;
+  $("btn-inst").hidden=false;
+  const vista=guarda.get("instalacao-vista");
+  if(vista&&Date.now()-vista<3*864e5)return; // mostra de novo depois de três dias
+  setTimeout(()=>{if($("sheet").hidden)abreSheet()},ms);
+}
+
+/* ---------- início ---------- */
+if("serviceWorker" in navigator)navigator.serviceWorker.register("/app/sw.js",{scope:"/app/"}).catch(()=>{});
+rota();carregaDia();
+if(guarda.get("perfil"))carregaMeu();
+</script>
+</body>
+</html>
