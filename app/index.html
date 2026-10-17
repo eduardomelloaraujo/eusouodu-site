@@ -274,7 +274,7 @@ function renderAgora(d){
     d.planetas.map(p=>`<div class="pl"><strong>${esc(p.nome)}${p.retro?'<em>RETRÓGRADO</em>':""}</strong><span>${esc(p.grau)} ${esc(p.signo)}</span></div>`).join("");
 }
 async function carregaDia(){
-  try{DIA=await busca(`/api/app-dia?d=${ISO}`,`dia:${ISO}`);renderHoje(DIA);renderAgora(DIA);oferecerInstalacao(4000)}
+  try{DIA=await busca(`/api/app?r=dia&d=${ISO}`,`dia:${ISO}`);renderHoje(DIA);renderAgora(DIA);oferecerInstalacao(4000)}
   catch(e){$("hoje-corpo").innerHTML=`<p class="lede">Sem conexão agora. Tenta de novo em instantes.</p>`}
 }
 
@@ -326,7 +326,7 @@ $("form").addEventListener("submit",e=>{
 
 /* ---------- MEU DIA ---------- */
 let MEU=null;
-function urlMeu(p){const q=new URLSearchParams({data:p.data,tz:p.tz,lat:p.lat,lon:p.lon,d:ISO});if(p.hora)q.set("hora",p.hora);return "/api/app-meu-dia?"+q}
+function urlMeu(p){const q=new URLSearchParams({data:p.data,tz:p.tz,lat:p.lat,lon:p.lon,d:ISO});if(p.hora)q.set("hora",p.hora);q.set("r","meu");return "/api/app?"+q}
 const TOM={fluida:"dia que flui",mista:"dia misto",desafiadora:"dia que pede atenção"};
 function renderMeu(m,p){
   const t=m.texto;let h=`<div class="who"><span>${esc(p.nome||"Meu mapa")} · ${esc(p.cidade)}</span><button id="trocar">Trocar dados</button></div>`;

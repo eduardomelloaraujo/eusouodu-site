@@ -73,7 +73,7 @@
     "api/musica-*.js": {
       "includeFiles": "{musica/motor.js,musica/catalogo.json,lib/vendor/**}"
     },
-    "api/app-*.js": {
+    "api/app.js": {
       "includeFiles": "lib/vendor/**"
     }
   },
