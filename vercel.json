@@ -1,58 +1,72 @@
 {
   "buildCommand": "",
   "outputDirectory": ".",
-  "redirects": [
+  "routes": [
     {
-      "source": "/lib/:path*",
-      "destination": "/",
-      "permanent": false
+      "src": "/lib/(.*)",
+      "status": 307,
+      "headers": {
+        "Location": "/"
+      }
     },
     {
-      "source": "/scripts/:path*",
-      "destination": "/",
-      "permanent": false
-    }
-  ],
-  "headers": [
-    {
-      "source": "/semana.json",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
+      "src": "/scripts/(.*)",
+      "status": 307,
+      "headers": {
+        "Location": "/"
+      }
     },
     {
-      "source": "/musica/cidades.json",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
-        }
-      ]
+      "src": "/semana.json",
+      "headers": {
+        "Cache-Control": "public, max-age=0, must-revalidate"
+      },
+      "continue": true
     },
     {
-      "source": "/jornada/sw.js",
-      "headers": [
-        {
-          "key": "Service-Worker-Allowed",
-          "value": "/"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
+      "src": "/musica/cidades.json",
+      "headers": {
+        "Cache-Control": "public, max-age=86400"
+      },
+      "continue": true
     },
     {
-      "source": "/jornada/index.html",
-      "headers": [
+      "src": "/jornada/sw.js",
+      "headers": {
+        "Service-Worker-Allowed": "/",
+        "Cache-Control": "public, max-age=0, must-revalidate"
+      },
+      "continue": true
+    },
+    {
+      "src": "/jornada/index.html",
+      "headers": {
+        "Cache-Control": "public, max-age=0, must-revalidate"
+      },
+      "continue": true
+    },
+    {
+      "src": "/",
+      "has": [
         {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
+          "type": "host",
+          "value": "musica.eusouodu.com"
         }
-      ]
+      ],
+      "dest": "/musica/index.html"
+    },
+    {
+      "src": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "jornada.eusouodu.com"
+        }
+      ],
+      "headers": {
+        "Cache-Control": "public, max-age=0, must-revalidate"
+      },
+      "dest": "/jornada/index.html"
     }
   ],
   "functions": {
@@ -66,28 +80,6 @@
       "includeFiles": "lib/jornada/**"
     }
   },
-  "rewrites": [
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "musica.eusouodu.com"
-        }
-      ],
-      "destination": "/musica/index.html"
-    },
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "jornada.eusouodu.com"
-        }
-      ],
-      "destination": "/jornada/index.html"
-    }
-  ],
   "crons": [
     {
       "path": "/api/musica-diario",
