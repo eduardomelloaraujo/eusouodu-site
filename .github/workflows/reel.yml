@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: curl -fsSL "$(cat reel/url.txt)" -o reel/narracao.mp3 && ls -la reel
+      - run: test -f reel/narracao.mp3 || curl -fsSL "$(cat reel/url.txt)" -o reel/narracao.mp3
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: pip install faster-whisper==1.0.3 2>&1 | tail -3
+      - run: pip install requests faster-whisper==1.0.3 2>&1 | tail -3
       - run: python reel/palavras.py 2>&1 | tail -20 | tee reel/whisper.log
         continue-on-error: true
       - run: |
