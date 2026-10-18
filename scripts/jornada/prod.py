@@ -376,6 +376,7 @@ R('if(S.user && S.chart){ show("home"); renderHome(); } else startOnb(false);', 
 
 exec(open(HERE + 'prod_j23.py').read())
 exec(open(HERE + 'prod_landing.py').read())
+exec(open(HERE + 'prod_mensal.py').read())
 
 # confere que nada do protótipo ficou
 for ruim in ['prevSw', 'preview', 'protótipo', 'Protótipo', 'simula o pagamento', 'Recarregar luas']:

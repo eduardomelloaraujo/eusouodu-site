@@ -59,7 +59,7 @@ function landingHTML(){
     <div class="lp-prices">
       <div class="lp-p free"><div class="pn">Grátis</div><div class="pv">R$ 0</div><p>Áries inteira, a primeira lição do mapa natal e a lição do dia. Sem cartão, sem prazo.</p></div>
       <div class="lp-p wk"><span class="tag">Por Pix</span><div class="pn">Passe semanal</div><div class="pv">${PRECO_S}<small> / 7 dias</small></div><p>Tudo aberto por uma semana. Não renova sozinho: nenhuma cobrança automática.</p></div>
-      <div class="lp-p mo"><span class="tag">Melhor valor</span><div class="pn">Mensal</div><div class="pv">${PRECO_M}<small> / mês</small></div><p>Tudo aberto, todo mês, no cartão. Cancela em um toque, sem multa.</p></div>
+      <div class="lp-p mo"><span class="tag">Melhor valor</span><div class="pn">Mensal</div><div class="pv">${PRECO_M}<small> / 30 dias</small></div><p>Tudo aberto por 30 dias, no Pix ou no cartão. Pago uma vez, não renova sozinho.</p></div>
     </div>
     <p class="lp-incl">Nos dois planos: as três jornadas inteiras, as 36 cartas de mitologia e filosofia e luas sem fim.</p>
   </section>
@@ -86,7 +86,7 @@ function landingHTML(){
     <div class="lp-eyebrow">Dúvidas</div>
     <details class="lp-faq"><summary>Precisa saber astrologia?</summary><p>Não. A primeira jornada começa do zero, pelo grau zero da roda, e cada lição explica antes de perguntar.</p></details>
     <details class="lp-faq"><summary>E sem a hora de nascimento?</summary><p>Dá para começar sem ela e completar depois. Sem a hora, o Ascendente e as casas ficam de fora; o resto funciona inteiro.</p></details>
-    <details class="lp-faq"><summary>Como é o pagamento?</summary><p>Pelo Mercado Pago: Pix no passe semanal, cartão no mensal. Até 7 dias depois da compra, o valor volta inteiro, é só escrever para falecom@eusouodu.com.</p></details>
+    <details class="lp-faq"><summary>Como é o pagamento?</summary><p>Pelo Mercado Pago, pago uma vez: Pix no passe semanal, Pix ou cartão no mensal. Nada renova sozinho. Até 7 dias depois da compra, o valor volta inteiro, é só escrever para falecom@eusouodu.com.</p></details>
     <details class="lp-faq"><summary>O progresso fica salvo?</summary><p>Fica na conta, ligado ao e-mail. Para abrir em outro celular, chega um link de entrada, sem senha.</p></details>
   </section>
 

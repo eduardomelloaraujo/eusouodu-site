@@ -169,22 +169,20 @@ async function checkout(req, res) {
     return res.status(200).json({ url: j.init_point });
   }
   if (plano === 'mes') {
-    if (u.plano && u.plano.type === 'mes' && u.plano.status === 'authorized' && !u.plano.canceled) return res.status(400).json({ erro: 'A assinatura mensal já está ativa.' });
-    const pa = await mp('/preapproval', {
-      method: 'POST',
-      body: JSON.stringify({
-        reason: 'Jornada · assinatura mensal',
-        external_reference: `jornada:${email}`,
-        payer_email: email,
-        auto_recurring: { frequency: 1, frequency_type: 'months', transaction_amount: PRECO_MES, currency_id: 'BRL' },
-        back_url: `${APP}/?pago=mes`,
-        status: 'pending',
-      }),
-    });
-    if (u.plano && u.plano.type === 'semana' && planoAtivo(u.plano)) u.plano.pendenteMes = pa.id; // o passe segue valendo até o mensal confirmar
-    else u.plano = { type: 'mes', status: 'pending', until: 0, preapprovalId: pa.id };
-    await salvarUser(u);
-    return res.status(200).json({ url: pa.init_point, id: pa.id });
+    // passe mensal: 30 dias, pago uma vez no Checkout Pro (Pix libera na hora; cartão também aceito). Sem assinatura recorrente.
+    const pref = {
+      items: [{ id: 'jornada-mes', title: 'Jornada · passe mensal (30 dias)', quantity: 1, unit_price: PRECO_MES, currency_id: 'BRL' }],
+      payer: { email },
+      payment_methods: { excluded_payment_types: [{ id: 'ticket' }, { id: 'atm' }], installments: 1 },
+      metadata: { produto: 'jornada', plano: 'mes', email },
+      back_urls: { success: `${APP}/?pago=passe`, pending: `${APP}/?pago=pendente`, failure: `${APP}/?pago=falhou` },
+      auto_return: 'approved',
+      notification_url: `${SITE}/api/jornada?a=webhook`,
+      statement_descriptor: 'EUSOUODU',
+      external_reference: `jornada-mes:${email}:${Date.now()}`,
+    };
+    const j = await mp('/checkout/preferences', { method: 'POST', body: JSON.stringify(pref) });
+    return res.status(200).json({ url: j.init_point });
   }
   return res.status(400).json({ erro: 'Escolha o passe semanal ou a assinatura mensal.' });
 }
