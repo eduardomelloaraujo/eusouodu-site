@@ -2,7 +2,7 @@
 // entrar · pedir-link · abrir · sync · conteudo · checkout · cancelar · webhook · diario · sair-emails · status
 import {
   temBanco, redis, K, okEmail, sessao, lerToken, lerUser, salvarUser, planoAtivo, planoPublico, unidadesPagas, conteudoJornadas,
-  mp, atualizarAssinatura, processarPix, enviarEmail, emailBoasVindas, emailEntrada, emailFimPasse,
+  mp, atualizarAssinatura, refAssinatura, processarPix, enviarEmail, emailBoasVindas, emailEntrada, emailFimPasse,
   APP, SITE, PRECO_SEMANA, PRECO_MES,
 } from '../lib/jornada.mjs';
 
@@ -65,7 +65,6 @@ export default async function handler(req, res) {
       case 'checkout': return await checkout(req, res);
       case 'cancelar': return await cancelar(req, res);
       case 'assinar': return await assinar(req, res);
-      case 'diag-mp': return await diagMp(req, res);
       case 'diario': return await diario(req, res);
       case 'sair-emails': return await sairEmails(req, res);
       case 'status': return await status(req, res);
@@ -205,13 +204,16 @@ async function assinar(req, res) {
   const token = String(b.token || '');
   if (!token) return res.status(400).json({ erro: 'Faltou o cartão.' });
   const pagador = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(b.email || '')) ? String(b.email).toLowerCase() : email;
+  // o Mercado Pago recusa (invalid_field_content) assinatura com cartão quando a referência leva um e-mail:
+  // a referência vira um código, e o código aponta para o e-mail no banco
+  const ref = await refAssinatura(email);
   let pa;
   try {
     pa = await mp('/preapproval', {
       method: 'POST',
       body: JSON.stringify({
-        reason: 'Jornada · assinatura mensal',
-        external_reference: `jornada:${email}`,
+        reason: 'Jornada assinatura mensal',
+        external_reference: ref,
         payer_email: pagador,
         card_token_id: token,
         auto_recurring: { frequency: 1, frequency_type: 'months', transaction_amount: PRECO_MES, currency_id: 'BRL' },
@@ -224,6 +226,7 @@ async function assinar(req, res) {
     const m = String((e.body && (e.body.message || e.body.error)) || e.message || '');
     let erro = 'O cartão não foi aceito. Confira os dados ou tente outro cartão de crédito.';
     if (/payer.*email|email.*payer|same/i.test(m)) erro = 'O Mercado Pago recusou o e-mail do pagador. Troque o e-mail no formulário do cartão e tente de novo.';
+    if (/unsupported_credit_card|recurring/i.test(m)) erro = 'Esse cartão não aceita cobrança mensal automática. Tente outro cartão de crédito ou pague 30 dias no Pix.';
     if (/insufficient|saldo/i.test(m)) erro = 'O cartão foi recusado por limite. Tente outro cartão de crédito.';
     return res.status(402).json({ erro, detalhe: m.slice(0, 160) });
   }
@@ -241,15 +244,6 @@ async function assinar(req, res) {
   await atualizarAssinatura(pa.id);
   const f = await lerUser(email);
   return res.status(200).json(resposta(f));
-}
-
-// TEMPORÁRIO: testa variações do pedido de assinatura para achar o campo recusado
-async function diagMp(req, res) {
-  if (String(req.query.k || '') !== 'ce47a25907540c4e4b4d6acd') return res.status(403).json({ erro: 'não' });
-  const b = corpo(req);
-  const body = b.body || {};
-  try { const pa = await mp(b.path || '/preapproval', { method: b.method || 'POST', body: b.method === 'GET' ? undefined : JSON.stringify(body) }); return res.status(200).json({ ok: true, pa }); }
-  catch (e) { return res.status(200).json({ ok: false, status: e.status, body: e.body, msg: e.message.slice(0, 400) }); }
 }
 
 async function cancelar(req, res) {
