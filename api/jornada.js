@@ -38,7 +38,7 @@ const limparProgresso = g => {
 };
 const resposta = u => ({
   email: u.email, perfil: u.perfil, progresso: u.progresso || null, plano: planoPublico(u.plano),
-  precos: { semana: PRECO_SEMANA, mes: PRECO_MES },
+  precos: { semana: PRECO_SEMANA, mes: PRECO_MES }, mpPublic: MP_PUBLIC || null,
 });
 
 const pagina = (titulo, texto, link = APP, botao = 'Abrir a Jornada') => `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${titulo} · Jornada</title></head>
@@ -46,6 +46,9 @@ const pagina = (titulo, texto, link = APP, botao = 'Abrir a Jornada') => `<!doct
 <main style="max-width:420px;text-align:center"><p style="font-family:Georgia,serif;font-style:italic;font-weight:bold;font-size:36px;margin:0 0 18px">Jornada</p>
 <h1 style="font-family:Georgia,serif;font-size:30px;margin:0 0 10px">${titulo}</h1><p style="color:#5A4B6E;line-height:1.6;margin:0 0 22px">${texto}</p>
 <a href="${link}" style="display:inline-block;background:#FF4FAE;color:#1F1433;font-weight:800;text-decoration:none;padding:13px 20px;border:2.5px solid #1F1433;border-radius:14px">${botao}</a></main></body></html>`;
+
+// Chave pública do Mercado Pago (é pública por definição: serve só para o formulário de cartão no navegador)
+const MP_PUBLIC = process.env.MP_PUBLIC_KEY || '';
 
 export default async function handler(req, res) {
   const a = String((req.query || {}).a || '');
@@ -61,6 +64,7 @@ export default async function handler(req, res) {
       case 'conteudo': return await conteudo(req, res);
       case 'checkout': return await checkout(req, res);
       case 'cancelar': return await cancelar(req, res);
+      case 'assinar': return await assinar(req, res);
       case 'diario': return await diario(req, res);
       case 'sair-emails': return await sairEmails(req, res);
       case 'status': return await status(req, res);
@@ -168,12 +172,12 @@ async function checkout(req, res) {
     const j = await mp('/checkout/preferences', { method: 'POST', body: JSON.stringify(pref) });
     return res.status(200).json({ url: j.init_point });
   }
-  if (plano === 'mes') {
-    // passe mensal: 30 dias, pago uma vez no Checkout Pro (Pix libera na hora; cartão também aceito). Sem assinatura recorrente.
+  if (plano === 'mes' || plano === 'mes30') {
+    // passe mensal no Pix: 30 dias, pago uma vez, sem renovação. A assinatura recorrente no cartão é a ação 'assinar'.
     const pref = {
-      items: [{ id: 'jornada-mes', title: 'Jornada · passe mensal (30 dias)', quantity: 1, unit_price: PRECO_MES, currency_id: 'BRL' }],
+      items: [{ id: 'jornada-mes', title: 'Jornada · passe mensal no Pix (30 dias)', quantity: 1, unit_price: PRECO_MES, currency_id: 'BRL' }],
       payer: { email },
-      payment_methods: { excluded_payment_types: [{ id: 'ticket' }, { id: 'atm' }], installments: 1 },
+      payment_methods: { excluded_payment_types: [{ id: 'credit_card' }, { id: 'debit_card' }, { id: 'ticket' }, { id: 'atm' }, { id: 'prepaid_card' }], installments: 1 },
       metadata: { produto: 'jornada', plano: 'mes', email },
       back_urls: { success: `${APP}/?pago=passe`, pending: `${APP}/?pago=pendente`, failure: `${APP}/?pago=falhou` },
       auto_return: 'approved',
@@ -185,6 +189,57 @@ async function checkout(req, res) {
     return res.status(200).json({ url: j.init_point });
   }
   return res.status(400).json({ erro: 'Escolha o passe semanal ou a assinatura mensal.' });
+}
+
+// Assinatura mensal recorrente com o cartão digitado dentro da Jornada (Card Payment Brick).
+// A assinatura já nasce autorizada: a jornada libera na mesma hora e o Mercado Pago cobra todo mês.
+async function assinar(req, res) {
+  if (req.method !== 'POST') return res.status(405).json({ erro: 'use POST' });
+  const email = quem(req);
+  if (!email) return res.status(401).json({ erro: 'Sessão expirada. Entre de novo pelo link no e-mail.' });
+  const u = await lerUser(email);
+  if (!u) return res.status(401).json({ erro: 'Conta não encontrada.' });
+  if (u.plano && u.plano.type === 'mes' && u.plano.status === 'authorized' && !u.plano.canceled) return res.status(200).json({ ...resposta(u), ja: true });
+  const b = corpo(req);
+  const token = String(b.token || '');
+  if (!token) return res.status(400).json({ erro: 'Faltou o cartão.' });
+  const pagador = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(b.email || '')) ? String(b.email).toLowerCase() : email;
+  let pa;
+  try {
+    pa = await mp('/preapproval', {
+      method: 'POST',
+      body: JSON.stringify({
+        reason: 'Jornada · assinatura mensal',
+        external_reference: `jornada:${email}`,
+        payer_email: pagador,
+        card_token_id: token,
+        auto_recurring: { frequency: 1, frequency_type: 'months', transaction_amount: PRECO_MES, currency_id: 'BRL' },
+        back_url: APP,
+        status: 'authorized',
+      }),
+    });
+  } catch (e) {
+    console.error('assinar', email, e.message);
+    const m = String((e.body && (e.body.message || e.body.error)) || e.message || '');
+    let erro = 'O cartão não foi aceito. Confira os dados ou tente outro cartão de crédito.';
+    if (/payer.*email|email.*payer|same/i.test(m)) erro = 'O Mercado Pago recusou o e-mail do pagador. Troque o e-mail no formulário do cartão e tente de novo.';
+    if (/insufficient|saldo/i.test(m)) erro = 'O cartão foi recusado por limite. Tente outro cartão de crédito.';
+    return res.status(402).json({ erro, detalhe: m.slice(0, 160) });
+  }
+  if (pa.status !== 'authorized') {
+    console.error('assinar status', email, pa.id, pa.status);
+    if (pa.id) { try { await mp(`/preapproval/${encodeURIComponent(pa.id)}`, { method: 'PUT', body: JSON.stringify({ status: 'cancelled' }) }); } catch {} }
+    return res.status(402).json({ erro: 'O cartão não foi autorizado. Tente outro cartão de crédito.' });
+  }
+  // passe semanal/mensal ainda valendo: os dias que sobram viram crédito depois do fim do mês
+  if (u.plano && u.plano.type === 'semana' && Number(u.plano.until) > Date.now()) {
+    u.creditoDias = (u.creditoDias || 0) + Math.ceil((Number(u.plano.until) - Date.now()) / 864e5);
+    u.plano = { type: 'mes', status: 'pending', until: 0, preapprovalId: pa.id };
+    await salvarUser(u);
+  }
+  await atualizarAssinatura(pa.id);
+  const f = await lerUser(email);
+  return res.status(200).json(resposta(f));
 }
 
 async function cancelar(req, res) {

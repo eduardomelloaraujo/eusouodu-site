@@ -474,6 +474,9 @@ img{max-width:100%}
 .summary{border:var(--borda);border-radius:20px;background:var(--papel);padding:4px 16px;margin:6px 0 16px}
 .summary .row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1.5px dashed var(--line);font-size:15px}
 .summary .row:last-child{border-bottom:0}
+.pix30{display:block;margin:12px auto 0;font-size:14px;text-align:center}
+#cardBrick{margin:0 0 8px}
+#cardBrick .brick-msg{font-size:14px;color:var(--ink2,#5A4B6E);text-align:center;padding:14px 0}
 .summary .row span{color:var(--suave);font-weight:600}
 .summary .row b{text-align:right;font-variant-numeric:tabular-nums}
 .myplan{margin-top:30px;border:var(--borda);border-radius:18px;padding:14px;background:var(--papel);box-shadow:3px 3px 0 var(--tinta)}
@@ -653,16 +656,17 @@ img{max-width:100%}
 
   <div class="pcard mes">
     <span class="badge">Sai mais barato</span>
-    <div class="pname">Passe mensal</div>
-    <div class="price">R$ 29,90 <small>por 30 dias</small></div>
-    <p class="how">Pago uma vez, no Pix ou no cartão.</p>
+    <div class="pname">Assinatura mensal</div>
+    <div class="price">R$ 29,90 <small>por mês</small></div>
+    <p class="how">No cartão de crédito.</p>
     <ul class="facts">
-      <li><i>✓</i><span>Libera tudo por 30 dias. No Pix, a liberação é na hora.</span></li>
-      <li><i>✓</i><span><b>Não renova sozinho.</b> Nenhuma cobrança automática, nunca.</span></li>
-      <li><i>✓</i><span>No último dia o app avisa. Quem quiser continuar paga outro passe.</span></li>
+      <li><i>✓</i><span>Libera tudo enquanto a assinatura estiver ativa.</span></li>
+      <li><i>↻</i><span><b>Renova automaticamente</b> a cada mês, no mesmo dia, sempre R$ 29,90.</span></li>
+      <li><i>✕</i><span>Cancela quando quiser, em Meu plano, sem multa. O acesso segue até o fim do mês já pago.</span></li>
       <li><i>✓</i><span>4 passes semanais custariam R$ 39,60. No mensal, R$ 29,90.</span></li>
     </ul>
-    <button class="btn plain" data-plan="mes">Pagar R$ 29,90 por 30 dias</button>
+    <button class="btn plain" data-plan="mes">Assinar por R$ 29,90 por mês</button>
+    <button class="link pix30" data-plan="mes30">Prefere Pix? 30 dias por R$ 29,90, sem renovação</button>
   </div>
 
   <div class="inc"><b>Os dois liberam o mesmo conteúdo</b>
@@ -672,10 +676,10 @@ img{max-width:100%}
   <div style="overflow-x:auto">
   <table class="cmp">
     <tr><th></th><th>Semanal</th><th>Mensal</th></tr>
-    <tr><td>Pagamento</td><td>Pix</td><td>Pix ou cartão</td></tr>
-    <tr><td>Renova sozinho?</td><td>Não</td><td>Não</td></tr>
+    <tr><td>Pagamento</td><td>Pix</td><td>Cartão de crédito</td></tr>
+    <tr><td>Renova sozinho?</td><td>Não</td><td>Sim, todo mês</td></tr>
     <tr><td>Num mês</td><td>R$ 39,60 se renovar 4 vezes</td><td>R$ 29,90</td></tr>
-    <tr><td>Para parar</td><td>Só não pagar de novo</td><td>Só não pagar de novo</td></tr>
+    <tr><td>Para parar</td><td>Só não pagar de novo</td><td>Cancelar em Meu plano</td></tr>
   </table>
   </div>
   <p class="fine">Pagamentos processados pelo Mercado Pago. O valor cobrado é sempre o que aparece aqui, sem taxa extra. Direito de arrependimento: até 7 dias depois da compra, o valor volta inteiro, é só escrever para falecom@eusouodu.com. Detalhes nos <a href="/jornada/termos.html">Termos de uso</a>.</p>
@@ -686,6 +690,7 @@ img{max-width:100%}
   <h2>Antes de pagar</h2>
   <p class="lead">Confira o resumo. É exatamente isso que vai acontecer.</p>
   <div class="summary" id="sumBox"></div>
+  <div id="cardBrick" hidden></div>
   <button class="btn" id="payGo">Ir para o Mercado Pago</button>
   <p class="fine" style="margin-top:12px" id="payNote">O pagamento acontece na página segura do Mercado Pago. Depois, a Jornada abre de novo aqui, já liberada.</p>
 </div>
@@ -1219,20 +1224,51 @@ function planActive(){
 let pending=null;
 document.querySelectorAll("[data-plan]").forEach(b=>b.onclick=()=>{
   pending=b.dataset.plan; const now=new Date();
+  if(pending==="mes" && !MPK) pending="mes30"; // sem a chave pública do Mercado Pago, o mensal vai pelo Pix
   let rows;
-  if(pending==="semana"){
+  if(pending==="mes30"){
+    const until=new Date(now.getTime()+30*864e5);
+    rows=[["Plano","Passe mensal no Pix"],["Pago hoje","R$ 29,90 no Pix"],["Acesso liberado até",fmtDT(until)],["Cobranças automáticas","Nenhuma"],["Depois disso","Volta para a versão grátis, sem perder o progresso"]];
+  } else if(pending==="semana"){
     const until=new Date(now.getTime()+7*864e5);
     rows=[["Plano","Passe semanal"],["Pago hoje","R$ 9,90 por Pix"],["Acesso liberado até",fmtDT(until)],["Cobranças automáticas","Nenhuma"],["Depois disso","Volta para a versão grátis, sem perder o progresso"]];
   } else {
-    const until=new Date(now.getTime()+30*864e5);
-    rows=[["Plano","Passe mensal"],["Pago hoje","R$ 29,90 no Pix ou no cartão"],["Acesso liberado até",fmtDT(until)],["Cobranças automáticas","Nenhuma"],["Depois disso","Volta para a versão grátis, sem perder o progresso"]];
+    const nx=new Date(now); nx.setMonth(nx.getMonth()+1);
+    rows=[["Plano","Assinatura mensal"],["Cobrado agora","R$ 29,90 no cartão de crédito"],["Próxima cobrança",fmtD(nx)+": R$ 29,90"],["Renovação","Automática, todo mês no mesmo dia"],["Para cancelar","Meu plano, a qualquer momento, sem multa"]];
   }
   $("sumBox").innerHTML = rows.map(r=>`<div class="row"><span>${esc(r[0])}</span><b>${esc(r[1])}</b></div>`).join("");
-  $("payGo").textContent = pending==="semana" ? "Pagar R$ 9,90 no Pix" : "Pagar R$ 29,90";
+  $("payGo").textContent = pending==="semana" ? "Pagar R$ 9,90 no Pix" : pending==="mes30" ? "Pagar R$ 29,90 no Pix" : "Assinar por R$ 29,90 por mês";
   show("confirm");
+  const cartao = pending==="mes";
+  $("payGo").hidden = cartao; $("payNote").textContent = cartao ? "O cartão é processado pelo Mercado Pago, com segurança. A Jornada não vê nem guarda o número. Libera na hora." : "O pagamento acontece na página segura do Mercado Pago. Depois, a Jornada abre de novo aqui, já liberada.";
+  if(cartao) montarCartao(); else { $("cardBrick").hidden=true; }
 });
+let brickCtl=null;
+function sdkMP(){ return window.MercadoPago ? Promise.resolve() : new Promise((ok,no)=>{ const sc=document.createElement("script"); sc.src="https://sdk.mercadopago.com/js/v2"; sc.onload=ok; sc.onerror=no; document.head.appendChild(sc); }); }
+async function montarCartao(){
+  const box=$("cardBrick"); box.hidden=false; box.innerHTML='<div class="brick-msg">Abrindo o formulário do cartão…</div>';
+  try{
+    await sdkMP();
+    if(brickCtl){ try{ brickCtl.unmount(); }catch(e){} brickCtl=null; }
+    box.innerHTML='<div id="cardBrickIn"></div>';
+    const mp=new MercadoPago(MPK,{locale:"pt-BR"});
+    brickCtl = await mp.bricks().create("cardPayment","cardBrickIn",{
+      initialization:{ amount: 29.9, payer:{ email: (S.user&&S.user.email)||"" } },
+      customization:{ paymentMethods:{ types:{ excluded:["debit_card","prepaid_card"] }, maxInstallments:1 }, visual:{ texts:{ formSubmit:"Assinar por R$ 29,90 por mês" }, style:{ customVariables:{ baseColor:"#FF4FAE", borderRadiusLarge:"16px" } } } },
+      callbacks:{
+        onReady(){},
+        onError(e){ console.error("cartao", e); },
+        onSubmit:(d)=>new Promise((ok,no)=>{
+          api("assinar",{method:"POST", body:{ token:d.token, payment_method_id:d.payment_method_id, email:d.payer&&d.payer.email }})
+            .then(async r=>{ applyServer(r); ok(); try{ brickCtl.unmount(); }catch(e){} brickCtl=null; await loadContent(); show("home"); renderHome(); toast("Assinatura ativa: as três jornadas estão abertas."); })
+            .catch(e=>{ toast(e.message||"O cartão não foi aceito. Tente outro cartão de crédito."); no(); });
+        })
+      }
+    });
+  }catch(e){ console.error(e); box.innerHTML='<div class="brick-msg">O formulário do cartão não abriu. Confira a internet ou pague 30 dias no Pix.</div>'; }
+}
 $("pBack").onclick=()=>{ show("home"); renderHome(); };
-$("cBack").onclick=()=>show("plans");
+$("cBack").onclick=()=>{ if(brickCtl){ try{ brickCtl.unmount(); }catch(e){} brickCtl=null; } $("cardBrick").hidden=true; show("plans"); };
 $("payGo").onclick=async()=>{
   const b=$("payGo"); b.disabled=true; const t=b.textContent; b.textContent="Abrindo o Mercado Pago…";
   try{ const r = await api("checkout",{method:"POST", body:{plano:pending}}); location.href = r.url; }
@@ -1241,7 +1277,7 @@ $("payGo").onclick=async()=>{
 function renderPlan(){
   const box=$("myplan"); const on=planActive();
   if(!on){
-    box.innerHTML=`<div class="myplan"><div class="pname">Meu plano</div><b>Grátis</b><p>Áries, a lição do dia e a primeira lição do mapa liberados. Para seguir as outras subjornadas, o passe semanal custa R$ 9,90 por Pix e o mensal, R$ 29,90 por 30 dias, no Pix ou no cartão.</p><div class="acts"><button class="btn small" id="seePlans">Ver os planos</button></div></div>`;
+    box.innerHTML=`<div class="myplan"><div class="pname">Meu plano</div><b>Grátis</b><p>Áries, a lição do dia e a primeira lição do mapa liberados. Para seguir as outras subjornadas, o passe semanal custa R$ 9,90 no Pix e o mensal, R$ 29,90 por mês no cartão (ou 30 dias no Pix).</p><div class="acts"><button class="btn small" id="seePlans">Ver os planos</button></div></div>`;
     $("seePlans").onclick=payModal; return;
   }
   const until=new Date(S.plan.until);
@@ -1249,7 +1285,7 @@ function renderPlan(){
     box.innerHTML=`<div class="myplan"><div class="pname">Meu plano</div><b>Assinatura sendo confirmada</b><p>O Mercado Pago ainda está confirmando o cartão. Assim que aprovar, a jornada inteira abre sozinha.</p></div>`; return;
   }
   if(S.plan.type==="semana"){
-    box.innerHTML=`<div class="myplan on-semana"><div class="pname">Meu plano</div><b>${S.plan.dias===30?"Passe mensal ativo":"Passe semanal ativo"}</b><p>Acesso liberado até ${esc(fmtDT(until))}. Não renova sozinho: nenhuma cobrança vai acontecer.</p>${S.plan.dias===30?"":`<div class="acts"><button class="btn small plain" id="seePlans">Ver o mensal</button></div>`}</div>`;
+    box.innerHTML=`<div class="myplan on-semana"><div class="pname">Meu plano</div><b>${S.plan.dias===30?"Passe mensal ativo":"Passe semanal ativo"}</b><p>Acesso liberado até ${esc(fmtDT(until))}. Não renova sozinho: nenhuma cobrança vai acontecer.</p><div class="acts"><button class="btn small plain" id="seePlans">Ver o mensal</button></div></div>`;
   } else if(!S.plan.canceled){
     box.innerHTML=`<div class="myplan on-mes"><div class="pname">Meu plano</div><b>Assinatura mensal ativa</b><p>Renova sozinha todo mês, no cartão, sempre R$ 29,90. Próxima cobrança por volta de ${esc(fmtD(new Date(S.plan.until-2*864e5)))}.</p><div class="acts"><button class="btn small plain" id="cancelBtn">Cancelar assinatura</button></div></div>`;
     $("cancelBtn").onclick=()=>openModal(`<h3>Cancelar a assinatura?</h3><p>Nenhuma cobrança nova vai acontecer. O acesso continua até o fim do mês já pago. Depois, a jornada volta para a versão grátis, sem perder o progresso nem as cartas.</p><div style="display:grid;gap:10px"><button class="btn badb" id="cYes">Cancelar assinatura</button><button class="btn plain" id="mClose">Manter assinatura</button></div>`) || ($("cYes").onclick=async()=>{ const b=$("cYes"); b.disabled=true; b.textContent="Cancelando…"; try{ const r=await api("cancelar",{method:"POST"}); applyServer(r); $("modal").hidden=true; renderHome(); toast("Assinatura cancelada. Nenhuma cobrança nova vai acontecer."); }catch(e){ b.disabled=false; b.textContent="Cancelar assinatura"; toast(e.message||"Não deu para cancelar agora. Escreva para falecom@eusouodu.com."); } });
@@ -1282,8 +1318,10 @@ async function api(a, {method="GET", body=null, query=""}={}, auth=true){
 const perfilOut = u => ({name:u.name, birth:u.birth, time:u.time||"", unknownTime:!!u.unknownTime, city:u.cityData, optin:u.optin!==false});
 const progOut = () => ({done:S.done, lit:S.lit, cards:S.cards, xp:S.xp, streak:S.streak, last:S.last, daily:S.daily, luas:S.luas, luasEm:S.luasEm, diario:S.diario});
 const uni = (a,b) => [...new Set([...(a||[]),...(b||[])])];
+let MPK=null;
 function applyServer(r){
   if(!r) return;
+  if(r.mpPublic) MPK=r.mpPublic;
   if(r.plano !== undefined) S.plan = r.plano;
   if(r.perfil && r.perfil.city){
     const p=r.perfil;
@@ -1847,7 +1885,7 @@ function landingHTML(){
     <div class="lp-prices">
       <div class="lp-p free"><div class="pn">Grátis</div><div class="pv">R$ 0</div><p>Áries inteira, a primeira lição do mapa natal e a lição do dia. Sem cartão, sem prazo.</p></div>
       <div class="lp-p wk"><span class="tag">Por Pix</span><div class="pn">Passe semanal</div><div class="pv">${PRECO_S}<small> / 7 dias</small></div><p>Tudo aberto por uma semana. Não renova sozinho: nenhuma cobrança automática.</p></div>
-      <div class="lp-p mo"><span class="tag">Melhor valor</span><div class="pn">Mensal</div><div class="pv">${PRECO_M}<small> / 30 dias</small></div><p>Tudo aberto por 30 dias, no Pix ou no cartão. Pago uma vez, não renova sozinho.</p></div>
+      <div class="lp-p mo"><span class="tag">Melhor valor</span><div class="pn">Mensal</div><div class="pv">${PRECO_M}<small> / mês</small></div><p>Tudo aberto, todo mês, no cartão. Libera na hora e cancela em um toque, sem multa. Também dá para pagar 30 dias no Pix.</p></div>
     </div>
     <p class="lp-incl">Nos dois planos: as três jornadas inteiras, as 36 cartas de mitologia e filosofia e luas sem fim.</p>
   </section>
@@ -1874,7 +1912,7 @@ function landingHTML(){
     <div class="lp-eyebrow">Dúvidas</div>
     <details class="lp-faq"><summary>Precisa saber astrologia?</summary><p>Não. A primeira jornada começa do zero, pelo grau zero da roda, e cada lição explica antes de perguntar.</p></details>
     <details class="lp-faq"><summary>E sem a hora de nascimento?</summary><p>Dá para começar sem ela e completar depois. Sem a hora, o Ascendente e as casas ficam de fora; o resto funciona inteiro.</p></details>
-    <details class="lp-faq"><summary>Como é o pagamento?</summary><p>Pelo Mercado Pago, pago uma vez: Pix no passe semanal, Pix ou cartão no mensal. Nada renova sozinho. Até 7 dias depois da compra, o valor volta inteiro, é só escrever para falecom@eusouodu.com.</p></details>
+    <details class="lp-faq"><summary>Como é o pagamento?</summary><p>Pelo Mercado Pago: Pix no passe semanal; no mensal, cartão de crédito com renovação automática, que cancela quando quiser, ou 30 dias no Pix, sem renovação. Até 7 dias depois da compra, o valor volta inteiro, é só escrever para falecom@eusouodu.com.</p></details>
     <details class="lp-faq"><summary>O progresso fica salvo?</summary><p>Fica na conta, ligado ao e-mail. Para abrir em outro celular, chega um link de entrada, sem senha.</p></details>
   </section>
 
