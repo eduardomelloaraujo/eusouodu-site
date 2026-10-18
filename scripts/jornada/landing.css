@@ -104,3 +104,8 @@
   .lp-opts .ok{background:var(--menta)}
   .rv{opacity:1;transform:none;transition:none}
 }
+.lp-tabs.t3{grid-template-columns:1fr 1fr 1fr}
+.lp-tabs.t3 button{padding:11px 4px;font-size:14px}
+.lp-tabs.t3 button+button{border-left:var(--borda)}
+.inst-aviso{border:var(--borda);border-radius:16px;background:var(--limao);padding:12px 14px;margin:0 0 16px;font-size:15px;font-weight:500;box-shadow:3px 3px 0 var(--tinta)}
+.inst-aviso b{display:block;font-family:var(--display);font-size:17px;margin-bottom:2px}

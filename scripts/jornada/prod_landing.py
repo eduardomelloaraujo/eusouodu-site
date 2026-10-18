@@ -10,3 +10,6 @@ RX(r'  if\(st==="intro"\)\{.*?\n  \}\n  if\(st==="name"\)\{', r'''  if(st==="int
   }
   if(st==="name"){''')
 R('  const st = OSTEPS[ob.step], d=ob.d, box=$("ostage");', '  const st = OSTEPS[ob.step], d=ob.d, box=$("ostage");\n  $("onb").classList.toggle("landing", st==="intro"); if(st!=="intro") window.scrollTo(0,0);')
+
+# depois de revelar o mapa, a tela de instalação (a não ser que já esteja instalada ou seja edição de dados)
+R('  next.onclick=()=>{ show("home"); renderHome(); };\n}', '  next.onclick=()=>{ if(!ob.edit && !standalone()) installStep(); else { show("home"); renderHome(); } };\n}')
