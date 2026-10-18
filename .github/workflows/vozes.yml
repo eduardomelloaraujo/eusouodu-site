@@ -1,0 +1,16 @@
+name: reel-vozes
+on:
+  push:
+    branches: [midia-reel]
+    paths: [reel/vozes.txt]
+permissions:
+  contents: write
+jobs:
+  baixar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: while read n u; do curl -fsSL "$u" -o "reel/$n.mp3"; done < reel/vozes.txt; ls -la reel
+      - run: |
+          git config user.name "github-actions" && git config user.email "actions@github.com"
+          git add -f reel/voz*.mp3 && git commit -m "[audio] amostras de voz" && git push
