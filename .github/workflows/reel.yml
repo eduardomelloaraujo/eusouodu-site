@@ -1,0 +1,17 @@
+name: reel-audio
+on:
+  push:
+    branches: [midia-reel]
+permissions:
+  contents: write
+jobs:
+  audio:
+    if: "!contains(github.event.head_commit.message, '[audio]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: curl -fsSL "$(cat reel/url.txt)" -o reel/narracao.mp3 && ls -la reel
+      - run: pip install -q faster-whisper && python reel/palavras.py
+      - run: |
+          git config user.name "github-actions" && git config user.email "actions@github.com"
+          git add reel/narracao.mp3 reel/palavras.json && git commit -m "[audio] narração e tempos" && git push
