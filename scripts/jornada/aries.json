@@ -33,7 +33,7 @@
       "light": null,
       "card": {"kind":"Mitologia","title":"O Velocino de Ouro","text":"Néfele envia um carneiro de lã dourada para salvar os filhos de um sacrifício. Hele cai no mar; Frixo chega à Cólquida e oferece o carneiro a Zeus, que o coloca no céu. A força que resgata é a mesma que precisa ser oferecida."},
       "doneTitle": "Carta conquistada: O Velocino de Ouro",
-      "doneText": "O mito que deu forma ao primeiro signo entrou na coleção.",
+      "doneText": "A mitologia que deu forma ao primeiro signo entrou na coleção.",
       "steps": [
         {"type":"teach","glyph":"♈","eyebrow":"O mito por trás do signo","title":"Duas crianças e uma madrasta",
          "body":["Atamante, rei da Beócia, teve dois filhos com Néfele, a deusa das nuvens: Frixo e Hele.","A segunda esposa do rei, Ino, armou um plano para que o menino fosse sacrificado aos deuses."]},
