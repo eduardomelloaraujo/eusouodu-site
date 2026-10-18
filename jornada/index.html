@@ -1259,8 +1259,8 @@ async function montarCartao(){
         onReady(){},
         onError(e){ console.error("cartao", e); },
         onSubmit:(d)=>new Promise((ok,no)=>{
-          api("assinar",{method:"POST", body:{ token:d.token, payment_method_id:d.payment_method_id, email:d.payer&&d.payer.email }})
-            .then(async r=>{ applyServer(r); ok(); try{ brickCtl.unmount(); }catch(e){} brickCtl=null; await loadContent(); show("home"); renderHome(); toast("Assinatura ativa: as três jornadas estão abertas."); })
+          api("assinar",{method:"POST", body:{ token:d.token, payment_method_id:d.payment_method_id, issuer_id:d.issuer_id, identification:d.payer&&d.payer.identification, email:d.payer&&d.payer.email }})
+            .then(async r=>{ applyServer(r); ok(); try{ brickCtl.unmount(); }catch(e){} brickCtl=null; await loadContent(); show("home"); renderHome(); toast(r.semRecorrencia ? "Pagamento aprovado: as três jornadas estão abertas por 30 dias. No fim, a Jornada avisa para renovar." : "Assinatura ativa: as três jornadas estão abertas."); })
             .catch(e=>{ toast(e.message||"O cartão não foi aceito. Tente outro cartão de crédito."); no(); });
         })
       }

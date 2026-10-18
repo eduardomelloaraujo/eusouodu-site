@@ -65,7 +65,6 @@ export default async function handler(req, res) {
       case 'checkout': return await checkout(req, res);
       case 'cancelar': return await cancelar(req, res);
       case 'assinar': return await assinar(req, res);
-      case 'diag-mp': return await diagMp(req, res);
       case 'diario': return await diario(req, res);
       case 'sair-emails': return await sairEmails(req, res);
       case 'status': return await status(req, res);
@@ -208,7 +207,7 @@ async function assinar(req, res) {
   // o Mercado Pago recusa (invalid_field_content) assinatura com cartão quando a referência leva um e-mail:
   // a referência vira um código, e o código aponta para o e-mail no banco
   const ref = await refAssinatura(email);
-  let pa;
+  let pa = null, motivo = '';
   try {
     pa = await mp('/preapproval', {
       method: 'POST',
@@ -222,19 +221,58 @@ async function assinar(req, res) {
         status: 'authorized',
       }),
     });
+    if (pa.status !== 'authorized') {
+      motivo = 'status ' + pa.status;
+      if (pa.id) { try { await mp(`/preapproval/${encodeURIComponent(pa.id)}`, { method: 'PUT', body: JSON.stringify({ status: 'cancelled' }) }); } catch {} }
+      pa = null;
+    }
   } catch (e) {
-    console.error('assinar', email, e.message);
-    const m = String((e.body && (e.body.message || e.body.error)) || e.message || '');
-    let erro = 'O cartão não foi aceito. Confira os dados ou tente outro cartão de crédito.';
-    if (/payer.*email|email.*payer|same/i.test(m)) erro = 'O Mercado Pago recusou o e-mail do pagador. Troque o e-mail no formulário do cartão e tente de novo.';
-    if (/unsupported_credit_card|recurring/i.test(m)) erro = 'Esse cartão não aceita cobrança mensal automática. Tente outro cartão de crédito ou pague 30 dias no Pix.';
-    if (/insufficient|saldo/i.test(m)) erro = 'O cartão foi recusado por limite. Tente outro cartão de crédito.';
-    return res.status(402).json({ erro, detalhe: m.slice(0, 160) });
+    motivo = String((e.body && (e.body.message || e.body.error)) || e.message || '');
+    console.error('assinar recorrente', email, motivo.slice(0, 200));
+    pa = null;
   }
-  if (pa.status !== 'authorized') {
-    console.error('assinar status', email, pa.id, pa.status);
-    if (pa.id) { try { await mp(`/preapproval/${encodeURIComponent(pa.id)}`, { method: 'PUT', body: JSON.stringify({ status: 'cancelled' }) }); } catch {} }
-    return res.status(402).json({ erro: 'O cartão não foi autorizado. Tente outro cartão de crédito.' });
+  if (!pa) {
+    // a assinatura recorrente recusou o cartão (validação do Mercado Pago é mais rígida que uma compra):
+    // o mesmo cartão paga o primeiro mês como compra normal, que libera 30 dias na hora
+    let pg;
+    try {
+      pg = await mp('/v1/payments', {
+        method: 'POST',
+        headers: { 'X-Idempotency-Key': 'jornada-mes-' + token },
+        body: JSON.stringify({
+          transaction_amount: PRECO_MES, token, installments: 1, binary_mode: true,
+          payment_method_id: String(b.payment_method_id || '') || undefined,
+          issuer_id: b.issuer_id ? String(b.issuer_id) : undefined,
+          description: 'Jornada · 30 dias',
+          payer: { email: pagador, identification: b.identification && b.identification.number ? { type: String(b.identification.type || 'CPF'), number: String(b.identification.number) } : undefined },
+          metadata: { produto: 'jornada', plano: 'mes', email },
+          external_reference: `jornada-mes:${Date.now()}`,
+          notification_url: `${SITE}/api/jornada?a=webhook`,
+          statement_descriptor: 'EUSOUODU',
+        }),
+      });
+    } catch (e) {
+      const m = String((e.body && (e.body.message || e.body.error)) || e.message || '');
+      console.error('assinar pagamento', email, m.slice(0, 200));
+      return res.status(402).json({ erro: 'O cartão não foi aceito. Confira os dados ou tente outro cartão de crédito. O Pix de 30 dias também libera na hora.', detalhe: m.slice(0, 160) });
+    }
+    if (pg.status !== 'approved') {
+      console.error('assinar pagamento recusado', email, pg.id, pg.status, pg.status_detail);
+      const d = String(pg.status_detail || '');
+      const msg = {
+        cc_rejected_insufficient_amount: 'O cartão foi recusado por limite. Tente outro cartão de crédito ou o Pix.',
+        cc_rejected_bad_filled_security_code: 'O código de segurança não confere. Confira e tente de novo.',
+        cc_rejected_bad_filled_date: 'A data de vencimento não confere. Confira e tente de novo.',
+        cc_rejected_bad_filled_other: 'Algum dado do cartão não confere. Confira e tente de novo.',
+        cc_rejected_call_for_authorize: 'O banco pediu autorização para essa compra. Autorize no app do banco e tente de novo.',
+        cc_rejected_card_disabled: 'O cartão está bloqueado para compras online. Libere no app do banco ou tente outro.',
+        cc_rejected_high_risk: 'O Mercado Pago recusou por segurança. Tente outro cartão ou pague no Pix.',
+      }[d] || 'O banco recusou o cartão. Tente outro cartão de crédito ou pague no Pix, que libera na hora.';
+      return res.status(402).json({ erro: msg, detalhe: d });
+    }
+    await processarPix(String(pg.id));
+    const f = await lerUser(email);
+    return res.status(200).json({ ...resposta(f), semRecorrencia: true });
   }
   // passe semanal/mensal ainda valendo: os dias que sobram viram crédito depois do fim do mês
   if (u.plano && u.plano.type === 'semana' && Number(u.plano.until) > Date.now()) {
@@ -245,14 +283,6 @@ async function assinar(req, res) {
   await atualizarAssinatura(pa.id);
   const f = await lerUser(email);
   return res.status(200).json(resposta(f));
-}
-
-// TEMPORÁRIO: diagnóstico do Mercado Pago
-async function diagMp(req, res) {
-  if (String(req.query.k || '') !== 'ce47a25907540c4e4b4d6acd') return res.status(403).json({ erro: 'não' });
-  const b = corpo(req);
-  try { const pa = await mp(b.path || '/preapproval', { method: b.method || 'POST', headers: b.headers || {}, body: b.method === 'GET' ? undefined : JSON.stringify(b.body || {}) }); return res.status(200).json({ ok: true, pa }); }
-  catch (e) { return res.status(200).json({ ok: false, status: e.status, body: e.body, msg: e.message.slice(0, 400) }); }
 }
 
 async function cancelar(req, res) {
