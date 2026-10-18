@@ -23,4 +23,4 @@ App de astrologia, mito e filosofia por assinatura. Instala na tela de início d
 - `lib/jornada.mjs`: contas, sessões assinadas, planos, Mercado Pago e e-mails.
 - Passe semanal: R$ 9,90 por Pix (preferência do Mercado Pago só com Pix), soma 7 dias. Mensal: R$ 29,90 no cartão (assinatura `preapproval` do Mercado Pago).
 - Variáveis: as mesmas do site (`MP_ACCESS_TOKEN`, `RESEND_API_KEY`, `KV_REST_API_URL`, `KV_REST_API_TOKEN`, `ADMIN_KEY`) e `JORNADA_SECRET` (assina os links de entrada; se faltar, usa a `ADMIN_KEY`). Preços opcionais: `JORNADA_PRECO_SEMANA`, `JORNADA_PRECO_MES`.
-- Diagnóstico: `https://eusouodu.com/api/jornada?a=status&key=ADMIN_KEY`.
+- Diagnóstico: `https://eusouodu.com/api/jornada?a=status&key=JORNADA_ADMIN_KEY` (a `ADMIN_KEY` também vale). A `JORNADA_ADMIN_KEY` existe para não trocar a `ADMIN_KEY`, que assina os links dos e-mails da Música Astral.

@@ -250,9 +250,11 @@ async function sairEmails(req, res) {
   return res.status(200).send(pagina('Pronto', 'Os e-mails da Jornada param por aqui. Os avisos de pagamento continuam chegando, porque fazem parte da compra. A jornada segue aberta no app.'));
 }
 
-// Diagnóstico protegido pela ADMIN_KEY: banco, Mercado Pago, e-mail e números
+// Diagnóstico protegido pela JORNADA_ADMIN_KEY (ou ADMIN_KEY): banco, Mercado Pago, e-mail e números
 async function status(req, res) {
-  if (!process.env.ADMIN_KEY || req.query.key !== process.env.ADMIN_KEY) return res.status(403).json({ erro: 'sem permissão' });
+  const chave = String(req.query.key || '');
+  const okChave = [process.env.JORNADA_ADMIN_KEY, process.env.ADMIN_KEY].some(k => k && chave === k);
+  if (!okChave) return res.status(403).json({ erro: 'sem permissão' });
   const out = { banco: 'funcionando' };
   try { await mp('/users/me'); out.mercadoPago = 'funcionando'; } catch (e) { out.mercadoPago = 'erro: ' + e.message.slice(0, 120); }
   out.segredo = process.env.JORNADA_SECRET ? 'JORNADA_SECRET' : process.env.ADMIN_KEY ? 'usando ADMIN_KEY' : 'FALTANDO';
