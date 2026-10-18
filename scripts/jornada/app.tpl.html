@@ -125,7 +125,7 @@
 .cardm small{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
 .cardm b{font-family:var(--display);font-weight:800;font-size:14px;line-height:1.1}
 .cardm .cg{font-family:var(--display);font-size:24px;line-height:1}
-.cardm.Mito{background:var(--rosa)} .cardm.Filosofia{background:var(--ceu)}
+.cardm.Mitologia{background:var(--rosa)} .cardm.Filosofia{background:var(--ceu)}
 .cardm.locked{background:rgba(255,255,255,.55);border-style:dashed;box-shadow:none;color:var(--suave);align-items:center;justify-content:center;font-family:var(--display);font-size:26px}
 .prev{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:30px;border:var(--borda);border-radius:18px;padding:12px 14px;background:var(--papel)}
 .prev b{display:block;font-size:14px}
@@ -269,7 +269,7 @@
   </div>
 
   <div class="inc"><b>Os dois liberam o mesmo conteúdo</b>
-    <ul><li>As 12 subjornadas da linguagem, de Áries a Peixes</li><li>A jornada do mapa natal</li><li>A jornada dos trânsitos</li><li>Luas ilimitadas, sem pausa por erro</li><li>Todas as cartas de mito e filosofia</li></ul>
+    <ul><li>As 12 subjornadas da linguagem, de Áries a Peixes</li><li>A jornada do mapa natal</li><li>A jornada dos trânsitos</li><li>Luas ilimitadas, sem pausa por erro</li><li>Todas as cartas de mitologia e filosofia</li></ul>
   </div>
 
   <div style="overflow-x:auto">
@@ -527,7 +527,7 @@ function renderOnb(){
   const next=$("oNext"), alt=$("oAlt"); alt.hidden=true; next.hidden=false; next.disabled=false;
   const err = `<p class="oerr" id="oerr"></p>`;
   if(st==="intro"){
-    box.innerHTML = `<div class="hero"><div class="logo">Jornada</div><div class="spin">${wheelSVG(null,true)}</div><div class="tagline">Astrologia, mito e filosofia. Um passo por dia, a partir do próprio mapa.</div><div class="chips"><span>12 signos</span><span>36 cartas</span><span>Mapa natal</span></div></div>`;
+    box.innerHTML = `<div class="hero"><div class="logo">Jornada</div><div class="spin">${wheelSVG(null,true)}</div><div class="tagline">Astrologia, mitologia e filosofia. Um passo por dia, a partir do próprio mapa.</div><div class="chips"><span>12 signos</span><span>36 cartas</span><span>Mapa natal</span></div></div>`;
     next.textContent="Começar"; alt.hidden=false; alt.textContent="Já tenho uma conta";
     alt.onclick=()=>openModal(`<h3>Entrar sem senha</h3><p>Na versão final, aqui entra o e-mail e chega um link mágico. Um toque e a jornada abre no ponto onde parou, em qualquer celular.</p><button class="btn" id="mClose">Entendi</button>`);
     next.onclick=()=>{ ob.step++; renderOnb(); };
@@ -675,7 +675,7 @@ function wheelSVG(newLit, all){
 /* ---------- home ---------- */
 const OFFS = [0,-60,-78,-34,30,64];
 const INTRO = {
-  1:`<b>Aprender a linguagem.</b> Doze subjornadas, de Áries a Peixes. Cada uma atravessa o signo, o mito, o planeta regente, o deus por trás dele e uma ideia filosófica.`,
+  1:`<b>Aprender a linguagem.</b> Doze subjornadas, de Áries a Peixes. Cada uma atravessa o signo, a mitologia, o planeta regente, o deus por trás dele e uma ideia filosófica.`,
   2:`<b>Encontrar no próprio mapa.</b> Aqui o símbolo vira espelho: cada lição usa o mapa natal de quem joga. No protótipo, um mapa de exemplo.`,
   3:`<b>Ler os trânsitos.</b> A energia astrológica de cada dia passando sobre o mapa. Conteúdo que se renova sempre.`
 };
@@ -813,7 +813,7 @@ function renderPlan(){
   const sp=$("seePlans"); if(sp) sp.onclick=payModal;
 }
 function cardModal(c){
-  openModal(`<span class="ck" style="background:${c.kind==="Mito"?"var(--rosa)":"var(--ceu)"}">${esc(c.kind)}</span><h3>${esc(c.title)}</h3><p class="cardtext">${esc(c.text)}</p><button class="btn goldb" id="mClose">Fechar</button>`);
+  openModal(`<span class="ck" style="background:${c.kind==="Mitologia"?"var(--rosa)":"var(--ceu)"}">${esc(c.kind)}</span><h3>${esc(c.title)}</h3><p class="cardtext">${esc(c.text)}</p><button class="btn goldb" id="mClose">Fechar</button>`);
 }
 
 document.querySelectorAll(".jtab").forEach(b=>b.onclick=()=>{ S.j=+b.dataset.j; save(); renderHome(); });

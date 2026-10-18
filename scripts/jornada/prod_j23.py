@@ -46,6 +46,6 @@ R("2:`<b>Encontrar no próprio mapa.</b> Aqui o símbolo vira espelho: cada liç
   "2:`<b>Encontrar no próprio mapa.</b> Aqui o símbolo vira espelho: doze lições montadas a partir do mapa natal de quem joga, do Ascendente à síntese. A primeira é grátis.`,")
 R("3:`<b>Ler os trânsitos.</b> A energia astrológica de cada dia passando sobre o mapa. A lição do dia já está aberta; as próximas chegam aos poucos.`",
   "3:`<b>Ler os trânsitos.</b> O céu de verdade passando sobre o mapa: fases da Lua, retrogradações, eclipses, o retorno de Saturno, a revolução solar. A lição do dia é grátis e muda todo dia.`")
-R('<li>As 12 subjornadas da linguagem, de Áries a Peixes: 60 lições</li><li>Todas as 36 cartas de mito e filosofia</li><li>Luas ilimitadas, sem pausa por erro</li><li>As novas lições do mapa natal e dos trânsitos assim que forem lançadas, sem custo extra</li>',
-  '<li>As 12 subjornadas da linguagem, de Áries a Peixes: 60 lições</li><li>As 12 lições do próprio mapa natal</li><li>As 12 lições dos trânsitos, com o céu de verdade</li><li>Todas as 36 cartas de mito e filosofia</li><li>Luas ilimitadas, sem pausa por erro</li>')
+R('<li>As 12 subjornadas da linguagem, de Áries a Peixes: 60 lições</li><li>Todas as 36 cartas de mitologia e filosofia</li><li>Luas ilimitadas, sem pausa por erro</li><li>As novas lições do mapa natal e dos trânsitos assim que forem lançadas, sem custo extra</li>',
+  '<li>As 12 subjornadas da linguagem, de Áries a Peixes: 60 lições</li><li>As 12 lições do próprio mapa natal</li><li>As 12 lições dos trânsitos, com o céu de verdade</li><li>Todas as 36 cartas de mitologia e filosofia</li><li>Luas ilimitadas, sem pausa por erro</li>')
 R('Pronto: as doze subjornadas estão abertas.', 'Pronto: as três jornadas estão abertas.')

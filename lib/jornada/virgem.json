@@ -31,9 +31,9 @@
       ]
     },
     {
-      "id": "virgem-2", "kind": "Mito", "title": "A última a partir", "glyph": "✦",
+      "id": "virgem-2", "kind": "Mitologia", "title": "A última a partir", "glyph": "✦",
       "light": null,
-      "card": {"kind":"Mito","title":"Astreia e a espiga","text":"Astreia, a virgem da justiça, viveu entre os humanos na idade de ouro e foi a última dos imortais a deixar a Terra quando a violência tomou conta. No céu, virou a constelação de Virgem, com uma espiga de trigo na mão. Julgar e peneirar o grão nascem do mesmo gesto."},
+      "card": {"kind":"Mitologia","title":"Astreia e a espiga","text":"Astreia, a virgem da justiça, viveu entre os humanos na idade de ouro e foi a última dos imortais a deixar a Terra quando a violência tomou conta. No céu, virou a constelação de Virgem, com uma espiga de trigo na mão. Julgar e peneirar o grão nascem do mesmo gesto."},
       "doneTitle": "Carta conquistada: Astreia e a espiga",
       "doneText": "A virgem que levou a justiça para o céu entrou na coleção.",
       "steps": [
@@ -81,9 +81,9 @@
       ]
     },
     {
-      "id": "virgem-4", "kind": "Mito", "title": "Hermes e a filha de Deméter", "glyph": "☾",
+      "id": "virgem-4", "kind": "Mitologia", "title": "Hermes e a filha de Deméter", "glyph": "☾",
       "light": null,
-      "card": {"kind":"Mito","title":"A volta de Perséfone","text":"Hades rapta Perséfone, e Deméter, em luto, deixa a terra sem colheita. Zeus envia Hermes ao mundo dos mortos para trazer a moça de volta, mas ela já comeu a semente da romã. Volta para a mãe, mas não volta a mesma."},
+      "card": {"kind":"Mitologia","title":"A volta de Perséfone","text":"Hades rapta Perséfone, e Deméter, em luto, deixa a terra sem colheita. Zeus envia Hermes ao mundo dos mortos para trazer a moça de volta, mas ela já comeu a semente da romã. Volta para a mãe, mas não volta a mesma."},
       "doneTitle": "Carta conquistada: A volta de Perséfone",
       "doneText": "O mensageiro que desce e volta entrou na coleção.",
       "steps": [

@@ -31,9 +31,9 @@
       ]
     },
     {
-      "id": "cancer-2", "kind": "Mito", "title": "O caranguejo de Hera", "glyph": "✦",
+      "id": "cancer-2", "kind": "Mitologia", "title": "O caranguejo de Hera", "glyph": "✦",
       "light": null,
-      "card": {"kind":"Mito","title":"Carcino, o caranguejo","text":"Hera cria a Hidra no pântano de Lerna para enfrentar Héracles, filho da traição de Zeus. No meio da luta, um caranguejo sai da água e morde o pé do herói, que o mata. Hera coloca o caranguejo no céu: honra quem defendeu a casa dela numa luta perdida."},
+      "card": {"kind":"Mitologia","title":"Carcino, o caranguejo","text":"Hera cria a Hidra no pântano de Lerna para enfrentar Héracles, filho da traição de Zeus. No meio da luta, um caranguejo sai da água e morde o pé do herói, que o mata. Hera coloca o caranguejo no céu: honra quem defendeu a casa dela numa luta perdida."},
       "doneTitle": "Carta conquistada: Carcino, o caranguejo",
       "doneText": "O mito que deu forma a Câncer entrou na coleção.",
       "steps": [
@@ -82,9 +82,9 @@
       ]
     },
     {
-      "id": "cancer-4", "kind": "Mito", "title": "Selene e Endimião", "glyph": "☽",
+      "id": "cancer-4", "kind": "Mitologia", "title": "Selene e Endimião", "glyph": "☽",
       "light": null,
-      "card": {"kind":"Mito","title":"Selene e Endimião","text":"Selene, a Lua, se apaixona por Endimião, um jovem que Zeus deixa dormir para sempre, sem envelhecer nem morrer, numa caverna do monte Latmos. Toda noite ela desce para olhar quem ama. A deusa que muda de fase ama justamente quem nunca muda."},
+      "card": {"kind":"Mitologia","title":"Selene e Endimião","text":"Selene, a Lua, se apaixona por Endimião, um jovem que Zeus deixa dormir para sempre, sem envelhecer nem morrer, numa caverna do monte Latmos. Toda noite ela desce para olhar quem ama. A deusa que muda de fase ama justamente quem nunca muda."},
       "doneTitle": "Carta conquistada: Selene e Endimião",
       "doneText": "A Lua e o amor que guarda o outro dormindo entraram na coleção.",
       "steps": [

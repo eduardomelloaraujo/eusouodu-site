@@ -31,9 +31,9 @@
       ]
     },
     {
-      "id": "sagitario-2", "kind": "Mito", "title": "Quíron, o centauro ferido", "glyph": "✦",
+      "id": "sagitario-2", "kind": "Mitologia", "title": "Quíron, o centauro ferido", "glyph": "✦",
       "light": null,
-      "card": {"kind":"Mito","title":"Quíron, o centauro ferido","text":"Filho de Cronos, Quíron foi o mais sábio dos centauros e mestre de heróis e curadores. Atingido por uma flecha envenenada de Héracles, imortal e sem cura, entregou a imortalidade para que Prometeu fosse libertado. A ferida que não fecha virou o caminho até o céu."},
+      "card": {"kind":"Mitologia","title":"Quíron, o centauro ferido","text":"Filho de Cronos, Quíron foi o mais sábio dos centauros e mestre de heróis e curadores. Atingido por uma flecha envenenada de Héracles, imortal e sem cura, entregou a imortalidade para que Prometeu fosse libertado. A ferida que não fecha virou o caminho até o céu."},
       "doneTitle": "Carta conquistada: Quíron, o centauro ferido",
       "doneText": "O mestre que curava todos e não podia curar a si mesmo entrou na coleção.",
       "steps": [
@@ -81,9 +81,9 @@
       ]
     },
     {
-      "id": "sagitario-4", "kind": "Mito", "title": "Zeus escondido em Creta", "glyph": "♄",
+      "id": "sagitario-4", "kind": "Mitologia", "title": "Zeus escondido em Creta", "glyph": "♄",
       "light": null,
-      "card": {"kind":"Mito","title":"A pedra no lugar de Zeus","text":"Cronos engolia os filhos para não ser destronado. Reia esconde Zeus numa caverna de Creta e entrega ao marido uma pedra enrolada em panos. Criado pela cabra Amalteia, Zeus volta, faz o pai devolver os irmãos e derruba os Titãs: a abundância nasce de uma criança que escapou de ser devorada pelo tempo."},
+      "card": {"kind":"Mitologia","title":"A pedra no lugar de Zeus","text":"Cronos engolia os filhos para não ser destronado. Reia esconde Zeus numa caverna de Creta e entrega ao marido uma pedra enrolada em panos. Criado pela cabra Amalteia, Zeus volta, faz o pai devolver os irmãos e derruba os Titãs: a abundância nasce de uma criança que escapou de ser devorada pelo tempo."},
       "doneTitle": "Carta conquistada: A pedra no lugar de Zeus",
       "doneText": "Júpiter e Saturno, o filho que cresce e o pai que devora, entraram na coleção.",
       "steps": [

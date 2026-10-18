@@ -31,9 +31,9 @@
       ]
     },
     {
-      "id": "escorpiao-2", "kind": "Mito", "title": "O gigante e o escorpião", "glyph": "✦",
+      "id": "escorpiao-2", "kind": "Mitologia", "title": "O gigante e o escorpião", "glyph": "✦",
       "light": null,
-      "card": {"kind":"Mito","title":"Órion e o escorpião","text":"Órion, o caçador gigante, jura matar todos os animais da terra. Gaia responde com um escorpião, e a criatura pequena derruba o gigante. No céu, os dois foram colocados em lados opostos: quando um nasce, o outro se põe."},
+      "card": {"kind":"Mitologia","title":"Órion e o escorpião","text":"Órion, o caçador gigante, jura matar todos os animais da terra. Gaia responde com um escorpião, e a criatura pequena derruba o gigante. No céu, os dois foram colocados em lados opostos: quando um nasce, o outro se põe."},
       "doneTitle": "Carta conquistada: Órion e o escorpião",
       "doneText": "O mito que deu forma ao oitavo signo entrou na coleção.",
       "steps": [
@@ -82,9 +82,9 @@
       ]
     },
     {
-      "id": "escorpiao-4", "kind": "Mito", "title": "Hades e a romã", "glyph": "♇",
+      "id": "escorpiao-4", "kind": "Mitologia", "title": "Hades e a romã", "glyph": "♇",
       "light": null,
-      "card": {"kind":"Mito","title":"A romã de Hades","text":"Hades leva Perséfone para o mundo de baixo e, antes que ela volte, oferece sementes de romã. Quem prova o alimento dos mortos fica ligado a eles para sempre. Plutão, o rico, guarda a riqueza que só passa pela morte."},
+      "card": {"kind":"Mitologia","title":"A romã de Hades","text":"Hades leva Perséfone para o mundo de baixo e, antes que ela volte, oferece sementes de romã. Quem prova o alimento dos mortos fica ligado a eles para sempre. Plutão, o rico, guarda a riqueza que só passa pela morte."},
       "doneTitle": "Carta conquistada: A romã de Hades",
       "doneText": "O senhor do mundo de baixo e a fruta que prende entraram na coleção.",
       "steps": [

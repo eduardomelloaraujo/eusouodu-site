@@ -31,9 +31,9 @@
       ]
     },
     {
-      "id": "peixes-2", "kind": "Mito", "title": "Os peixes amarrados", "glyph": "✦",
+      "id": "peixes-2", "kind": "Mitologia", "title": "Os peixes amarrados", "glyph": "✦",
       "light": null,
-      "card": {"kind":"Mito","title":"Afrodite, Eros e Tifão","text":"Fugindo do monstro Tifão, Afrodite e o filho Eros se lançam num rio e se salvam como peixes. No céu, os dois aparecem presos por uma corda, nadando em direções diferentes. A deusa do amor só escapa quando aceita perder a própria forma."},
+      "card": {"kind":"Mitologia","title":"Afrodite, Eros e Tifão","text":"Fugindo do monstro Tifão, Afrodite e o filho Eros se lançam num rio e se salvam como peixes. No céu, os dois aparecem presos por uma corda, nadando em direções diferentes. A deusa do amor só escapa quando aceita perder a própria forma."},
       "doneTitle": "Carta conquistada: Afrodite, Eros e Tifão",
       "doneText": "O mito dos dois peixes presos pela corda entrou na coleção.",
       "steps": [
@@ -82,9 +82,9 @@
       ]
     },
     {
-      "id": "peixes-4", "kind": "Mito", "title": "Dioniso e os piratas", "glyph": "∞",
+      "id": "peixes-4", "kind": "Mitologia", "title": "Dioniso e os piratas", "glyph": "∞",
       "light": null,
-      "card": {"kind":"Mito","title":"O deus que nenhuma corda prende","text":"Piratas sequestram um jovem na praia e tentam amarrá-lo, mas as cordas caem sozinhas. O vinho escorre pelo navio, a videira sobe pelo mastro e os homens que não reconheceram o deus pulam no mar e viram golfinhos. Só o timoneiro, que reconheceu Dioniso, é poupado."},
+      "card": {"kind":"Mitologia","title":"O deus que nenhuma corda prende","text":"Piratas sequestram um jovem na praia e tentam amarrá-lo, mas as cordas caem sozinhas. O vinho escorre pelo navio, a videira sobe pelo mastro e os homens que não reconheceram o deus pulam no mar e viram golfinhos. Só o timoneiro, que reconheceu Dioniso, é poupado."},
       "doneTitle": "Carta conquistada: Dioniso e os piratas",
       "doneText": "O deus da dissolução, irmão de espírito de Netuno, entrou na coleção.",
       "steps": [

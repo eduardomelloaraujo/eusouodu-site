@@ -31,9 +31,9 @@
       ]
     },
     {
-      "id": "leao-2", "kind": "Mito", "title": "O Leão de Nemeia", "glyph": "✦",
+      "id": "leao-2", "kind": "Mitologia", "title": "O Leão de Nemeia", "glyph": "✦",
       "light": null,
-      "card": {"kind":"Mito","title":"O Leão de Nemeia","text":"No primeiro de seus doze trabalhos, Héracles enfrenta um leão de pele invulnerável e o estrangula com as mãos. Só as garras da própria fera conseguem cortar aquela pele, que vira a armadura do herói. A ferida vencida passa a ser a roupa com que se atravessa o mundo."},
+      "card": {"kind":"Mitologia","title":"O Leão de Nemeia","text":"No primeiro de seus doze trabalhos, Héracles enfrenta um leão de pele invulnerável e o estrangula com as mãos. Só as garras da própria fera conseguem cortar aquela pele, que vira a armadura do herói. A ferida vencida passa a ser a roupa com que se atravessa o mundo."},
       "doneTitle": "Carta conquistada: O Leão de Nemeia",
       "doneText": "O mito que deu forma ao quinto signo entrou na coleção.",
       "steps": [
@@ -82,9 +82,9 @@
       ]
     },
     {
-      "id": "leao-4", "kind": "Mito", "title": "A carruagem de Faetonte", "glyph": "◯",
+      "id": "leao-4", "kind": "Mitologia", "title": "A carruagem de Faetonte", "glyph": "◯",
       "light": null,
-      "card": {"kind":"Mito","title":"A carruagem de Faetonte","text":"Faetonte pede ao pai, Hélio, um dia nas rédeas da carruagem do Sol, só para provar de quem é filho. Perde os cavalos, queima a terra e cai fulminado pelo raio de Zeus. O pai tinha dito que a prova de ser pai era o medo que sentia: Leão quer ser visto, mas no fundo quer ser reconhecido."},
+      "card": {"kind":"Mitologia","title":"A carruagem de Faetonte","text":"Faetonte pede ao pai, Hélio, um dia nas rédeas da carruagem do Sol, só para provar de quem é filho. Perde os cavalos, queima a terra e cai fulminado pelo raio de Zeus. O pai tinha dito que a prova de ser pai era o medo que sentia: Leão quer ser visto, mas no fundo quer ser reconhecido."},
       "doneTitle": "Carta conquistada: A carruagem de Faetonte",
       "doneText": "O Sol e o filho que quis provar a origem entraram na coleção.",
       "steps": [

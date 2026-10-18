@@ -31,9 +31,9 @@
       ]
     },
     {
-      "id": "touro-2", "kind": "Mito", "title": "O touro branco", "glyph": "✦",
+      "id": "touro-2", "kind": "Mitologia", "title": "O touro branco", "glyph": "✦",
       "light": null,
-      "card": {"kind":"Mito","title":"Europa e o touro branco","text":"Zeus se transforma num touro branco e manso, Europa sobe nas costas dele e é levada pelo mar até Creta. Anos depois, o filho dela, Minos, recebe outro touro branco e se recusa a devolvê-lo aos deuses. A beleza que encanta também pede para ser oferecida, e é aí que Touro mostra sua sombra."},
+      "card": {"kind":"Mitologia","title":"Europa e o touro branco","text":"Zeus se transforma num touro branco e manso, Europa sobe nas costas dele e é levada pelo mar até Creta. Anos depois, o filho dela, Minos, recebe outro touro branco e se recusa a devolvê-lo aos deuses. A beleza que encanta também pede para ser oferecida, e é aí que Touro mostra sua sombra."},
       "doneTitle": "Carta conquistada: Europa e o touro branco",
       "doneText": "O mito que deu forma ao segundo signo entrou na coleção.",
       "steps": [
@@ -82,9 +82,9 @@
       ]
     },
     {
-      "id": "touro-4", "kind": "Mito", "title": "Nascida da espuma", "glyph": "♀",
+      "id": "touro-4", "kind": "Mitologia", "title": "Nascida da espuma", "glyph": "♀",
       "light": null,
-      "card": {"kind":"Mito","title":"O nascimento de Afrodite","text":"Cronos corta o sexo de Urano com uma foice e o lança ao mar. Da espuma que se forma em volta nasce Afrodite, e do sangue que cai na terra nascem as Erínias. A mesma ferida gera a fúria e a beleza, e Urano, de quem ela nasceu, fica em queda justamente em Touro."},
+      "card": {"kind":"Mitologia","title":"O nascimento de Afrodite","text":"Cronos corta o sexo de Urano com uma foice e o lança ao mar. Da espuma que se forma em volta nasce Afrodite, e do sangue que cai na terra nascem as Erínias. A mesma ferida gera a fúria e a beleza, e Urano, de quem ela nasceu, fica em queda justamente em Touro."},
       "doneTitle": "Carta conquistada: O nascimento de Afrodite",
       "doneText": "A deusa do regente de Touro entrou na coleção: a beleza que nasce do corte.",
       "steps": [

@@ -15,6 +15,7 @@ Antes de escrever, leia como referência de voz e profundidade: /home/claude/eus
 - Jung, filosofia e mitologia entram como textura, nunca como citação acadêmica ("segundo Jung...", não).
 - "repare" pode aparecer, mas raramente (no máximo uma vez a cada 6 textos).
 - NUNCA usar: "fica com essa frase", "fica nisso", frases começando com "Existe...", "a pergunta é...", "o detalhe que ninguém conta" ou variações, abertura de fábula ("Tem um homem que...", "Era uma vez"), frases que anunciam o que vem ("agora a gente vai ver...", "vamos entender..."), "jornada de autoconhecimento", "universo conspira", "energia" solta (diga "energia astrológica" quando for o caso), "céu da semana".
+- Não usar a palavra "mito" (nem "mitos"): usar "mitologia" (ex.: "astrologia, mitologia e filosofia", "a mitologia de Perséfone").
 - Vênus é SEMPRE masculino: "o Vênus", "do Vênus", "ao Vênus", "regido pelo Vênus", "Vênus retrógrado". Nunca "a Vênus", "da Vênus", "Vênus retrógrada".
 - Retrógrado NUNCA é "andar para trás", "volta", "recua": é movimento aparente, uma ilusão de ótica vista da Terra. Não escreva "para trás".
 - Não use "psicologia profunda".

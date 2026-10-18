@@ -15,7 +15,7 @@ function landingHTML(){
     <div class="lp-kicker">@eusouodu apresenta</div>
     <div class="logo">Jornada</div>
     <div class="lp-wheel"><div class="spin">${wheelSVG(null,true)}</div><span class="lp-orbit"></span></div>
-    <h1 class="tagline">Astrologia, mito e filosofia. Um passo por dia, a partir do próprio mapa.</h1>
+    <h1 class="tagline">Astrologia, mitologia e filosofia. Um passo por dia, a partir do próprio mapa.</h1>
     <p class="lp-lead">Lições curtas, como um jogo, para aprender a ler o céu e o próprio mapa natal. Escritas pelo astrólogo Eduardo, que trabalha com astrologia há mais de 10 anos.</p>
     <div class="chips"><span class="c1">24 lições de mapa e trânsitos</span><span class="c2">60 lições de signos</span><span class="c3">36 cartas</span></div>
     <button class="btn lp-cta" data-go="start">Começar grátis</button>
@@ -28,7 +28,7 @@ function landingHTML(){
     <div class="lp-steps">
       <div class="lp-step s1"><b>1</b><div><h3>O mapa primeiro</h3><p>Data, hora e cidade de nascimento. O mapa natal é calculado na hora, com o horário de verão histórico de cada cidade já descontado.</p></div></div>
       <div class="lp-step s2"><b>2</b><div><h3>Uma lição por vez</h3><p>Explicação, pergunta, ligar pares, colocar em ordem e uma reflexão no fim. Errar custa uma lua. Acertar soma pontos e sequência.</p></div></div>
-      <div class="lp-step s3"><b>3</b><div><h3>O céu se acende</h3><p>Cada signo e cada planeta aprendido acende na roda do mapa. Os mitos e as ideias viram cartas de coleção.</p></div></div>
+      <div class="lp-step s3"><b>3</b><div><h3>O céu se acende</h3><p>Cada signo e cada planeta aprendido acende na roda do mapa. A mitologia e as ideias viram cartas de coleção.</p></div></div>
     </div>
   </section>
 
@@ -47,7 +47,7 @@ function landingHTML(){
     <div class="lp-eyebrow">As três jornadas</div>
     <h2>Da linguagem ao próprio céu.</h2>
     <div class="lp-js">
-      <div class="lp-j j1"><span class="n">1</span><h3>A linguagem</h3><p>Doze subjornadas, de Áries a Peixes. Em cada uma: o signo, o mito, o planeta regente, o deus por trás dele e uma ideia filosófica.</p><small>12 subjornadas · 60 lições</small></div>
+      <div class="lp-j j1"><span class="n">1</span><h3>A linguagem</h3><p>Doze subjornadas, de Áries a Peixes. Em cada uma: o signo, a mitologia, o planeta regente, o deus por trás dele e uma ideia filosófica.</p><small>12 subjornadas · 60 lições</small></div>
       <div class="lp-j j2"><span class="n">2</span><h3>O próprio mapa</h3><p>O símbolo vira espelho. Ascendente, Sol, Lua, Mercúrio, o Vênus, Marte, os planetas lentos, as casas, os aspectos, os nodos e a síntese, montados a partir do mapa de quem joga.</p><small>12 lições personalizadas</small></div>
       <div class="lp-j j3"><span class="n">3</span><h3>Os trânsitos</h3><p>O céu de verdade passando sobre o mapa: as fases da Lua, Mercúrio retrógrado, os ciclos do Vênus, o retorno de Saturno, os eclipses, a revolução solar. E uma lição nova todo dia.</p><small>12 lições · 1 lição por dia</small></div>
     </div>
@@ -61,7 +61,7 @@ function landingHTML(){
       <div class="lp-p wk"><span class="tag">Por Pix</span><div class="pn">Passe semanal</div><div class="pv">${PRECO_S}<small> / 7 dias</small></div><p>Tudo aberto por uma semana. Não renova sozinho: nenhuma cobrança automática.</p></div>
       <div class="lp-p mo"><span class="tag">Melhor valor</span><div class="pn">Mensal</div><div class="pv">${PRECO_M}<small> / mês</small></div><p>Tudo aberto, todo mês, no cartão. Cancela em um toque, sem multa.</p></div>
     </div>
-    <p class="lp-incl">Nos dois planos: as três jornadas inteiras, as 36 cartas de mito e filosofia e luas sem fim.</p>
+    <p class="lp-incl">Nos dois planos: as três jornadas inteiras, as 36 cartas de mitologia e filosofia e luas sem fim.</p>
   </section>
 
   <section class="lp-sec rv" id="lpInstalar">

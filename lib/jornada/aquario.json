@@ -31,9 +31,9 @@
       ]
     },
     {
-      "id": "aquario-2", "kind": "Mito", "title": "O copeiro dos deuses", "glyph": "✦",
+      "id": "aquario-2", "kind": "Mitologia", "title": "O copeiro dos deuses", "glyph": "✦",
       "light": null,
-      "card": {"kind":"Mito","title":"Ganimedes","text":"Ganimedes, príncipe de Troia, é levado ao Olimpo pela águia de Zeus e passa a servir o néctar aos deuses. O único mortal à mesa é quem distribui a imortalidade. Zeus o coloca no céu como o aguadeiro."},
+      "card": {"kind":"Mitologia","title":"Ganimedes","text":"Ganimedes, príncipe de Troia, é levado ao Olimpo pela águia de Zeus e passa a servir o néctar aos deuses. O único mortal à mesa é quem distribui a imortalidade. Zeus o coloca no céu como o aguadeiro."},
       "doneTitle": "Carta conquistada: Ganimedes",
       "doneText": "O mito do aguadeiro entrou na coleção: quem veio de fora é quem faz circular.",
       "steps": [
@@ -81,9 +81,9 @@
       ]
     },
     {
-      "id": "aquario-4", "kind": "Mito", "title": "Prometeu e o fogo", "glyph": "△",
+      "id": "aquario-4", "kind": "Mitologia", "title": "Prometeu e o fogo", "glyph": "△",
       "light": null,
-      "card": {"kind":"Mito","title":"O fogo de Prometeu","text":"Prometeu rouba o fogo dos deuses escondido num caule de funcho e o entrega aos humanos. Zeus o acorrenta, e uma águia devora o fígado dele todos os dias. Uma águia de Zeus ergueu Ganimedes ao céu; outra castiga quem trouxe o fogo do céu para a terra."},
+      "card": {"kind":"Mitologia","title":"O fogo de Prometeu","text":"Prometeu rouba o fogo dos deuses escondido num caule de funcho e o entrega aos humanos. Zeus o acorrenta, e uma águia devora o fígado dele todos os dias. Uma águia de Zeus ergueu Ganimedes ao céu; outra castiga quem trouxe o fogo do céu para a terra."},
       "doneTitle": "Carta conquistada: O fogo de Prometeu",
       "doneText": "Urano, Saturno e Prometeu entraram na coleção: o pai derrubado, o filho que estrutura, o Titã que liberta.",
       "steps": [

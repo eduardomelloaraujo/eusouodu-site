@@ -29,9 +29,9 @@
       ]
     },
     {
-      "id": "aries-2", "kind": "Mito", "title": "O carneiro de ouro", "glyph": "✦",
+      "id": "aries-2", "kind": "Mitologia", "title": "O carneiro de ouro", "glyph": "✦",
       "light": null,
-      "card": {"kind":"Mito","title":"O Velocino de Ouro","text":"Néfele envia um carneiro de lã dourada para salvar os filhos de um sacrifício. Hele cai no mar; Frixo chega à Cólquida e oferece o carneiro a Zeus, que o coloca no céu. A força que resgata é a mesma que precisa ser oferecida."},
+      "card": {"kind":"Mitologia","title":"O Velocino de Ouro","text":"Néfele envia um carneiro de lã dourada para salvar os filhos de um sacrifício. Hele cai no mar; Frixo chega à Cólquida e oferece o carneiro a Zeus, que o coloca no céu. A força que resgata é a mesma que precisa ser oferecida."},
       "doneTitle": "Carta conquistada: O Velocino de Ouro",
       "doneText": "O mito que deu forma ao primeiro signo entrou na coleção.",
       "steps": [
@@ -78,9 +78,9 @@
       ]
     },
     {
-      "id": "aries-4", "kind": "Mito", "title": "Ares e Afrodite", "glyph": "♀",
+      "id": "aries-4", "kind": "Mitologia", "title": "Ares e Afrodite", "glyph": "♀",
       "light": null,
-      "card": {"kind":"Mito","title":"A rede de Hefesto","text":"Ares e Afrodite se amam escondidos. Hélio, o Sol, vê tudo e conta a Hefesto, que prende os dois numa rede invisível diante dos deuses. É o Sol quem expõe: em Áries, onde ele se exalta, o desejo não fica no escuro."},
+      "card": {"kind":"Mitologia","title":"A rede de Hefesto","text":"Ares e Afrodite se amam escondidos. Hélio, o Sol, vê tudo e conta a Hefesto, que prende os dois numa rede invisível diante dos deuses. É o Sol quem expõe: em Áries, onde ele se exalta, o desejo não fica no escuro."},
       "doneTitle": "Carta conquistada: A rede de Hefesto",
       "doneText": "Marte e o Vênus, o par que busca e o par que atrai, entraram na coleção.",
       "steps": [

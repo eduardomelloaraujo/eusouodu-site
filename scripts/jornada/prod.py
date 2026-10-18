@@ -32,8 +32,8 @@ def RX(pat, new, flags=re.S):
     s = s2
 
 # ---------- cabeça: PWA, biblioteca local ----------
-R('<title>Jornada do Zodíaco</title>', '''<title>Jornada · astrologia, mito e filosofia</title>
-<meta name="description" content="Aprender astrologia um passo por dia, a partir do próprio mapa natal. Signos, mitos, planetas e filosofia, com o astrólogo Eduardo (@eusouodu).">
+R('<title>Jornada do Zodíaco</title>', '''<title>Jornada · astrologia, mitologia e filosofia</title>
+<meta name="description" content="Aprender astrologia um passo por dia, a partir do próprio mapa natal. Signos, mitologia, planetas e filosofia, com o astrólogo Eduardo (@eusouodu).">
 <meta name="theme-color" content="#FFF5E8">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
@@ -42,7 +42,7 @@ R('<title>Jornada do Zodíaco</title>', '''<title>Jornada · astrologia, mito e 
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Jornada">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta property="og:title" content="Jornada · astrologia, mito e filosofia">
+<meta property="og:title" content="Jornada · astrologia, mitologia e filosofia">
 <meta property="og:description" content="Um passo por dia, a partir do próprio mapa natal.">
 <meta property="og:image" content="https://jornada.eusouodu.com/og.png">''')
 R('<meta name="claude:viewport-fit-sides" content="cover">', '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n<meta charset="utf-8">')
@@ -80,8 +80,8 @@ R('<p>Cada erro apaga uma lua. Elas voltam com o tempo. Assinantes praticam sem 
   '<p>Cada erro apaga uma lua, e uma lua volta a cada 4 horas. Com um plano ativo, as luas não acabam.</p>\n    <div style="height:14px"></div>\n    <button class="btn" id="refill">Ver os planos</button>\n    <button class="link" id="emptyBack">Voltar para a jornada</button>')
 R('<p class="fine" style="margin-top:12px">No protótipo, este botão só simula o pagamento aprovado.</p>', '<p class="fine" style="margin-top:12px" id="payNote">O pagamento acontece na página segura do Mercado Pago. Depois, a Jornada abre de novo aqui, já liberada.</p>')
 # planos: o que está pronto hoje, sem prometer o que ainda não existe
-R('<li>As 12 subjornadas da linguagem, de Áries a Peixes</li><li>A jornada do mapa natal</li><li>A jornada dos trânsitos</li><li>Luas ilimitadas, sem pausa por erro</li><li>Todas as cartas de mito e filosofia</li>',
-  '<li>As 12 subjornadas da linguagem, de Áries a Peixes: 60 lições</li><li>Todas as 36 cartas de mito e filosofia</li><li>Luas ilimitadas, sem pausa por erro</li><li>As novas lições do mapa natal e dos trânsitos assim que forem lançadas, sem custo extra</li>')
+R('<li>As 12 subjornadas da linguagem, de Áries a Peixes</li><li>A jornada do mapa natal</li><li>A jornada dos trânsitos</li><li>Luas ilimitadas, sem pausa por erro</li><li>Todas as cartas de mitologia e filosofia</li>',
+  '<li>As 12 subjornadas da linguagem, de Áries a Peixes: 60 lições</li><li>Todas as 36 cartas de mitologia e filosofia</li><li>Luas ilimitadas, sem pausa por erro</li><li>As novas lições do mapa natal e dos trânsitos assim que forem lançadas, sem custo extra</li>')
 R('<p class="fine">Pagamentos processados pelo Mercado Pago. O valor cobrado é sempre o que aparece aqui, sem taxa extra.</p>',
   '<p class="fine">Pagamentos processados pelo Mercado Pago. O valor cobrado é sempre o que aparece aqui, sem taxa extra. Direito de arrependimento: até 7 dias depois da compra, o valor volta inteiro, é só escrever para falecom@eusouodu.com. Detalhes nos <a href="termos.html">Termos de uso</a>.</p>')
 R('<div class="free"><b>Grátis, para sempre</b><p>A subjornada de Áries inteira e a lição do dia. Sem cadastro de cartão, sem prazo.</p></div>',

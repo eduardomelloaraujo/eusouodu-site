@@ -31,9 +31,9 @@
       ]
     },
     {
-      "id": "gemeos-2", "kind": "Mito", "title": "O mortal e o imortal", "glyph": "✦",
+      "id": "gemeos-2", "kind": "Mitologia", "title": "O mortal e o imortal", "glyph": "✦",
       "light": null,
-      "card": {"kind":"Mito","title":"Castor e Pólux","text":"Filhos de Leda, Pólux nasceu de Zeus e era imortal; Castor nasceu de Tíndaro e podia morrer. Quando Castor é morto, Pólux recusa uma eternidade sem o irmão, e Zeus permite que os dois dividam o destino: um dia entre os deuses, outro debaixo da terra. Gêmeos não é a pessoa de duas caras: é a parte imortal que se recusa a abandonar a parte que morre."},
+      "card": {"kind":"Mitologia","title":"Castor e Pólux","text":"Filhos de Leda, Pólux nasceu de Zeus e era imortal; Castor nasceu de Tíndaro e podia morrer. Quando Castor é morto, Pólux recusa uma eternidade sem o irmão, e Zeus permite que os dois dividam o destino: um dia entre os deuses, outro debaixo da terra. Gêmeos não é a pessoa de duas caras: é a parte imortal que se recusa a abandonar a parte que morre."},
       "doneTitle": "Carta conquistada: Castor e Pólux",
       "doneText": "Os irmãos que dividem a imortalidade entraram na coleção.",
       "steps": [
@@ -82,9 +82,9 @@
       ]
     },
     {
-      "id": "gemeos-4", "kind": "Mito", "title": "Hermes recém-nascido", "glyph": "☿",
+      "id": "gemeos-4", "kind": "Mitologia", "title": "Hermes recém-nascido", "glyph": "☿",
       "light": null,
-      "card": {"kind":"Mito","title":"A lira e o gado de Apolo","text":"No dia em que nasce, Hermes transforma o casco de uma tartaruga na primeira lira e, à noite, rouba o gado de Apolo apagando o rastro. Descoberto, oferece a lira ao irmão, e os dois rivais viram amigos. O deus de Gêmeos começa a vida fazendo de um bicho morto uma voz e de um inimigo um irmão."},
+      "card": {"kind":"Mitologia","title":"A lira e o gado de Apolo","text":"No dia em que nasce, Hermes transforma o casco de uma tartaruga na primeira lira e, à noite, rouba o gado de Apolo apagando o rastro. Descoberto, oferece a lira ao irmão, e os dois rivais viram amigos. O deus de Gêmeos começa a vida fazendo de um bicho morto uma voz e de um inimigo um irmão."},
       "doneTitle": "Carta conquistada: A lira e o gado de Apolo",
       "doneText": "Hermes, o deus que atravessa todas as fronteiras, entrou na coleção.",
       "steps": [

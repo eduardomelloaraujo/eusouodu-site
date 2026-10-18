@@ -31,9 +31,9 @@
       ]
     },
     {
-      "id": "capricornio-2", "kind": "Mito", "title": "A cabra-peixe", "glyph": "✦",
+      "id": "capricornio-2", "kind": "Mitologia", "title": "A cabra-peixe", "glyph": "✦",
       "light": null,
-      "card": {"kind":"Mito","title":"Pã e Tifão","text":"Fugindo do monstro Tifão, Pã se joga num rio do Egito: o que fica fora da água vira cabra, o que fica dentro vira peixe. Depois, ao lado de Hermes, devolve a Zeus os tendões roubados. A forma que nasceu do medo é a que devolve a estrutura."},
+      "card": {"kind":"Mitologia","title":"Pã e Tifão","text":"Fugindo do monstro Tifão, Pã se joga num rio do Egito: o que fica fora da água vira cabra, o que fica dentro vira peixe. Depois, ao lado de Hermes, devolve a Zeus os tendões roubados. A forma que nasceu do medo é a que devolve a estrutura."},
       "doneTitle": "Carta conquistada: Pã e Tifão",
       "doneText": "A cabra que sobe e o peixe que mergulha entraram na coleção.",
       "steps": [
@@ -80,9 +80,9 @@
       ]
     },
     {
-      "id": "capricornio-4", "kind": "Mito", "title": "Cronos e o tempo", "glyph": "♄",
+      "id": "capricornio-4", "kind": "Mitologia", "title": "Cronos e o tempo", "glyph": "♄",
       "light": null,
-      "card": {"kind":"Mito","title":"Cronos devora os filhos","text":"Avisado de que um filho tomaria seu trono, Cronos engole cada criança que nasce. Quem tenta impedir o futuro acaba virando o tempo que devora. Em Roma, o mesmo deus ganha em dezembro uma festa onde todos os limites se suspendem."},
+      "card": {"kind":"Mitologia","title":"Cronos devora os filhos","text":"Avisado de que um filho tomaria seu trono, Cronos engole cada criança que nasce. Quem tenta impedir o futuro acaba virando o tempo que devora. Em Roma, o mesmo deus ganha em dezembro uma festa onde todos os limites se suspendem."},
       "doneTitle": "Carta conquistada: Cronos devora os filhos",
       "doneText": "O deus que tentou segurar o tempo entrou na coleção.",
       "steps": [

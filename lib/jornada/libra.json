@@ -28,9 +28,9 @@
       ]
     },
     {
-      "id": "libra-2", "kind": "Mito", "title": "A balança das estrelas", "glyph": "⚖",
+      "id": "libra-2", "kind": "Mitologia", "title": "A balança das estrelas", "glyph": "⚖",
       "light": null,
-      "card": {"kind":"Mito","title":"A balança de Dike","text":"Dike, a Justiça, filha de Zeus e Têmis, viveu entre os humanos na idade de ouro e subiu ao céu quando eles se tornaram violentos. Ao lado da Virgem em que ela se transformou, ficou a balança. Antes de pesar, aquelas estrelas eram as garras do Escorpião."},
+      "card": {"kind":"Mitologia","title":"A balança de Dike","text":"Dike, a Justiça, filha de Zeus e Têmis, viveu entre os humanos na idade de ouro e subiu ao céu quando eles se tornaram violentos. Ao lado da Virgem em que ela se transformou, ficou a balança. Antes de pesar, aquelas estrelas eram as garras do Escorpião."},
       "doneTitle": "Carta conquistada: A balança de Dike",
       "doneText": "O único objeto do zodíaco entrou na coleção.",
       "steps": [
@@ -77,9 +77,9 @@
       ]
     },
     {
-      "id": "libra-4", "kind": "Mito", "title": "O pomo da discórdia", "glyph": "◯",
+      "id": "libra-4", "kind": "Mitologia", "title": "O pomo da discórdia", "glyph": "◯",
       "light": null,
-      "card": {"kind":"Mito","title":"O julgamento de Páris","text":"Éris, a Discórdia, joga entre as deusas um pomo de ouro destinado à mais bela. Páris precisa escolher entre Hera, Atena e Afrodite, e escolher uma é fazer inimigas das outras duas. Da escolha nasce a guerra de Troia: em Libra, nenhum juízo sai de graça."},
+      "card": {"kind":"Mitologia","title":"O julgamento de Páris","text":"Éris, a Discórdia, joga entre as deusas um pomo de ouro destinado à mais bela. Páris precisa escolher entre Hera, Atena e Afrodite, e escolher uma é fazer inimigas das outras duas. Da escolha nasce a guerra de Troia: em Libra, nenhum juízo sai de graça."},
       "doneTitle": "Carta conquistada: O julgamento de Páris",
       "doneText": "O Vênus e a escolha que nunca é neutra entraram na coleção.",
       "steps": [
