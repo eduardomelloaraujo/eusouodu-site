@@ -1,0 +1,1465 @@
+<title>Jornada · astrologia, mito e filosofia</title>
+<meta name="description" content="Aprender astrologia um passo por dia, a partir do próprio mapa natal. Signos, mitos, planetas e filosofia, com o astrólogo Eduardo (@eusouodu).">
+<meta name="theme-color" content="#FFF5E8">
+<link rel="manifest" href="/jornada/manifest.webmanifest">
+<link rel="icon" href="/jornada/icon-192.png">
+<link rel="apple-touch-icon" href="/jornada/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Jornada">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta property="og:title" content="Jornada · astrologia, mito e filosofia">
+<meta property="og:description" content="Um passo por dia, a partir do próprio mapa natal.">
+<meta property="og:image" content="https://jornada.eusouodu.com/jornada/og.png">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..900;1,9..144,500..900&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap">
+<style>
+/* Layout: coluna única de app de celular; trilha em zigue-zague; mapa natal como placar. Neon pastel maximalista, irmão do app dos livros: creme, contorno de tinta grossa e sombra dura. */
+:root{
+  --creme:#FFF5E8;
+  --papel:#FFFFFF;
+  --tinta:#1F1433;
+  --suave:#5A4B6E;
+  --rosa:#FF9BD0;
+  --chiclete:#FF4FAE;
+  --menta:#8DF5D0;
+  --lilas:#C9A9FF;
+  --limao:#F2FF7D;
+  --ceu:#9ADBFF;
+  --pessego:#FFBE96;
+  --erro:#FF8A8A;
+  --line:rgba(31,20,51,.28);
+  /* aliases usados pelo desenho do mapa */
+  --ink:var(--papel); --ink-2:var(--papel); --muted:var(--suave); --gold:var(--limao); --ember:var(--chiclete);
+  --borda:2.5px solid var(--tinta);
+  --sombra:4px 4px 0 var(--tinta);
+  --display:"Fraunces", "Times New Roman", serif;
+  --body:"Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  color-scheme:light;
+}
+html,body{height:100%}
+body{
+  background:
+    radial-gradient(420px 260px at 105% 4%, rgba(201,169,255,.55), transparent 70%),
+    radial-gradient(380px 240px at -10% 30%, rgba(141,245,208,.45), transparent 70%),
+    radial-gradient(420px 260px at 110% 70%, rgba(255,155,208,.4), transparent 70%),
+    var(--creme);
+  background-attachment:fixed;
+  color:var(--tinta);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.5;
+}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible,textarea:focus-visible{outline:3px solid var(--chiclete);outline-offset:3px}
+.wrap{
+  max-width:480px;margin:0 auto;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-block:12px 48px;
+}
+
+/* topo */
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-block:6px 4px}
+.brand{font-family:var(--display);font-style:italic;font-weight:900;font-size:30px;letter-spacing:-.02em;line-height:1}
+.brand small{display:block;font-family:var(--body);font-style:normal;font-weight:700;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--suave);margin-top:4px}
+.stats{display:flex;gap:6px;font-weight:800;font-variant-numeric:tabular-nums}
+.stat{display:flex;align-items:center;gap:4px;font-size:14px;border:var(--borda);border-radius:99px;padding:3px 9px 3px 6px;background:var(--papel);box-shadow:2px 2px 0 var(--tinta)}
+.stat svg{width:16px;height:16px;stroke:var(--tinta);stroke-width:1.6}
+.stat.fire{background:var(--pessego)} .stat.xp{background:var(--limao)} .stat.moon{background:var(--lilas)}
+.stat.fire svg{fill:var(--chiclete)} .stat.xp svg{fill:var(--papel)} .stat.moon svg{fill:var(--papel)}
+
+/* mapa */
+.chart{display:grid;justify-items:center;gap:8px;margin-top:14px}
+.chart svg{width:min(80vw,300px);height:auto;max-width:100%;overflow:visible}
+.chart .cap{font-size:13px;color:var(--suave);text-align:center;font-weight:500}
+.chart .cap b{color:var(--tinta);font-weight:800}
+.tag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid var(--tinta);border-radius:99px;padding:0 7px;color:var(--tinta);background:var(--limao);vertical-align:middle;margin-left:4px}
+.pt-lit{filter:drop-shadow(2px 2px 0 var(--tinta))}
+.pt-new{animation:glow 1.4s ease-out 2}
+@keyframes glow{0%{transform:scale(1)}40%{transform:scale(1.45) rotate(-8deg)}100%{transform:scale(1)}}
+
+/* card do dia */
+.daily{
+  margin-top:20px;display:flex;gap:14px;align-items:center;width:100%;text-align:left;
+  background:var(--limao);border:var(--borda);border-radius:22px;padding:14px 16px;box-shadow:var(--sombra);
+  transition:transform .08s, box-shadow .08s;
+}
+.daily:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--tinta)}
+.daily .sun{flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--papel);border:var(--borda);font-size:24px}
+.daily .eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:800}
+.daily h3{margin:2px 0 0;font-family:var(--display);font-weight:800;font-size:20px;line-height:1.15;text-wrap:balance}
+.daily p{margin:2px 0 0;font-size:13px;color:var(--suave);font-weight:600}
+.daily .go{margin-left:auto;flex:none;font-size:26px;font-weight:800}
+.daily.done{background:var(--papel);opacity:.75}
+
+/* unidade */
+.unit{
+  margin-top:28px;border-radius:22px;padding:16px 18px 18px;position:relative;overflow:hidden;
+  background:var(--pessego);border:var(--borda);box-shadow:var(--sombra);
+}
+.unit::after{content:"♈\FE0E";position:absolute;right:-6px;top:-18px;font-family:var(--display);font-size:120px;line-height:1;color:var(--chiclete);opacity:.35;pointer-events:none}
+.unit .eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;position:relative}
+.unit h2{margin:4px 0 4px;font-family:var(--display);font-weight:900;font-size:32px;line-height:1;letter-spacing:-.02em;position:relative}
+.unit h2 em{font-style:italic;font-weight:500}
+.unit p{margin:0;font-size:14px;font-weight:600;position:relative;max-width:30ch}
+
+/* trilha */
+.path{display:grid;justify-items:center;gap:28px;padding-block:36px 10px;position:relative}
+.node{display:grid;justify-items:center;gap:8px;background:none;border:0;padding:0;position:relative}
+.disc{
+  width:72px;height:72px;border-radius:50%;display:grid;place-items:center;position:relative;
+  font-family:var(--display);font-weight:800;font-size:30px;
+  background:var(--papel);color:var(--suave);border:2.5px dashed var(--suave);
+  transition:transform .1s, box-shadow .1s;
+}
+.node.open .disc,.node.done .disc{border:var(--borda);color:var(--tinta);box-shadow:var(--sombra)}
+.node.open .disc{background:var(--chiclete)}
+.node:active .disc{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--tinta)}
+.node.open .disc::after{
+  content:"";position:absolute;inset:-11px;border-radius:50%;border:2.5px solid var(--chiclete);
+  animation:ring 1.6s ease-in-out infinite;
+}
+@keyframes ring{0%,100%{transform:scale(.95);opacity:.8}50%{transform:scale(1.08);opacity:.25}}
+.node.done:nth-child(5n+1) .disc{background:var(--menta)}
+.node.done:nth-child(5n+2) .disc{background:var(--lilas)}
+.node.done:nth-child(5n+3) .disc{background:var(--ceu)}
+.node.done:nth-child(5n+4) .disc{background:var(--rosa)}
+.node.done:nth-child(5n+5) .disc{background:var(--limao)}
+.node.boss .disc{width:88px;height:88px;font-size:34px;border-radius:30%;transform:rotate(45deg)}
+.node.boss .disc > :first-child{display:inline-block}
+.node.boss .disc .glyph{transform:rotate(-45deg)}
+.node.boss .lock{transform:rotate(-45deg)}
+.check{position:absolute;right:-6px;bottom:-4px;width:26px;height:26px;border-radius:50%;background:var(--limao);color:var(--tinta);display:grid;place-items:center;font-size:14px;font-family:var(--body);font-weight:900;border:var(--borda)}
+.lock{position:absolute;right:-6px;bottom:-4px;width:26px;height:26px;border-radius:50%;background:var(--papel);display:grid;place-items:center;border:var(--borda)}
+.lock svg{width:12px;height:12px;fill:var(--tinta)}
+.nlabel{font-size:14px;font-weight:700;text-align:center;line-height:1.2;max-width:150px}
+.nlabel small{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--suave);font-weight:800;margin-bottom:2px}
+.node.locked .nlabel{color:var(--suave)}
+
+.next-unit{
+  margin-top:34px;border:2.5px dashed var(--tinta);border-radius:22px;padding:20px 18px;text-align:center;background:rgba(255,255,255,.55);
+}
+.next-unit .g{font-size:34px;font-family:var(--display)}
+.next-unit h3{margin:4px 0 2px;font-family:var(--display);font-weight:800;font-size:22px}
+.next-unit p{margin:0 0 14px;font-size:14px;color:var(--suave);font-weight:500}
+.reset{display:block;margin:28px auto 0;background:none;border:0;color:var(--suave);font-size:13px;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* botões */
+.btn{
+  display:block;width:100%;border:var(--borda);border-radius:16px;padding:14px 18px;
+  font-weight:800;font-size:16px;letter-spacing:.06em;text-transform:uppercase;
+  background:var(--chiclete);color:var(--tinta);box-shadow:var(--sombra);
+  transition:transform .08s, box-shadow .08s;
+}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--tinta)}
+.btn:disabled{background:#EDE6F2;color:var(--suave);border-color:var(--suave);box-shadow:none;cursor:default}
+.btn.okb{background:var(--menta)}
+.btn.badb{background:var(--erro)}
+.btn.goldb{background:var(--limao)}
+.link{background:none;border:0;color:var(--suave);font-size:14px;font-weight:700;padding:10px;display:block;margin:6px auto 0;text-decoration:underline;text-underline-offset:3px}
+
+/* lição */
+.lbar{display:flex;align-items:center;gap:12px;padding-block:8px 6px}
+.x{background:none;border:0;padding:6px;color:var(--tinta);display:grid}
+.x svg{width:24px;height:24px}
+.prog{flex:1;height:18px;border-radius:99px;background:var(--papel);border:var(--borda);overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:repeating-linear-gradient(-45deg, var(--chiclete) 0 10px, var(--rosa) 10px 20px);border-right:2.5px solid var(--tinta);transition:width .35s ease}
+.stage{padding-block:22px 200px;min-height:60vh}
+.eyebrow-l{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;display:inline-block;background:var(--lilas);border:1.5px solid var(--tinta);border-radius:99px;padding:1px 10px}
+.q{font-family:var(--display);font-weight:800;font-size:25px;line-height:1.18;letter-spacing:-.01em;margin:10px 0 18px;text-wrap:balance}
+.teach .big{
+  width:108px;height:108px;border-radius:50%;display:grid;place-items:center;margin-bottom:16px;
+  font-family:var(--display);font-weight:800;font-size:58px;line-height:1;
+  background:var(--ceu);border:var(--borda);box-shadow:var(--sombra);
+}
+.teach h2{font-family:var(--display);font-weight:900;font-size:32px;line-height:1.05;letter-spacing:-.02em;margin:10px 0 14px;text-wrap:balance}
+.teach p{font-size:17px;line-height:1.6;margin:0 0 12px;max-width:62ch;font-weight:500}
+.opts{display:grid;gap:12px}
+.opts.glyphs{grid-template-columns:repeat(2,1fr)}
+.opt{
+  text-align:left;padding:14px 16px;border-radius:16px;font-size:16px;font-weight:600;line-height:1.35;
+  background:var(--papel);border:var(--borda);box-shadow:3px 3px 0 var(--tinta);
+  transition:transform .08s, box-shadow .08s, background .15s;
+}
+.opt:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--tinta)}
+.opts.glyphs .opt{text-align:center;font-family:var(--display);font-size:46px;padding:14px 0}
+.opt.sel{background:var(--ceu)}
+.opt.right{background:var(--menta)}
+.opt.wrong{background:var(--erro)}
+.opt.gone{opacity:.3;pointer-events:none;box-shadow:none}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.match .col{display:grid;gap:12px;align-content:start;min-width:0}
+.match .opt{text-align:center;padding:14px 8px;font-size:15px}
+.shake{animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.answer{min-height:64px;border-bottom:2.5px dashed var(--tinta);display:flex;flex-direction:column;gap:8px;padding-bottom:14px;margin-bottom:16px}
+.answer:empty::before{content:"Toque nos trechos na ordem da história";color:var(--suave);font-size:14px;font-weight:600;padding-top:8px}
+.chip{text-align:left;padding:11px 14px;border-radius:14px;background:var(--papel);border:var(--borda);box-shadow:3px 3px 0 var(--tinta);font-size:15px;font-weight:600;line-height:1.35}
+.answer .chip{background:var(--rosa)}
+.chip.right{background:var(--menta)} .chip.wrong{background:var(--erro)}
+.chip .n{font-family:var(--display);font-weight:900;margin-right:8px;font-variant-numeric:tabular-nums}
+.pool{display:flex;flex-direction:column;gap:10px}
+textarea{
+  width:100%;box-sizing:border-box;min-height:150px;resize:vertical;border-radius:18px;padding:16px;
+  background:var(--papel);border:var(--borda);box-shadow:var(--sombra);color:var(--tinta);font:inherit;font-size:16px;line-height:1.5;
+  background-image:repeating-linear-gradient(transparent 0 27px, rgba(201,169,255,.45) 27px 28px);background-position:0 12px;
+}
+.hint{font-size:14px;color:var(--suave);font-weight:600;margin:14px 0 0}
+.minichart{display:grid;justify-items:center;margin:4px 0 14px}
+.minichart svg{width:min(62vw,230px);height:auto}
+
+.foot{
+  position:fixed;left:0;right:0;bottom:0;z-index:5;
+  background:linear-gradient(to top, var(--creme) 72%, rgba(255,245,232,0));
+  padding-top:24px;
+  padding-bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+}
+.foot .inner{max-width:480px;margin:0 auto}
+
+.sheet{
+  position:fixed;left:0;right:0;bottom:0;z-index:6;
+  background:var(--menta);border-top:var(--borda);border-radius:26px 26px 0 0;
+  padding-top:20px;
+  padding-bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.8,.2,1);
+}
+.sheet.show{transform:translateY(0)}
+.sheet .inner{max-width:480px;margin:0 auto}
+.sheet h4{margin:0 0 6px;font-family:var(--display);font-size:24px;font-weight:900;font-style:italic}
+.sheet p{margin:0 0 16px;font-size:15px;line-height:1.55;font-weight:500;max-width:62ch}
+.sheet.ok{background:var(--menta)}
+.sheet.bad{background:var(--rosa)}
+.sheet.note{background:var(--limao)}
+.sheet .btn{background:var(--papel)}
+
+/* telas finais */
+.center{min-height:80vh;display:grid;align-content:center;justify-items:center;text-align:center;gap:12px}
+.center .big{
+  width:150px;height:150px;border-radius:50%;display:grid;place-items:center;
+  font-family:var(--display);font-weight:800;font-size:76px;line-height:1;
+  background:var(--limao);border:var(--borda);box-shadow:6px 6px 0 var(--tinta);
+  animation:pop .6s cubic-bezier(.2,1.6,.4,1);
+}
+@keyframes pop{0%{transform:scale(.3) rotate(-20deg)}100%{transform:scale(1)}}
+.center h2{font-family:var(--display);font-weight:900;font-size:34px;line-height:1.05;letter-spacing:-.02em;margin:6px 0 0;text-wrap:balance}
+.center p{margin:0;max-width:40ch;color:var(--suave);font-size:16px;font-weight:500}
+.tiles{display:flex;gap:10px;margin:16px 0 20px;flex-wrap:wrap;justify-content:center}
+.tile{border:var(--borda);border-radius:16px;padding:10px 14px;min-width:84px;box-shadow:3px 3px 0 var(--tinta)}
+.tile b{display:block;font-family:var(--display);font-weight:900;font-size:26px;font-variant-numeric:tabular-nums}
+.tile span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:800}
+.tile.g{background:var(--limao)} .tile.e{background:var(--pessego)} .tile.o{background:var(--menta)}
+.center .btn{max-width:360px}
+
+.modal{position:fixed;inset:0;z-index:20;background:rgba(31,20,51,.45);display:grid;place-items:end center;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-bottom:calc(16px + env(safe-area-inset-bottom, 0px))}
+.modal .box{max-width:440px;width:100%;box-sizing:border-box;background:var(--creme);border:var(--borda);box-shadow:6px 6px 0 var(--tinta);border-radius:26px;padding:22px}
+.modal h3{font-family:var(--display);font-weight:900;font-size:27px;letter-spacing:-.01em;margin:0 0 8px;line-height:1.1}
+.modal p{margin:0 0 16px;color:var(--suave);font-size:15px;font-weight:500}
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
+.plan{border:var(--borda);border-radius:16px;padding:12px;text-align:left;background:var(--papel);box-shadow:3px 3px 0 var(--tinta)}
+.plan.best{background:var(--lilas)}
+.plan b{display:block;font-family:var(--display);font-weight:800;font-size:18px}
+.plan span{font-size:13px;color:var(--suave);font-weight:600}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+
+<style>
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+img{max-width:100%}
+*{box-sizing:border-box}
+.cres{display:grid;gap:8px;margin-top:12px}
+.cres button{text-align:left;border:var(--borda);border-radius:14px;padding:12px 14px;background:var(--papel);font-weight:600;font-size:16px;box-shadow:2px 2px 0 var(--tinta)}
+.cres button small{display:block;font-weight:500;color:var(--suave);font-size:12px}
+.install{margin-top:20px;border:var(--borda);border-radius:18px;padding:14px;background:var(--ceu);box-shadow:3px 3px 0 var(--tinta);position:relative}
+.install b{display:block;font-family:var(--display);font-weight:900;font-size:19px;margin-bottom:4px}
+.install p{margin:0 0 10px;font-size:14px;font-weight:500;line-height:1.45}
+.install .xx{position:absolute;top:8px;right:10px;background:none;border:0;font-size:20px;font-weight:800}
+.footer{margin-top:34px;display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:center;font-size:13px;font-weight:600}
+.footer a,.footer button{color:var(--suave);background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:3px;font:inherit}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:30;background:var(--tinta);color:var(--creme);border-radius:14px;padding:12px 16px;font-weight:700;font-size:14px;max-width:min(92vw,420px);text-align:center}
+.lockline{font-size:13px;font-weight:600;color:var(--suave);text-align:center;margin:-6px 0 0}
+
+
+/* entrada */
+.onb .top2{display:flex;align-items:center;gap:12px;padding-block:8px 4px}
+.dots{flex:1;display:flex;gap:6px}
+.dots i{flex:1;height:8px;border-radius:99px;border:2px solid var(--tinta);background:var(--papel)}
+.dots i.on{background:var(--chiclete)}
+.ostage{padding-block:26px 170px}
+.ostage h2{font-family:var(--display);font-weight:900;font-size:34px;line-height:1.05;letter-spacing:-.02em;margin:10px 0 8px;text-wrap:balance}
+.ostage .sub{margin:0 0 20px;color:var(--suave);font-weight:500;font-size:16px;max-width:52ch}
+.field{width:100%;box-sizing:border-box;font:inherit;font-size:20px;font-weight:600;color:var(--tinta);background:var(--papel);border:var(--borda);border-radius:16px;padding:14px 16px;box-shadow:var(--sombra);min-height:56px}
+.field:focus{outline:3px solid var(--chiclete);outline-offset:3px}
+.check-row{display:flex;gap:12px;align-items:flex-start;margin-top:16px;font-size:15px;font-weight:600;line-height:1.4;cursor:pointer}
+.check-row input{flex:none;width:24px;height:24px;margin:0;accent-color:var(--chiclete)}
+.check-row small{display:block;font-weight:500;color:var(--suave);font-size:13px;margin-top:2px}
+.oerr{color:#B0174F;font-weight:700;font-size:14px;margin:12px 0 0;min-height:1em}
+.ohint{font-size:13px;color:var(--suave);font-weight:500;margin:14px 0 0;line-height:1.5}
+.hero{display:grid;justify-items:center;text-align:center;gap:10px;padding-top:20px}
+.hero .logo{font-family:var(--display);font-style:italic;font-weight:900;font-size:64px;letter-spacing:-.03em;line-height:1}
+.hero .tagline{font-family:var(--display);font-weight:600;font-size:22px;line-height:1.25;max-width:22ch;text-wrap:balance}
+.hero .spin{width:min(70vw,250px);max-width:100%;animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:4px}
+.hero .chips span{border:1.5px solid var(--tinta);border-radius:99px;padding:3px 12px;font-size:13px;font-weight:700}
+.calc{display:grid;justify-items:center;text-align:center;gap:16px;padding-top:30px}
+.calc svg{width:min(70vw,250px);max-width:100%}
+.calc .wheelspin{animation:spin 2.4s cubic-bezier(.4,0,.2,1) infinite}
+.calc p{margin:0;font-weight:600;color:var(--suave)}
+.trio{display:grid;gap:10px;margin:18px 0 6px}
+.trio .t{display:flex;align-items:center;gap:14px;border:var(--borda);border-radius:18px;padding:12px 14px;box-shadow:3px 3px 0 var(--tinta);animation:pop .5s cubic-bezier(.2,1.6,.4,1) both}
+.trio .t:nth-child(2){animation-delay:.15s} .trio .t:nth-child(3){animation-delay:.3s}
+.trio .t .tg{flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--papel);border:var(--borda);font-family:var(--display);font-weight:800;font-size:24px}
+.trio .t small{display:block;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.trio .t b{display:block;font-family:var(--display);font-weight:900;font-size:22px;line-height:1.1}
+.trio .t span.deg{font-size:13px;font-weight:600;color:var(--suave)}
+.reveal-wheel{display:grid;justify-items:center;margin-top:6px}
+.reveal-wheel svg{width:min(76vw,280px);max-width:100%}
+.edit{display:block;margin:10px auto 0;background:none;border:0;color:var(--tinta);font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+.dst{margin-top:16px;border:var(--borda);border-radius:16px;padding:12px 14px;font-size:14px;font-weight:500;line-height:1.5}
+.dst b{display:block;font-family:var(--display);font-weight:800;font-size:16px;margin-bottom:2px}
+.dst.on{background:var(--limao)} .dst.off{background:var(--papel)} .dst.warn{background:var(--erro)}
+/* planos e cobrança */
+.plans-v .head{display:flex;align-items:center;gap:10px;padding-block:8px 4px}
+.plans-v h2{font-family:var(--display);font-weight:900;font-size:32px;line-height:1.05;letter-spacing:-.02em;margin:14px 0 6px;text-wrap:balance}
+.plans-v .lead{margin:0 0 18px;color:var(--suave);font-weight:500;font-size:15px}
+.free{border:2.5px dashed var(--tinta);border-radius:18px;padding:12px 14px;background:rgba(255,255,255,.6);margin-bottom:16px}
+.free b{font-family:var(--display);font-weight:800;font-size:17px}
+.free p{margin:2px 0 0;font-size:14px;color:var(--suave);font-weight:500}
+.pcard{border:var(--borda);border-radius:22px;padding:16px;box-shadow:var(--sombra);margin-bottom:16px;position:relative}
+.pcard.semana{background:var(--ceu)} .pcard.mes{background:var(--limao)}
+.pcard .badge{position:absolute;top:-12px;right:14px;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--chiclete);border:1.5px solid var(--tinta);border-radius:99px;padding:2px 10px}
+.pcard .pname{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.pcard .price{font-family:var(--display);font-weight:900;font-size:40px;line-height:1;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.pcard .price small{font-family:var(--body);font-size:15px;font-weight:700}
+.pcard .how{font-weight:700;font-size:15px;margin:0 0 12px}
+.facts{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:8px}
+.facts li{display:grid;grid-template-columns:22px 1fr;gap:6px;font-size:14px;font-weight:500;line-height:1.4;background:rgba(255,255,255,.7);border:1.5px solid var(--tinta);border-radius:12px;padding:8px 10px}
+.facts li i{font-style:normal;font-weight:900}
+.inc{border:var(--borda);border-radius:18px;padding:14px;background:var(--papel);margin-bottom:16px}
+.inc b{display:block;font-family:var(--display);font-weight:800;font-size:18px;margin-bottom:6px}
+.inc ul{margin:0;padding-left:18px;font-size:14px;font-weight:500;line-height:1.6}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;border:var(--borda);border-radius:16px;overflow:hidden;background:var(--papel);font-size:13px;margin-bottom:16px}
+.cmp th,.cmp td{padding:9px 8px;text-align:left;vertical-align:top;border-bottom:1.5px solid var(--line)}
+.cmp tr:last-child td{border-bottom:0}
+.cmp th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--creme)}
+.cmp td:first-child{font-weight:800}
+.fine{font-size:12px;color:var(--suave);font-weight:500;line-height:1.5;margin:0 0 20px}
+.summary{border:var(--borda);border-radius:20px;background:var(--papel);padding:4px 16px;margin:6px 0 16px}
+.summary .row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1.5px dashed var(--line);font-size:15px}
+.summary .row:last-child{border-bottom:0}
+.summary .row span{color:var(--suave);font-weight:600}
+.summary .row b{text-align:right;font-variant-numeric:tabular-nums}
+.myplan{margin-top:30px;border:var(--borda);border-radius:18px;padding:14px;background:var(--papel);box-shadow:3px 3px 0 var(--tinta)}
+.myplan .pname{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
+.myplan b{display:block;font-family:var(--display);font-weight:900;font-size:20px;margin:2px 0 4px}
+.myplan p{margin:0 0 12px;font-size:14px;font-weight:500;line-height:1.45}
+.myplan.on-semana{background:var(--ceu)} .myplan.on-mes{background:var(--limao)}
+.myplan .acts{display:grid;gap:8px}
+.btn.small{padding:10px 14px;font-size:14px}
+.btn.plain{background:var(--papel)}
+/* jornadas, unidades por elemento, cartas */
+.journeys{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:26px}
+.jtab{border:var(--borda);border-radius:16px;padding:10px 6px 9px;background:var(--papel);text-align:center;box-shadow:3px 3px 0 var(--tinta);transition:transform .08s, box-shadow .08s}
+.jtab:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--tinta)}
+.jtab b{display:block;font-family:var(--display);font-weight:900;font-size:22px;line-height:1}
+.jtab span{display:block;font-size:12px;font-weight:700;margin-top:3px;line-height:1.15}
+.jtab.on{background:var(--tinta);color:var(--creme)}
+.jintro{margin:16px 2px 0;font-size:15px;font-weight:500;color:var(--suave);max-width:60ch}
+.jintro b{color:var(--tinta)}
+.unit{margin-top:30px}
+.unit.fogo{background:var(--pessego)} .unit.terra{background:var(--menta)} .unit.ar{background:var(--ceu)} .unit.agua{background:var(--lilas)}
+.unit::after{content:attr(data-glyph)}
+.unit .meta{display:flex;align-items:center;gap:8px;margin-top:10px;position:relative}
+.unit .meter{flex:1;height:10px;border-radius:99px;background:var(--papel);border:2px solid var(--tinta);overflow:hidden;max-width:180px}
+.unit .meter i{display:block;height:100%;background:var(--tinta)}
+.unit .meta span{font-size:12px;font-weight:800;font-variant-numeric:tabular-nums}
+.unit .paytag{position:absolute;top:14px;right:14px;z-index:1;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--limao);border:1.5px solid var(--tinta);border-radius:99px;padding:1px 8px}
+.path{padding-block:30px 4px}
+.node.card-node .disc{border-radius:24px}
+.roadmap{display:grid;gap:12px;margin-top:20px}
+.road{display:flex;align-items:center;gap:14px;text-align:left;width:100%;border:var(--borda);border-radius:18px;padding:12px 14px;background:var(--papel);box-shadow:3px 3px 0 var(--tinta)}
+.road .num{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:var(--borda);font-family:var(--display);font-weight:900;font-size:17px;background:var(--creme)}
+.road b{display:block;font-family:var(--display);font-weight:800;font-size:17px;line-height:1.2}
+.road small{display:block;font-size:13px;color:var(--suave);font-weight:500;line-height:1.35;margin-top:2px}
+.road .st{margin-left:auto;flex:none;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--tinta);border-radius:99px;padding:2px 8px;background:var(--creme)}
+.road.open{background:var(--limao)} .road.open .num{background:var(--chiclete)}
+.road.done{background:var(--menta)}
+.road.soon{box-shadow:none;border-style:dashed;background:rgba(255,255,255,.55)}
+.road.soon .num{border-style:dashed;color:var(--suave)}
+.road.soon b{color:var(--suave)}
+.sec{display:flex;align-items:baseline;justify-content:space-between;margin-top:40px}
+.sec h3{margin:0;font-family:var(--display);font-weight:900;font-size:26px;letter-spacing:-.01em}
+.sec span{font-size:13px;font-weight:800;font-variant-numeric:tabular-nums}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.cardm{aspect-ratio:3/4;max-width:100%;border:var(--borda);border-radius:14px;padding:8px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;box-shadow:3px 3px 0 var(--tinta);overflow:hidden}
+.cardm small{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.cardm b{font-family:var(--display);font-weight:800;font-size:14px;line-height:1.1}
+.cardm .cg{font-family:var(--display);font-size:24px;line-height:1}
+.cardm.Mito{background:var(--rosa)} .cardm.Filosofia{background:var(--ceu)}
+.cardm.locked{background:rgba(255,255,255,.55);border-style:dashed;box-shadow:none;color:var(--suave);align-items:center;justify-content:center;font-family:var(--display);font-size:26px}
+.prev{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:30px;border:var(--borda);border-radius:18px;padding:12px 14px;background:var(--papel)}
+.prev b{display:block;font-size:14px}
+.prev small{display:block;font-size:12px;color:var(--suave);font-weight:500}
+.switch{flex:none;width:52px;height:30px;border-radius:99px;border:var(--borda);background:var(--creme);position:relative;padding:0}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--tinta);transition:transform .15s}
+.switch.on{background:var(--menta)} .switch.on::after{transform:translateX(22px)}
+.won{display:grid;justify-items:center;gap:6px;margin-top:6px}
+.won .cardm{width:150px;aspect-ratio:3/4;padding:12px;animation:pop .6s cubic-bezier(.2,1.6,.4,1)}
+.won .cardm b{font-size:19px}
+.won .cardm .cg{font-size:40px}
+.modal .cardtext{font-size:16px;line-height:1.6;color:var(--tinta);font-weight:500;margin:0 0 18px}
+.modal .ck{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid var(--tinta);border-radius:99px;padding:1px 8px;margin-bottom:8px}
+</style>
+
+
+<div id="onb" class="wrap onb" hidden>
+  <div class="top2"><button class="x" id="oBack" aria-label="Voltar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button><div class="dots" id="odots"></div></div>
+  <div class="ostage" id="ostage"></div>
+  <div class="foot"><div class="inner"><button class="btn" id="oNext">Continuar</button><button class="link" id="oAlt" hidden></button></div></div>
+</div>
+
+<div id="home" class="wrap">
+  <header class="top">
+    <div class="brand">Jornada<small id="who">@eusouodu</small></div>
+    <div class="stats">
+      <span class="stat fire" title="Dias seguidos"><svg viewBox="0 0 24 24"><path d="M12 2c1 4 5 5.5 5 11a5 5 0 0 1-10 0c0-2.6 1.3-4.2 2.6-5.4.2 1.8 1 2.9 2 3.4C11 8.5 11.3 5 12 2z"/></svg><span id="sStreak">0</span></span>
+      <span class="stat xp" title="Pontos de experiência"><svg viewBox="0 0 24 24"><path d="M12 2l2.6 6.6L21 9.3l-5 4.5 1.5 6.9L12 17l-5.5 3.7L8 13.8 3 9.3l6.4-.7z"/></svg><span id="sXp">0</span></span>
+      <span class="stat moon" title="Luas: cada erro custa uma"><svg viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg><span id="sLuas">5</span></span>
+    </div>
+  </header>
+
+  <section class="chart">
+    <div id="wheel"></div>
+    <div class="cap" id="chartCap"></div>
+  </section>
+
+  <button class="daily" id="daily">
+    <span class="sun">☽&#xFE0E;</span>
+    <span>
+      <span class="eyebrow">Energia astrológica do dia</span>
+      <h3 id="dailyTitle">A Lua de hoje</h3>
+      <p id="dailySub">Lição relâmpago · 3 passos</p>
+    </span>
+    <span class="go">›</span>
+  </button>
+
+  <nav class="journeys" id="jtabs">
+    <button class="jtab" data-j="1"><b>1</b><span>A linguagem</span></button>
+    <button class="jtab" data-j="2"><b>2</b><span>O meu mapa</span></button>
+    <button class="jtab" data-j="3"><b>3</b><span>Os trânsitos</span></button>
+  </nav>
+  <p class="jintro" id="jintro"></p>
+  <div id="jbody"></div>
+
+  <div class="sec"><h3>Cartas</h3><span id="cardCount"></span></div>
+  <div class="cards" id="cards"></div>
+
+  <div id="myplan"></div>
+
+  <div id="installBox"></div>
+  <nav class="footer"><button id="editData">Dados de nascimento</button><a href="/jornada/termos.html">Termos de uso</a><a href="/jornada/privacidade.html">Privacidade</a><a href="mailto:falecom@eusouodu.com">falecom@eusouodu.com</a><button id="logout">Sair desta conta</button></nav>
+</div>
+
+<div id="lesson" hidden>
+  <div class="wrap">
+    <div class="lbar">
+      <button class="x" id="quit" aria-label="Sair da lição"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <div class="prog"><i id="bar"></i></div>
+      <span class="stat moon"><svg viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg><span id="lLuas">5</span></span>
+    </div>
+    <div class="stage" id="stage"></div>
+  </div>
+  <div class="foot"><div class="inner"><button class="btn" id="main" disabled>Verificar</button></div></div>
+  <div class="sheet" id="sheet"><div class="inner"><h4 id="shT"></h4><p id="shP"></p><button class="btn" id="shBtn">Continuar</button></div></div>
+</div>
+
+<div id="done" class="wrap" hidden>
+  <div class="center">
+    <div class="big" id="dGlyph"></div>
+    <div id="dCard" class="won" hidden></div>
+    <div class="eyebrow-l">Lição concluída</div>
+    <h2 id="dTitle"></h2>
+    <p id="dText"></p>
+    <div class="tiles">
+      <div class="tile g"><b id="dXp">0</b><span>XP</span></div>
+      <div class="tile o"><b id="dAcc">0%</b><span>Acertos</span></div>
+      <div class="tile e"><b id="dStreak">0</b><span>Dias</span></div>
+    </div>
+    <button class="btn" id="dBtn">Continuar a jornada</button>
+  </div>
+</div>
+
+<div id="empty" class="wrap" hidden>
+  <div class="center">
+    <div class="big" style="background:var(--lilas)">☾&#xFE0E;</div>
+    <h2>As luas acabaram</h2>
+    <p>Cada erro apaga uma lua, e uma lua volta a cada 4 horas. Com um plano ativo, as luas não acabam.</p>
+    <div style="height:14px"></div>
+    <button class="btn" id="refill">Ver os planos</button>
+    <button class="link" id="emptyBack">Voltar para a jornada</button>
+  </div>
+</div>
+
+
+<div id="plans" class="wrap plans-v" hidden>
+  <div class="head"><button class="x" id="pBack" aria-label="Voltar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <h2>Como seguir a jornada</h2>
+  <p class="lead">Dois jeitos de pagar. Tudo o que muda entre eles está escrito aqui, sem letra miúda.</p>
+
+  <div class="free"><b>Grátis, para sempre</b><p>A subjornada de Áries inteira, a lição do dia e a primeira lição do mapa natal. Sem cartão, sem prazo.</p></div>
+
+  <div class="pcard semana">
+    <div class="pname">Passe semanal</div>
+    <div class="price">R$ 9,90 <small>por 7 dias</small></div>
+    <p class="how">Pago uma vez, por Pix.</p>
+    <ul class="facts">
+      <li><i>✓</i><span>Libera tudo por 7 dias, contados do momento do pagamento.</span></li>
+      <li><i>✓</i><span><b>Não renova sozinho.</b> Nenhuma cobrança automática, nunca.</span></li>
+      <li><i>✓</i><span>No último dia o app avisa. Quem quiser continuar paga outro Pix.</span></li>
+      <li><i>✓</i><span>Não precisa de cartão de crédito e não tem nada para cancelar.</span></li>
+    </ul>
+    <button class="btn plain" data-plan="semana">Pagar R$ 9,90 no Pix</button>
+  </div>
+
+  <div class="pcard mes">
+    <span class="badge">Sai mais barato</span>
+    <div class="pname">Assinatura mensal</div>
+    <div class="price">R$ 29,90 <small>por mês</small></div>
+    <p class="how">No cartão de crédito.</p>
+    <ul class="facts">
+      <li><i>✓</i><span>Libera tudo enquanto a assinatura estiver ativa.</span></li>
+      <li><i>↻</i><span><b>Renova automaticamente</b> a cada mês, no mesmo dia, sempre R$ 29,90.</span></li>
+      <li><i>✕</i><span>Cancela quando quiser, em Meu plano, sem multa. O acesso segue até o fim do mês já pago.</span></li>
+      <li><i>✓</i><span>4 passes semanais custariam R$ 39,60. No mensal, R$ 29,90.</span></li>
+    </ul>
+    <button class="btn plain" data-plan="mes">Assinar por R$ 29,90 por mês</button>
+  </div>
+
+  <div class="inc"><b>Os dois liberam o mesmo conteúdo</b>
+    <ul><li>As 12 subjornadas da linguagem, de Áries a Peixes: 60 lições</li><li>Todas as 36 cartas de mito e filosofia</li><li>Luas ilimitadas, sem pausa por erro</li><li>As novas lições do mapa natal e dos trânsitos assim que forem lançadas, sem custo extra</li></ul>
+  </div>
+
+  <div style="overflow-x:auto">
+  <table class="cmp">
+    <tr><th></th><th>Semanal</th><th>Mensal</th></tr>
+    <tr><td>Pagamento</td><td>Pix</td><td>Cartão de crédito</td></tr>
+    <tr><td>Renova sozinho?</td><td>Não</td><td>Sim, todo mês</td></tr>
+    <tr><td>Num mês</td><td>R$ 39,60 se renovar 4 vezes</td><td>R$ 29,90</td></tr>
+    <tr><td>Para parar</td><td>Só não pagar de novo</td><td>Cancelar em Meu plano</td></tr>
+  </table>
+  </div>
+  <p class="fine">Pagamentos processados pelo Mercado Pago. O valor cobrado é sempre o que aparece aqui, sem taxa extra. Direito de arrependimento: até 7 dias depois da compra, o valor volta inteiro, é só escrever para falecom@eusouodu.com. Detalhes nos <a href="/jornada/termos.html">Termos de uso</a>.</p>
+</div>
+
+<div id="confirm" class="wrap plans-v" hidden>
+  <div class="head"><button class="x" id="cBack" aria-label="Voltar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button></div>
+  <h2>Antes de pagar</h2>
+  <p class="lead">Confira o resumo. É exatamente isso que vai acontecer.</p>
+  <div class="summary" id="sumBox"></div>
+  <button class="btn" id="payGo">Ir para o Mercado Pago</button>
+  <p class="fine" style="margin-top:12px" id="payNote">O pagamento acontece na página segura do Mercado Pago. Depois, a Jornada abre de novo aqui, já liberada.</p>
+</div>
+
+<div class="modal" id="modal" hidden>
+  <div class="box" id="mbox"></div>
+</div>
+
+<script src="/jornada/astronomy.browser.min.js"></script>
+<script>
+let UNITS = [{"sign": 0, "slug": "aries", "name": "Áries", "subtitle": "o impulso", "element": "fogo", "blurb": "O primeiro signo, o carneiro de ouro e o deus da guerra.", "lessons": [{"id": "aries-1", "kind": "Signo", "title": "O primeiro impulso", "glyph": "♈", "light": "sign:0", "card": null, "doneTitle": "Áries acendeu na roda", "doneText": "O grau zero do zodíaco está aceso. Tudo que vem depois nasce desse impulso.", "steps": [{"type": "teach", "glyph": "♈", "eyebrow": "Áries", "title": "O zodíaco começa aqui", "body": ["O ano astrológico abre quando o Sol entra em Áries, no equinócio de março. É o grau zero da roda.", "Tudo que vem depois nasce desse impulso: a vida querendo existir antes de saber para quê."]}, {"type": "choice", "q": "Em que momento o Sol entra em Áries?", "opts": ["No equinócio de março", "No solstício de dezembro", "No equinócio de setembro", "Na primeira Lua cheia do ano"], "a": 0, "explain": "Equinócio de março: primavera no hemisfério norte, outono aqui no Brasil. O zodíaco tropical guarda a imagem do broto rompendo a terra."}, {"type": "teach", "glyph": "△", "eyebrow": "Elemento e qualidade", "title": "Fogo que começa", "body": ["Áries é fogo, o elemento da vontade e do entusiasmo.", "E é cardinal, a qualidade que abre as estações. Fogo cardinal é a faísca: acende rápido, ainda sem saber se vai durar."]}, {"type": "match", "q": "Ligue cada ideia ao que ela é em Áries", "pairs": [["Elemento", "Fogo"], ["Qualidade", "Cardinal"], ["Regente", "Marte"], ["Parte do corpo", "Cabeça"]], "explain": "Áries governa a cabeça: o carneiro avança de testa, antes de pensar."}, {"type": "choice", "q": "Qual signo fica do outro lado da roda, completando o eixo de Áries?", "opts": ["Libra", "Escorpião", "Capricórnio", "Câncer"], "a": 0, "explain": "Áries e Libra formam o eixo eu e outro. Áries diz: eu sou. Libra responde: eu sou em relação."}, {"type": "reflect", "q": "Onde a gente começa coisas com fogo e larga na metade?", "hint": "Uma frase basta. Sem certo nem errado."}]}, {"id": "aries-2", "kind": "Mito", "title": "O carneiro de ouro", "glyph": "✦", "light": null, "card": {"kind": "Mito", "title": "O Velocino de Ouro", "text": "Néfele envia um carneiro de lã dourada para salvar os filhos de um sacrifício. Hele cai no mar; Frixo chega à Cólquida e oferece o carneiro a Zeus, que o coloca no céu. A força que resgata é a mesma que precisa ser oferecida."}, "doneTitle": "Carta conquistada: O Velocino de Ouro", "doneText": "O mito que deu forma ao primeiro signo entrou na coleção.", "steps": [{"type": "teach", "glyph": "♈", "eyebrow": "O mito por trás do signo", "title": "Duas crianças e uma madrasta", "body": ["Atamante, rei da Beócia, teve dois filhos com Néfele, a deusa das nuvens: Frixo e Hele.", "A segunda esposa do rei, Ino, armou um plano para que o menino fosse sacrificado aos deuses."]}, {"type": "order", "q": "Coloque a história na ordem", "items": ["Ino trama o sacrifício de Frixo", "Néfele envia um carneiro de lã dourada", "Hele cai no mar durante o voo", "Frixo chega à Cólquida", "A lã dourada fica guardada por um dragão"], "explain": "Néfele salva os filhos com um carneiro que voa. Só um chega."}, {"type": "choice", "q": "O mar onde Hele caiu ganhou o nome dela. Qual é?", "opts": ["Helesponto", "Mar Egeu", "Mar Jônico", "Mar Negro"], "a": 0, "explain": "Helesponto quer dizer mar de Hele. Hoje é o estreito de Dardanelos, na Turquia."}, {"type": "teach", "glyph": "✦", "eyebrow": "Do mito ao céu", "title": "Quem salva vira oferenda", "body": ["Ao chegar, Frixo sacrifica o carneiro a Zeus e entrega a lã dourada ao rei da Cólquida. Zeus coloca o animal no céu.", "Repare: a força que resgatou a criança é a mesma que precisa ser oferecida. Áries carrega essa ambivalência desde a origem."]}, {"type": "choice", "q": "Gerações depois, quem parte atrás do velocino de ouro?", "opts": ["Jasão e os Argonautas", "Ulisses", "Perseu", "Teseu"], "a": 0, "explain": "A busca de Jasão começa onde a história de Frixo termina. O impulso de um vira a jornada de outro."}, {"type": "choice", "q": "Na leitura simbólica, o que o carneiro faz por Frixo?", "opts": ["Tira a criança de um destino imposto pelos outros", "Ensina Frixo a lutar", "Vinga a mãe abandonada", "Leva Frixo de volta para casa"], "a": 0, "explain": "Áries é o impulso que arranca a gente de onde a gente seria sacrificado. Ele não pede licença e não garante que todos cheguem."}, {"type": "reflect", "q": "Qual foi o carneiro que tirou a gente de algum lugar? E o que ficou pelo caminho, como Hele?", "hint": "Fica guardado só no diário da jornada."}]}, {"id": "aries-3", "kind": "Planeta", "title": "Marte, o regente", "glyph": "♂", "light": "planet:marte", "card": null, "doneTitle": "Marte acendeu", "doneText": "O regente de Áries está aceso no mapa: o desejo que se move.", "steps": [{"type": "teach", "glyph": "♂", "eyebrow": "Planeta regente", "title": "O desejo que se move", "body": ["Marte rege Áries. No mapa, ele mostra como a gente deseja, se defende e vai atrás.", "Sem Marte, a vontade fica só na intenção."]}, {"type": "choice", "big": true, "q": "Qual destes é o glifo de Marte?", "opts": ["♂", "♀", "♄", "☿"], "a": 0, "explain": "O círculo com a seta: a energia que sai de si em direção ao mundo."}, {"type": "match", "q": "Onde Marte se sente em casa, forte, fraco ou estrangeiro", "pairs": [["Domicílio", "Áries"], ["Exaltação", "Capricórnio"], ["Exílio", "Libra"], ["Queda", "Câncer"]], "explain": "Marte também é domiciliado em Escorpião e exilado em Touro. Libra e Touro são os signos do Vênus."}, {"type": "choice", "q": "Quanto tempo Marte leva, mais ou menos, para dar a volta no zodíaco?", "opts": ["Cerca de 2 anos", "Cerca de 1 mês", "Cerca de 12 anos", "Cerca de 29 anos"], "a": 0, "explain": "São 687 dias. Por isso Marte passa uns dois meses em cada signo, quando não retrograda."}, {"type": "choice", "q": "Quando Marte fica retrógrado, o que acontece de fato no céu?", "opts": ["Visto da Terra, ele parece mudar de direção: é uma ilusão de ótica", "Ele inverte a órbita em torno do Sol", "Ele se aproxima do Sol", "Ele some do céu por alguns meses"], "a": 0, "explain": "A Terra ultrapassa Marte e, desse ponto de vista, ele parece recuar. Na leitura simbólica, é tempo de revisar o desejo, não de abandoná-lo."}, {"type": "reflect", "q": "Quando a gente engole a raiva, para onde vai o nosso Marte?", "hint": "Pode ser o corpo, uma pessoa, um hábito."}]}, {"id": "aries-4", "kind": "Mito", "title": "Ares e Afrodite", "glyph": "♀", "light": null, "card": {"kind": "Mito", "title": "A rede de Hefesto", "text": "Ares e Afrodite se amam escondidos. Hélio, o Sol, vê tudo e conta a Hefesto, que prende os dois numa rede invisível diante dos deuses. É o Sol quem expõe: em Áries, onde ele se exalta, o desejo não fica no escuro."}, "doneTitle": "Carta conquistada: A rede de Hefesto", "doneText": "Marte e o Vênus, o par que busca e o par que atrai, entraram na coleção.", "steps": [{"type": "teach", "glyph": "⚔", "eyebrow": "O deus por trás do planeta", "title": "Um deus, dois destinos", "body": ["Na Grécia, Ares era o deus mais detestado do Olimpo: impulsivo, sangrento, sem estratégia.", "Em Roma, como Marte, virou pai de Rômulo e Remo e protetor da cidade. O mesmo deus muda de valor conforme quem conta a história."]}, {"type": "choice", "q": "Por que os romanos honravam Marte, enquanto os gregos desprezavam Ares?", "opts": ["Porque Marte era o pai mítico dos fundadores de Roma", "Porque Marte nunca perdeu uma batalha", "Porque eram deuses sem nenhuma relação", "Porque Marte era o deus do mar"], "a": 0, "explain": "Para Roma, a guerra fundava. Para os gregos, Ares era a guerra sem medida, e quem a pensava era Atena."}, {"type": "teach", "glyph": "♀", "eyebrow": "A rede invisível", "title": "Presos na luz", "body": ["Afrodite, casada com Hefesto, se apaixona por Ares. O Sol vê os dois juntos e conta tudo ao marido.", "Hefesto forja uma rede invisível e prende os amantes na cama, expostos ao riso dos deuses."]}, {"type": "choice", "q": "Quem revela a Hefesto o caso de Ares e Afrodite?", "opts": ["Hélio, o Sol", "Hermes", "Zeus", "Hera"], "a": 0, "explain": "É o Sol quem expõe. E Áries é o signo onde o Sol se exalta: ali o desejo não consegue ficar escondido."}, {"type": "multi", "q": "No mapa, Marte e o Vênus formam um par. Escolha as 2 frases que descrevem esse par", "opts": ["Marte busca, o Vênus atrai", "Os dois falam de desejo e de encontro", "Marte é o feminino e o Vênus é o masculino", "Os dois regem os mesmos signos"], "correct": [0, 1], "explain": "Marte é o impulso que vai até o outro. O Vênus é o magnetismo que faz o outro vir. Os signos de um são os exílios do outro."}, {"type": "reflect", "q": "O que a gente deseja e ainda esconde da luz?", "hint": "Ninguém além de quem escreve vai ler."}]}, {"id": "aries-5", "kind": "Filosofia", "title": "O fogo de Heráclito", "glyph": "△", "light": null, "card": {"kind": "Filosofia", "title": "Heráclito, o fogo sempre vivo", "text": "Para Heráclito, o cosmos é um fogo que acende e apaga em medida, e ninguém entra duas vezes no mesmo rio. Lido junto de Áries, o começo deixa de ser um ponto no passado e vira algo que se repete a cada instante."}, "doneTitle": "Carta conquistada: Heráclito", "doneText": "A subjornada de Áries está completa. O fogo passa a mão para a terra de Touro.", "steps": [{"type": "teach", "glyph": "△", "eyebrow": "Filosofia", "title": "O fogo sempre vivo", "body": ["Heráclito de Éfeso, uns 500 anos antes de Cristo, olhou para o mundo e viu fogo. Não o fogo que destrói: o fogo que nunca para de se transformar.", "Para ele, o cosmos era um fogo sempre vivo, acendendo e apagando em medida."]}, {"type": "choice", "q": "Qual destas ideias é atribuída a Heráclito?", "opts": ["Ninguém entra duas vezes no mesmo rio", "Penso, logo existo", "Só sei que nada sei", "O ser humano é a medida de todas as coisas"], "a": 0, "explain": "O rio já é outro, e quem entra também. Para Heráclito, a única constante é a mudança."}, {"type": "teach", "glyph": "♈", "eyebrow": "Áries e Heráclito", "title": "Começar não acontece uma vez só", "body": ["A gente costuma pensar Áries como o início, um ponto que ficou lá atrás.", "Com Heráclito, Áries vira outra coisa: o começo que se repete a cada instante. A roda passa de novo pelo grau zero, todo dia, em algum canto da vida."]}, {"type": "match", "q": "Ligue a ideia de Heráclito ao que ela revela em Áries", "pairs": [["Fogo sempre vivo", "Energia que não se esgota"], ["O rio que muda", "Ninguém começa do mesmo lugar"], ["A guerra, pai de todas as coisas", "O conflito também cria"]], "explain": "Heráclito chamava a guerra de pai e rei de todas as coisas. É o lado de Áries que entende o atrito como força criadora."}, {"type": "choice", "q": "Juntando Heráclito e Áries, o impulso ariano é:", "opts": ["Um começo que se renova o tempo todo", "Um ponto de partida que fica no passado", "Uma força que precisa ser contida", "Uma fase da juventude"], "a": 0, "explain": "Áries não é a infância do zodíaco. É a capacidade de começar de novo, que não envelhece."}, {"type": "reflect", "q": "O que a gente precisa recomeçar hoje, sabendo que já não é a mesma pessoa de ontem?", "hint": "Escreva do jeito que vier."}]}]}, {"sign": 1, "slug": "touro", "name": "Touro", "subtitle": "a matéria", "element": "terra", "blurb": "O segundo signo, o touro branco que atravessa o mar e o Vênus que nasce da espuma.", "lessons": [{"id": "touro-1", "kind": "Signo", "title": "A semente fica", "glyph": "♉", "light": "sign:1", "card": null, "doneTitle": "Touro acendeu na roda", "doneText": "O impulso de Áries ganhou corpo. O que nasceu agora quer ficar.", "locked": true}, {"id": "touro-2", "kind": "Mito", "title": "O touro branco", "glyph": "✦", "light": null, "card": {"kind": "Mito", "title": "Europa e o touro branco", "text": "Zeus se transforma num touro branco e manso, Europa sobe nas costas dele e é levada pelo mar até Creta. Anos depois, o filho dela, Minos, recebe outro touro branco e se recusa a devolvê-lo aos deuses. A beleza que encanta também pede para ser oferecida, e é aí que Touro mostra sua sombra."}, "doneTitle": "Carta conquistada: Europa e o touro branco", "doneText": "O mito que deu forma ao segundo signo entrou na coleção.", "locked": true}, {"id": "touro-3", "kind": "Planeta", "title": "O Vênus, o regente", "glyph": "♀", "light": "planet:venus", "card": null, "doneTitle": "O Vênus acendeu", "doneText": "O regente de Touro está aceso no mapa: o valor que se sente no corpo.", "locked": true}, {"id": "touro-4", "kind": "Mito", "title": "Nascida da espuma", "glyph": "♀", "light": null, "card": {"kind": "Mito", "title": "O nascimento de Afrodite", "text": "Cronos corta o sexo de Urano com uma foice e o lança ao mar. Da espuma que se forma em volta nasce Afrodite, e do sangue que cai na terra nascem as Erínias. A mesma ferida gera a fúria e a beleza, e Urano, de quem ela nasceu, fica em queda justamente em Touro."}, "doneTitle": "Carta conquistada: O nascimento de Afrodite", "doneText": "A deusa do regente de Touro entrou na coleção: a beleza que nasce do corte.", "locked": true}, {"id": "touro-5", "kind": "Filosofia", "title": "O jardim de Epicuro", "glyph": "◯", "light": null, "card": {"kind": "Filosofia", "title": "Epicuro, o prazer de pouco", "text": "Epicuro ensinava num jardim em Atenas que o prazer é a ausência de dor no corpo e de perturbação na alma, e que pão, água e amigos bastam para isso. Lido junto de Touro, o prazer deixa de ser acumular e vira saber quando já é suficiente."}, "doneTitle": "Carta conquistada: Epicuro", "doneText": "A subjornada de Touro está completa. A terra que aprendeu a ficar passa a mão para o ar de Gêmeos, que vai querer falar sobre tudo isso.", "locked": true}]}, {"sign": 2, "slug": "gemeos", "name": "Gêmeos", "subtitle": "a palavra", "element": "ar", "blurb": "O terceiro signo, os irmãos que dividem a imortalidade e o deus que inventou a lira no dia em que nasceu.", "lessons": [{"id": "gemeos-1", "kind": "Signo", "title": "O ar que vira palavra", "glyph": "♊", "light": "sign:2", "card": null, "doneTitle": "Gêmeos acendeu na roda", "doneText": "O terceiro signo está aceso. Depois do impulso e da matéria, a vida aprende a nomear.", "locked": true}, {"id": "gemeos-2", "kind": "Mito", "title": "O mortal e o imortal", "glyph": "✦", "light": null, "card": {"kind": "Mito", "title": "Castor e Pólux", "text": "Filhos de Leda, Pólux nasceu de Zeus e era imortal; Castor nasceu de Tíndaro e podia morrer. Quando Castor é morto, Pólux recusa uma eternidade sem o irmão, e Zeus permite que os dois dividam o destino: um dia entre os deuses, outro debaixo da terra. Gêmeos não é a pessoa de duas caras: é a parte imortal que se recusa a abandonar a parte que morre."}, "doneTitle": "Carta conquistada: Castor e Pólux", "doneText": "Os irmãos que dividem a imortalidade entraram na coleção.", "locked": true}, {"id": "gemeos-3", "kind": "Planeta", "title": "Mercúrio, o regente", "glyph": "☿", "light": "planet:merc", "card": null, "doneTitle": "Mercúrio acendeu", "doneText": "O regente de Gêmeos está aceso no mapa: a mente que liga uma coisa à outra.", "locked": true}, {"id": "gemeos-4", "kind": "Mito", "title": "Hermes recém-nascido", "glyph": "☿", "light": null, "card": {"kind": "Mito", "title": "A lira e o gado de Apolo", "text": "No dia em que nasce, Hermes transforma o casco de uma tartaruga na primeira lira e, à noite, rouba o gado de Apolo apagando o rastro. Descoberto, oferece a lira ao irmão, e os dois rivais viram amigos. O deus de Gêmeos começa a vida fazendo de um bicho morto uma voz e de um inimigo um irmão."}, "doneTitle": "Carta conquistada: A lira e o gado de Apolo", "doneText": "Hermes, o deus que atravessa todas as fronteiras, entrou na coleção.", "locked": true}, {"id": "gemeos-5", "kind": "Filosofia", "title": "Sócrates e o diálogo", "glyph": "◯", "light": null, "card": {"kind": "Filosofia", "title": "Sócrates, o pensamento em dois", "text": "Sócrates não escreveu nada: pensava conversando, fazendo perguntas até a certeza do outro se desfazer. Para Platão, o próprio pensamento é um diálogo silencioso da alma consigo mesma. Lido junto de Gêmeos, pensar é sempre ser dois, e a companhia mais difícil é a de dentro."}, "doneTitle": "Carta conquistada: Sócrates", "doneText": "A subjornada de Gêmeos está completa. O ar passa a mão para as águas de Câncer.", "locked": true}]}, {"sign": 3, "slug": "cancer", "name": "Câncer", "subtitle": "a casa", "element": "água", "blurb": "O quarto signo, o caranguejo de Hera e a deusa que muda de fase.", "lessons": [{"id": "cancer-1", "kind": "Signo", "title": "O signo que guarda", "glyph": "♋", "light": "sign:3", "card": null, "doneTitle": "Câncer acendeu na roda", "doneText": "A água entrou na roda pela primeira vez. Depois de nascer, firmar e nomear, a vida aprende a guardar.", "locked": true}, {"id": "cancer-2", "kind": "Mito", "title": "O caranguejo de Hera", "glyph": "✦", "light": null, "card": {"kind": "Mito", "title": "Carcino, o caranguejo", "text": "Hera cria a Hidra no pântano de Lerna para enfrentar Héracles, filho da traição de Zeus. No meio da luta, um caranguejo sai da água e morde o pé do herói, que o mata. Hera coloca o caranguejo no céu: honra quem defendeu a casa dela numa luta perdida."}, "doneTitle": "Carta conquistada: Carcino, o caranguejo", "doneText": "O mito que deu forma a Câncer entrou na coleção.", "locked": true}, {"id": "cancer-3", "kind": "Planeta", "title": "A Lua, a regente", "glyph": "☽", "light": "planet:lua", "card": null, "doneTitle": "A Lua acendeu", "doneText": "A regente de Câncer está acesa no mapa: o que a gente precisa para se sentir em casa.", "locked": true}, {"id": "cancer-4", "kind": "Mito", "title": "Selene e Endimião", "glyph": "☽", "light": null, "card": {"kind": "Mito", "title": "Selene e Endimião", "text": "Selene, a Lua, se apaixona por Endimião, um jovem que Zeus deixa dormir para sempre, sem envelhecer nem morrer, numa caverna do monte Latmos. Toda noite ela desce para olhar quem ama. A deusa que muda de fase ama justamente quem nunca muda."}, "doneTitle": "Carta conquistada: Selene e Endimião", "doneText": "A Lua e o amor que guarda o outro dormindo entraram na coleção.", "locked": true}, {"id": "cancer-5", "kind": "Filosofia", "title": "A casa de Bachelard", "glyph": "◯", "light": null, "card": {"kind": "Filosofia", "title": "Bachelard, a poética da casa", "text": "Para Gaston Bachelard, a casa é o nosso primeiro universo: ela abriga o devaneio e protege quem sonha. Lido junto de Câncer, o lar deixa de ser um endereço e vira uma forma de guardar o mundo por dentro, como a concha que o bicho carrega no próprio corpo."}, "doneTitle": "Carta conquistada: Bachelard", "doneText": "A subjornada de Câncer está completa. A água que guarda passa a mão para o fogo de Leão, que precisa sair de casa para ser visto.", "locked": true}]}, {"sign": 4, "slug": "leao", "name": "Leão", "subtitle": "o coração", "element": "fogo", "blurb": "O quinto signo, a fera de Nemeia e o Sol que ocupa o centro.", "lessons": [{"id": "leao-1", "kind": "Signo", "title": "O coração do verão", "glyph": "♌", "light": "sign:4", "card": null, "doneTitle": "Leão acendeu na roda", "doneText": "O quinto signo está aceso. O fogo que começou em Áries agora quer durar.", "locked": true}, {"id": "leao-2", "kind": "Mito", "title": "O Leão de Nemeia", "glyph": "✦", "light": null, "card": {"kind": "Mito", "title": "O Leão de Nemeia", "text": "No primeiro de seus doze trabalhos, Héracles enfrenta um leão de pele invulnerável e o estrangula com as mãos. Só as garras da própria fera conseguem cortar aquela pele, que vira a armadura do herói. A ferida vencida passa a ser a roupa com que se atravessa o mundo."}, "doneTitle": "Carta conquistada: O Leão de Nemeia", "doneText": "O mito que deu forma ao quinto signo entrou na coleção.", "locked": true}, {"id": "leao-3", "kind": "Planeta", "title": "O Sol, o regente", "glyph": "☉", "light": "planet:sol", "card": null, "doneTitle": "O Sol acendeu", "doneText": "O regente de Leão está aceso no mapa: o centro que dá luz ao resto.", "locked": true}, {"id": "leao-4", "kind": "Mito", "title": "A carruagem de Faetonte", "glyph": "◯", "light": null, "card": {"kind": "Mito", "title": "A carruagem de Faetonte", "text": "Faetonte pede ao pai, Hélio, um dia nas rédeas da carruagem do Sol, só para provar de quem é filho. Perde os cavalos, queima a terra e cai fulminado pelo raio de Zeus. O pai tinha dito que a prova de ser pai era o medo que sentia: Leão quer ser visto, mas no fundo quer ser reconhecido."}, "doneTitle": "Carta conquistada: A carruagem de Faetonte", "doneText": "O Sol e o filho que quis provar a origem entraram na coleção.", "locked": true}, {"id": "leao-5", "kind": "Filosofia", "title": "O leão de Nietzsche", "glyph": "△", "light": null, "card": {"kind": "Filosofia", "title": "Nietzsche, o leão e a criança", "text": "Em Assim falou Zaratustra, o espírito passa por três metamorfoses: o camelo que carrega, o leão que diz eu quero e a criança que brinca. O leão conquista a liberdade, mas só a criança cria. Lido junto de Leão, o quinto signo, o da casa dos filhos e do jogo, o rei só se completa quando volta a brincar."}, "doneTitle": "Carta conquistada: Nietzsche", "doneText": "A subjornada de Leão está completa. O fogo que se sustenta passa a mão para a terra de Virgem.", "locked": true}]}, {"sign": 5, "slug": "virgem", "name": "Virgem", "subtitle": "o discernimento", "element": "terra", "blurb": "O sexto signo, a virgem que segura a espiga e o mensageiro que sabe separar.", "lessons": [{"id": "virgem-1", "kind": "Signo", "title": "A colheita", "glyph": "♍", "light": "sign:5", "card": null, "doneTitle": "Virgem acendeu na roda", "doneText": "O sexto signo está aceso. Depois da colheita, alguém precisa separar o que fica.", "locked": true}, {"id": "virgem-2", "kind": "Mito", "title": "A última a partir", "glyph": "✦", "light": null, "card": {"kind": "Mito", "title": "Astreia e a espiga", "text": "Astreia, a virgem da justiça, viveu entre os humanos na idade de ouro e foi a última dos imortais a deixar a Terra quando a violência tomou conta. No céu, virou a constelação de Virgem, com uma espiga de trigo na mão. Julgar e peneirar o grão nascem do mesmo gesto."}, "doneTitle": "Carta conquistada: Astreia e a espiga", "doneText": "A virgem que levou a justiça para o céu entrou na coleção.", "locked": true}, {"id": "virgem-3", "kind": "Planeta", "title": "Mercúrio, o regente", "glyph": "☿", "light": "planet:merc", "card": null, "doneTitle": "Mercúrio acendeu", "doneText": "O regente de Virgem está aceso no mapa: a mente que analisa e faz.", "locked": true}, {"id": "virgem-4", "kind": "Mito", "title": "Hermes e a filha de Deméter", "glyph": "☾", "light": null, "card": {"kind": "Mito", "title": "A volta de Perséfone", "text": "Hades rapta Perséfone, e Deméter, em luto, deixa a terra sem colheita. Zeus envia Hermes ao mundo dos mortos para trazer a moça de volta, mas ela já comeu a semente da romã. Volta para a mãe, mas não volta a mesma."}, "doneTitle": "Carta conquistada: A volta de Perséfone", "doneText": "O mensageiro que desce e volta entrou na coleção.", "locked": true}, {"id": "virgem-5", "kind": "Filosofia", "title": "O hábito de Aristóteles", "glyph": "◯", "light": null, "card": {"kind": "Filosofia", "title": "Aristóteles, a virtude como hábito", "text": "Para Aristóteles, ninguém nasce justo ou corajoso: a gente se torna justo praticando atos justos, como um citarista se forma tocando cítara. A palavra ética vem de hábito. Lido junto de Virgem, o cuidado com o detalhe deixa de ser mania e vira a forma como um caráter é construído."}, "doneTitle": "Carta conquistada: Aristóteles", "doneText": "A subjornada de Virgem está completa. A terra que separa passa a mão para o ar de Libra, onde a balança espera o encontro.", "locked": true}]}, {"sign": 6, "slug": "libra", "name": "Libra", "subtitle": "o encontro", "element": "ar", "blurb": "O signo do equinócio de setembro, a única balança do céu e o Vênus que pesa o encontro.", "lessons": [{"id": "libra-1", "kind": "Signo", "title": "O ponto de equilíbrio", "glyph": "♎", "light": "sign:6", "card": null, "doneTitle": "Libra acendeu na roda", "doneText": "A metade da roda está acesa. Daqui em diante, o zodíaco olha para o outro.", "locked": true}, {"id": "libra-2", "kind": "Mito", "title": "A balança das estrelas", "glyph": "⚖", "light": null, "card": {"kind": "Mito", "title": "A balança de Dike", "text": "Dike, a Justiça, filha de Zeus e Têmis, viveu entre os humanos na idade de ouro e subiu ao céu quando eles se tornaram violentos. Ao lado da Virgem em que ela se transformou, ficou a balança. Antes de pesar, aquelas estrelas eram as garras do Escorpião."}, "doneTitle": "Carta conquistada: A balança de Dike", "doneText": "O único objeto do zodíaco entrou na coleção.", "locked": true}, {"id": "libra-3", "kind": "Planeta", "title": "O Vênus, o regente", "glyph": "♀", "light": "planet:venus", "card": null, "doneTitle": "O Vênus acendeu", "doneText": "O regente de Libra está aceso no mapa: o encontro que ganha forma.", "locked": true}, {"id": "libra-4", "kind": "Mito", "title": "O pomo da discórdia", "glyph": "◯", "light": null, "card": {"kind": "Mito", "title": "O julgamento de Páris", "text": "Éris, a Discórdia, joga entre as deusas um pomo de ouro destinado à mais bela. Páris precisa escolher entre Hera, Atena e Afrodite, e escolher uma é fazer inimigas das outras duas. Da escolha nasce a guerra de Troia: em Libra, nenhum juízo sai de graça."}, "doneTitle": "Carta conquistada: O julgamento de Páris", "doneText": "O Vênus e a escolha que nunca é neutra entraram na coleção.", "locked": true}, {"id": "libra-5", "kind": "Filosofia", "title": "Martin Buber e o encontro", "glyph": "∞", "light": null, "card": {"kind": "Filosofia", "title": "Martin Buber, o Eu-Tu", "text": "Para Buber, a gente se relaciona com o mundo por duas palavras: Eu-Tu, a do encontro, e Eu-Isso, a do uso. A pessoa só se torna Eu diante de um Tu. Lido junto de Libra, o outro deixa de ser a metade que falta e vira uma presença que não se possui."}, "doneTitle": "Carta conquistada: Martin Buber", "doneText": "A subjornada de Libra está completa. A balança que um dia foi garra devolve a roda ao Escorpião, e o ar passa a mão para a água.", "locked": true}]}, {"sign": 7, "slug": "escorpiao", "name": "Escorpião", "subtitle": "a profundidade", "element": "água", "blurb": "O oitavo signo, o escorpião que derrubou o gigante e o senhor do mundo de baixo.", "lessons": [{"id": "escorpiao-1", "kind": "Signo", "title": "A água funda", "glyph": "♏", "light": "sign:7", "card": null, "doneTitle": "Escorpião acendeu na roda", "doneText": "O oitavo signo está aceso. Ele guarda as portas por onde a vida entra e por onde ela sai.", "locked": true}, {"id": "escorpiao-2", "kind": "Mito", "title": "O gigante e o escorpião", "glyph": "✦", "light": null, "card": {"kind": "Mito", "title": "Órion e o escorpião", "text": "Órion, o caçador gigante, jura matar todos os animais da terra. Gaia responde com um escorpião, e a criatura pequena derruba o gigante. No céu, os dois foram colocados em lados opostos: quando um nasce, o outro se põe."}, "doneTitle": "Carta conquistada: Órion e o escorpião", "doneText": "O mito que deu forma ao oitavo signo entrou na coleção.", "locked": true}, {"id": "escorpiao-3", "kind": "Planeta", "title": "Plutão, o regente", "glyph": "♇", "light": "planet:plutao", "card": null, "doneTitle": "Plutão acendeu", "doneText": "O regente de Escorpião está aceso no mapa: o que se transforma por baixo.", "locked": true}, {"id": "escorpiao-4", "kind": "Mito", "title": "Hades e a romã", "glyph": "♇", "light": null, "card": {"kind": "Mito", "title": "A romã de Hades", "text": "Hades leva Perséfone para o mundo de baixo e, antes que ela volte, oferece sementes de romã. Quem prova o alimento dos mortos fica ligado a eles para sempre. Plutão, o rico, guarda a riqueza que só passa pela morte."}, "doneTitle": "Carta conquistada: A romã de Hades", "doneText": "O senhor do mundo de baixo e a fruta que prende entraram na coleção.", "locked": true}, {"id": "escorpiao-5", "kind": "Filosofia", "title": "Spinoza e as paixões", "glyph": "∞", "light": null, "card": {"kind": "Filosofia", "title": "Spinoza, compreender o afeto", "text": "Para Spinoza, a gente vive em servidão enquanto é arrastada por paixões que não entende. Uma paixão deixa de ser paixão quando a gente forma dela uma ideia clara. Lido junto de Escorpião, o afeto não precisa ser destruído: ele morre como paixão e renasce como força."}, "doneTitle": "Carta conquistada: Spinoza", "doneText": "A subjornada de Escorpião está completa. A água funda passa a mão para o fogo de Sagitário, que vai buscar sentido no que veio do fundo.", "locked": true}]}, {"sign": 8, "slug": "sagitario", "name": "Sagitário", "subtitle": "a flecha", "element": "fogo", "blurb": "O nono signo, o centauro ferido e o deus que escapou de ser devorado.", "lessons": [{"id": "sagitario-1", "kind": "Signo", "title": "O fogo que viaja", "glyph": "♐", "light": "sign:8", "card": null, "doneTitle": "Sagitário acendeu na roda", "doneText": "O nono signo está aceso. O fogo saiu do centro e ganhou estrada.", "locked": true}, {"id": "sagitario-2", "kind": "Mito", "title": "Quíron, o centauro ferido", "glyph": "✦", "light": null, "card": {"kind": "Mito", "title": "Quíron, o centauro ferido", "text": "Filho de Cronos, Quíron foi o mais sábio dos centauros e mestre de heróis e curadores. Atingido por uma flecha envenenada de Héracles, imortal e sem cura, entregou a imortalidade para que Prometeu fosse libertado. A ferida que não fecha virou o caminho até o céu."}, "doneTitle": "Carta conquistada: Quíron, o centauro ferido", "doneText": "O mestre que curava todos e não podia curar a si mesmo entrou na coleção.", "locked": true}, {"id": "sagitario-3", "kind": "Planeta", "title": "Júpiter, o regente", "glyph": "♃", "light": "planet:jupiter", "card": null, "doneTitle": "Júpiter acendeu", "doneText": "O regente de Sagitário está aceso no mapa: o lugar onde a gente cresce e procura sentido.", "locked": true}, {"id": "sagitario-4", "kind": "Mito", "title": "Zeus escondido em Creta", "glyph": "♄", "light": null, "card": {"kind": "Mito", "title": "A pedra no lugar de Zeus", "text": "Cronos engolia os filhos para não ser destronado. Reia esconde Zeus numa caverna de Creta e entrega ao marido uma pedra enrolada em panos. Criado pela cabra Amalteia, Zeus volta, faz o pai devolver os irmãos e derruba os Titãs: a abundância nasce de uma criança que escapou de ser devorada pelo tempo."}, "doneTitle": "Carta conquistada: A pedra no lugar de Zeus", "doneText": "Júpiter e Saturno, o filho que cresce e o pai que devora, entraram na coleção.", "locked": true}, {"id": "sagitario-5", "kind": "Filosofia", "title": "O salto de Kierkegaard", "glyph": "∞", "light": null, "card": {"kind": "Filosofia", "title": "Kierkegaard, o salto", "text": "Para Kierkegaard, a fé não é a conclusão de um raciocínio: é um salto que nenhum sistema garante. E o cavaleiro da fé, depois de tudo, se parece com um homem comum. Lido junto de Sagitário, o horizonte deixa de estar longe e volta para a mesa de casa."}, "doneTitle": "Carta conquistada: Kierkegaard", "doneText": "A subjornada de Sagitário está completa. A flecha encontra o chão de Capricórnio, a casa de Saturno, onde Júpiter cai e Cronos espera.", "locked": true}]}, {"sign": 9, "slug": "capricornio", "name": "Capricórnio", "subtitle": "a forma", "element": "terra", "blurb": "O décimo signo, a cabra-peixe e o deus que devorava o tempo.", "lessons": [{"id": "capricornio-1", "kind": "Signo", "title": "O sol que para", "glyph": "♑", "light": "sign:9", "card": null, "doneTitle": "Capricórnio acendeu na roda", "doneText": "O ponto onde o Sol toca o limite e faz a curva está aceso.", "locked": true}, {"id": "capricornio-2", "kind": "Mito", "title": "A cabra-peixe", "glyph": "✦", "light": null, "card": {"kind": "Mito", "title": "Pã e Tifão", "text": "Fugindo do monstro Tifão, Pã se joga num rio do Egito: o que fica fora da água vira cabra, o que fica dentro vira peixe. Depois, ao lado de Hermes, devolve a Zeus os tendões roubados. A forma que nasceu do medo é a que devolve a estrutura."}, "doneTitle": "Carta conquistada: Pã e Tifão", "doneText": "A cabra que sobe e o peixe que mergulha entraram na coleção.", "locked": true}, {"id": "capricornio-3", "kind": "Planeta", "title": "Saturno, o regente", "glyph": "♄", "light": "planet:saturno", "card": null, "doneTitle": "Saturno acendeu", "doneText": "O regente de Capricórnio está aceso no mapa: o limite que dá forma.", "locked": true}, {"id": "capricornio-4", "kind": "Mito", "title": "Cronos e o tempo", "glyph": "♄", "light": null, "card": {"kind": "Mito", "title": "Cronos devora os filhos", "text": "Avisado de que um filho tomaria seu trono, Cronos engole cada criança que nasce. Quem tenta impedir o futuro acaba virando o tempo que devora. Em Roma, o mesmo deus ganha em dezembro uma festa onde todos os limites se suspendem."}, "doneTitle": "Carta conquistada: Cronos devora os filhos", "doneText": "O deus que tentou segurar o tempo entrou na coleção.", "locked": true}, {"id": "capricornio-5", "kind": "Filosofia", "title": "O tempo de Sêneca", "glyph": "∞", "light": null, "card": {"kind": "Filosofia", "title": "Sêneca, só o tempo é nosso", "text": "Para Sêneca, a vida não é breve: a gente é que a torna breve, entregando o tempo aos pedaços. Lido junto de Capricórnio, a única posse verdadeira deixa de ser o que se acumula e passa a ser o tempo habitado."}, "doneTitle": "Carta conquistada: Sêneca", "doneText": "A subjornada de Capricórnio está completa. A terra que deu forma ao tempo passa a mão para o ar de Aquário.", "locked": true}]}, {"sign": 10, "slug": "aquario", "name": "Aquário", "subtitle": "a rede", "element": "ar", "blurb": "O aguadeiro que não é de água, o fogo roubado e o começo que só nasce entre os outros.", "lessons": [{"id": "aquario-1", "kind": "Signo", "title": "O ar que não se move", "glyph": "♒", "light": "sign:10", "card": null, "doneTitle": "Aquário acendeu na roda", "doneText": "O penúltimo signo está aceso: o ar fixo que sustenta uma ideia até o mundo mudar em volta dela.", "locked": true}, {"id": "aquario-2", "kind": "Mito", "title": "O copeiro dos deuses", "glyph": "✦", "light": null, "card": {"kind": "Mito", "title": "Ganimedes", "text": "Ganimedes, príncipe de Troia, é levado ao Olimpo pela águia de Zeus e passa a servir o néctar aos deuses. O único mortal à mesa é quem distribui a imortalidade. Zeus o coloca no céu como o aguadeiro."}, "doneTitle": "Carta conquistada: Ganimedes", "doneText": "O mito do aguadeiro entrou na coleção: quem veio de fora é quem faz circular.", "locked": true}, {"id": "aquario-3", "kind": "Planeta", "title": "Urano, o regente", "glyph": "♅", "light": "planet:urano", "card": null, "doneTitle": "Urano acendeu", "doneText": "O regente de Aquário está aceso no mapa: o que rompe, inventa e chega sem aviso.", "locked": true}, {"id": "aquario-4", "kind": "Mito", "title": "Prometeu e o fogo", "glyph": "△", "light": null, "card": {"kind": "Mito", "title": "O fogo de Prometeu", "text": "Prometeu rouba o fogo dos deuses escondido num caule de funcho e o entrega aos humanos. Zeus o acorrenta, e uma águia devora o fígado dele todos os dias. Uma águia de Zeus ergueu Ganimedes ao céu; outra castiga quem trouxe o fogo do céu para a terra."}, "doneTitle": "Carta conquistada: O fogo de Prometeu", "doneText": "Urano, Saturno e Prometeu entraram na coleção: o pai derrubado, o filho que estrutura, o Titã que liberta.", "locked": true}, {"id": "aquario-5", "kind": "Filosofia", "title": "Arendt e o começo", "glyph": "♒", "light": null, "card": {"kind": "Filosofia", "title": "Hannah Arendt, a natalidade", "text": "Para Arendt, cada pessoa que nasce traz ao mundo a capacidade de começar algo que nunca existiu. Mas esse começo só acontece entre os outros, na ação e na palavra. Lido junto de Aquário, o novo deixa de ser invenção de um gênio solitário e passa a nascer no meio da gente."}, "doneTitle": "Carta conquistada: Hannah Arendt", "doneText": "A subjornada de Aquário está completa. O ar que circulou entre as pessoas encontra agora as águas de Peixes, onde a rede perde as bordas.", "locked": true}]}, {"sign": 11, "slug": "peixes", "name": "Peixes", "subtitle": "o oceano", "element": "água", "blurb": "O último signo, dois peixes presos por uma corda e o deus que desfaz as amarras.", "lessons": [{"id": "peixes-1", "kind": "Signo", "title": "Onde os rios terminam", "glyph": "♓", "light": "sign:11", "card": null, "doneTitle": "Peixes acendeu na roda", "doneText": "O último signo está aceso. A roda chegou ao oceano onde todas as águas se encontram.", "locked": true}, {"id": "peixes-2", "kind": "Mito", "title": "Os peixes amarrados", "glyph": "✦", "light": null, "card": {"kind": "Mito", "title": "Afrodite, Eros e Tifão", "text": "Fugindo do monstro Tifão, Afrodite e o filho Eros se lançam num rio e se salvam como peixes. No céu, os dois aparecem presos por uma corda, nadando em direções diferentes. A deusa do amor só escapa quando aceita perder a própria forma."}, "doneTitle": "Carta conquistada: Afrodite, Eros e Tifão", "doneText": "O mito dos dois peixes presos pela corda entrou na coleção.", "locked": true}, {"id": "peixes-3", "kind": "Planeta", "title": "Netuno, o regente", "glyph": "♆", "light": "planet:netuno", "card": null, "doneTitle": "Netuno acendeu", "doneText": "O regente de Peixes está aceso no mapa: o que dissolve, o que inspira, o que engana.", "locked": true}, {"id": "peixes-4", "kind": "Mito", "title": "Dioniso e os piratas", "glyph": "∞", "light": null, "card": {"kind": "Mito", "title": "O deus que nenhuma corda prende", "text": "Piratas sequestram um jovem na praia e tentam amarrá-lo, mas as cordas caem sozinhas. O vinho escorre pelo navio, a videira sobe pelo mastro e os homens que não reconheceram o deus pulam no mar e viram golfinhos. Só o timoneiro, que reconheceu Dioniso, é poupado."}, "doneTitle": "Carta conquistada: Dioniso e os piratas", "doneText": "O deus da dissolução, irmão de espírito de Netuno, entrou na coleção.", "locked": true}, {"id": "peixes-5", "kind": "Filosofia", "title": "O véu de Schopenhauer", "glyph": "∞", "light": null, "card": {"kind": "Filosofia", "title": "Schopenhauer e a compaixão", "text": "Para Schopenhauer, a separação entre os seres é um véu, o véu de Maya, e por trás dele uma mesma vontade sofre em tudo que vive. Quando o véu se rasga, nasce a compaixão: a dor do outro deixa de ser alheia. Lido junto de Peixes, o planeta que engana e o que cura são a mesma água."}, "doneTitle": "Carta conquistada: Schopenhauer", "doneText": "A primeira jornada está completa. A roda atravessou os doze signos e chegou ao oceano, onde o eu se desfaz. Do outro lado do equinócio, Áries acende de novo. E ninguém entra duas vezes no mesmo rio.", "locked": true}]}];
+const T = "︎";
+const GL = "♈♉♊♋♌♍♎♏♐♑♒♓☉☽☾☿♀♂♃♄♅♆♇⚔⚖";
+const g = s => [...String(s)].map(c => GL.includes(c) ? c+T : c).join("");
+const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const eg = s => esc(g(s));
+
+let ASC = 12;
+const POINTS = {
+  asc:{lon:12,g:"AC",name:"Ascendente"}, sol:{lon:135,g:"☉",name:"Sol"}, lua:{lon:352,g:"☽",name:"Lua"},
+  merc:{lon:153,g:"☿",name:"Mercúrio"}, venus:{lon:188,g:"♀",name:"Vênus"}, marte:{lon:282,g:"♂",name:"Marte"},
+  jupiter:{lon:78,g:"♃",name:"Júpiter"}, saturno:{lon:58,g:"♄",name:"Saturno"}, urano:{lon:324,g:"♅",name:"Urano"},
+  netuno:{lon:302,g:"♆",name:"Netuno"}, plutao:{lon:252,g:"♇",name:"Plutão"}
+};
+const SIGNS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"];
+const ELCOL = {fogo:"var(--pessego)", terra:"var(--menta)", ar:"var(--ceu)", agua:"var(--lilas)", "água":"var(--lilas)"};
+const SIGN_EL = ["fogo","terra","ar","agua","fogo","terra","ar","agua","fogo","terra","ar","agua"];
+const TOTAL_LIGHTS = 12 + Object.keys(POINTS).length;
+
+/* ---------- jornadas 2 e 3 ---------- */
+const MAPA1 = {
+  id:"mapa-1", kind:"No mapa", title:"O Ascendente e o regente", glyph:"AC", light:"planet:asc", card:null,
+  doneTitle:"O Ascendente acendeu",
+  doneText:"No mapa de cada pessoa, este é o primeiro passo da segunda jornada: o signo que nascia no horizonte e o planeta que conduz a história.",
+  steps:[
+    {type:"teach", glyph:"AC", chart:true, eyebrow:"Mapa de exemplo", title:"Agora o símbolo vira espelho",
+     body:["Este é um mapa de exemplo, com Ascendente em Áries. Na versão final, aqui aparece o mapa natal de quem está jogando.","A partir de agora, cada resposta é sobre este céu."]},
+    {type:"choice", chart:true, q:"Com Ascendente em Áries, qual planeta rege este mapa?",
+     opts:["Marte","Sol","Vênus","Lua"], a:0,
+     explain:"O regente do mapa é o regente do signo ascendente. Marte vira o fio condutor dessa vida."},
+    {type:"choice", chart:true, q:"Marte está em Capricórnio. Para Marte, Capricórnio é signo de:",
+     opts:["Exaltação","Exílio","Queda","Domicílio"], a:0,
+     explain:"Em Capricórnio, o fogo de Marte ganha estrutura e paciência. É a força que sabe esperar."},
+    {type:"choice", q:"E ele está na casa 10. Do que fala a casa 10?",
+     opts:["Vocação, carreira e lugar no mundo","Casa e família","Amizades e grupos","Dinheiro próprio"], a:0,
+     explain:"A casa 10 é o ponto mais alto do mapa: o que a gente constrói à vista de todos."},
+    {type:"multi", q:"Monte a leitura: escolha as 3 peças que descrevem este Marte",
+     opts:["Força disciplinada e estratégica","Ambição ligada à vocação","Coragem que aparece em público","Raiva que explode sem controle","Desejo voltado para a vida doméstica"], correct:[0,1,2],
+     explain:"Regente do mapa, exaltado e no topo: uma vida que se afirma pelo trabalho que faz no mundo."},
+    {type:"reflect", q:"Onde a gente gasta a nossa coragem?",
+     hint:"Na versão final, esta pergunta muda conforme a casa do regente de quem joga."}
+  ]
+};
+const DAILY = {
+  id:"hoje", kind:"Hoje", title:"O Sol em Libra", glyph:"☉", light:null, card:null,
+  doneTitle:"Lição do dia feita",
+  doneText:"Amanhã a lição relâmpago muda com a energia astrológica do dia.",
+  steps:[
+    {type:"teach", glyph:"♎", eyebrow:"Energia astrológica do dia · 17 de outubro", title:"O Sol do outro lado da roda",
+     body:["Hoje o Sol atravessa Libra, o signo oposto a Áries.","Na roda, os dois se olham de frente: o eu que se lança e o outro que pede medida."]},
+    {type:"choice", q:"Com o Sol em Libra, qual eixo do zodíaco fica aceso?",
+     opts:["Áries e Libra: eu e o outro","Touro e Escorpião: posse e entrega","Câncer e Capricórnio: casa e mundo","Gêmeos e Sagitário: dado e sentido"], a:0,
+     explain:"O Sol num signo sempre acende o oposto como sombra. Em Libra, a pergunta de Áries volta pelo espelho do outro."},
+    {type:"reflect", q:"Em qual relação a gente está cedendo demais, ou impondo demais, nesta semana?", hint:"Uma linha basta."}
+  ]
+};
+const J2 = [
+  ["O Ascendente e o regente","A porta de entrada do mapa e o planeta que conduz a história", null],
+  ["O Sol","O centro: o que a gente veio iluminar"],
+  ["A Lua","O lugar de onde a gente se nutre e para onde volta"],
+  ["Mercúrio","O jeito de pensar, perguntar e traduzir"],
+  ["O Vênus","O que a gente acha bonito e como ama"],
+  ["Marte","Como a gente deseja e vai atrás"],
+  ["Júpiter e Saturno","Onde a vida expande e onde ela pede forma"],
+  ["Urano, Netuno e Plutão","Os planetas de geração e o que mexem em cada um"],
+  ["As doze casas","Os cenários da vida onde os planetas atuam"],
+  ["Os aspectos","As conversas e os conflitos entre os planetas"],
+  ["Os nodos lunares","O que a gente traz e para onde caminha"],
+  ["A síntese","Ler o mapa inteiro como uma história"]
+];
+const J3 = [
+  ["A energia astrológica do dia","Uma lição relâmpago por dia, ligada à Lua de hoje no próprio mapa", null],
+  ["A Lua e suas fases","O ritmo de 29 dias e meio na vida de cada um"],
+  ["Mercúrio retrógrado","O que a ilusão de ótica pede para revisar"],
+  ["Os ciclos do Vênus","Estrela da manhã, estrela da tarde"],
+  ["Marte em trânsito","Onde o impulso acende a cada dois anos"],
+  ["Júpiter, um ano por signo","A casa do mapa que ganha fôlego"],
+  ["O retorno de Saturno","A travessia dos 29 anos"],
+  ["Os lentos","Urano, Netuno e Plutão passando pelo mapa"],
+  ["Eclipses","Os portais de cada semestre"],
+  ["A revolução solar","O mapa do aniversário e o ano que começa"],
+  ["Trânsitos no próprio mapa","Ler a energia astrológica sobre o mapa natal"],
+  ["O ano astrológico","Juntar tudo numa leitura do ano"]
+];
+
+
+/* ---------- mapa natal real ---------- */
+const SIGN_NAMES=["Áries","Touro","Gêmeos","Câncer","Leão","Virgem","Libra","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+const ALIAS={"Lisbon":"Lisboa","New York City":"Nova York","London":"Londres","Rome":"Roma","Madrid":"Madri","Tokyo":"Tóquio","Munich":"Munique","Milan":"Milão","Geneva":"Genebra","Brussels":"Bruxelas","Vienna":"Viena","Berlin":"Berlim","Warsaw":"Varsóvia","Paris":"Paris","Buenos Aires":"Buenos Aires","Porto":"Porto"};
+const norm=s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
+let CITY=[], cityReady=null;
+const REG=(()=>{try{return new Intl.DisplayNames(["pt-BR"],{type:"region"})}catch(e){return null}})();
+function loadCities(){
+  if(cityReady) return cityReady;
+  cityReady=fetch("/musica/cidades.json").then(r=>r.json()).then(d=>{
+    d.br.forEach(c=>CITY.push({label:c[0]+", "+c[1],n:norm(c[0]),lat:c[2],lon:c[3],tz:d.tz[c[4]],rank:1e9+(c[5]||0)}));
+    d.w.forEach(c=>{const pt=ALIAS[c[0]];const country=REG?REG.of(c[1]):c[1];
+      CITY.push({label:(pt||c[0])+(c[6]?", "+c[6]:"")+", "+country,n:norm(c[0])+(pt?" | "+norm(pt):""),lat:c[2],lon:c[3],tz:d.tz[c[4]],rank:c[5]+(pt?5e8:0)})});
+    return CITY;
+  }).catch(e=>{ cityReady=null; throw e; });
+  return cityReady;
+}
+function searchCities(q){
+  q=norm(q); if(q.length<2) return [];
+  const out=[];
+  for(const c of CITY){
+    const parts=c.n.split(" | "); let sc=-1;
+    for(const s of parts){ if(s===q) sc=c.rank>=1e5?4:3; else if(s.startsWith(q)) sc=Math.max(sc,3); else if((" "+s).includes(" "+q)) sc=Math.max(sc,2); }
+    if(sc<0 && norm(c.label).startsWith(q)) sc=1;
+    if(sc>=0) out.push([sc,c]);
+  }
+  out.sort((a,b)=>b[0]-a[0]||b[1].rank-a[1].rank||a[1].label.localeCompare(b[1].label));
+  return out.slice(0,7).map(x=>x[1]);
+}
+const PKEYS={merc:"Mercury",venus:"Venus",marte:"Mars",jupiter:"Jupiter",saturno:"Saturn",urano:"Uranus",netuno:"Neptune",plutao:"Pluto"};
+function tzOffsetMin(utcMs, zone){
+  const p = new Intl.DateTimeFormat("en-US",{timeZone:zone,hourCycle:"h23",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit"}).formatToParts(new Date(utcMs));
+  const v = t => +p.find(x=>x.type===t).value;
+  return (Date.UTC(v("year"),v("month")-1,v("day"),v("hour"),v("minute"),v("second")) - utcMs)/60000;
+}
+function localToUTC(y,m,d,h,mi,zone){
+  const wall = Date.UTC(y,m-1,d,h,mi);
+  let utc = wall - tzOffsetMin(wall,zone)*60000;
+  utc = wall - tzOffsetMin(utc,zone)*60000;
+  return new Date(utc);
+}
+function dstInfo(y,m,d,h,mi,zone){
+  const utc = localToUTC(y,m,d,h,mi,zone).getTime();
+  const off = tzOffsetMin(utc,zone);
+  const std = tzOffsetMin(Date.UTC(y,6,1,15),zone);
+  const back = new Date(utc + off*60000);
+  const gap = back.getUTCHours()!==h || back.getUTCMinutes()!==mi;
+  const on = off > std;
+  let from=null, to=null;
+  if(on){
+    let t=utc; while(tzOffsetMin(t-864e5,zone)===off) t-=864e5; from=new Date(t);
+    t=utc; while(tzOffsetMin(t+864e5,zone)===off) t+=864e5; to=new Date(t+864e5);
+  }
+  return {on, gap, off, std, from, to};
+}
+const dmy = dt => dt.toLocaleDateString("pt-BR",{timeZone:"UTC",day:"2-digit",month:"2-digit",year:"numeric"});
+const utcLabel = o => "UTC" + (o<0?"−":"+") + Math.abs(o/60);
+function dstHTML(d){
+  const c = d.cityData; if(!c || !d.birth) return "";
+  const cn = String(c[0]).split(",")[0];
+  const [y,m,dd]=d.birth.split("-").map(Number);
+  const tm = (d.unknownTime||!d.time) ? "12:00" : d.time;
+  const [h,mi]=tm.split(":").map(Number);
+  const k = dstInfo(y,m,dd,h,mi,c[3]);
+  if(k.gap) return `<div class="dst warn"><b>Esse horário não existiu no relógio.</b> Na noite em que o horário de verão começou, o relógio de ${esc(cn)} pulou uma hora. Vale conferir a certidão.</div>`;
+  if(k.on){
+    const sh = String((h-1+24)%24).padStart(2,"0")+":"+String(mi).padStart(2,"0");
+    return `<div class="dst on"><b>Horário de verão em vigor.</b> Em ${dmy(new Date(Date.UTC(y,m-1,dd)))}, ${esc(cn)} estava no horário de verão, de ${dmy(k.from)} a ${dmy(k.to)} (${utcLabel(k.off)}). ${d.unknownTime||!d.time?"O cálculo já leva isso em conta.":`O cálculo já desconta a hora: ${esc(tm)} no relógio equivale a ${sh} no horário padrão.`}</div>`;
+  }
+  return `<div class="dst off"><b>Sem horário de verão nessa data.</b> ${esc(cn)} estava no horário padrão (${utcLabel(k.off)}).</div>`;
+}
+function computeChart(u){
+  const c = u.cityData;
+  const [y,m,d] = u.birth.split("-").map(Number);
+  const [h,mi] = (u.unknownTime ? "12:00" : u.time).split(":").map(Number);
+  const date = localToUTC(y,m,d,h,mi,c[3]);
+  const A = window.Astronomy;
+  const pts = {sol:A.SunPosition(date).elon, lua:A.EclipticGeoMoon(date).lon};
+  for(const k in PKEYS) pts[k] = A.Ecliptic(A.GeoVector(A.Body[PKEYS[k]], date, true)).elon;
+  const ramc = ((A.SiderealTime(date)*15 + c[2]) % 360 + 360) % 360;
+  const T2 = (date - Date.UTC(2000,0,1,12)) / (36525*864e5);
+  const e = (23.4393 - 0.0130*T2)*Math.PI/180, rr = ramc*Math.PI/180, ph = c[1]*Math.PI/180;
+  let asc = Math.atan2(Math.cos(rr), -(Math.sin(rr)*Math.cos(e) + Math.tan(ph)*Math.sin(e)))*180/Math.PI;
+  asc = (asc+360)%360;
+  return {asc, hasAsc:!u.unknownTime, pts};
+}
+const signOf = lon => Math.floor(((lon%360)+360)%360/30);
+const degOf = lon => Math.floor(((lon%360)+360)%360%30);
+const PN = {sol:["Sol","o Sol"], lua:["Lua","a Lua"], merc:["Mercúrio","Mercúrio"], venus:["Vênus","o Vênus"], marte:["Marte","Marte"], jupiter:["Júpiter","Júpiter"], saturno:["Saturno","Saturno"]};
+const cap1 = s => s.charAt(0).toUpperCase()+s.slice(1);
+const RULER = ["marte","venus","merc","lua","sol","merc","venus","marte","jupiter","saturno","saturno","jupiter"];
+const MODERN = {7:"Plutão", 10:"Urano", 11:"Netuno"};
+const DOM = {sol:[4],lua:[3],merc:[2,5],venus:[1,6],marte:[0,7],jupiter:[8,11],saturno:[9,10]};
+const EXA = {sol:0,lua:1,merc:5,venus:11,marte:9,jupiter:3,saturno:6};
+function dignity(k, sg){
+  if(DOM[k].includes(sg)) return "Domicílio";
+  if(EXA[k]===sg) return "Exaltação";
+  if(DOM[k].map(x=>(x+6)%12).includes(sg)) return "Exílio";
+  if((EXA[k]+6)%12===sg) return "Queda";
+  return "Nenhuma: ele é peregrino";
+}
+const DIG_TXT = {
+  "Domicílio":"Em domicílio, o planeta está em casa: expressa a própria natureza sem precisar traduzir nada.",
+  "Exaltação":"Em exaltação, o planeta é recebido como hóspede de honra: a força dele aparece no auge.",
+  "Exílio":"Em exílio, o planeta está longe de casa e fala a própria natureza numa língua estrangeira. Isso cansa, e também vira talento.",
+  "Queda":"Em queda, o planeta perde altura: o que nele é força pede mais consciência para aparecer.",
+  "Nenhuma: ele é peregrino":"Sem dignidade nem debilidade, o planeta é peregrino: o tom dele depende das relações que faz no resto do mapa."
+};
+const RMEAN = {sol:"o centro, aquilo que a gente veio iluminar", lua:"a nutrição, a memória e o lugar para onde a gente volta", merc:"o pensamento, a palavra e a troca", venus:"o afeto, a beleza e aquilo que a gente valoriza", marte:"a vontade, a coragem e o jeito de ir atrás", jupiter:"a expansão, a fé e a busca de sentido", saturno:"o limite, o tempo e a forma que dá estrutura"};
+const STONE = ["começo e impulso","permanência e corpo","curiosidade e troca","cuidado e memória","brilho e criação","precisão e ofício","encontro e medida","profundidade e intensidade","busca e horizonte","estrutura e ambição paciente","liberdade e coletivo","dissolução e compaixão"];
+const HOUSES = ["","o corpo, a presença e o jeito de começar","o dinheiro próprio, os recursos e o valor de si","a fala, os irmãos e o entorno próximo","a casa, a família e as raízes","a criação, o prazer, os filhos e o romance","o trabalho de todo dia, a rotina e a saúde","as parcerias, o casamento e o outro","a intimidade, as crises e o que é compartilhado","as viagens, os estudos e a busca de sentido","a vocação, a carreira e o lugar no mundo","os amigos, os grupos e os projetos de futuro","o inconsciente, o retiro e o que fica escondido"];
+const HOUSE_Q = ["","Como a gente chega nos lugares antes de dizer qualquer palavra?","O que a gente valoriza de verdade, além do que custa?","Que conversa a gente está adiando?","O que da família a gente carrega sem ter escolhido?","O que a gente cria só pelo prazer de criar?","Que hábito sustenta, e que hábito pesa, no nosso dia?","O que a gente procura no outro e ainda não reconhece em si?","O que a gente precisaria deixar morrer para mudar?","Que pergunta grande está guiando a gente agora?","O que a gente quer construir à vista de todos?","Com quem a gente sonha o futuro?","O que a gente faz quando ninguém está vendo?"];
+function buildMapa1(){
+  const C=S.chart, u=S.user; if(!C||!C.hasAsc) return null;
+  const as=signOf(C.asc), rk=RULER[as], rs=signOf(C.pts[rk]), house=((rs-as+12)%12)+1;
+  const RN=PN[rk][0], RA=cap1(PN[rk][1]);
+  const others = shuffle(Object.keys(PN).filter(k=>k!==rk)).slice(0,3).map(k=>PN[k][0]);
+  const dg=dignity(rk,rs);
+  const digOpts=[dg, ...["Domicílio","Exaltação","Exílio","Queda","Nenhuma: ele é peregrino"].filter(x=>x!==dg).slice(0,3)];
+  const hOthers=shuffle([1,2,3,4,5,6,7,8,9,10,11,12].filter(n=>n!==house)).slice(0,3).map(n=>cap1(HOUSES[n]));
+  const modern = MODERN[as] ? ` Na astrologia moderna, ${MODERN[as]} divide essa regência.` : "";
+  const first = (u.name||"").trim().split(" ")[0];
+  return {
+    id:"mapa-1", kind:"No mapa", title:"O Ascendente e o regente", glyph:"AC", light:"planet:asc", card:null,
+    doneTitle:"O Ascendente acendeu",
+    doneText:`Ascendente em ${SIGN_NAMES[as]}, regido por ${PN[rk][1]} em ${SIGN_NAMES[rs]}, na casa ${house}. Esse é o fio que a segunda jornada vai seguir.`,
+    steps:[
+      {type:"teach", chart:true, eyebrow:`O mapa de ${first}`, title:"Agora o símbolo vira espelho",
+       body:[`Este é o céu do instante do nascimento, visto de ${u.city}.`, `O Ascendente é o signo que nascia no horizonte leste naquele minuto: ${SIGN_NAMES[as]}, a ${degOf(C.asc)} graus. É a porta de entrada do mapa.`]},
+      {type:"choice", chart:true, q:`Com Ascendente em ${SIGN_NAMES[as]}, qual planeta rege este mapa?`, opts:[RN,...others], a:0,
+       explain:`O regente do mapa é o regente do signo ascendente. ${RA} vira o fio condutor dessa vida.${modern}`},
+      {type:"choice", q:`${RA} está em ${SIGN_NAMES[rs]}. Para ${PN[rk][1]}, ${SIGN_NAMES[rs]} é signo de:`, opts:digOpts, a:0, explain:DIG_TXT[dg]},
+      {type:"choice", q:`E está na casa ${house}. Do que fala a casa ${house}?`, opts:[cap1(HOUSES[house]),...hOthers], a:0,
+       explain:`A casa ${house} é o terreno onde o regente trabalha. É ali que a história desse mapa pede para acontecer.`},
+      {type:"teach", glyph:"AC", eyebrow:"A leitura", title:`${RA} em ${SIGN_NAMES[rs]}, casa ${house}`,
+       body:[`No mapa, ${PN[rk][1]} fala de ${RMEAN[rk]}. Em ${SIGN_NAMES[rs]}, ganha o tom de ${STONE[rs]}.`, `Como regente, ele leva o Ascendente em ${SIGN_NAMES[as]} até a casa ${house}: ${HOUSES[house]}. O jeito de chegar no mundo encontra ali o seu destino.`]},
+      {type:"reflect", q:HOUSE_Q[house], hint:"Esta pergunta nasce da casa onde está o regente deste mapa."}
+    ]
+  };
+}
+
+/* ---------- entrada ---------- */
+let ob = {step:0, d:{}};
+const OSTEPS = ["intro","name","birth","city","time","email","calc"];
+function startOnb(edit){
+  ob = {step: edit?1:0, edit:!!edit, d: Object.assign({optin:true}, JSON.parse(JSON.stringify(S.user||{})))};
+  show("onb"); renderOnb();
+}
+function renderOnb(){
+  const st = OSTEPS[ob.step], d=ob.d, box=$("ostage");
+  $("odots").innerHTML = OSTEPS.slice(1,6).map((_,i)=>`<i class="${i<ob.step?"on":""}"></i>`).join("");
+  $("odots").style.visibility = (st==="intro"||st==="calc")?"hidden":"visible";
+  $("oBack").style.visibility = (ob.step>(ob.edit?1:0) && st!=="calc")?"visible":"hidden";
+  const next=$("oNext"), alt=$("oAlt"); alt.hidden=true; next.hidden=false; next.disabled=false;
+  const err = `<p class="oerr" id="oerr"></p>`;
+  if(st==="intro"){
+    box.innerHTML = `<div class="hero"><div class="logo">Jornada</div><div class="spin">${wheelSVG(null,true)}</div><div class="tagline">Astrologia, mito e filosofia. Um passo por dia, a partir do próprio mapa.</div><div class="chips"><span>12 signos</span><span>36 cartas</span><span>Mapa natal</span></div></div>`;
+    next.textContent="Começar"; alt.hidden=false; alt.textContent="Já tenho uma conta";
+    alt.onclick=loginModal;
+    next.onclick=()=>{ ob.step++; renderOnb(); };
+  }
+  if(st==="name"){
+    box.innerHTML = `<h2>Primeiro, um nome</h2><p class="sub">É assim que a jornada vai chamar.</p><input class="field" id="f1" type="text" autocomplete="given-name" placeholder="Nome" value="${esc(d.name||"")}">${err}`;
+    next.textContent="Continuar";
+    next.onclick=()=>{ const v=$("f1").value.trim(); if(v.length<2) return oerr("Escreva um nome com pelo menos 2 letras."); d.name=v; ob.step++; renderOnb(); };
+  }
+  if(st==="birth"){
+    box.innerHTML = `<h2>A data de nascimento</h2><p class="sub">O dia em que o mapa foi desenhado.</p><input class="field" id="f1" type="date" min="1920-01-01" max="${today()}" value="${esc(d.birth||"")}">${err}`;
+    next.textContent="Continuar";
+    next.onclick=()=>{ const v=$("f1").value; if(!v) return oerr("Escolha a data de nascimento."); if(v<"1920-01-01"||v>today()) return oerr("Confira o ano: a data precisa estar entre 1920 e hoje."); d.birth=v; ob.step++; renderOnb(); };
+  }
+  if(st==="time"){
+    box.innerHTML = `<h2>A hora de nascimento</h2><p class="sub">Ela define o Ascendente e as casas. Costuma estar na certidão de nascimento. O horário de verão de cada cidade, desde 1931, entra na conta sozinho.</p>
+      <input class="field" id="f1" type="time" value="${esc(d.time||"")}" ${d.unknownTime?"disabled":""}>
+      <label class="check-row"><input type="checkbox" id="f2" ${d.unknownTime?"checked":""}><span>Não sei a hora agora<small>Dá para começar assim e completar depois. Sem a hora, o Ascendente fica de fora.</small></span></label><div id="dstBox">${dstHTML(d)}</div>${err}`;
+    const upd=()=>{ $("dstBox").innerHTML = dstHTML(Object.assign({},d,{time:$("f1").value, unknownTime:$("f2").checked})); };
+    $("f1").oninput=upd; $("f1").onchange=upd;
+    $("f2").onchange=e=>{ $("f1").disabled=e.target.checked; upd(); };
+    next.textContent="Continuar";
+    next.onclick=()=>{ const unk=$("f2").checked, v=$("f1").value; if(!unk && !v) return oerr("Escolha a hora ou marque que não sabe agora."); d.unknownTime=unk; d.time=unk?"":v; ob.step += ob.edit ? 2 : 1; renderOnb(); };
+  }
+  if(st==="city"){
+    box.innerHTML = `<h2>A cidade de nascimento</h2><p class="sub">O céu muda conforme o lugar de onde se olha. Vale qualquer cidade do Brasil e as maiores do mundo.</p><input class="field" id="f1" autocomplete="off" autocapitalize="words" placeholder="Comece a digitar" value="${esc(d.city||"")}"><div class="cres" id="cres"></div>${err}`;
+    next.textContent="Continuar";
+    let picked = d.cityData ? {label:d.city, lat:d.cityData[1], lon:d.cityData[2], tz:d.cityData[3]} : null;
+    const f1=$("f1"), cres=$("cres");
+    const draw=()=>{ const q=f1.value; if(picked && picked.label===q){ cres.innerHTML=""; return; }
+      loadCities().then(()=>{ const r=searchCities(q); cres.innerHTML = r.map((c,i)=>`<button type="button" data-i="${i}">${esc(c.label.split(", ")[0])}<small>${esc(c.label.split(", ").slice(1).join(", "))}</small></button>`).join("");
+        cres.querySelectorAll("button").forEach(b=>b.onclick=()=>{ picked=r[+b.dataset.i]; f1.value=picked.label; cres.innerHTML=""; oerr(""); }); })
+      .catch(()=>oerr("A lista de cidades não carregou. Confira a internet e digite de novo.")); };
+    f1.oninput=draw;
+    next.onclick=()=>{ if(!picked || picked.label!==f1.value) return oerr("Toque na cidade certa na lista que aparece embaixo."); d.city=picked.label; d.cityData=[picked.label,picked.lat,picked.lon,picked.tz]; ob.step++; renderOnb(); };
+  }
+  if(st==="email"){
+    box.innerHTML = `<h2>Onde guardar a jornada</h2><p class="sub">Sem senha. Para entrar de outro celular, chega um link neste e-mail.</p><input class="field" id="f1" type="email" autocomplete="email" inputmode="email" placeholder="nome@email.com" value="${esc(d.email||"")}">
+      <label class="check-row"><input type="checkbox" id="f2" ${d.optin!==false?"checked":""}><span>Quero receber e-mails da Jornada<small>Novidades, lembretes e conteúdos do @eusouodu. Dá para sair quando quiser.</small></span></label>${err}
+      <p class="ohint">Os dados de nascimento servem só para calcular o mapa. Ao continuar, a gente concorda com os <a href="/jornada/termos.html">Termos de uso</a> e a <a href="/jornada/privacidade.html">Política de privacidade</a>.</p>`;
+    next.textContent = ob.edit ? "Recalcular o mapa" : "Calcular o meu mapa";
+    next.onclick=async()=>{ const v=$("f1").value.trim().toLowerCase(); if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return oerr("Confira o e-mail: falta algo como nome@email.com."); d.email=v; d.optin=$("f2").checked;
+      next.disabled=true; next.textContent="Guardando…";
+      try{
+        const r = await api("entrar",{method:"POST", body:{email:v, perfil:perfilOut(d), progresso:progOut()}}, false);
+        if(r.existe){ box.innerHTML=`<h2>Esse e-mail já tem uma jornada</h2><p class="sub">Para proteger o progresso de quem já começou, a entrada é pelo link que acabou de ir para ${esc(v)}. Abra o e-mail neste celular e toque em Abrir a jornada.</p><p class="ohint">Não chegou? Confira o spam ou a aba Promoções. O link vale por 48 horas.</p>`; next.disabled=false; next.textContent="Usar outro e-mail"; next.onclick=()=>renderOnb(); return; }
+        setToken(r.sessao); applyServer(r);
+        ob.step++; renderOnb();
+      }catch(e){ next.disabled=false; next.textContent="Calcular o meu mapa"; oerr(e.message||"Não deu certo agora. Tente de novo."); }
+    };
+  }
+  if(st==="calc"){
+    next.hidden=true;
+    const [y,m,dd]=d.birth.split("-");
+    box.innerHTML = `<div class="calc"><div class="wheelspin">${wheelSVG(null,false)}</div><h2>Calculando o céu</h2><p>${dd}/${m}/${y}${d.unknownTime?"":" às "+esc(d.time)}, ${esc(d.city)}</p></div>`;
+    let chart=null, fail=false;
+    try{ chart = computeChart(d); }catch(e){ fail=true; }
+    setTimeout(()=>{
+      if(fail || !chart){ box.innerHTML = `<h2>O cálculo não carregou</h2><p class="sub">A biblioteca que calcula as posições dos planetas não abriu. Confira a conexão e tente de novo.</p>`; next.hidden=false; next.textContent="Tentar de novo"; next.onclick=()=>renderOnb(); return; }
+      S.user = {name:d.name, birth:d.birth, time:d.time, unknownTime:d.unknownTime, city:d.city, cityData:d.cityData, email:d.email||(S.user&&S.user.email), optin:d.optin};
+      S.chart = chart; save();
+      if(ob.edit) api("sync",{method:"POST", body:{perfil:perfilOut(S.user)}}).catch(()=>{});
+      revealChart();
+    }, 1600);
+  }
+}
+function oerr(t){ const e=$("oerr"); if(e) e.textContent=t; }
+function revealChart(){
+  const C=S.chart, u=S.user, box=$("ostage"), first=u.name.split(" ")[0];
+  const sun=signOf(C.pts.sol), moon=signOf(C.pts.lua);
+  const t=(lab,gl,txt,deg,col)=>`<div class="t" style="background:${col}"><span class="tg">${g(gl)}</span><span><small>${lab}</small><b>${txt}</b><span class="deg">${deg}</span></span></div>`;
+  box.innerHTML = `<div class="eyebrow-l">O mapa de ${esc(first)}</div><h2>O céu do instante do nascimento</h2>
+    <div class="reveal-wheel">${wheelSVG(null,true)}</div>
+    <div class="trio">
+      ${t("Sol",SIGNS[sun],"Sol em "+SIGN_NAMES[sun],degOf(C.pts.sol)+" graus · o centro",ELCOL[SIGN_EL[sun]])}
+      ${t("Lua",SIGNS[moon],"Lua em "+SIGN_NAMES[moon],degOf(C.pts.lua)+" graus · o abrigo",ELCOL[SIGN_EL[moon]])}
+      ${C.hasAsc ? t("Ascendente",SIGNS[signOf(C.asc)],"Ascendente em "+SIGN_NAMES[signOf(C.asc)],degOf(C.asc)+" graus · a porta de entrada",ELCOL[SIGN_EL[signOf(C.asc)]]) : t("Ascendente","AC","Precisa da hora","Dá para completar depois","var(--papel)")}
+    </div>
+    ${dstHTML(u)}
+    <p class="sub" style="margin-top:14px">Agora o mapa apaga. Cada signo e cada planeta aprendido volta a acender, até o céu inteiro brilhar de novo. A jornada começa por Áries, o grau zero da roda.</p>`;
+  const next=$("oNext"); next.hidden=false; next.textContent = ob.edit ? "Voltar para a jornada" : "Começar a jornada";
+  next.onclick=()=>{ show("home"); renderHome(); };
+}
+
+/* ---------- estado ---------- */
+const KEY = "jornada-v1";
+const fresh = () => ({done:[], lit:[], cards:[], xp:0, streak:0, last:null, luas:5, daily:null, diario:{}, j:1, plan:null, user:null, chart:null, luasEm:0});
+let S = fresh();
+try{ const raw = localStorage.getItem(KEY); if(raw) S = Object.assign(fresh(), JSON.parse(raw)); }catch(e){}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} queueSync(); }
+const dstr = d => d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const today = () => dstr(new Date());
+const yesterday = () => { const d=new Date(); d.setDate(d.getDate()-1); return dstr(d); };
+const $ = id => document.getElementById(id);
+const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+function show(id){ ["onb","home","lesson","done","empty","plans","confirm"].forEach(v=>$(v).hidden = v!==id); window.scrollTo(0,0); }
+const allLessons = () => UNITS.flatMap(u=>u.lessons);
+const allCards = () => allLessons().filter(l=>l.card).map(l=>({id:l.id, ...l.card, sign:l.id.split("-")[0]}));
+
+/* ---------- mapa ---------- */
+function chartNow(){
+  if(S.chart) return S.chart;
+  const pts={}; for(const k in POINTS) if(k!=="asc") pts[k]=POINTS[k].lon;
+  return {asc:12, hasAsc:true, pts};
+}
+function wheelSVG(newLit, all){
+  const C = chartNow(), asc = C.hasAsc ? C.asc : 0;
+  const cx=150, cy=150, R=140, r=110;
+  const ang = L => Math.PI + (L-asc)*Math.PI/180;
+  const P = (rad,L) => [cx + rad*Math.cos(ang(L)), cy - rad*Math.sin(ang(L))];
+  const f = n => n.toFixed(2);
+  let s = `<svg viewBox="-8 -8 316 316" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa natal">`;
+  s += `<circle cx="${cx}" cy="${cy}" r="${R}" fill="var(--papel)" stroke="var(--tinta)" stroke-width="2.5"/>`;
+  for(let i=0;i<12;i++){
+    const a1=i*30, a2=i*30+30, lit=S.lit.includes("sign:"+i);
+    const [x1,y1]=P(R,a1),[x2,y2]=P(R,a2),[x3,y3]=P(r,a2),[x4,y4]=P(r,a1);
+    s += `<path d="M${f(x1)} ${f(y1)} A${R} ${R} 0 0 0 ${f(x2)} ${f(y2)} L${f(x3)} ${f(y3)} A${r} ${r} 0 0 1 ${f(x4)} ${f(y4)}Z" fill="${(lit||all)?ELCOL[SIGN_EL[i]]:"var(--creme)"}" stroke="var(--tinta)" stroke-width="1.5" class="${newLit==="sign:"+i?"pt-new":""}" style="transform-origin:150px 150px"/>`;
+    const [gx,gy]=P((R+r)/2, a1+15);
+    s += `<text x="${f(gx)}" y="${f(gy)}" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="${(lit||all)?"var(--tinta)":"var(--suave)"}" opacity="${(lit||all)?1:.55}" font-family="var(--display)">${g(SIGNS[i])}</text>`;
+    if(C.hasAsc){ const [hx1,hy1]=P(r,a1),[hx2,hy2]=P(36,a1); s += `<line x1="${f(hx1)}" y1="${f(hy1)}" x2="${f(hx2)}" y2="${f(hy2)}" stroke="var(--line)"/>`; }
+  }
+  s += `<circle cx="${cx}" cy="${cy}" r="36" fill="var(--creme)" stroke="var(--tinta)" stroke-width="2"/>`;
+  if(C.hasAsc){
+    const litAsc = all || S.lit.includes("planet:asc");
+    const [ax,ay]=P(R+4,asc);
+    s += `<line x1="${f(ax)}" y1="${f(ay)}" x2="${f(cx+(cx-ax))}" y2="${f(cy+(cy-ay))}" stroke="${litAsc?"var(--chiclete)":"var(--suave)"}" stroke-width="${litAsc?3:1}" stroke-dasharray="${litAsc?"":"3 4"}"/>`;
+  }
+  if(all){
+    s += `<text x="${cx}" y="${cy}" text-anchor="middle" dominant-baseline="central" font-family="var(--display)" font-size="22" font-weight="900" font-style="italic" fill="var(--tinta)">${C.hasAsc?"AC":"☉"+T}</text>`;
+  } else {
+    s += `<text x="${cx}" y="${cy-6}" text-anchor="middle" dominant-baseline="central" font-family="var(--display)" font-size="18" font-weight="900" fill="var(--tinta)">${S.lit.length}</text>`;
+    s += `<text x="${cx}" y="${cy+12}" text-anchor="middle" dominant-baseline="central" font-family="var(--body)" font-size="9" font-weight="700" fill="var(--suave)">de ${TOTAL_LIGHTS}</text>`;
+  }
+  const keys = Object.keys(C.pts).map(k=>({k, lon:C.pts[k]}));
+  if(C.hasAsc) keys.push({k:"asc", lon:C.asc});
+  keys.sort((a,b)=>a.lon-b.lon);
+  keys.forEach(o=>{ o.dl=o.lon; o.rad=84; });
+  const GAP=17;
+  for(let it=0; it<60; it++){
+    keys.sort((a,b)=>a.dl-b.dl); let moved=false;
+    for(let i=0;i<keys.length;i++){
+      const a=keys[i], b=keys[(i+1)%keys.length];
+      let dd = b.dl - a.dl; if(i===keys.length-1) dd += 360;
+      if(dd < GAP){ const sh=(GAP-dd)/2+.01; a.dl-=sh; b.dl+=sh; moved=true; }
+    }
+    if(!moved) break;
+  }
+  for(const o of keys){
+    if(Math.abs(o.dl-o.lon)>1.5){ const [t1x,t1y]=P(r-2,o.lon),[t2x,t2y]=P(r-9,o.lon); s += `<line x1="${f(t1x)}" y1="${f(t1y)}" x2="${f(t2x)}" y2="${f(t2y)}" stroke="var(--tinta)" stroke-width="1.5"/>`; }
+  }
+  for(const o of keys){
+    const key="planet:"+o.k, lit = all || S.lit.includes(key), p=POINTS[o.k];
+    const [x,y] = P(o.rad,o.dl);
+    s += `<g class="${lit?"pt-lit":""} ${newLit===key?"pt-new":""}" style="transform-origin:${f(x)}px ${f(y)}px">`;
+    s += `<circle cx="${f(x)}" cy="${f(y)}" r="12" fill="${lit?"var(--limao)":"var(--papel)"}" stroke="${lit?"var(--tinta)":"var(--suave)"}" stroke-width="${lit?2.5:1.2}" stroke-dasharray="${lit?"":"2 3"}"/>`;
+    s += `<text x="${f(x)}" y="${f(y)}" text-anchor="middle" dominant-baseline="central" font-size="${o.k==="asc"?9.5:13}" font-weight="700" fill="${lit?"var(--tinta)":"var(--suave)"}" font-family="var(--body)">${g(p.g)}</text></g>`;
+  }
+  return s + `</svg>`;
+}
+
+/* ---------- home ---------- */
+const OFFS = [0,-60,-78,-34,30,64];
+const INTRO = {
+  1:`<b>Aprender a linguagem.</b> Doze subjornadas, de Áries a Peixes. Cada uma atravessa o signo, o mito, o planeta regente, o deus por trás dele e uma ideia filosófica.`,
+  2:`<b>Encontrar no próprio mapa.</b> Aqui o símbolo vira espelho: cada lição usa o mapa natal de quem joga. A primeira já está aberta; as próximas chegam aos poucos.`,
+  3:`<b>Ler os trânsitos.</b> A energia astrológica de cada dia passando sobre o mapa. A lição do dia já está aberta; as próximas chegam aos poucos.`
+};
+function lessonOpen(ui, li){
+  if(ui>0 && !planActive()) return false;
+  return UNITS[ui].lessons.slice(0,li).every(l=>S.done.includes(l.id));
+}
+function renderHome(newLit){
+  $("sStreak").textContent = S.streak; $("sXp").textContent = S.xp; $("sLuas").textContent = planActive() ? "∞" : S.luas;
+  if(S.user && S.chart){ const sun=signOf(S.chart.pts.sol); $("who").textContent = S.user.name.split(" ")[0]+" · Sol em "+SIGN_NAMES[sun]; }
+  J3[0][2] = buildDaily();
+  const m1 = buildMapa1(); J2[0][2] = m1; J2[0][1] = m1 ? "A porta de entrada do mapa e o planeta que conduz a história" : "Precisa da hora de nascimento: toque para completar";
+  $("wheel").innerHTML = wheelSVG(newLit);
+  const n = S.lit.length;
+  $("chartCap").innerHTML = (S.user ? `Mapa natal de <b>${esc(S.user.name.split(" ")[0])}</b> · ` : "") + (n===0 ? "cada signo e planeta aprendido acende aqui" : `<b>${n} de ${TOTAL_LIGHTS}</b> pontos acesos`);
+  const dDone = S.daily===today();
+  $("daily").classList.toggle("done", dDone);
+  $("dailySub").textContent = dDone ? "Feita hoje · volta amanhã" : "Lição relâmpago · 4 passos";
+  { const dl=buildDaily(); if(dl) $("dailyTitle").textContent = dl.title; }
+  document.querySelectorAll(".jtab").forEach(b=>b.classList.toggle("on", +b.dataset.j===S.j));
+  $("jintro").innerHTML = INTRO[S.j];
+  renderInstall();
+  const body = $("jbody"); body.innerHTML = "";
+  if(S.j===1) renderJ1(body); else renderRoad(body, S.j===2?J2:J3);
+  renderCards();
+  renderPlan();
+}
+function renderJ1(body){
+  UNITS.forEach((u,ui)=>{
+    const doneN = u.lessons.filter(l=>S.done.includes(l.id)).length;
+    const el = SIGN_EL[u.sign];
+    const head = document.createElement("div");
+    head.className = "unit "+el; head.id="u-"+u.slug;
+    head.dataset.glyph = g(SIGNS[u.sign]);
+    head.innerHTML = `${(!planActive()&&ui>0)?'<span class="paytag">Com plano</span>':''}<div class="eyebrow">Subjornada ${ui+1} de 12 · ${esc(u.element)}</div><h2>${esc(u.name)}, <em>${esc(u.subtitle)}</em></h2><p>${esc(u.blurb)}</p><div class="meta"><div class="meter"><i style="width:${doneN/5*100}%"></i></div><span>${doneN}/5</span></div>`;
+    body.appendChild(head);
+    const path = document.createElement("div"); path.className="path";
+    u.lessons.forEach((L,li)=>{
+      const done = S.done.includes(L.id), open = !done && lessonOpen(ui,li);
+      const b = document.createElement("button");
+      b.className = "node " + (done?"done":open?"open":"locked") + (L.card?" card-node":"");
+      b.style.transform = `translateX(${OFFS[li]}px)`;
+      b.innerHTML = `<span class="disc">${eg(L.glyph)}${done?'<span class="check">✓</span>':''}${(!done&&!open)?lockIcon():''}</span><span class="nlabel"><small>${esc(L.kind)}</small>${esc(L.title)}</span>`;
+      b.onclick = () => {
+        if(done||open) openLesson(L);
+        else if(!planActive() && ui>0) payModal();
+        else { b.classList.add("shake"); setTimeout(()=>b.classList.remove("shake"),400); }
+      };
+      path.appendChild(b);
+    });
+    body.appendChild(path);
+  });
+}
+function renderRoad(body, list){
+  const box = document.createElement("div"); box.className="roadmap";
+  list.forEach((it,i)=>{
+    const L = it[2], done = L && S.done.includes(L.id);
+    const b = document.createElement("button");
+    b.className = "road " + (L ? (done?"done":"open") : "soon");
+    b.innerHTML = `<span class="num">${i+1}</span><span><b>${esc(it[0])}</b><small>${esc(it[1])}</small></span><span class="st">${L?(done?"Feita":"Jogar"):"Em breve"}</span>`;
+    if(list===J2 && i===0 && !L){ b.className="road open"; b.querySelector(".st").textContent="Completar"; }
+    b.onclick = () => { if(L){ if(L.id==="hoje" && S.daily===today()) return; startLesson(L); } else if(list===J2 && i===0) startOnb(true); };
+    box.appendChild(b);
+  });
+  body.appendChild(box);
+}
+function renderCards(){
+  const all = allCards(), box=$("cards"); box.innerHTML="";
+  $("cardCount").textContent = `${S.cards.length} de ${all.length}`;
+  all.forEach(c=>{
+    const have = S.cards.includes(c.id);
+    const u = UNITS.find(x=>x.slug===c.sign);
+    const b = document.createElement("button");
+    if(have){
+      b.className = "cardm "+c.kind;
+      b.innerHTML = `<small>${esc(c.kind)}</small><span class="cg">${g(SIGNS[u.sign])}</span><b>${esc(c.title)}</b>`;
+      b.onclick = () => cardModal(c);
+    } else {
+      b.className="cardm locked"; b.innerHTML = g(SIGNS[u.sign]); b.setAttribute("aria-label","Carta ainda não conquistada");
+    }
+    box.appendChild(b);
+  });
+}
+function lockIcon(){ return `<span class="lock"><svg viewBox="0 0 24 24"><path d="M7 10V7a5 5 0 0 1 10 0v3h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1zm2 0h6V7a3 3 0 0 0-6 0z"/></svg></span>`; }
+
+function openModal(html){ $("mbox").innerHTML = html; $("modal").hidden=false; const c=$("mClose"); if(c) c.onclick=()=>$("modal").hidden=true; }
+$("modal").onclick = e => { if(e.target.id==="modal") $("modal").hidden=true; };
+function payModal(){ show("plans"); }
+const BRL = v => "R$ " + v.toFixed(2).replace(".",",");
+const fmtD = d => d.toLocaleDateString("pt-BR",{day:"numeric",month:"long"});
+const fmtDT = d => fmtD(d) + ", às " + d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
+function planActive(){
+  const p=S.plan; if(!p) return false;
+  if(p.type==="semana") return Date.now() < p.until;
+  if(p.type==="mes") return (p.status==="authorized" && !p.canceled) || Date.now() < p.until;
+  return false;
+}
+let pending=null;
+document.querySelectorAll("[data-plan]").forEach(b=>b.onclick=()=>{
+  pending=b.dataset.plan; const now=new Date();
+  let rows;
+  if(pending==="semana"){
+    const until=new Date(now.getTime()+7*864e5);
+    rows=[["Plano","Passe semanal"],["Pago hoje","R$ 9,90 por Pix"],["Acesso liberado até",fmtDT(until)],["Cobranças automáticas","Nenhuma"],["Depois disso","Volta para a versão grátis, sem perder o progresso"]];
+  } else {
+    const nx=new Date(now); nx.setMonth(nx.getMonth()+1);
+    rows=[["Plano","Assinatura mensal"],["Cobrado hoje","R$ 29,90 no cartão"],["Próxima cobrança",fmtD(nx)+": R$ 29,90"],["Renovação","Automática, todo mês no mesmo dia"],["Para cancelar","Meu plano, a qualquer momento, sem multa"]];
+  }
+  $("sumBox").innerHTML = rows.map(r=>`<div class="row"><span>${esc(r[0])}</span><b>${esc(r[1])}</b></div>`).join("");
+  $("payGo").textContent = pending==="semana" ? "Pagar R$ 9,90 no Pix" : "Assinar por R$ 29,90 por mês";
+  show("confirm");
+});
+$("pBack").onclick=()=>{ show("home"); renderHome(); };
+$("cBack").onclick=()=>show("plans");
+$("payGo").onclick=async()=>{
+  const b=$("payGo"); b.disabled=true; const t=b.textContent; b.textContent="Abrindo o Mercado Pago…";
+  try{ const r = await api("checkout",{method:"POST", body:{plano:pending}}); location.href = r.url; }
+  catch(e){ b.disabled=false; b.textContent=t; toast(e.message||"Não deu para abrir o pagamento agora."); }
+};
+function renderPlan(){
+  const box=$("myplan"); const on=planActive();
+  if(!on){
+    box.innerHTML=`<div class="myplan"><div class="pname">Meu plano</div><b>Grátis</b><p>Áries, a lição do dia e a primeira lição do mapa liberados. Para seguir as outras subjornadas, o passe semanal custa R$ 9,90 por Pix e o mensal, R$ 29,90 no cartão.</p><div class="acts"><button class="btn small" id="seePlans">Ver os planos</button></div></div>`;
+    $("seePlans").onclick=payModal; return;
+  }
+  const until=new Date(S.plan.until);
+  if(S.plan.type==="mes" && S.plan.status==="pending"){
+    box.innerHTML=`<div class="myplan"><div class="pname">Meu plano</div><b>Assinatura sendo confirmada</b><p>O Mercado Pago ainda está confirmando o cartão. Assim que aprovar, a jornada inteira abre sozinha.</p></div>`; return;
+  }
+  if(S.plan.type==="semana"){
+    box.innerHTML=`<div class="myplan on-semana"><div class="pname">Meu plano</div><b>Passe semanal ativo</b><p>Acesso liberado até ${esc(fmtDT(until))}. Não renova sozinho: nenhuma cobrança vai acontecer.</p><div class="acts"><button class="btn small plain" id="seePlans">Ver o mensal</button></div></div>`;
+  } else if(!S.plan.canceled){
+    box.innerHTML=`<div class="myplan on-mes"><div class="pname">Meu plano</div><b>Assinatura mensal ativa</b><p>Renova sozinha todo mês, no cartão, sempre R$ 29,90. Próxima cobrança por volta de ${esc(fmtD(new Date(S.plan.until-2*864e5)))}.</p><div class="acts"><button class="btn small plain" id="cancelBtn">Cancelar assinatura</button></div></div>`;
+    $("cancelBtn").onclick=()=>openModal(`<h3>Cancelar a assinatura?</h3><p>Nenhuma cobrança nova vai acontecer. O acesso continua até o fim do mês já pago. Depois, a jornada volta para a versão grátis, sem perder o progresso nem as cartas.</p><div style="display:grid;gap:10px"><button class="btn badb" id="cYes">Cancelar assinatura</button><button class="btn plain" id="mClose">Manter assinatura</button></div>`) || ($("cYes").onclick=async()=>{ const b=$("cYes"); b.disabled=true; b.textContent="Cancelando…"; try{ const r=await api("cancelar",{method:"POST"}); applyServer(r); $("modal").hidden=true; renderHome(); toast("Assinatura cancelada. Nenhuma cobrança nova vai acontecer."); }catch(e){ b.disabled=false; b.textContent="Cancelar assinatura"; toast(e.message||"Não deu para cancelar agora. Escreva para falecom@eusouodu.com."); } });
+  } else {
+    box.innerHTML=`<div class="myplan"><div class="pname">Meu plano</div><b>Assinatura cancelada</b><p>Nenhuma cobrança nova. O acesso segue até ${esc(fmtD(until))}.</p><div class="acts"><button class="btn small" id="seePlans">Assinar de novo</button></div></div>`;
+  }
+  const sp=$("seePlans"); if(sp) sp.onclick=payModal;
+}
+function cardModal(c){
+  openModal(`<span class="ck" style="background:${c.kind==="Mito"?"var(--rosa)":"var(--ceu)"}">${esc(c.kind)}</span><h3>${esc(c.title)}</h3><p class="cardtext">${esc(c.text)}</p><button class="btn goldb" id="mClose">Fechar</button>`);
+}
+
+document.querySelectorAll(".jtab").forEach(b=>b.onclick=()=>{ S.j=+b.dataset.j; save(); renderHome(); });
+$("daily").onclick = () => { if(S.daily!==today()){ const d=buildDaily(); if(d) startLesson(d); } };
+$("editData").onclick = () => startOnb(true);
+$("logout").onclick = () => openModal(`<h3>Sair desta conta?</h3><p>O progresso fica guardado na conta. Para voltar, é só pedir o link de entrada com o mesmo e-mail.</p><div style="display:grid;gap:10px"><button class="btn" id="lgYes">Sair</button><button class="btn plain" id="mClose">Ficar</button></div>`) || ($("lgYes").onclick=()=>{ setToken(null); try{localStorage.removeItem(KEY)}catch(e){} location.replace(location.pathname); });
+
+
+/* ---------- servidor ---------- */
+const TK="jornada-sessao";
+let TOKEN=null; try{ TOKEN=localStorage.getItem(TK); }catch(e){}
+function setToken(t){ TOKEN=t; try{ t ? localStorage.setItem(TK,t) : localStorage.removeItem(TK); }catch(e){} }
+async function api(a, {method="GET", body=null, query=""}={}, auth=true){
+  const r = await fetch(`/api/jornada?a=${a}${query}`, {method, headers:{"content-type":"application/json", ...(auth&&TOKEN?{authorization:"Bearer "+TOKEN}:{})}, body: body?JSON.stringify(body):undefined});
+  let j={}; try{ j=await r.json(); }catch(e){}
+  if(r.status===401 && auth){ setToken(null); }
+  if(!r.ok){ const e=new Error(j.erro||"Não deu certo agora. Tente de novo."); e.status=r.status; throw e; }
+  return j;
+}
+const perfilOut = u => ({name:u.name, birth:u.birth, time:u.time||"", unknownTime:!!u.unknownTime, city:u.cityData, optin:u.optin!==false});
+const progOut = () => ({done:S.done, lit:S.lit, cards:S.cards, xp:S.xp, streak:S.streak, last:S.last, daily:S.daily, luas:S.luas, luasEm:S.luasEm, diario:S.diario});
+const uni = (a,b) => [...new Set([...(a||[]),...(b||[])])];
+function applyServer(r){
+  if(!r) return;
+  if(r.plano !== undefined) S.plan = r.plano;
+  if(r.perfil && r.perfil.city){
+    const p=r.perfil;
+    S.user = {name:p.nome, birth:p.birth, time:p.time, unknownTime:p.unknownTime, city:p.city[0], cityData:p.city, email:r.email, optin:p.optin};
+    try{ S.chart = computeChart(S.user); }catch(e){}
+  }
+  const g=r.progresso;
+  if(g){
+    S.done=uni(S.done,g.done); S.lit=uni(S.lit,g.lit); S.cards=uni(S.cards,g.cards);
+    S.xp=Math.max(S.xp||0,g.xp||0);
+    if((g.last||"")>(S.last||"")){ S.streak=g.streak; S.last=g.last; } else S.streak=Math.max(S.streak||0, (g.last===S.last?g.streak:0)||0);
+    if((g.daily||"")>(S.daily||"")) S.daily=g.daily;
+    S.diario=Object.assign({}, g.diario||{}, S.diario||{});
+  }
+  try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){}
+}
+let syncT=null;
+function queueSync(){ if(!TOKEN) return; clearTimeout(syncT); syncT=setTimeout(()=>{ api("sync",{method:"POST", body:{progresso:progOut()}}).then(r=>{ if(r.plano!==undefined){ const was=planActive(); S.plan=r.plano; if(was!==planActive()) renderIfHome(); } }).catch(()=>{}); }, 1500); }
+function renderIfHome(){ if(!$("home").hidden) renderHome(); }
+let contentLoaded=false;
+async function loadContent(){
+  if(contentLoaded || !planActive() || !TOKEN) return;
+  try{
+    const r = await api("conteudo");
+    const bySlug = Object.fromEntries(r.unidades.map(u=>[u.slug,u]));
+    UNITS = UNITS.map(u => bySlug[u.slug] || u);
+    contentLoaded=true; renderIfHome();
+  }catch(e){ if(e.status===402){ S.plan=S.plan&&{...S.plan, ativo:false}; } }
+}
+async function openLesson(L){
+  if(!L.locked) return startLesson(L);
+  if(!planActive()) return payModal();
+  toast("Abrindo a lição…");
+  await loadContent();
+  const fresh = UNITS.flatMap(u=>u.lessons).find(x=>x.id===L.id);
+  if(fresh && !fresh.locked) startLesson(fresh); else toast("A lição não carregou. Confira a internet e tente de novo.");
+}
+function regenLuas(){
+  if(planActive()){ return; }
+  const STEP=4*3600e3; S.luasEm=S.luasEm||Date.now();
+  while(S.luas<5 && Date.now()-S.luasEm>=STEP){ S.luas++; S.luasEm+=STEP; }
+  if(S.luas>=5) S.luasEm=0;
+}
+let toastT=null;
+function toast(t){ let el=$("toastEl"); if(!el){ el=document.createElement("div"); el.id="toastEl"; el.className="toast"; document.body.appendChild(el); } el.textContent=t; el.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>el.hidden=true, 4200); }
+function loginModal(){
+  openModal(`<h3>Entrar sem senha</h3><p>Escreva o e-mail da jornada. Chega um link: um toque e ela abre no ponto onde parou.</p><input class="field" id="lgMail" type="email" inputmode="email" autocomplete="email" placeholder="nome@email.com"><p class="oerr" id="lgErr"></p><div style="display:grid;gap:10px;margin-top:6px"><button class="btn" id="lgSend">Mandar o link</button><button class="btn plain" id="mClose">Voltar</button></div>`);
+  $("lgSend").onclick=async()=>{ const v=$("lgMail").value.trim().toLowerCase(); if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){ $("lgErr").textContent="Confira o e-mail."; return; }
+    $("lgSend").disabled=true; try{ await api("pedir-link",{method:"POST", body:{email:v}}, false); $("mbox").innerHTML=`<h3>Confira o e-mail</h3><p>Se ${esc(v)} tiver uma jornada, o link chega em instantes. Abra neste celular. Vale por 48 horas. Olhe também o spam e a aba Promoções.</p><button class="btn" id="mClose">Entendi</button>`; $("mClose").onclick=()=>$("modal").hidden=true; }
+    catch(e){ $("lgSend").disabled=false; $("lgErr").textContent=e.message; } };
+}
+
+/* ---------- lição do dia: a Lua de hoje no próprio mapa ---------- */
+const ELEM_NAMES=["fogo","terra","ar","água"];
+const MOON_DAY=["A emoção pede movimento e pressa. O que estava parado quer começar, nem que seja por um gesto pequeno.","A emoção pede corpo e calma. Comida boa, um lugar conhecido, o tempo devagar: a Lua em Touro se acalma no que é concreto.","A emoção quer conversa. O que não for dito fica girando; o que for dito ganha forma.","A Lua está em casa. O dia pede abrigo, memória e cuidado com quem é nosso.","A emoção quer ser vista. O dia favorece criar, brincar e dizer em voz alta o que a gente sente.","A emoção se organiza nas pequenas tarefas. Arrumar uma gaveta também arruma alguma coisa por dentro.","A emoção procura o outro. O dia pede acordo, beleza e escuta, sem perder a própria medida.","A emoção desce fundo. O que estava escondido sobe, e o dia pede coragem para olhar sem fugir.","A emoção quer horizonte. Uma ideia nova, um livro, um caminho diferente: o dia pede sentido.","A emoção se contém e trabalha. O dia favorece compromisso, estrutura e paciência com o tempo.","A emoção ganha distância para enxergar melhor. O dia pede liberdade e conversa com o coletivo.","A emoção se dissolve nas bordas. O dia pede sonho, música, silêncio e compaixão, também com a gente mesmo."];
+const MOON_Q=["O que a gente quer começar hoje, mesmo sem saber onde vai dar?","O que faz o nosso corpo se sentir em casa?","Que conversa pode destravar o dia?","De quem a gente precisa cuidar hoje, inclusive de si?","O que a gente sente e ainda não mostrou?","Que pequeno gesto organizaria o dia?","Em que relação a gente precisa reencontrar a medida?","O que pede para ser olhado de frente?","Que pergunta grande anda acompanhando a gente?","Que compromisso merece mais paciência?","Do que a gente precisa se afastar para ver melhor?","O que a gente sente que não cabe em palavras?"];
+let dailyCache=null;
+function buildDaily(){
+  const key=today()+(S.chart&&S.chart.hasAsc?"a":"");
+  if(dailyCache && dailyCache.k===key) return dailyCache.v;
+  let ml, sl;
+  try{ const now=new Date(); ml=window.Astronomy.EclipticGeoMoon(now).lon; sl=window.Astronomy.SunPosition(now).elon; }catch(e){ return null; }
+  const ms=signOf(ml), ss=signOf(sl), el=["fogo","terra","ar","água"][ms%4];
+  const dataTxt=new Date().toLocaleDateString("pt-BR",{day:"numeric",month:"long"});
+  const steps=[
+    {type:"teach", glyph:SIGNS[ms], eyebrow:"Energia astrológica do dia · "+dataTxt, title:"A Lua em "+SIGN_NAMES[ms],
+     body:[`Hoje a Lua atravessa ${SIGN_NAMES[ms]}, e o Sol segue em ${SIGN_NAMES[ss]}. A Lua muda de signo a cada dois dias e meio: é o planeta que dá o clima emocional do dia.`, MOON_DAY[ms]]},
+    {type:"choice", q:`${SIGN_NAMES[ms]} é um signo de qual elemento?`, opts:[cap1(el), ...ELEM_NAMES.filter(x=>x!==el).map(cap1)], a:0,
+     explain:`A Lua em signo de ${el} dá esse tom ao dia: ${({"fogo":"entusiasmo e impulso","terra":"concretude e corpo","ar":"ideias e conversa","água":"sentimento e memória"})[el]}.`}
+  ];
+  if(S.chart && S.chart.hasAsc){
+    const h=((ms-signOf(S.chart.asc)+12)%12)+1;
+    const others=shuffle([1,2,3,4,5,6,7,8,9,10,11,12].filter(n=>n!==h)).slice(0,3);
+    steps.push({type:"choice", q:`No mapa de ${(S.user.name||"").split(" ")[0]}, por qual casa a Lua passa hoje?`, opts:["Casa "+h, ...others.map(n=>"Casa "+n)], a:0,
+      explain:`Com Ascendente em ${SIGN_NAMES[signOf(S.chart.asc)]}, ${SIGN_NAMES[ms]} cai na casa ${h}: ${HOUSES[h]}. É ali que a emoção do dia pede atenção.`});
+  } else {
+    steps.push({type:"teach", glyph:"☽", eyebrow:"No próprio mapa", title:"A casa da Lua de hoje", body:["Com a hora de nascimento, a lição do dia mostra em qual casa do mapa a Lua está passando.","Dá para completar em Dados de nascimento, no fim da tela inicial."]});
+  }
+  steps.push({type:"reflect", q:MOON_Q[ms], hint:"Uma linha basta."});
+  const v={id:"hoje", kind:"Hoje", title:"A Lua em "+SIGN_NAMES[ms], glyph:SIGNS[ms], light:null, card:null, doneTitle:"Lição do dia feita", doneText:"Amanhã a lição muda com a Lua.", steps};
+  dailyCache={k:key, v}; return v;
+}
+
+/* ---------- instalar na tela de início ---------- */
+let deferredPrompt=null;
+window.addEventListener("beforeinstallprompt", e=>{ e.preventDefault(); deferredPrompt=e; renderIfHome(); });
+const standalone = () => window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone===true;
+function renderInstall(){
+  const box=$("installBox"); if(!box) return;
+  let hide=false; try{ hide = localStorage.getItem("jornada-install-x")==="1"; }catch(e){}
+  if(standalone() || hide){ box.innerHTML=""; return; }
+  const ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  box.innerHTML = `<div class="install"><button class="xx" id="insX" aria-label="Fechar">×</button><b>A Jornada na tela de início</b>${ios
+    ? `<p>No Safari, toque no botão Compartilhar, o quadrado com a seta para cima, e depois em Adicionar à Tela de Início. A Jornada abre como um app, em tela cheia.</p>`
+    : deferredPrompt ? `<p>Um toque e ela fica junto dos outros apps, com ícone próprio.</p><button class="btn small" id="insGo">Instalar</button>` : `<p>No menu do navegador, os três pontinhos, toque em Instalar app ou Adicionar à tela inicial.</p>`}</div>`;
+  $("insX").onclick=()=>{ try{ localStorage.setItem("jornada-install-x","1"); }catch(e){} box.innerHTML=""; };
+  const go=$("insGo"); if(go) go.onclick=async()=>{ deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null; renderInstall(); };
+}
+if("serviceWorker" in navigator && /^jornada\./.test(location.hostname)) window.addEventListener("load", ()=>navigator.serviceWorker.register("/jornada/sw.js",{scope:"/"}).catch(()=>{}));
+
+/* ---------- motor da lição ---------- */
+let L=null, Q=[], pos=0, sel=null, stats=null, onMain=null;
+const stage=$("stage"), mainBtn=$("main"), sheet=$("sheet");
+
+function startLesson(lesson){
+  regenLuas();
+  if(!planActive() && S.luas<=0){ show("empty"); return; }
+  L=lesson; Q=lesson.steps.map(s=>Object.assign({},s)); pos=0;
+  stats={right:0, wrong:0, reflect:0};
+  show("lesson"); render();
+}
+$("quit").onclick = () => { hideSheet(); show("home"); renderHome(); };
+function setMain(label, enabled, fn){ mainBtn.textContent=label; mainBtn.disabled=!enabled; onMain=fn; }
+mainBtn.onclick = () => { if(onMain) onMain(); };
+function hideSheet(){ sheet.classList.remove("show"); }
+
+function render(){
+  hideSheet();
+  $("bar").style.width = (pos/Q.length*100)+"%";
+  $("lLuas").textContent = planActive() ? "∞" : S.luas;
+  const s = Q[pos]; sel=null;
+  stage.className = "stage";
+  ({teach:rTeach, choice:rChoice, match:rMatch, order:rOrder, multi:rMulti, reflect:rReflect})[s.type](s);
+}
+const chartBlock = s => s.chart ? `<div class="minichart">${wheelSVG()}</div>` : "";
+
+function rTeach(s){
+  stage.classList.add("teach");
+  stage.innerHTML = (s.chart?chartBlock(s):`<div class="big">${eg(s.glyph||L.glyph)}</div>`) +
+    `<div class="eyebrow-l">${esc(s.eyebrow||L.kind)}</div><h2>${esc(s.title)}</h2>` + (s.body||[]).map(p=>`<p>${esc(p)}</p>`).join("");
+  setMain("Continuar", true, next);
+}
+function rChoice(s){
+  const order = shuffle(s.opts.map((t,i)=>({t,i})));
+  stage.innerHTML = chartBlock(s) + `<div class="q">${esc(s.q)}</div><div class="opts ${s.big?"glyphs":""}" id="opts"></div>`;
+  const box=$("opts");
+  order.forEach(o=>{
+    const b=document.createElement("button"); b.className="opt"; b.textContent=g(o.t);
+    b.onclick=()=>{ box.querySelectorAll(".opt").forEach(x=>x.classList.remove("sel")); b.classList.add("sel"); sel={i:o.i,el:b}; setMain("Verificar",true,check); };
+    box.appendChild(b);
+  });
+  setMain("Verificar", false, null);
+  function check(){
+    box.querySelectorAll(".opt").forEach(x=>x.disabled=true);
+    const ans = s.a||0;
+    if(sel.i===ans){ sel.el.classList.replace("sel","right"); right(s.explain); }
+    else{
+      sel.el.classList.replace("sel","wrong");
+      [...box.children].forEach((x,k)=>{ if(order[k].i===ans) x.classList.add("right"); });
+      wrong(s, s.explain);
+    }
+  }
+}
+function rMatch(s){
+  stage.innerHTML = `<div class="q">${esc(s.q)}</div><div class="match"><div class="col" id="cl"></div><div class="col" id="cr"></div></div>`;
+  let pick=null, left=s.pairs.length, misses=0;
+  const mk = (t,side,idx) => { const b=document.createElement("button"); b.className="opt"; b.textContent=g(t); b.dataset.side=side; b.dataset.idx=idx; return b; };
+  shuffle(s.pairs.map((p,i)=>i)).forEach(i=>$("cl").appendChild(mk(s.pairs[i][0],"l",i)));
+  shuffle(s.pairs.map((p,i)=>i)).forEach(i=>$("cr").appendChild(mk(s.pairs[i][1],"r",i)));
+  stage.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+    if(b.classList.contains("right")) return;
+    if(!pick || pick.dataset.side===b.dataset.side){
+      stage.querySelectorAll(".opt.sel").forEach(x=>x.classList.remove("sel"));
+      b.classList.add("sel"); pick=b; return;
+    }
+    if(pick.dataset.idx===b.dataset.idx){
+      [pick,b].forEach(x=>{ x.classList.remove("sel"); x.classList.add("right"); setTimeout(()=>x.classList.add("gone"),250); });
+      pick=null; left--;
+      if(left===0) setTimeout(()=>{ if(misses===0) right(s.explain); else { stats.right++; feedback("note","Combinado", s.explain); } }, 350);
+    } else {
+      misses++;
+      [pick,b].forEach(x=>{ x.classList.remove("sel"); x.classList.add("wrong","shake"); setTimeout(()=>x.classList.remove("wrong","shake"),400); });
+      pick=null;
+    }
+  });
+  setMain("Combine os pares", false, null);
+}
+function rOrder(s){
+  const picked=[];
+  stage.innerHTML = `<div class="q">${esc(s.q)}</div><div class="answer" id="ans"></div><div class="pool" id="pool"></div>`;
+  const pool=$("pool"), ans=$("ans");
+  shuffle(s.items.map((t,i)=>({t,i}))).forEach(o=>{
+    const b=document.createElement("button"); b.className="chip"; b.textContent=g(o.t);
+    b.onclick=()=>{ picked.push(o); b.hidden=true; draw(); };
+    o.el=b; pool.appendChild(b);
+  });
+  function draw(){
+    ans.innerHTML="";
+    picked.forEach((o,k)=>{
+      const c=document.createElement("button"); c.className="chip"; c.innerHTML=`<span class="n">${k+1}</span>${eg(o.t)}`;
+      c.onclick=()=>{ picked.splice(k,1); o.el.hidden=false; draw(); };
+      ans.appendChild(c);
+    });
+    setMain("Verificar", picked.length===s.items.length, check);
+  }
+  setMain("Verificar", false, null);
+  function check(){
+    const ok = picked.every((o,k)=>o.i===k);
+    ans.querySelectorAll(".chip").forEach((c,k)=>{ c.disabled=true; c.classList.add(picked[k].i===k?"right":"wrong"); });
+    if(ok) right(s.explain);
+    else wrong(s, "A ordem é: " + s.items.map((t,k)=>(k+1)+". "+t).join(" · ") + ". " + (s.explain||""));
+  }
+}
+function rMulti(s){
+  const need=s.correct.length, chosen=new Set();
+  stage.innerHTML = `<div class="q">${esc(s.q)}</div><div class="opts" id="opts"></div>`;
+  const box=$("opts");
+  const order=shuffle(s.opts.map((t,i)=>({t,i})));
+  order.forEach(o=>{
+    const b=document.createElement("button"); b.className="opt"; b.textContent=g(o.t);
+    b.onclick=()=>{
+      if(chosen.has(o.i)){ chosen.delete(o.i); b.classList.remove("sel"); }
+      else if(chosen.size<need){ chosen.add(o.i); b.classList.add("sel"); }
+      setMain(`Verificar · ${chosen.size}/${need}`, chosen.size===need, check);
+    };
+    o.el=b; box.appendChild(b);
+  });
+  setMain(`Verificar · 0/${need}`, false, null);
+  function check(){
+    order.forEach(o=>{ o.el.disabled=true; o.el.classList.remove("sel");
+      if(s.correct.includes(o.i)) o.el.classList.add("right"); else if(chosen.has(o.i)) o.el.classList.add("wrong"); });
+    s.correct.every(i=>chosen.has(i)) ? right(s.explain) : wrong(s, s.explain);
+  }
+}
+function rReflect(s){
+  stage.innerHTML = `<div class="eyebrow-l">Reflexão · sem nota</div><div class="q">${esc(s.q)}</div><textarea id="refl" placeholder="Escreva aqui"></textarea><p class="hint">${esc(s.hint||"")}</p><button class="link" id="skip">Pular por agora</button>`;
+  const ta=$("refl");
+  ta.oninput=()=>setMain("Guardar no diário", ta.value.trim().length>1, saveR);
+  setMain("Guardar no diário", false, null);
+  $("skip").onclick=next;
+  function saveR(){
+    S.diario[L.id]=ta.value.trim(); save(); stats.reflect=1;
+    feedback("note","Guardado no diário","Sem certo nem errado. No fim da jornada, o diário vira um retrato de como a gente mudou de signo em signo.");
+  }
+}
+function right(text){ stats.right++; feedback("ok", ["Isso!","Exato","Muito bem","Na mosca"][Math.floor(Math.random()*4)], text); }
+function wrong(s, text){
+  stats.wrong++; if(!planActive()){ if(S.luas>=5) S.luasEm=Date.now(); S.luas=Math.max(0,S.luas-1); } save(); $("lLuas").textContent=planActive()?"∞":S.luas;
+  Q.push(Object.assign({},s));
+  feedback("bad","Não foi dessa vez", (text||"") + " Essa volta no fim da lição.");
+}
+function feedback(kind, title, text){
+  sheet.className="sheet "+kind;
+  $("shT").textContent=title; $("shP").textContent=text||"";
+  const btn=$("shBtn");
+  btn.onclick = () => { if(!planActive() && S.luas<=0 && kind==="bad"){ hideSheet(); show("empty"); } else next(); };
+  requestAnimationFrame(()=>sheet.classList.add("show"));
+  setMain("Verificar", false, null);
+}
+function next(){ pos++; if(pos>=Q.length) finish(); else render(); }
+
+function finish(){
+  $("bar").style.width="100%";
+  const xp = 10 + stats.right*2 + stats.reflect*5;
+  S.xp += xp;
+  if(L.id==="hoje") S.daily=today();
+  else if(!S.done.includes(L.id)) S.done.push(L.id);
+  let newLit=null;
+  if(L.light && !S.lit.includes(L.light)){ S.lit.push(L.light); newLit=L.light; }
+  let newCard=false;
+  if(L.card && !S.cards.includes(L.id)){ S.cards.push(L.id); newCard=true; }
+  const t=today();
+  if(S.last!==t){ S.streak = (S.last===yesterday()) ? S.streak+1 : 1; S.last=t; }
+  save();
+  const tot = stats.right+stats.wrong;
+  const u = UNITS.find(x=>L.id.startsWith(x.slug+"-"));
+  if(L.card){
+    $("dGlyph").hidden=true; $("dCard").hidden=false;
+    $("dCard").innerHTML = `<div class="cardm ${esc(L.card.kind)}"><small>${esc(L.card.kind)}</small><span class="cg">${u?g(SIGNS[u.sign]):""}</span><b>${esc(L.card.title)}</b></div>`;
+  } else {
+    $("dCard").hidden=true; $("dGlyph").hidden=false; $("dGlyph").textContent = g(L.glyph);
+  }
+  $("dTitle").textContent = L.doneTitle;
+  $("dText").textContent = L.doneText;
+  $("dXp").textContent = "+"+xp;
+  $("dAcc").textContent = (tot? Math.round(stats.right/tot*100):100)+"%";
+  $("dStreak").textContent = S.streak;
+  $("dBtn").onclick = () => { show("home"); renderHome(newLit); if(u){ const el=$("u-"+u.slug); if(el) el.scrollIntoView({block:"start"}); } };
+  hideSheet(); show("done");
+}
+$("refill").onclick = () => payModal();
+$("emptyBack").onclick = () => { show("home"); renderHome(); };
+
+$("oBack").onclick=()=>{ if(ob.step>0){ ob.step -= (ob.edit && OSTEPS[ob.step]==="calc") ? 2 : 1; renderOnb(); } };
+(async function boot(){
+  const h = new URLSearchParams(location.hash.slice(1));
+  if(h.get("s")){ setToken(h.get("s")); history.replaceState(null,"",location.pathname+location.search); }
+  const q = new URLSearchParams(location.search);
+  const pago = q.get("pago"), pa = q.get("preapproval_id");
+  if(pago) history.replaceState(null,"",location.pathname);
+  regenLuas();
+  if(S.user && S.chart){ show("home"); renderHome(); }
+  if(TOKEN){
+    try{
+      const r = await api("sync",{query: pa?`&preapproval_id=${encodeURIComponent(pa)}`:""});
+      applyServer(r);
+      if(!S.chart){ startOnb(false); return; }
+      show("home"); renderHome(); loadContent();
+    }catch(e){ if(!S.user) startOnb(false); }
+  } else if(!S.user){ startOnb(false); return; }
+  if(location.hash==="#planos"){ history.replaceState(null,"",location.pathname); payModal(); }
+  if(pago==="falhou") toast("O pagamento não foi concluído. Nada foi cobrado.");
+  if(pago==="semana" || pago==="pendente" || pago==="mes"){
+    toast(pago==="mes" ? "Confirmando a assinatura…" : "Confirmando o Pix…");
+    const done = () => pago==="mes" ? (S.plan && S.plan.type==="mes" && S.plan.status==="authorized") : planActive();
+    for(let i=0;i<20 && !done();i++){ await new Promise(r=>setTimeout(r,3000)); try{ applyServer(await api("sync",{query: pa?`&preapproval_id=${encodeURIComponent(pa)}`:""})); }catch(e){} }
+    if(done()){ await loadContent(); renderHome(); toast(pago==="mes" ? "Assinatura confirmada: a jornada inteira está aberta." : "Pronto: as doze subjornadas estão abertas."); }
+    else toast("O pagamento ainda está sendo confirmado. Assim que cair, a jornada libera sozinha.");
+  }
+})();
+</script>

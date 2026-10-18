@@ -31,6 +31,28 @@
           "value": "public, max-age=86400"
         }
       ]
+    },
+    {
+      "source": "/jornada/sw.js",
+      "headers": [
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/jornada/index.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
     }
   ],
   "functions": {
@@ -39,6 +61,9 @@
     },
     "api/musica-*.js": {
       "includeFiles": "{musica/motor.js,musica/catalogo.json,lib/vendor/**}"
+    },
+    "api/jornada.js": {
+      "includeFiles": "lib/jornada/**"
     }
   },
   "rewrites": [
@@ -51,12 +76,26 @@
         }
       ],
       "destination": "/musica/index.html"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "jornada.eusouodu.com"
+        }
+      ],
+      "destination": "/jornada/index.html"
     }
   ],
   "crons": [
     {
       "path": "/api/musica-diario",
       "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/jornada?a=diario",
+      "schedule": "0 13 * * *"
     }
   ]
 }

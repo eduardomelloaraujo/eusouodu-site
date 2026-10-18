@@ -1,0 +1,1008 @@
+<title>Jornada do Zodíaco</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500..900;1,9..144,500..900&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap">
+<!--CSS-->
+<style>
+[hidden]{display:none!important}
+
+
+/* entrada */
+.onb .top2{display:flex;align-items:center;gap:12px;padding-block:8px 4px}
+.dots{flex:1;display:flex;gap:6px}
+.dots i{flex:1;height:8px;border-radius:99px;border:2px solid var(--tinta);background:var(--papel)}
+.dots i.on{background:var(--chiclete)}
+.ostage{padding-block:26px 170px}
+.ostage h2{font-family:var(--display);font-weight:900;font-size:34px;line-height:1.05;letter-spacing:-.02em;margin:10px 0 8px;text-wrap:balance}
+.ostage .sub{margin:0 0 20px;color:var(--suave);font-weight:500;font-size:16px;max-width:52ch}
+.field{width:100%;box-sizing:border-box;font:inherit;font-size:20px;font-weight:600;color:var(--tinta);background:var(--papel);border:var(--borda);border-radius:16px;padding:14px 16px;box-shadow:var(--sombra);min-height:56px}
+.field:focus{outline:3px solid var(--chiclete);outline-offset:3px}
+.check-row{display:flex;gap:12px;align-items:flex-start;margin-top:16px;font-size:15px;font-weight:600;line-height:1.4;cursor:pointer}
+.check-row input{flex:none;width:24px;height:24px;margin:0;accent-color:var(--chiclete)}
+.check-row small{display:block;font-weight:500;color:var(--suave);font-size:13px;margin-top:2px}
+.oerr{color:#B0174F;font-weight:700;font-size:14px;margin:12px 0 0;min-height:1em}
+.ohint{font-size:13px;color:var(--suave);font-weight:500;margin:14px 0 0;line-height:1.5}
+.hero{display:grid;justify-items:center;text-align:center;gap:10px;padding-top:20px}
+.hero .logo{font-family:var(--display);font-style:italic;font-weight:900;font-size:64px;letter-spacing:-.03em;line-height:1}
+.hero .tagline{font-family:var(--display);font-weight:600;font-size:22px;line-height:1.25;max-width:22ch;text-wrap:balance}
+.hero .spin{width:min(70vw,250px);max-width:100%;animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:4px}
+.hero .chips span{border:1.5px solid var(--tinta);border-radius:99px;padding:3px 12px;font-size:13px;font-weight:700}
+.calc{display:grid;justify-items:center;text-align:center;gap:16px;padding-top:30px}
+.calc svg{width:min(70vw,250px);max-width:100%}
+.calc .wheelspin{animation:spin 2.4s cubic-bezier(.4,0,.2,1) infinite}
+.calc p{margin:0;font-weight:600;color:var(--suave)}
+.trio{display:grid;gap:10px;margin:18px 0 6px}
+.trio .t{display:flex;align-items:center;gap:14px;border:var(--borda);border-radius:18px;padding:12px 14px;box-shadow:3px 3px 0 var(--tinta);animation:pop .5s cubic-bezier(.2,1.6,.4,1) both}
+.trio .t:nth-child(2){animation-delay:.15s} .trio .t:nth-child(3){animation-delay:.3s}
+.trio .t .tg{flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--papel);border:var(--borda);font-family:var(--display);font-weight:800;font-size:24px}
+.trio .t small{display:block;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.trio .t b{display:block;font-family:var(--display);font-weight:900;font-size:22px;line-height:1.1}
+.trio .t span.deg{font-size:13px;font-weight:600;color:var(--suave)}
+.reveal-wheel{display:grid;justify-items:center;margin-top:6px}
+.reveal-wheel svg{width:min(76vw,280px);max-width:100%}
+.edit{display:block;margin:10px auto 0;background:none;border:0;color:var(--tinta);font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+.dst{margin-top:16px;border:var(--borda);border-radius:16px;padding:12px 14px;font-size:14px;font-weight:500;line-height:1.5}
+.dst b{display:block;font-family:var(--display);font-weight:800;font-size:16px;margin-bottom:2px}
+.dst.on{background:var(--limao)} .dst.off{background:var(--papel)} .dst.warn{background:var(--erro)}
+/* planos e cobrança */
+.plans-v .head{display:flex;align-items:center;gap:10px;padding-block:8px 4px}
+.plans-v h2{font-family:var(--display);font-weight:900;font-size:32px;line-height:1.05;letter-spacing:-.02em;margin:14px 0 6px;text-wrap:balance}
+.plans-v .lead{margin:0 0 18px;color:var(--suave);font-weight:500;font-size:15px}
+.free{border:2.5px dashed var(--tinta);border-radius:18px;padding:12px 14px;background:rgba(255,255,255,.6);margin-bottom:16px}
+.free b{font-family:var(--display);font-weight:800;font-size:17px}
+.free p{margin:2px 0 0;font-size:14px;color:var(--suave);font-weight:500}
+.pcard{border:var(--borda);border-radius:22px;padding:16px;box-shadow:var(--sombra);margin-bottom:16px;position:relative}
+.pcard.semana{background:var(--ceu)} .pcard.mes{background:var(--limao)}
+.pcard .badge{position:absolute;top:-12px;right:14px;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--chiclete);border:1.5px solid var(--tinta);border-radius:99px;padding:2px 10px}
+.pcard .pname{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.pcard .price{font-family:var(--display);font-weight:900;font-size:40px;line-height:1;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.pcard .price small{font-family:var(--body);font-size:15px;font-weight:700}
+.pcard .how{font-weight:700;font-size:15px;margin:0 0 12px}
+.facts{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:8px}
+.facts li{display:grid;grid-template-columns:22px 1fr;gap:6px;font-size:14px;font-weight:500;line-height:1.4;background:rgba(255,255,255,.7);border:1.5px solid var(--tinta);border-radius:12px;padding:8px 10px}
+.facts li i{font-style:normal;font-weight:900}
+.inc{border:var(--borda);border-radius:18px;padding:14px;background:var(--papel);margin-bottom:16px}
+.inc b{display:block;font-family:var(--display);font-weight:800;font-size:18px;margin-bottom:6px}
+.inc ul{margin:0;padding-left:18px;font-size:14px;font-weight:500;line-height:1.6}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;border:var(--borda);border-radius:16px;overflow:hidden;background:var(--papel);font-size:13px;margin-bottom:16px}
+.cmp th,.cmp td{padding:9px 8px;text-align:left;vertical-align:top;border-bottom:1.5px solid var(--line)}
+.cmp tr:last-child td{border-bottom:0}
+.cmp th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:var(--creme)}
+.cmp td:first-child{font-weight:800}
+.fine{font-size:12px;color:var(--suave);font-weight:500;line-height:1.5;margin:0 0 20px}
+.summary{border:var(--borda);border-radius:20px;background:var(--papel);padding:4px 16px;margin:6px 0 16px}
+.summary .row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1.5px dashed var(--line);font-size:15px}
+.summary .row:last-child{border-bottom:0}
+.summary .row span{color:var(--suave);font-weight:600}
+.summary .row b{text-align:right;font-variant-numeric:tabular-nums}
+.myplan{margin-top:30px;border:var(--borda);border-radius:18px;padding:14px;background:var(--papel);box-shadow:3px 3px 0 var(--tinta)}
+.myplan .pname{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
+.myplan b{display:block;font-family:var(--display);font-weight:900;font-size:20px;margin:2px 0 4px}
+.myplan p{margin:0 0 12px;font-size:14px;font-weight:500;line-height:1.45}
+.myplan.on-semana{background:var(--ceu)} .myplan.on-mes{background:var(--limao)}
+.myplan .acts{display:grid;gap:8px}
+.btn.small{padding:10px 14px;font-size:14px}
+.btn.plain{background:var(--papel)}
+/* jornadas, unidades por elemento, cartas */
+.journeys{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:26px}
+.jtab{border:var(--borda);border-radius:16px;padding:10px 6px 9px;background:var(--papel);text-align:center;box-shadow:3px 3px 0 var(--tinta);transition:transform .08s, box-shadow .08s}
+.jtab:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--tinta)}
+.jtab b{display:block;font-family:var(--display);font-weight:900;font-size:22px;line-height:1}
+.jtab span{display:block;font-size:12px;font-weight:700;margin-top:3px;line-height:1.15}
+.jtab.on{background:var(--tinta);color:var(--creme)}
+.jintro{margin:16px 2px 0;font-size:15px;font-weight:500;color:var(--suave);max-width:60ch}
+.jintro b{color:var(--tinta)}
+.unit{margin-top:30px}
+.unit.fogo{background:var(--pessego)} .unit.terra{background:var(--menta)} .unit.ar{background:var(--ceu)} .unit.agua{background:var(--lilas)}
+.unit::after{content:attr(data-glyph)}
+.unit .meta{display:flex;align-items:center;gap:8px;margin-top:10px;position:relative}
+.unit .meter{flex:1;height:10px;border-radius:99px;background:var(--papel);border:2px solid var(--tinta);overflow:hidden;max-width:180px}
+.unit .meter i{display:block;height:100%;background:var(--tinta)}
+.unit .meta span{font-size:12px;font-weight:800;font-variant-numeric:tabular-nums}
+.unit .paytag{position:absolute;top:14px;right:14px;z-index:1;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--limao);border:1.5px solid var(--tinta);border-radius:99px;padding:1px 8px}
+.path{padding-block:30px 4px}
+.node.card-node .disc{border-radius:24px}
+.roadmap{display:grid;gap:12px;margin-top:20px}
+.road{display:flex;align-items:center;gap:14px;text-align:left;width:100%;border:var(--borda);border-radius:18px;padding:12px 14px;background:var(--papel);box-shadow:3px 3px 0 var(--tinta)}
+.road .num{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:var(--borda);font-family:var(--display);font-weight:900;font-size:17px;background:var(--creme)}
+.road b{display:block;font-family:var(--display);font-weight:800;font-size:17px;line-height:1.2}
+.road small{display:block;font-size:13px;color:var(--suave);font-weight:500;line-height:1.35;margin-top:2px}
+.road .st{margin-left:auto;flex:none;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--tinta);border-radius:99px;padding:2px 8px;background:var(--creme)}
+.road.open{background:var(--limao)} .road.open .num{background:var(--chiclete)}
+.road.done{background:var(--menta)}
+.road.soon{box-shadow:none;border-style:dashed;background:rgba(255,255,255,.55)}
+.road.soon .num{border-style:dashed;color:var(--suave)}
+.road.soon b{color:var(--suave)}
+.sec{display:flex;align-items:baseline;justify-content:space-between;margin-top:40px}
+.sec h3{margin:0;font-family:var(--display);font-weight:900;font-size:26px;letter-spacing:-.01em}
+.sec span{font-size:13px;font-weight:800;font-variant-numeric:tabular-nums}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.cardm{aspect-ratio:3/4;max-width:100%;border:var(--borda);border-radius:14px;padding:8px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;box-shadow:3px 3px 0 var(--tinta);overflow:hidden}
+.cardm small{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.cardm b{font-family:var(--display);font-weight:800;font-size:14px;line-height:1.1}
+.cardm .cg{font-family:var(--display);font-size:24px;line-height:1}
+.cardm.Mito{background:var(--rosa)} .cardm.Filosofia{background:var(--ceu)}
+.cardm.locked{background:rgba(255,255,255,.55);border-style:dashed;box-shadow:none;color:var(--suave);align-items:center;justify-content:center;font-family:var(--display);font-size:26px}
+.prev{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:30px;border:var(--borda);border-radius:18px;padding:12px 14px;background:var(--papel)}
+.prev b{display:block;font-size:14px}
+.prev small{display:block;font-size:12px;color:var(--suave);font-weight:500}
+.switch{flex:none;width:52px;height:30px;border-radius:99px;border:var(--borda);background:var(--creme);position:relative;padding:0}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--tinta);transition:transform .15s}
+.switch.on{background:var(--menta)} .switch.on::after{transform:translateX(22px)}
+.won{display:grid;justify-items:center;gap:6px;margin-top:6px}
+.won .cardm{width:150px;aspect-ratio:3/4;padding:12px;animation:pop .6s cubic-bezier(.2,1.6,.4,1)}
+.won .cardm b{font-size:19px}
+.won .cardm .cg{font-size:40px}
+.modal .cardtext{font-size:16px;line-height:1.6;color:var(--tinta);font-weight:500;margin:0 0 18px}
+.modal .ck{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid var(--tinta);border-radius:99px;padding:1px 8px;margin-bottom:8px}
+</style>
+
+
+<div id="onb" class="wrap onb" hidden>
+  <div class="top2"><button class="x" id="oBack" aria-label="Voltar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button><div class="dots" id="odots"></div></div>
+  <div class="ostage" id="ostage"></div>
+  <div class="foot"><div class="inner"><button class="btn" id="oNext">Continuar</button><button class="link" id="oAlt" hidden></button></div></div>
+</div>
+
+<div id="home" class="wrap">
+  <header class="top">
+    <div class="brand">Jornada<small id="who">Protótipo · @eusouodu</small></div>
+    <div class="stats">
+      <span class="stat fire" title="Dias seguidos"><svg viewBox="0 0 24 24"><path d="M12 2c1 4 5 5.5 5 11a5 5 0 0 1-10 0c0-2.6 1.3-4.2 2.6-5.4.2 1.8 1 2.9 2 3.4C11 8.5 11.3 5 12 2z"/></svg><span id="sStreak">0</span></span>
+      <span class="stat xp" title="Pontos de experiência"><svg viewBox="0 0 24 24"><path d="M12 2l2.6 6.6L21 9.3l-5 4.5 1.5 6.9L12 17l-5.5 3.7L8 13.8 3 9.3l6.4-.7z"/></svg><span id="sXp">0</span></span>
+      <span class="stat moon" title="Luas: cada erro custa uma"><svg viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg><span id="sLuas">5</span></span>
+    </div>
+  </header>
+
+  <section class="chart">
+    <div id="wheel"></div>
+    <div class="cap" id="chartCap"></div>
+  </section>
+
+  <button class="daily" id="daily">
+    <span class="sun">☉&#xFE0E;</span>
+    <span>
+      <span class="eyebrow">Energia astrológica do dia</span>
+      <h3>O Sol em Libra encara Áries</h3>
+      <p id="dailySub">Lição relâmpago · 3 passos</p>
+    </span>
+    <span class="go">›</span>
+  </button>
+
+  <nav class="journeys" id="jtabs">
+    <button class="jtab" data-j="1"><b>1</b><span>A linguagem</span></button>
+    <button class="jtab" data-j="2"><b>2</b><span>O meu mapa</span></button>
+    <button class="jtab" data-j="3"><b>3</b><span>Os trânsitos</span></button>
+  </nav>
+  <p class="jintro" id="jintro"></p>
+  <div id="jbody"></div>
+
+  <div class="sec"><h3>Cartas</h3><span id="cardCount"></span></div>
+  <div class="cards" id="cards"></div>
+
+  <div id="myplan"></div>
+
+  <div class="prev">
+    <span><b>Prévia: tudo liberado</b><small>Desligue para ver como fica a versão grátis</small></span>
+    <button class="switch" id="prevSw" aria-label="Alternar prévia"></button>
+  </div>
+  <button class="edit" id="editData">Editar dados de nascimento</button>
+  <button class="reset" id="reset">Recomeçar protótipo</button>
+</div>
+
+<div id="lesson" hidden>
+  <div class="wrap">
+    <div class="lbar">
+      <button class="x" id="quit" aria-label="Sair da lição"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <div class="prog"><i id="bar"></i></div>
+      <span class="stat moon"><svg viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg><span id="lLuas">5</span></span>
+    </div>
+    <div class="stage" id="stage"></div>
+  </div>
+  <div class="foot"><div class="inner"><button class="btn" id="main" disabled>Verificar</button></div></div>
+  <div class="sheet" id="sheet"><div class="inner"><h4 id="shT"></h4><p id="shP"></p><button class="btn" id="shBtn">Continuar</button></div></div>
+</div>
+
+<div id="done" class="wrap" hidden>
+  <div class="center">
+    <div class="big" id="dGlyph"></div>
+    <div id="dCard" class="won" hidden></div>
+    <div class="eyebrow-l">Lição concluída</div>
+    <h2 id="dTitle"></h2>
+    <p id="dText"></p>
+    <div class="tiles">
+      <div class="tile g"><b id="dXp">0</b><span>XP</span></div>
+      <div class="tile o"><b id="dAcc">0%</b><span>Acertos</span></div>
+      <div class="tile e"><b id="dStreak">0</b><span>Dias</span></div>
+    </div>
+    <button class="btn" id="dBtn">Continuar a jornada</button>
+  </div>
+</div>
+
+<div id="empty" class="wrap" hidden>
+  <div class="center">
+    <div class="big" style="background:var(--lilas)">☾&#xFE0E;</div>
+    <h2>As luas acabaram</h2>
+    <p>Cada erro apaga uma lua. Elas voltam com o tempo. Assinantes praticam sem limite.</p>
+    <div style="height:14px"></div>
+    <button class="btn" id="refill">Recarregar luas (protótipo)</button>
+  </div>
+</div>
+
+
+<div id="plans" class="wrap plans-v" hidden>
+  <div class="head"><button class="x" id="pBack" aria-label="Voltar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <h2>Como seguir a jornada</h2>
+  <p class="lead">Dois jeitos de pagar. Tudo o que muda entre eles está escrito aqui, sem letra miúda.</p>
+
+  <div class="free"><b>Grátis, para sempre</b><p>A subjornada de Áries inteira e a lição do dia. Sem cadastro de cartão, sem prazo.</p></div>
+
+  <div class="pcard semana">
+    <div class="pname">Passe semanal</div>
+    <div class="price">R$ 9,90 <small>por 7 dias</small></div>
+    <p class="how">Pago uma vez, por Pix.</p>
+    <ul class="facts">
+      <li><i>✓</i><span>Libera tudo por 7 dias, contados do momento do pagamento.</span></li>
+      <li><i>✓</i><span><b>Não renova sozinho.</b> Nenhuma cobrança automática, nunca.</span></li>
+      <li><i>✓</i><span>No último dia o app avisa. Quem quiser continuar paga outro Pix.</span></li>
+      <li><i>✓</i><span>Não precisa de cartão de crédito e não tem nada para cancelar.</span></li>
+    </ul>
+    <button class="btn plain" data-plan="semana">Pagar R$ 9,90 no Pix</button>
+  </div>
+
+  <div class="pcard mes">
+    <span class="badge">Sai mais barato</span>
+    <div class="pname">Assinatura mensal</div>
+    <div class="price">R$ 29,90 <small>por mês</small></div>
+    <p class="how">No cartão de crédito.</p>
+    <ul class="facts">
+      <li><i>✓</i><span>Libera tudo enquanto a assinatura estiver ativa.</span></li>
+      <li><i>↻</i><span><b>Renova automaticamente</b> a cada mês, no mesmo dia, sempre R$ 29,90.</span></li>
+      <li><i>✕</i><span>Cancela quando quiser, em Meu plano, sem multa. O acesso segue até o fim do mês já pago.</span></li>
+      <li><i>✓</i><span>4 passes semanais custariam R$ 39,60. No mensal, R$ 29,90.</span></li>
+    </ul>
+    <button class="btn plain" data-plan="mes">Assinar por R$ 29,90 por mês</button>
+  </div>
+
+  <div class="inc"><b>Os dois liberam o mesmo conteúdo</b>
+    <ul><li>As 12 subjornadas da linguagem, de Áries a Peixes</li><li>A jornada do mapa natal</li><li>A jornada dos trânsitos</li><li>Luas ilimitadas, sem pausa por erro</li><li>Todas as cartas de mito e filosofia</li></ul>
+  </div>
+
+  <div style="overflow-x:auto">
+  <table class="cmp">
+    <tr><th></th><th>Semanal</th><th>Mensal</th></tr>
+    <tr><td>Pagamento</td><td>Pix</td><td>Cartão de crédito</td></tr>
+    <tr><td>Renova sozinho?</td><td>Não</td><td>Sim, todo mês</td></tr>
+    <tr><td>Num mês</td><td>R$ 39,60 se renovar 4 vezes</td><td>R$ 29,90</td></tr>
+    <tr><td>Para parar</td><td>Só não pagar de novo</td><td>Cancelar em Meu plano</td></tr>
+  </table>
+  </div>
+  <p class="fine">Pagamentos processados pelo Mercado Pago. O valor cobrado é sempre o que aparece aqui, sem taxa extra.</p>
+</div>
+
+<div id="confirm" class="wrap plans-v" hidden>
+  <div class="head"><button class="x" id="cBack" aria-label="Voltar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button></div>
+  <h2>Antes de pagar</h2>
+  <p class="lead">Confira o resumo. É exatamente isso que vai acontecer.</p>
+  <div class="summary" id="sumBox"></div>
+  <button class="btn" id="payGo">Ir para o Mercado Pago</button>
+  <p class="fine" style="margin-top:12px">No protótipo, este botão só simula o pagamento aprovado.</p>
+</div>
+
+<div class="modal" id="modal" hidden>
+  <div class="box" id="mbox"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2.1.19/astronomy.browser.min.js"></script>
+<script>
+const UNITS = /*UNITS*/[];
+const T = "︎";
+const GL = "♈♉♊♋♌♍♎♏♐♑♒♓☉☽☾☿♀♂♃♄♅♆♇⚔⚖";
+const g = s => [...String(s)].map(c => GL.includes(c) ? c+T : c).join("");
+const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const eg = s => esc(g(s));
+
+let ASC = 12;
+const POINTS = {
+  asc:{lon:12,g:"AC",name:"Ascendente"}, sol:{lon:135,g:"☉",name:"Sol"}, lua:{lon:352,g:"☽",name:"Lua"},
+  merc:{lon:153,g:"☿",name:"Mercúrio"}, venus:{lon:188,g:"♀",name:"Vênus"}, marte:{lon:282,g:"♂",name:"Marte"},
+  jupiter:{lon:78,g:"♃",name:"Júpiter"}, saturno:{lon:58,g:"♄",name:"Saturno"}, urano:{lon:324,g:"♅",name:"Urano"},
+  netuno:{lon:302,g:"♆",name:"Netuno"}, plutao:{lon:252,g:"♇",name:"Plutão"}
+};
+const SIGNS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"];
+const ELCOL = {fogo:"var(--pessego)", terra:"var(--menta)", ar:"var(--ceu)", agua:"var(--lilas)", "água":"var(--lilas)"};
+const SIGN_EL = ["fogo","terra","ar","agua","fogo","terra","ar","agua","fogo","terra","ar","agua"];
+const TOTAL_LIGHTS = 12 + Object.keys(POINTS).length;
+
+/* ---------- jornadas 2 e 3 ---------- */
+const MAPA1 = {
+  id:"mapa-1", kind:"No mapa", title:"O Ascendente e o regente", glyph:"AC", light:"planet:asc", card:null,
+  doneTitle:"O Ascendente acendeu",
+  doneText:"No mapa de cada pessoa, este é o primeiro passo da segunda jornada: o signo que nascia no horizonte e o planeta que conduz a história.",
+  steps:[
+    {type:"teach", glyph:"AC", chart:true, eyebrow:"Mapa de exemplo", title:"Agora o símbolo vira espelho",
+     body:["Este é um mapa de exemplo, com Ascendente em Áries. Na versão final, aqui aparece o mapa natal de quem está jogando.","A partir de agora, cada resposta é sobre este céu."]},
+    {type:"choice", chart:true, q:"Com Ascendente em Áries, qual planeta rege este mapa?",
+     opts:["Marte","Sol","Vênus","Lua"], a:0,
+     explain:"O regente do mapa é o regente do signo ascendente. Marte vira o fio condutor dessa vida."},
+    {type:"choice", chart:true, q:"Marte está em Capricórnio. Para Marte, Capricórnio é signo de:",
+     opts:["Exaltação","Exílio","Queda","Domicílio"], a:0,
+     explain:"Em Capricórnio, o fogo de Marte ganha estrutura e paciência. É a força que sabe esperar."},
+    {type:"choice", q:"E ele está na casa 10. Do que fala a casa 10?",
+     opts:["Vocação, carreira e lugar no mundo","Casa e família","Amizades e grupos","Dinheiro próprio"], a:0,
+     explain:"A casa 10 é o ponto mais alto do mapa: o que a gente constrói à vista de todos."},
+    {type:"multi", q:"Monte a leitura: escolha as 3 peças que descrevem este Marte",
+     opts:["Força disciplinada e estratégica","Ambição ligada à vocação","Coragem que aparece em público","Raiva que explode sem controle","Desejo voltado para a vida doméstica"], correct:[0,1,2],
+     explain:"Regente do mapa, exaltado e no topo: uma vida que se afirma pelo trabalho que faz no mundo."},
+    {type:"reflect", q:"Onde a gente gasta a nossa coragem?",
+     hint:"Na versão final, esta pergunta muda conforme a casa do regente de quem joga."}
+  ]
+};
+const DAILY = {
+  id:"hoje", kind:"Hoje", title:"O Sol em Libra", glyph:"☉", light:null, card:null,
+  doneTitle:"Lição do dia feita",
+  doneText:"Amanhã a lição relâmpago muda com a energia astrológica do dia.",
+  steps:[
+    {type:"teach", glyph:"♎", eyebrow:"Energia astrológica do dia · 17 de outubro", title:"O Sol do outro lado da roda",
+     body:["Hoje o Sol atravessa Libra, o signo oposto a Áries.","Na roda, os dois se olham de frente: o eu que se lança e o outro que pede medida."]},
+    {type:"choice", q:"Com o Sol em Libra, qual eixo do zodíaco fica aceso?",
+     opts:["Áries e Libra: eu e o outro","Touro e Escorpião: posse e entrega","Câncer e Capricórnio: casa e mundo","Gêmeos e Sagitário: dado e sentido"], a:0,
+     explain:"O Sol num signo sempre acende o oposto como sombra. Em Libra, a pergunta de Áries volta pelo espelho do outro."},
+    {type:"reflect", q:"Em qual relação a gente está cedendo demais, ou impondo demais, nesta semana?", hint:"Uma linha basta."}
+  ]
+};
+const J2 = [
+  ["O Ascendente e o regente","A porta de entrada do mapa e o planeta que conduz a história", null],
+  ["O Sol","O centro: o que a gente veio iluminar"],
+  ["A Lua","O lugar de onde a gente se nutre e para onde volta"],
+  ["Mercúrio","O jeito de pensar, perguntar e traduzir"],
+  ["O Vênus","O que a gente acha bonito e como ama"],
+  ["Marte","Como a gente deseja e vai atrás"],
+  ["Júpiter e Saturno","Onde a vida expande e onde ela pede forma"],
+  ["Urano, Netuno e Plutão","Os planetas de geração e o que mexem em cada um"],
+  ["As doze casas","Os cenários da vida onde os planetas atuam"],
+  ["Os aspectos","As conversas e os conflitos entre os planetas"],
+  ["Os nodos lunares","O que a gente traz e para onde caminha"],
+  ["A síntese","Ler o mapa inteiro como uma história"]
+];
+const J3 = [
+  ["A energia astrológica do dia","Uma lição relâmpago por dia, ligada aos trânsitos reais", DAILY],
+  ["A Lua e suas fases","O ritmo de 29 dias e meio na vida de cada um"],
+  ["Mercúrio retrógrado","O que a ilusão de ótica pede para revisar"],
+  ["Os ciclos do Vênus","Estrela da manhã, estrela da tarde"],
+  ["Marte em trânsito","Onde o impulso acende a cada dois anos"],
+  ["Júpiter, um ano por signo","A casa do mapa que ganha fôlego"],
+  ["O retorno de Saturno","A travessia dos 29 anos"],
+  ["Os lentos","Urano, Netuno e Plutão passando pelo mapa"],
+  ["Eclipses","Os portais de cada semestre"],
+  ["A revolução solar","O mapa do aniversário e o ano que começa"],
+  ["Trânsitos no próprio mapa","Ler a energia astrológica sobre o mapa natal"],
+  ["O ano astrológico","Juntar tudo numa leitura do ano"]
+];
+
+
+/* ---------- mapa natal real ---------- */
+const SIGN_NAMES=["Áries","Touro","Gêmeos","Câncer","Leão","Virgem","Libra","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+const CITIES=[
+["Salvador","BA",-12.97,-38.50,"America/Bahia"],["Feira de Santana","BA",-12.27,-38.97,"America/Bahia"],["Vitória da Conquista","BA",-14.86,-40.84,"America/Bahia"],["Ilhéus","BA",-14.79,-39.05,"America/Bahia"],["Itabuna","BA",-14.79,-39.28,"America/Bahia"],["Juazeiro","BA",-9.41,-40.50,"America/Bahia"],["Camaçari","BA",-12.70,-38.32,"America/Bahia"],["Lauro de Freitas","BA",-12.89,-38.33,"America/Bahia"],["Porto Seguro","BA",-16.45,-39.06,"America/Bahia"],["Barreiras","BA",-12.15,-44.99,"America/Bahia"],
+["São Paulo","SP",-23.55,-46.63,"America/Sao_Paulo"],["Campinas","SP",-22.91,-47.06,"America/Sao_Paulo"],["Santos","SP",-23.96,-46.33,"America/Sao_Paulo"],["Guarulhos","SP",-23.46,-46.53,"America/Sao_Paulo"],["Ribeirão Preto","SP",-21.18,-47.81,"America/Sao_Paulo"],["Sorocaba","SP",-23.50,-47.46,"America/Sao_Paulo"],["São José dos Campos","SP",-23.18,-45.89,"America/Sao_Paulo"],["Santo André","SP",-23.66,-46.53,"America/Sao_Paulo"],
+["Rio de Janeiro","RJ",-22.91,-43.17,"America/Sao_Paulo"],["Niterói","RJ",-22.88,-43.10,"America/Sao_Paulo"],["Petrópolis","RJ",-22.51,-43.18,"America/Sao_Paulo"],["Campos dos Goytacazes","RJ",-21.75,-41.32,"America/Sao_Paulo"],
+["Belo Horizonte","MG",-19.92,-43.94,"America/Sao_Paulo"],["Juiz de Fora","MG",-21.76,-43.35,"America/Sao_Paulo"],["Uberlândia","MG",-18.92,-48.28,"America/Sao_Paulo"],["Montes Claros","MG",-16.73,-43.86,"America/Sao_Paulo"],
+["Vitória","ES",-20.32,-40.34,"America/Sao_Paulo"],["Curitiba","PR",-25.43,-49.27,"America/Sao_Paulo"],["Londrina","PR",-23.31,-51.16,"America/Sao_Paulo"],["Maringá","PR",-23.42,-51.94,"America/Sao_Paulo"],["Foz do Iguaçu","PR",-25.55,-54.59,"America/Sao_Paulo"],
+["Florianópolis","SC",-27.60,-48.55,"America/Sao_Paulo"],["Joinville","SC",-26.30,-48.85,"America/Sao_Paulo"],["Blumenau","SC",-26.92,-49.07,"America/Sao_Paulo"],["Porto Alegre","RS",-30.03,-51.23,"America/Sao_Paulo"],["Caxias do Sul","RS",-29.17,-51.18,"America/Sao_Paulo"],["Pelotas","RS",-31.77,-52.34,"America/Sao_Paulo"],
+["Recife","PE",-8.05,-34.88,"America/Recife"],["Caruaru","PE",-8.28,-35.98,"America/Recife"],["Petrolina","PE",-9.39,-40.50,"America/Recife"],["Fortaleza","CE",-3.73,-38.53,"America/Fortaleza"],["Juazeiro do Norte","CE",-7.21,-39.32,"America/Fortaleza"],
+["Natal","RN",-5.79,-35.21,"America/Fortaleza"],["Mossoró","RN",-5.19,-37.34,"America/Fortaleza"],["João Pessoa","PB",-7.12,-34.86,"America/Fortaleza"],["Campina Grande","PB",-7.23,-35.88,"America/Fortaleza"],["Maceió","AL",-9.67,-35.74,"America/Maceio"],["Aracaju","SE",-10.91,-37.07,"America/Maceio"],
+["Teresina","PI",-5.09,-42.80,"America/Fortaleza"],["São Luís","MA",-2.53,-44.30,"America/Fortaleza"],["Imperatriz","MA",-5.53,-47.48,"America/Fortaleza"],["Belém","PA",-1.46,-48.50,"America/Belem"],["Santarém","PA",-2.44,-54.71,"America/Santarem"],["Macapá","AP",0.03,-51.07,"America/Belem"],["Palmas","TO",-10.18,-48.33,"America/Araguaina"],
+["Brasília","DF",-15.79,-47.88,"America/Sao_Paulo"],["Goiânia","GO",-16.68,-49.25,"America/Sao_Paulo"],["Anápolis","GO",-16.33,-48.95,"America/Sao_Paulo"],
+["Manaus","AM",-3.12,-60.02,"America/Manaus"],["Porto Velho","RO",-8.76,-63.90,"America/Porto_Velho"],["Boa Vista","RR",2.82,-60.67,"America/Boa_Vista"],["Cuiabá","MT",-15.60,-56.10,"America/Cuiaba"],["Campo Grande","MS",-20.44,-54.65,"America/Campo_Grande"],["Rio Branco","AC",-9.97,-67.81,"America/Rio_Branco"],["Fernando de Noronha","PE",-3.85,-32.42,"America/Noronha"]
+];
+const cityLabel = c => c[0]+", "+c[1];
+const PKEYS={merc:"Mercury",venus:"Venus",marte:"Mars",jupiter:"Jupiter",saturno:"Saturn",urano:"Uranus",netuno:"Neptune",plutao:"Pluto"};
+function tzOffsetMin(utcMs, zone){
+  const p = new Intl.DateTimeFormat("en-US",{timeZone:zone,hourCycle:"h23",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit"}).formatToParts(new Date(utcMs));
+  const v = t => +p.find(x=>x.type===t).value;
+  return (Date.UTC(v("year"),v("month")-1,v("day"),v("hour"),v("minute"),v("second")) - utcMs)/60000;
+}
+function localToUTC(y,m,d,h,mi,zone){
+  const wall = Date.UTC(y,m-1,d,h,mi);
+  let utc = wall - tzOffsetMin(wall,zone)*60000;
+  utc = wall - tzOffsetMin(utc,zone)*60000;
+  return new Date(utc);
+}
+function dstInfo(y,m,d,h,mi,zone){
+  const utc = localToUTC(y,m,d,h,mi,zone).getTime();
+  const off = tzOffsetMin(utc,zone);
+  const std = tzOffsetMin(Date.UTC(y,6,1,15),zone);
+  const back = new Date(utc + off*60000);
+  const gap = back.getUTCHours()!==h || back.getUTCMinutes()!==mi;
+  const on = off > std;
+  let from=null, to=null;
+  if(on){
+    let t=utc; while(tzOffsetMin(t-864e5,zone)===off) t-=864e5; from=new Date(t);
+    t=utc; while(tzOffsetMin(t+864e5,zone)===off) t+=864e5; to=new Date(t+864e5);
+  }
+  return {on, gap, off, std, from, to};
+}
+const dmy = dt => dt.toLocaleDateString("pt-BR",{timeZone:"UTC",day:"2-digit",month:"2-digit",year:"numeric"});
+const utcLabel = o => "UTC" + (o<0?"−":"+") + Math.abs(o/60);
+function dstHTML(d){
+  const c = CITIES.find(x=>cityLabel(x)===d.city); if(!c || !d.birth) return "";
+  const [y,m,dd]=d.birth.split("-").map(Number);
+  const tm = (d.unknownTime||!d.time) ? "12:00" : d.time;
+  const [h,mi]=tm.split(":").map(Number);
+  const k = dstInfo(y,m,dd,h,mi,c[4]);
+  if(k.gap) return `<div class="dst warn"><b>Esse horário não existiu no relógio.</b> Na noite em que o horário de verão começou, o relógio de ${esc(c[0])} pulou uma hora. Vale conferir a certidão.</div>`;
+  if(k.on){
+    const sh = String((h-1+24)%24).padStart(2,"0")+":"+String(mi).padStart(2,"0");
+    return `<div class="dst on"><b>Horário de verão em vigor.</b> Em ${dmy(new Date(Date.UTC(y,m-1,dd)))}, ${esc(c[0])} estava no horário de verão, de ${dmy(k.from)} a ${dmy(k.to)} (${utcLabel(k.off)}). ${d.unknownTime||!d.time?"O cálculo já leva isso em conta.":`O cálculo já desconta a hora: ${esc(tm)} no relógio equivale a ${sh} no horário padrão.`}</div>`;
+  }
+  return `<div class="dst off"><b>Sem horário de verão nessa data.</b> ${esc(c[0])} estava no horário padrão (${utcLabel(k.off)}).</div>`;
+}
+function computeChart(u){
+  const c = CITIES.find(x=>cityLabel(x)===u.city);
+  const [y,m,d] = u.birth.split("-").map(Number);
+  const [h,mi] = (u.unknownTime ? "12:00" : u.time).split(":").map(Number);
+  const date = localToUTC(y,m,d,h,mi,c[4]);
+  const A = window.Astronomy;
+  const pts = {sol:A.SunPosition(date).elon, lua:A.EclipticGeoMoon(date).lon};
+  for(const k in PKEYS) pts[k] = A.Ecliptic(A.GeoVector(A.Body[PKEYS[k]], date, true)).elon;
+  const ramc = ((A.SiderealTime(date)*15 + c[3]) % 360 + 360) % 360;
+  const T2 = (date - Date.UTC(2000,0,1,12)) / (36525*864e5);
+  const e = (23.4393 - 0.0130*T2)*Math.PI/180, rr = ramc*Math.PI/180, ph = c[2]*Math.PI/180;
+  let asc = Math.atan2(Math.cos(rr), -(Math.sin(rr)*Math.cos(e) + Math.tan(ph)*Math.sin(e)))*180/Math.PI;
+  asc = (asc+360)%360;
+  return {asc, hasAsc:!u.unknownTime, pts};
+}
+const signOf = lon => Math.floor(((lon%360)+360)%360/30);
+const degOf = lon => Math.floor(((lon%360)+360)%360%30);
+const PN = {sol:["Sol","o Sol"], lua:["Lua","a Lua"], merc:["Mercúrio","Mercúrio"], venus:["Vênus","o Vênus"], marte:["Marte","Marte"], jupiter:["Júpiter","Júpiter"], saturno:["Saturno","Saturno"]};
+const cap1 = s => s.charAt(0).toUpperCase()+s.slice(1);
+const RULER = ["marte","venus","merc","lua","sol","merc","venus","marte","jupiter","saturno","saturno","jupiter"];
+const MODERN = {7:"Plutão", 10:"Urano", 11:"Netuno"};
+const DOM = {sol:[4],lua:[3],merc:[2,5],venus:[1,6],marte:[0,7],jupiter:[8,11],saturno:[9,10]};
+const EXA = {sol:0,lua:1,merc:5,venus:11,marte:9,jupiter:3,saturno:6};
+function dignity(k, sg){
+  if(DOM[k].includes(sg)) return "Domicílio";
+  if(EXA[k]===sg) return "Exaltação";
+  if(DOM[k].map(x=>(x+6)%12).includes(sg)) return "Exílio";
+  if((EXA[k]+6)%12===sg) return "Queda";
+  return "Nenhuma: ele é peregrino";
+}
+const DIG_TXT = {
+  "Domicílio":"Em domicílio, o planeta está em casa: expressa a própria natureza sem precisar traduzir nada.",
+  "Exaltação":"Em exaltação, o planeta é recebido como hóspede de honra: a força dele aparece no auge.",
+  "Exílio":"Em exílio, o planeta está longe de casa e fala a própria natureza numa língua estrangeira. Isso cansa, e também vira talento.",
+  "Queda":"Em queda, o planeta perde altura: o que nele é força pede mais consciência para aparecer.",
+  "Nenhuma: ele é peregrino":"Sem dignidade nem debilidade, o planeta é peregrino: o tom dele depende das relações que faz no resto do mapa."
+};
+const RMEAN = {sol:"o centro, aquilo que a gente veio iluminar", lua:"a nutrição, a memória e o lugar para onde a gente volta", merc:"o pensamento, a palavra e a troca", venus:"o afeto, a beleza e aquilo que a gente valoriza", marte:"a vontade, a coragem e o jeito de ir atrás", jupiter:"a expansão, a fé e a busca de sentido", saturno:"o limite, o tempo e a forma que dá estrutura"};
+const STONE = ["começo e impulso","permanência e corpo","curiosidade e troca","cuidado e memória","brilho e criação","precisão e ofício","encontro e medida","profundidade e intensidade","busca e horizonte","estrutura e ambição paciente","liberdade e coletivo","dissolução e compaixão"];
+const HOUSES = ["","o corpo, a presença e o jeito de começar","o dinheiro próprio, os recursos e o valor de si","a fala, os irmãos e o entorno próximo","a casa, a família e as raízes","a criação, o prazer, os filhos e o romance","o trabalho de todo dia, a rotina e a saúde","as parcerias, o casamento e o outro","a intimidade, as crises e o que é compartilhado","as viagens, os estudos e a busca de sentido","a vocação, a carreira e o lugar no mundo","os amigos, os grupos e os projetos de futuro","o inconsciente, o retiro e o que fica escondido"];
+const HOUSE_Q = ["","Como a gente chega nos lugares antes de dizer qualquer palavra?","O que a gente valoriza de verdade, além do que custa?","Que conversa a gente está adiando?","O que da família a gente carrega sem ter escolhido?","O que a gente cria só pelo prazer de criar?","Que hábito sustenta, e que hábito pesa, no nosso dia?","O que a gente procura no outro e ainda não reconhece em si?","O que a gente precisaria deixar morrer para mudar?","Que pergunta grande está guiando a gente agora?","O que a gente quer construir à vista de todos?","Com quem a gente sonha o futuro?","O que a gente faz quando ninguém está vendo?"];
+function buildMapa1(){
+  const C=S.chart, u=S.user; if(!C||!C.hasAsc) return null;
+  const as=signOf(C.asc), rk=RULER[as], rs=signOf(C.pts[rk]), house=((rs-as+12)%12)+1;
+  const RN=PN[rk][0], RA=cap1(PN[rk][1]);
+  const others = shuffle(Object.keys(PN).filter(k=>k!==rk)).slice(0,3).map(k=>PN[k][0]);
+  const dg=dignity(rk,rs);
+  const digOpts=[dg, ...["Domicílio","Exaltação","Exílio","Queda","Nenhuma: ele é peregrino"].filter(x=>x!==dg).slice(0,3)];
+  const hOthers=shuffle([1,2,3,4,5,6,7,8,9,10,11,12].filter(n=>n!==house)).slice(0,3).map(n=>cap1(HOUSES[n]));
+  const modern = MODERN[as] ? ` Na astrologia moderna, ${MODERN[as]} divide essa regência.` : "";
+  const first = (u.name||"").trim().split(" ")[0];
+  return {
+    id:"mapa-1", kind:"No mapa", title:"O Ascendente e o regente", glyph:"AC", light:"planet:asc", card:null,
+    doneTitle:"O Ascendente acendeu",
+    doneText:`Ascendente em ${SIGN_NAMES[as]}, regido por ${PN[rk][1]} em ${SIGN_NAMES[rs]}, na casa ${house}. Esse é o fio que a segunda jornada vai seguir.`,
+    steps:[
+      {type:"teach", chart:true, eyebrow:`O mapa de ${first}`, title:"Agora o símbolo vira espelho",
+       body:[`Este é o céu do instante do nascimento, visto de ${u.city}.`, `O Ascendente é o signo que nascia no horizonte leste naquele minuto: ${SIGN_NAMES[as]}, a ${degOf(C.asc)} graus. É a porta de entrada do mapa.`]},
+      {type:"choice", chart:true, q:`Com Ascendente em ${SIGN_NAMES[as]}, qual planeta rege este mapa?`, opts:[RN,...others], a:0,
+       explain:`O regente do mapa é o regente do signo ascendente. ${RA} vira o fio condutor dessa vida.${modern}`},
+      {type:"choice", q:`${RA} está em ${SIGN_NAMES[rs]}. Para ${PN[rk][1]}, ${SIGN_NAMES[rs]} é signo de:`, opts:digOpts, a:0, explain:DIG_TXT[dg]},
+      {type:"choice", q:`E está na casa ${house}. Do que fala a casa ${house}?`, opts:[cap1(HOUSES[house]),...hOthers], a:0,
+       explain:`A casa ${house} é o terreno onde o regente trabalha. É ali que a história desse mapa pede para acontecer.`},
+      {type:"teach", glyph:"AC", eyebrow:"A leitura", title:`${RA} em ${SIGN_NAMES[rs]}, casa ${house}`,
+       body:[`No mapa, ${PN[rk][1]} fala de ${RMEAN[rk]}. Em ${SIGN_NAMES[rs]}, ganha o tom de ${STONE[rs]}.`, `Como regente, ele leva o Ascendente em ${SIGN_NAMES[as]} até a casa ${house}: ${HOUSES[house]}. O jeito de chegar no mundo encontra ali o seu destino.`]},
+      {type:"reflect", q:HOUSE_Q[house], hint:"Esta pergunta nasce da casa onde está o regente deste mapa."}
+    ]
+  };
+}
+
+/* ---------- entrada ---------- */
+let ob = {step:0, d:{}};
+const OSTEPS = ["intro","name","birth","city","time","email","calc"];
+function startOnb(edit){
+  ob = {step: edit?1:0, edit:!!edit, d: Object.assign({optin:true}, S.user||{})};
+  show("onb"); renderOnb();
+}
+function renderOnb(){
+  const st = OSTEPS[ob.step], d=ob.d, box=$("ostage");
+  $("odots").innerHTML = OSTEPS.slice(1,6).map((_,i)=>`<i class="${i<ob.step?"on":""}"></i>`).join("");
+  $("odots").style.visibility = (st==="intro"||st==="calc")?"hidden":"visible";
+  $("oBack").style.visibility = (ob.step>(ob.edit?1:0) && st!=="calc")?"visible":"hidden";
+  const next=$("oNext"), alt=$("oAlt"); alt.hidden=true; next.hidden=false; next.disabled=false;
+  const err = `<p class="oerr" id="oerr"></p>`;
+  if(st==="intro"){
+    box.innerHTML = `<div class="hero"><div class="logo">Jornada</div><div class="spin">${wheelSVG(null,true)}</div><div class="tagline">Astrologia, mito e filosofia. Um passo por dia, a partir do próprio mapa.</div><div class="chips"><span>12 signos</span><span>36 cartas</span><span>Mapa natal</span></div></div>`;
+    next.textContent="Começar"; alt.hidden=false; alt.textContent="Já tenho uma conta";
+    alt.onclick=()=>openModal(`<h3>Entrar sem senha</h3><p>Na versão final, aqui entra o e-mail e chega um link mágico. Um toque e a jornada abre no ponto onde parou, em qualquer celular.</p><button class="btn" id="mClose">Entendi</button>`);
+    next.onclick=()=>{ ob.step++; renderOnb(); };
+  }
+  if(st==="name"){
+    box.innerHTML = `<h2>Primeiro, um nome</h2><p class="sub">É assim que a jornada vai chamar.</p><input class="field" id="f1" type="text" autocomplete="given-name" placeholder="Nome" value="${esc(d.name||"")}">${err}`;
+    next.textContent="Continuar";
+    next.onclick=()=>{ const v=$("f1").value.trim(); if(v.length<2) return oerr("Escreva um nome com pelo menos 2 letras."); d.name=v; ob.step++; renderOnb(); };
+  }
+  if(st==="birth"){
+    box.innerHTML = `<h2>A data de nascimento</h2><p class="sub">O dia em que o mapa foi desenhado.</p><input class="field" id="f1" type="date" min="1920-01-01" max="${today()}" value="${esc(d.birth||"")}">${err}`;
+    next.textContent="Continuar";
+    next.onclick=()=>{ const v=$("f1").value; if(!v) return oerr("Escolha a data de nascimento."); if(v<"1920-01-01"||v>today()) return oerr("Confira o ano: a data precisa estar entre 1920 e hoje."); d.birth=v; ob.step++; renderOnb(); };
+  }
+  if(st==="time"){
+    box.innerHTML = `<h2>A hora de nascimento</h2><p class="sub">Ela define o Ascendente e as casas. Costuma estar na certidão de nascimento. O horário de verão de cada cidade, desde 1931, entra na conta sozinho.</p>
+      <input class="field" id="f1" type="time" value="${esc(d.time||"")}" ${d.unknownTime?"disabled":""}>
+      <label class="check-row"><input type="checkbox" id="f2" ${d.unknownTime?"checked":""}><span>Não sei a hora agora<small>Dá para começar assim e completar depois. Sem a hora, o Ascendente fica de fora.</small></span></label><div id="dstBox">${dstHTML(d)}</div>${err}`;
+    const upd=()=>{ $("dstBox").innerHTML = dstHTML(Object.assign({},d,{time:$("f1").value, unknownTime:$("f2").checked})); };
+    $("f1").oninput=upd; $("f1").onchange=upd;
+    $("f2").onchange=e=>{ $("f1").disabled=e.target.checked; upd(); };
+    next.textContent="Continuar";
+    next.onclick=()=>{ const unk=$("f2").checked, v=$("f1").value; if(!unk && !v) return oerr("Escolha a hora ou marque que não sabe agora."); d.unknownTime=unk; d.time=unk?"":v; ob.step++; renderOnb(); };
+  }
+  if(st==="city"){
+    box.innerHTML = `<h2>A cidade de nascimento</h2><p class="sub">O céu muda conforme o lugar de onde se olha.</p><input class="field" id="f1" list="clist" autocomplete="off" placeholder="Comece a digitar" value="${esc(d.city||"")}"><datalist id="clist">${CITIES.map(c=>`<option value="${esc(cityLabel(c))}">`).join("")}</datalist>${err}<p class="ohint">No protótipo, as principais cidades do Brasil. Na versão final, qualquer cidade do mundo.</p>`;
+    next.textContent="Continuar";
+    next.onclick=()=>{ const v=$("f1").value.trim(); const c=CITIES.find(x=>cityLabel(x).toLowerCase()===v.toLowerCase()) || CITIES.find(x=>x[0].toLowerCase()===v.toLowerCase()); if(!c) return oerr("Escolha uma cidade da lista, no formato Cidade, UF."); d.city=cityLabel(c); ob.step++; renderOnb(); };
+  }
+  if(st==="email"){
+    box.innerHTML = `<h2>Onde guardar a jornada</h2><p class="sub">Sem senha. Para entrar de outro celular, chega um link neste e-mail.</p><input class="field" id="f1" type="email" autocomplete="email" inputmode="email" placeholder="nome@email.com" value="${esc(d.email||"")}">
+      <label class="check-row"><input type="checkbox" id="f2" ${d.optin!==false?"checked":""}><span>Quero receber a lição do dia por e-mail<small>Uma mensagem curta por dia, com a energia astrológica. Dá para sair quando quiser.</small></span></label>${err}
+      <p class="ohint">Os dados de nascimento servem só para calcular o mapa.</p>`;
+    next.textContent = ob.edit ? "Recalcular o mapa" : "Calcular o meu mapa";
+    next.onclick=()=>{ const v=$("f1").value.trim(); if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return oerr("Confira o e-mail: falta algo como nome@email.com."); d.email=v; d.optin=$("f2").checked; ob.step++; renderOnb(); };
+  }
+  if(st==="calc"){
+    next.hidden=true;
+    const [y,m,dd]=d.birth.split("-");
+    box.innerHTML = `<div class="calc"><div class="wheelspin">${wheelSVG(null,false)}</div><h2>Calculando o céu</h2><p>${dd}/${m}/${y}${d.unknownTime?"":" às "+esc(d.time)}, ${esc(d.city)}</p></div>`;
+    let chart=null, fail=false;
+    try{ chart = computeChart(d); }catch(e){ fail=true; }
+    setTimeout(()=>{
+      if(fail || !chart){ box.innerHTML = `<h2>O cálculo não carregou</h2><p class="sub">A biblioteca que calcula as posições dos planetas não abriu. Confira a conexão e tente de novo.</p>`; next.hidden=false; next.textContent="Tentar de novo"; next.onclick=()=>renderOnb(); return; }
+      S.user = {name:d.name, birth:d.birth, time:d.time, unknownTime:d.unknownTime, dst:d.dst, city:d.city, email:d.email, optin:d.optin};
+      S.chart = chart; save();
+      revealChart();
+    }, 1600);
+  }
+}
+function oerr(t){ const e=$("oerr"); if(e) e.textContent=t; }
+function revealChart(){
+  const C=S.chart, u=S.user, box=$("ostage"), first=u.name.split(" ")[0];
+  const sun=signOf(C.pts.sol), moon=signOf(C.pts.lua);
+  const t=(lab,gl,txt,deg,col)=>`<div class="t" style="background:${col}"><span class="tg">${g(gl)}</span><span><small>${lab}</small><b>${txt}</b><span class="deg">${deg}</span></span></div>`;
+  box.innerHTML = `<div class="eyebrow-l">O mapa de ${esc(first)}</div><h2>O céu do instante do nascimento</h2>
+    <div class="reveal-wheel">${wheelSVG(null,true)}</div>
+    <div class="trio">
+      ${t("Sol",SIGNS[sun],"Sol em "+SIGN_NAMES[sun],degOf(C.pts.sol)+" graus · o centro",ELCOL[SIGN_EL[sun]])}
+      ${t("Lua",SIGNS[moon],"Lua em "+SIGN_NAMES[moon],degOf(C.pts.lua)+" graus · o abrigo",ELCOL[SIGN_EL[moon]])}
+      ${C.hasAsc ? t("Ascendente",SIGNS[signOf(C.asc)],"Ascendente em "+SIGN_NAMES[signOf(C.asc)],degOf(C.asc)+" graus · a porta de entrada",ELCOL[SIGN_EL[signOf(C.asc)]]) : t("Ascendente","AC","Precisa da hora","Dá para completar depois","var(--papel)")}
+    </div>
+    ${dstHTML(u)}
+    <p class="sub" style="margin-top:14px">Agora o mapa apaga. Cada signo e cada planeta aprendido volta a acender, até o céu inteiro brilhar de novo. A jornada começa por Áries, o grau zero da roda.</p>`;
+  const next=$("oNext"); next.hidden=false; next.textContent = ob.edit ? "Voltar para a jornada" : "Começar a jornada";
+  next.onclick=()=>{ show("home"); renderHome(); };
+}
+
+/* ---------- estado ---------- */
+const KEY = "jornada-proto-v2";
+const fresh = () => ({done:[], lit:[], cards:[], xp:0, streak:0, last:null, luas:5, daily:null, diario:{}, j:1, preview:true, plan:null, user:null, chart:null});
+let S = fresh();
+try{ const raw = localStorage.getItem(KEY); if(raw) S = Object.assign(fresh(), JSON.parse(raw)); }catch(e){}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+const dstr = d => d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const today = () => dstr(new Date());
+const yesterday = () => { const d=new Date(); d.setDate(d.getDate()-1); return dstr(d); };
+const $ = id => document.getElementById(id);
+const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+function show(id){ ["onb","home","lesson","done","empty","plans","confirm"].forEach(v=>$(v).hidden = v!==id); window.scrollTo(0,0); }
+const allLessons = () => UNITS.flatMap(u=>u.lessons);
+const allCards = () => allLessons().filter(l=>l.card).map(l=>({id:l.id, ...l.card, sign:l.id.split("-")[0]}));
+
+/* ---------- mapa ---------- */
+function chartNow(){
+  if(S.chart) return S.chart;
+  const pts={}; for(const k in POINTS) if(k!=="asc") pts[k]=POINTS[k].lon;
+  return {asc:12, hasAsc:true, pts};
+}
+function wheelSVG(newLit, all){
+  const C = chartNow(), asc = C.hasAsc ? C.asc : 0;
+  const cx=150, cy=150, R=140, r=110;
+  const ang = L => Math.PI + (L-asc)*Math.PI/180;
+  const P = (rad,L) => [cx + rad*Math.cos(ang(L)), cy - rad*Math.sin(ang(L))];
+  const f = n => n.toFixed(2);
+  let s = `<svg viewBox="-8 -8 316 316" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa natal">`;
+  s += `<circle cx="${cx}" cy="${cy}" r="${R}" fill="var(--papel)" stroke="var(--tinta)" stroke-width="2.5"/>`;
+  for(let i=0;i<12;i++){
+    const a1=i*30, a2=i*30+30, lit=S.lit.includes("sign:"+i);
+    const [x1,y1]=P(R,a1),[x2,y2]=P(R,a2),[x3,y3]=P(r,a2),[x4,y4]=P(r,a1);
+    s += `<path d="M${f(x1)} ${f(y1)} A${R} ${R} 0 0 0 ${f(x2)} ${f(y2)} L${f(x3)} ${f(y3)} A${r} ${r} 0 0 1 ${f(x4)} ${f(y4)}Z" fill="${(lit||all)?ELCOL[SIGN_EL[i]]:"var(--creme)"}" stroke="var(--tinta)" stroke-width="1.5" class="${newLit==="sign:"+i?"pt-new":""}" style="transform-origin:150px 150px"/>`;
+    const [gx,gy]=P((R+r)/2, a1+15);
+    s += `<text x="${f(gx)}" y="${f(gy)}" text-anchor="middle" dominant-baseline="central" font-size="16" font-weight="700" fill="${(lit||all)?"var(--tinta)":"var(--suave)"}" opacity="${(lit||all)?1:.55}" font-family="var(--display)">${g(SIGNS[i])}</text>`;
+    if(C.hasAsc){ const [hx1,hy1]=P(r,a1),[hx2,hy2]=P(36,a1); s += `<line x1="${f(hx1)}" y1="${f(hy1)}" x2="${f(hx2)}" y2="${f(hy2)}" stroke="var(--line)"/>`; }
+  }
+  s += `<circle cx="${cx}" cy="${cy}" r="36" fill="var(--creme)" stroke="var(--tinta)" stroke-width="2"/>`;
+  if(C.hasAsc){
+    const litAsc = all || S.lit.includes("planet:asc");
+    const [ax,ay]=P(R+4,asc);
+    s += `<line x1="${f(ax)}" y1="${f(ay)}" x2="${f(cx+(cx-ax))}" y2="${f(cy+(cy-ay))}" stroke="${litAsc?"var(--chiclete)":"var(--suave)"}" stroke-width="${litAsc?3:1}" stroke-dasharray="${litAsc?"":"3 4"}"/>`;
+  }
+  if(all){
+    s += `<text x="${cx}" y="${cy}" text-anchor="middle" dominant-baseline="central" font-family="var(--display)" font-size="22" font-weight="900" font-style="italic" fill="var(--tinta)">${C.hasAsc?"AC":"☉"+T}</text>`;
+  } else {
+    s += `<text x="${cx}" y="${cy-6}" text-anchor="middle" dominant-baseline="central" font-family="var(--display)" font-size="18" font-weight="900" fill="var(--tinta)">${S.lit.length}</text>`;
+    s += `<text x="${cx}" y="${cy+12}" text-anchor="middle" dominant-baseline="central" font-family="var(--body)" font-size="9" font-weight="700" fill="var(--suave)">de ${TOTAL_LIGHTS}</text>`;
+  }
+  const keys = Object.keys(C.pts).map(k=>({k, lon:C.pts[k]}));
+  if(C.hasAsc) keys.push({k:"asc", lon:C.asc});
+  keys.sort((a,b)=>a.lon-b.lon);
+  keys.forEach(o=>{ o.dl=o.lon; o.rad=84; });
+  const GAP=17;
+  for(let it=0; it<60; it++){
+    keys.sort((a,b)=>a.dl-b.dl); let moved=false;
+    for(let i=0;i<keys.length;i++){
+      const a=keys[i], b=keys[(i+1)%keys.length];
+      let dd = b.dl - a.dl; if(i===keys.length-1) dd += 360;
+      if(dd < GAP){ const sh=(GAP-dd)/2+.01; a.dl-=sh; b.dl+=sh; moved=true; }
+    }
+    if(!moved) break;
+  }
+  for(const o of keys){
+    if(Math.abs(o.dl-o.lon)>1.5){ const [t1x,t1y]=P(r-2,o.lon),[t2x,t2y]=P(r-9,o.lon); s += `<line x1="${f(t1x)}" y1="${f(t1y)}" x2="${f(t2x)}" y2="${f(t2y)}" stroke="var(--tinta)" stroke-width="1.5"/>`; }
+  }
+  for(const o of keys){
+    const key="planet:"+o.k, lit = all || S.lit.includes(key), p=POINTS[o.k];
+    const [x,y] = P(o.rad,o.dl);
+    s += `<g class="${lit?"pt-lit":""} ${newLit===key?"pt-new":""}" style="transform-origin:${f(x)}px ${f(y)}px">`;
+    s += `<circle cx="${f(x)}" cy="${f(y)}" r="12" fill="${lit?"var(--limao)":"var(--papel)"}" stroke="${lit?"var(--tinta)":"var(--suave)"}" stroke-width="${lit?2.5:1.2}" stroke-dasharray="${lit?"":"2 3"}"/>`;
+    s += `<text x="${f(x)}" y="${f(y)}" text-anchor="middle" dominant-baseline="central" font-size="${o.k==="asc"?9.5:13}" font-weight="700" fill="${lit?"var(--tinta)":"var(--suave)"}" font-family="var(--body)">${g(p.g)}</text></g>`;
+  }
+  return s + `</svg>`;
+}
+
+/* ---------- home ---------- */
+const OFFS = [0,-60,-78,-34,30,64];
+const INTRO = {
+  1:`<b>Aprender a linguagem.</b> Doze subjornadas, de Áries a Peixes. Cada uma atravessa o signo, o mito, o planeta regente, o deus por trás dele e uma ideia filosófica.`,
+  2:`<b>Encontrar no próprio mapa.</b> Aqui o símbolo vira espelho: cada lição usa o mapa natal de quem joga. No protótipo, um mapa de exemplo.`,
+  3:`<b>Ler os trânsitos.</b> A energia astrológica de cada dia passando sobre o mapa. Conteúdo que se renova sempre.`
+};
+function lessonOpen(ui, li){
+  if(S.preview || planActive()) return true;
+  if(ui>0) return false;
+  return UNITS[0].lessons.slice(0,li).every(l=>S.done.includes(l.id));
+}
+function renderHome(newLit){
+  $("sStreak").textContent = S.streak; $("sXp").textContent = S.xp; $("sLuas").textContent = S.luas;
+  if(S.user && S.chart){ const sun=signOf(S.chart.pts.sol); $("who").textContent = S.user.name.split(" ")[0]+" · Sol em "+SIGN_NAMES[sun]; }
+  const m1 = buildMapa1(); J2[0][2] = m1; J2[0][1] = m1 ? "A porta de entrada do mapa e o planeta que conduz a história" : "Precisa da hora de nascimento: toque para completar";
+  $("wheel").innerHTML = wheelSVG(newLit);
+  const n = S.lit.length;
+  $("chartCap").innerHTML = (S.user ? `Mapa natal de <b>${esc(S.user.name.split(" ")[0])}</b> · ` : "") + (n===0 ? "cada signo e planeta aprendido acende aqui" : `<b>${n} de ${TOTAL_LIGHTS}</b> pontos acesos`);
+  const dDone = S.daily===today();
+  $("daily").classList.toggle("done", dDone);
+  $("dailySub").textContent = dDone ? "Feita hoje · volta amanhã" : "Lição relâmpago · 3 passos";
+  document.querySelectorAll(".jtab").forEach(b=>b.classList.toggle("on", +b.dataset.j===S.j));
+  $("jintro").innerHTML = INTRO[S.j];
+  $("prevSw").classList.toggle("on", S.preview);
+  const body = $("jbody"); body.innerHTML = "";
+  if(S.j===1) renderJ1(body); else renderRoad(body, S.j===2?J2:J3);
+  renderCards();
+  renderPlan();
+}
+function renderJ1(body){
+  UNITS.forEach((u,ui)=>{
+    const doneN = u.lessons.filter(l=>S.done.includes(l.id)).length;
+    const el = SIGN_EL[u.sign];
+    const head = document.createElement("div");
+    head.className = "unit "+el; head.id="u-"+u.slug;
+    head.dataset.glyph = g(SIGNS[u.sign]);
+    head.innerHTML = `${(!S.preview&&!planActive()&&ui>0)?'<span class="paytag">Assinantes</span>':''}<div class="eyebrow">Subjornada ${ui+1} de 12 · ${esc(u.element)}</div><h2>${esc(u.name)}, <em>${esc(u.subtitle)}</em></h2><p>${esc(u.blurb)}</p><div class="meta"><div class="meter"><i style="width:${doneN/5*100}%"></i></div><span>${doneN}/5</span></div>`;
+    body.appendChild(head);
+    const path = document.createElement("div"); path.className="path";
+    u.lessons.forEach((L,li)=>{
+      const done = S.done.includes(L.id), open = !done && lessonOpen(ui,li);
+      const b = document.createElement("button");
+      b.className = "node " + (done?"done":open?"open":"locked") + (L.card?" card-node":"");
+      b.style.transform = `translateX(${OFFS[li]}px)`;
+      b.innerHTML = `<span class="disc">${eg(L.glyph)}${done?'<span class="check">✓</span>':''}${(!done&&!open)?lockIcon():''}</span><span class="nlabel"><small>${esc(L.kind)}</small>${esc(L.title)}</span>`;
+      b.onclick = () => {
+        if(done||open) startLesson(L);
+        else if(!S.preview && !planActive() && ui>0) payModal();
+        else { b.classList.add("shake"); setTimeout(()=>b.classList.remove("shake"),400); }
+      };
+      path.appendChild(b);
+    });
+    body.appendChild(path);
+  });
+}
+function renderRoad(body, list){
+  const box = document.createElement("div"); box.className="roadmap";
+  list.forEach((it,i)=>{
+    const L = it[2], done = L && S.done.includes(L.id);
+    const b = document.createElement("button");
+    b.className = "road " + (L ? (done?"done":"open") : "soon");
+    b.innerHTML = `<span class="num">${i+1}</span><span><b>${esc(it[0])}</b><small>${esc(it[1])}</small></span><span class="st">${L?(done?"Feita":"Jogar"):"Em breve"}</span>`;
+    if(list===J2 && i===0 && !L){ b.className="road open"; b.querySelector(".st").textContent="Completar"; }
+    b.onclick = () => { if(L){ if(L.id==="hoje" && S.daily===today()) return; startLesson(L); } else if(list===J2 && i===0) startOnb(true); };
+    box.appendChild(b);
+  });
+  body.appendChild(box);
+}
+function renderCards(){
+  const all = allCards(), box=$("cards"); box.innerHTML="";
+  $("cardCount").textContent = `${S.cards.length} de ${all.length}`;
+  all.forEach(c=>{
+    const have = S.cards.includes(c.id);
+    const u = UNITS.find(x=>x.slug===c.sign);
+    const b = document.createElement("button");
+    if(have){
+      b.className = "cardm "+c.kind;
+      b.innerHTML = `<small>${esc(c.kind)}</small><span class="cg">${g(SIGNS[u.sign])}</span><b>${esc(c.title)}</b>`;
+      b.onclick = () => cardModal(c);
+    } else {
+      b.className="cardm locked"; b.innerHTML = g(SIGNS[u.sign]); b.setAttribute("aria-label","Carta ainda não conquistada");
+    }
+    box.appendChild(b);
+  });
+}
+function lockIcon(){ return `<span class="lock"><svg viewBox="0 0 24 24"><path d="M7 10V7a5 5 0 0 1 10 0v3h1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1zm2 0h6V7a3 3 0 0 0-6 0z"/></svg></span>`; }
+
+function openModal(html){ $("mbox").innerHTML = html; $("modal").hidden=false; const c=$("mClose"); if(c) c.onclick=()=>$("modal").hidden=true; }
+$("modal").onclick = e => { if(e.target.id==="modal") $("modal").hidden=true; };
+function payModal(){ show("plans"); }
+const BRL = v => "R$ " + v.toFixed(2).replace(".",",");
+const fmtD = d => d.toLocaleDateString("pt-BR",{day:"numeric",month:"long"});
+const fmtDT = d => fmtD(d) + ", às " + d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
+function planActive(){
+  if(!S.plan) return false;
+  if(S.plan.type==="semana") return Date.now() < S.plan.until;
+  if(S.plan.type==="mes") return !S.plan.canceled || Date.now() < S.plan.until;
+  return false;
+}
+let pending=null;
+document.querySelectorAll("[data-plan]").forEach(b=>b.onclick=()=>{
+  pending=b.dataset.plan; const now=new Date();
+  let rows;
+  if(pending==="semana"){
+    const until=new Date(now.getTime()+7*864e5);
+    rows=[["Plano","Passe semanal"],["Pago hoje","R$ 9,90 por Pix"],["Acesso liberado até",fmtDT(until)],["Cobranças automáticas","Nenhuma"],["Depois disso","Volta para a versão grátis, sem perder o progresso"]];
+  } else {
+    const nx=new Date(now); nx.setMonth(nx.getMonth()+1);
+    rows=[["Plano","Assinatura mensal"],["Cobrado hoje","R$ 29,90 no cartão"],["Próxima cobrança",fmtD(nx)+": R$ 29,90"],["Renovação","Automática, todo mês no mesmo dia"],["Para cancelar","Meu plano, a qualquer momento, sem multa"]];
+  }
+  $("sumBox").innerHTML = rows.map(r=>`<div class="row"><span>${esc(r[0])}</span><b>${esc(r[1])}</b></div>`).join("");
+  $("payGo").textContent = pending==="semana" ? "Pagar R$ 9,90 no Pix" : "Assinar por R$ 29,90 por mês";
+  show("confirm");
+});
+$("pBack").onclick=()=>{ show("home"); renderHome(); };
+$("cBack").onclick=()=>show("plans");
+$("payGo").onclick=()=>{
+  const now=new Date();
+  if(pending==="semana") S.plan={type:"semana", since:now.getTime(), until:now.getTime()+7*864e5};
+  else { const nx=new Date(now); nx.setMonth(nx.getMonth()+1); S.plan={type:"mes", since:now.getTime(), until:nx.getTime(), canceled:false}; }
+  S.preview=false; S.luas=5; save(); show("home"); renderHome();
+};
+function renderPlan(){
+  const box=$("myplan"); const on=planActive();
+  if(!on){
+    box.innerHTML=`<div class="myplan"><div class="pname">Meu plano</div><b>Grátis</b><p>Áries e a lição do dia liberados. Para seguir as outras subjornadas, o passe semanal custa R$ 9,90 por Pix e o mensal, R$ 29,90 no cartão.</p><div class="acts"><button class="btn small" id="seePlans">Ver os planos</button></div></div>`;
+    $("seePlans").onclick=payModal; return;
+  }
+  const until=new Date(S.plan.until);
+  if(S.plan.type==="semana"){
+    box.innerHTML=`<div class="myplan on-semana"><div class="pname">Meu plano</div><b>Passe semanal ativo</b><p>Acesso liberado até ${esc(fmtDT(until))}. Não renova sozinho: nenhuma cobrança vai acontecer.</p><div class="acts"><button class="btn small plain" id="seePlans">Trocar para o mensal</button></div></div>`;
+  } else if(!S.plan.canceled){
+    box.innerHTML=`<div class="myplan on-mes"><div class="pname">Meu plano</div><b>Assinatura mensal ativa</b><p>Próxima cobrança em ${esc(fmtD(until))}: R$ 29,90 no cartão. Renova sozinha todo mês.</p><div class="acts"><button class="btn small plain" id="cancelBtn">Cancelar assinatura</button></div></div>`;
+    $("cancelBtn").onclick=()=>openModal(`<h3>Cancelar a assinatura?</h3><p>Nenhuma cobrança nova vai acontecer. O acesso continua até ${esc(fmtD(until))}, o fim do mês já pago. Depois, a jornada volta para a versão grátis, sem perder o progresso nem as cartas.</p><div style="display:grid;gap:10px"><button class="btn badb" id="cYes">Cancelar assinatura</button><button class="btn plain" id="mClose">Manter assinatura</button></div>`) || ($("cYes").onclick=()=>{ S.plan.canceled=true; save(); $("modal").hidden=true; renderHome(); });
+  } else {
+    box.innerHTML=`<div class="myplan"><div class="pname">Meu plano</div><b>Assinatura cancelada</b><p>Nenhuma cobrança nova. O acesso segue até ${esc(fmtD(until))}.</p><div class="acts"><button class="btn small" id="seePlans">Assinar de novo</button></div></div>`;
+  }
+  const sp=$("seePlans"); if(sp) sp.onclick=payModal;
+}
+function cardModal(c){
+  openModal(`<span class="ck" style="background:${c.kind==="Mito"?"var(--rosa)":"var(--ceu)"}">${esc(c.kind)}</span><h3>${esc(c.title)}</h3><p class="cardtext">${esc(c.text)}</p><button class="btn goldb" id="mClose">Fechar</button>`);
+}
+
+document.querySelectorAll(".jtab").forEach(b=>b.onclick=()=>{ S.j=+b.dataset.j; save(); renderHome(); });
+$("daily").onclick = () => { if(S.daily!==today()) startLesson(DAILY); };
+$("prevSw").onclick = () => { S.preview=!S.preview; save(); renderHome(); };
+$("reset").onclick = () => { const p=S.preview; S = fresh(); S.preview=p; save(); startOnb(false); };
+$("editData").onclick = () => startOnb(true);
+
+/* ---------- motor da lição ---------- */
+let L=null, Q=[], pos=0, sel=null, stats=null, onMain=null;
+const stage=$("stage"), mainBtn=$("main"), sheet=$("sheet");
+
+function startLesson(lesson){
+  if(S.luas<=0){ show("empty"); return; }
+  L=lesson; Q=lesson.steps.map(s=>Object.assign({},s)); pos=0;
+  stats={right:0, wrong:0, reflect:0};
+  show("lesson"); render();
+}
+$("quit").onclick = () => { hideSheet(); show("home"); renderHome(); };
+function setMain(label, enabled, fn){ mainBtn.textContent=label; mainBtn.disabled=!enabled; onMain=fn; }
+mainBtn.onclick = () => { if(onMain) onMain(); };
+function hideSheet(){ sheet.classList.remove("show"); }
+
+function render(){
+  hideSheet();
+  $("bar").style.width = (pos/Q.length*100)+"%";
+  $("lLuas").textContent = S.luas;
+  const s = Q[pos]; sel=null;
+  stage.className = "stage";
+  ({teach:rTeach, choice:rChoice, match:rMatch, order:rOrder, multi:rMulti, reflect:rReflect})[s.type](s);
+}
+const chartBlock = s => s.chart ? `<div class="minichart">${wheelSVG()}</div>` : "";
+
+function rTeach(s){
+  stage.classList.add("teach");
+  stage.innerHTML = (s.chart?chartBlock(s):`<div class="big">${eg(s.glyph||L.glyph)}</div>`) +
+    `<div class="eyebrow-l">${esc(s.eyebrow||L.kind)}</div><h2>${esc(s.title)}</h2>` + (s.body||[]).map(p=>`<p>${esc(p)}</p>`).join("");
+  setMain("Continuar", true, next);
+}
+function rChoice(s){
+  const order = shuffle(s.opts.map((t,i)=>({t,i})));
+  stage.innerHTML = chartBlock(s) + `<div class="q">${esc(s.q)}</div><div class="opts ${s.big?"glyphs":""}" id="opts"></div>`;
+  const box=$("opts");
+  order.forEach(o=>{
+    const b=document.createElement("button"); b.className="opt"; b.textContent=g(o.t);
+    b.onclick=()=>{ box.querySelectorAll(".opt").forEach(x=>x.classList.remove("sel")); b.classList.add("sel"); sel={i:o.i,el:b}; setMain("Verificar",true,check); };
+    box.appendChild(b);
+  });
+  setMain("Verificar", false, null);
+  function check(){
+    box.querySelectorAll(".opt").forEach(x=>x.disabled=true);
+    const ans = s.a||0;
+    if(sel.i===ans){ sel.el.classList.replace("sel","right"); right(s.explain); }
+    else{
+      sel.el.classList.replace("sel","wrong");
+      [...box.children].forEach((x,k)=>{ if(order[k].i===ans) x.classList.add("right"); });
+      wrong(s, s.explain);
+    }
+  }
+}
+function rMatch(s){
+  stage.innerHTML = `<div class="q">${esc(s.q)}</div><div class="match"><div class="col" id="cl"></div><div class="col" id="cr"></div></div>`;
+  let pick=null, left=s.pairs.length, misses=0;
+  const mk = (t,side,idx) => { const b=document.createElement("button"); b.className="opt"; b.textContent=g(t); b.dataset.side=side; b.dataset.idx=idx; return b; };
+  shuffle(s.pairs.map((p,i)=>i)).forEach(i=>$("cl").appendChild(mk(s.pairs[i][0],"l",i)));
+  shuffle(s.pairs.map((p,i)=>i)).forEach(i=>$("cr").appendChild(mk(s.pairs[i][1],"r",i)));
+  stage.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+    if(b.classList.contains("right")) return;
+    if(!pick || pick.dataset.side===b.dataset.side){
+      stage.querySelectorAll(".opt.sel").forEach(x=>x.classList.remove("sel"));
+      b.classList.add("sel"); pick=b; return;
+    }
+    if(pick.dataset.idx===b.dataset.idx){
+      [pick,b].forEach(x=>{ x.classList.remove("sel"); x.classList.add("right"); setTimeout(()=>x.classList.add("gone"),250); });
+      pick=null; left--;
+      if(left===0) setTimeout(()=>{ if(misses===0) right(s.explain); else { stats.right++; feedback("note","Combinado", s.explain); } }, 350);
+    } else {
+      misses++;
+      [pick,b].forEach(x=>{ x.classList.remove("sel"); x.classList.add("wrong","shake"); setTimeout(()=>x.classList.remove("wrong","shake"),400); });
+      pick=null;
+    }
+  });
+  setMain("Combine os pares", false, null);
+}
+function rOrder(s){
+  const picked=[];
+  stage.innerHTML = `<div class="q">${esc(s.q)}</div><div class="answer" id="ans"></div><div class="pool" id="pool"></div>`;
+  const pool=$("pool"), ans=$("ans");
+  shuffle(s.items.map((t,i)=>({t,i}))).forEach(o=>{
+    const b=document.createElement("button"); b.className="chip"; b.textContent=g(o.t);
+    b.onclick=()=>{ picked.push(o); b.hidden=true; draw(); };
+    o.el=b; pool.appendChild(b);
+  });
+  function draw(){
+    ans.innerHTML="";
+    picked.forEach((o,k)=>{
+      const c=document.createElement("button"); c.className="chip"; c.innerHTML=`<span class="n">${k+1}</span>${eg(o.t)}`;
+      c.onclick=()=>{ picked.splice(k,1); o.el.hidden=false; draw(); };
+      ans.appendChild(c);
+    });
+    setMain("Verificar", picked.length===s.items.length, check);
+  }
+  setMain("Verificar", false, null);
+  function check(){
+    const ok = picked.every((o,k)=>o.i===k);
+    ans.querySelectorAll(".chip").forEach((c,k)=>{ c.disabled=true; c.classList.add(picked[k].i===k?"right":"wrong"); });
+    if(ok) right(s.explain);
+    else wrong(s, "A ordem é: " + s.items.map((t,k)=>(k+1)+". "+t).join(" · ") + ". " + (s.explain||""));
+  }
+}
+function rMulti(s){
+  const need=s.correct.length, chosen=new Set();
+  stage.innerHTML = `<div class="q">${esc(s.q)}</div><div class="opts" id="opts"></div>`;
+  const box=$("opts");
+  const order=shuffle(s.opts.map((t,i)=>({t,i})));
+  order.forEach(o=>{
+    const b=document.createElement("button"); b.className="opt"; b.textContent=g(o.t);
+    b.onclick=()=>{
+      if(chosen.has(o.i)){ chosen.delete(o.i); b.classList.remove("sel"); }
+      else if(chosen.size<need){ chosen.add(o.i); b.classList.add("sel"); }
+      setMain(`Verificar · ${chosen.size}/${need}`, chosen.size===need, check);
+    };
+    o.el=b; box.appendChild(b);
+  });
+  setMain(`Verificar · 0/${need}`, false, null);
+  function check(){
+    order.forEach(o=>{ o.el.disabled=true; o.el.classList.remove("sel");
+      if(s.correct.includes(o.i)) o.el.classList.add("right"); else if(chosen.has(o.i)) o.el.classList.add("wrong"); });
+    s.correct.every(i=>chosen.has(i)) ? right(s.explain) : wrong(s, s.explain);
+  }
+}
+function rReflect(s){
+  stage.innerHTML = `<div class="eyebrow-l">Reflexão · sem nota</div><div class="q">${esc(s.q)}</div><textarea id="refl" placeholder="Escreva aqui"></textarea><p class="hint">${esc(s.hint||"")}</p><button class="link" id="skip">Pular por agora</button>`;
+  const ta=$("refl");
+  ta.oninput=()=>setMain("Guardar no diário", ta.value.trim().length>1, saveR);
+  setMain("Guardar no diário", false, null);
+  $("skip").onclick=next;
+  function saveR(){
+    S.diario[L.id]=ta.value.trim(); save(); stats.reflect=1;
+    feedback("note","Guardado no diário","Sem certo nem errado. No fim da jornada, o diário vira um retrato de como a gente mudou de signo em signo.");
+  }
+}
+function right(text){ stats.right++; feedback("ok", ["Isso!","Exato","Muito bem","Na mosca"][Math.floor(Math.random()*4)], text); }
+function wrong(s, text){
+  stats.wrong++; S.luas=Math.max(0,S.luas-1); save(); $("lLuas").textContent=S.luas;
+  Q.push(Object.assign({},s));
+  feedback("bad","Não foi dessa vez", (text||"") + " Essa volta no fim da lição.");
+}
+function feedback(kind, title, text){
+  sheet.className="sheet "+kind;
+  $("shT").textContent=title; $("shP").textContent=text||"";
+  const btn=$("shBtn");
+  btn.onclick = () => { if(S.luas<=0 && kind==="bad"){ hideSheet(); show("empty"); } else next(); };
+  requestAnimationFrame(()=>sheet.classList.add("show"));
+  setMain("Verificar", false, null);
+}
+function next(){ pos++; if(pos>=Q.length) finish(); else render(); }
+
+function finish(){
+  $("bar").style.width="100%";
+  const xp = 10 + stats.right*2 + stats.reflect*5;
+  S.xp += xp;
+  if(L.id==="hoje") S.daily=today();
+  else if(!S.done.includes(L.id)) S.done.push(L.id);
+  let newLit=null;
+  if(L.light && !S.lit.includes(L.light)){ S.lit.push(L.light); newLit=L.light; }
+  let newCard=false;
+  if(L.card && !S.cards.includes(L.id)){ S.cards.push(L.id); newCard=true; }
+  const t=today();
+  if(S.last!==t){ S.streak = (S.last===yesterday()) ? S.streak+1 : 1; S.last=t; }
+  save();
+  const tot = stats.right+stats.wrong;
+  const u = UNITS.find(x=>L.id.startsWith(x.slug+"-"));
+  if(L.card){
+    $("dGlyph").hidden=true; $("dCard").hidden=false;
+    $("dCard").innerHTML = `<div class="cardm ${esc(L.card.kind)}"><small>${esc(L.card.kind)}</small><span class="cg">${u?g(SIGNS[u.sign]):""}</span><b>${esc(L.card.title)}</b></div>`;
+  } else {
+    $("dCard").hidden=true; $("dGlyph").hidden=false; $("dGlyph").textContent = g(L.glyph);
+  }
+  $("dTitle").textContent = L.doneTitle;
+  $("dText").textContent = L.doneText;
+  $("dXp").textContent = "+"+xp;
+  $("dAcc").textContent = (tot? Math.round(stats.right/tot*100):100)+"%";
+  $("dStreak").textContent = S.streak;
+  $("dBtn").onclick = () => { show("home"); renderHome(newLit); if(u){ const el=$("u-"+u.slug); if(el) el.scrollIntoView({block:"start"}); } };
+  hideSheet(); show("done");
+}
+$("refill").onclick = () => { S.luas=5; save(); show("home"); renderHome(); };
+
+$("oBack").onclick=()=>{ if(ob.step>0){ ob.step--; renderOnb(); } };
+if(S.user && S.chart){ show("home"); renderHome(); } else startOnb(false);
+</script>

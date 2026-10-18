@@ -1,0 +1,132 @@
+{
+  "sign": 9,
+  "slug": "capricornio",
+  "name": "Capricórnio",
+  "subtitle": "a forma",
+  "element": "terra",
+  "blurb": "O décimo signo, a cabra-peixe e o deus que devorava o tempo.",
+  "lessons": [
+    {
+      "id": "capricornio-1", "kind": "Signo", "title": "O sol que para", "glyph": "♑",
+      "light": "sign:9", "card": null,
+      "doneTitle": "Capricórnio acendeu na roda",
+      "doneText": "O ponto onde o Sol toca o limite e faz a curva está aceso.",
+      "steps": [
+        {"type":"teach","glyph":"♑","eyebrow":"Capricórnio","title":"O décimo signo",
+         "body":["Capricórnio é o décimo signo da roda. O Sol entra nele no solstício de dezembro, por volta do dia 21.","Aqui no Brasil, é o começo do verão. No hemisfério norte, onde essa simbologia nasceu, é a noite mais longa do ano: o ponto mais escuro, de onde a luz começa a voltar."]},
+        {"type":"choice","q":"Em que momento o Sol entra em Capricórnio?",
+         "opts":["No solstício de dezembro","No equinócio de março","No solstício de junho","No equinócio de setembro"],"a":0,
+         "explain":"Solstício quer dizer sol parado. O Sol parece estacionar no ponto mais ao sul do seu caminho e então volta. Capricórnio nasce nessa parada."},
+        {"type":"teach","glyph":"◯","eyebrow":"O trópico","title":"A linha que corta o Brasil",
+         "body":["O Trópico de Capricórnio atravessa o Brasil, passando pelo estado de São Paulo, perto da capital. No dia em que o Sol entra em Capricórnio, ao meio-dia, ele fica a pino sobre essa linha. Depois, começa a voltar.","Trópico vem do grego tropos, virar. Capricórnio não é só o topo da montanha. É a curva, e a curva só acontece quando se chega ao próprio limite."]},
+        {"type":"teach","glyph":"▽","eyebrow":"Elemento e qualidade","title":"Terra que começa",
+         "body":["Capricórnio é terra, o elemento da matéria, do corpo e do que se pode tocar.","E é cardinal, como Áries, Câncer e Libra: os signos que abrem as estações. Terra cardinal é a fundação. Começa assentando a primeira pedra, sabendo que a obra vai demorar."]},
+        {"type":"match","q":"Ligue cada ideia ao que ela é em Capricórnio",
+         "pairs":[["Elemento","Terra"],["Qualidade","Cardinal"],["Regente","Saturno"],["Parte do corpo","Joelhos e ossos"]],
+         "explain":"Capricórnio rege o esqueleto e os joelhos: a estrutura que mantém o corpo de pé e a articulação que permite subir. A cabra escala apoiada nos joelhos."},
+        {"type":"choice","q":"Qual signo fica do outro lado da roda, completando o eixo de Capricórnio?",
+         "opts":["Câncer","Leão","Áries","Touro"],"a":0,
+         "explain":"Câncer e Capricórnio formam o eixo da casa e do mundo. Câncer é a raiz, o colo, o que forma a gente por dentro. Capricórnio é o lugar que a gente ocupa diante dos outros. Um sem o outro vira casa sem porta, ou carreira sem chão."},
+        {"type":"reflect","q":"Que limite a gente precisou tocar para conseguir fazer a curva?","hint":"Uma frase basta. Sem certo nem errado."}
+      ]
+    },
+    {
+      "id": "capricornio-2", "kind": "Mito", "title": "A cabra-peixe", "glyph": "✦",
+      "light": null,
+      "card": {"kind":"Mito","title":"Pã e Tifão","text":"Fugindo do monstro Tifão, Pã se joga num rio do Egito: o que fica fora da água vira cabra, o que fica dentro vira peixe. Depois, ao lado de Hermes, devolve a Zeus os tendões roubados. A forma que nasceu do medo é a que devolve a estrutura."},
+      "doneTitle": "Carta conquistada: Pã e Tifão",
+      "doneText": "A cabra que sobe e o peixe que mergulha entraram na coleção.",
+      "steps": [
+        {"type":"teach","glyph":"♑","eyebrow":"O mito por trás do signo","title":"Uma cabra com cauda de peixe",
+         "body":["A constelação de Capricórnio mostra uma cabra na frente e uma cauda de peixe atrás. É uma das imagens mais antigas do céu: os babilônios já viam ali a cabra-peixe, ligada a Enki, deus das águas e da sabedoria.","Os gregos herdaram a figura e precisaram explicar a cauda. A explicação veio de um dia de pânico no Olimpo."]},
+        {"type":"teach","glyph":"✦","eyebrow":"Tifão","title":"O dia em que os deuses fugiram",
+         "body":["Tifão, o monstro mais terrível que Gaia gerou, avançou sobre o Olimpo com cem cabeças de serpente.","Os deuses fugiram para o Egito e se esconderam em forma de bicho. Pã, o deus dos pastores e dos bosques, se jogou no rio. A parte de cima, fora da água, virou cabra. A de baixo, mergulhada, virou peixe."]},
+        {"type":"choice","q":"A palavra pânico vem do nome de qual deus?",
+         "opts":["Pã","Fobos","Hermes","Tifão"],"a":0,
+         "explain":"Pânico é o medo súbito que Pã espalhava pelos bosques. No mito de Capricórnio, o deus do pânico é quem entra em pânico. E é desse medo que nasce a forma do signo."},
+        {"type":"teach","glyph":"♑","eyebrow":"Por que metade peixe","title":"A forma que o medo inventou",
+         "body":["A cabra sobe montanhas. É a ambição, o passo firme na pedra, o olhar no topo. O peixe vem das águas, do fundo, do que não tem contorno.","Capricórnio costuma ser lido só pela cabra: frio, sério, controlado. Mas a imagem guarda a cauda. Por baixo de toda escalada, uma parte nunca saiu da água: a emoção que não aparece, o medo que deu origem à disciplina."]},
+        {"type":"order","q":"Coloque a história na ordem",
+         "items":["Tifão avança sobre o Olimpo","Os deuses fogem para o Egito em forma de bichos","Pã se joga no rio e vira cabra-peixe","Tifão corta os tendões de Zeus","Pã e Hermes devolvem os tendões a Zeus","Zeus vence Tifão e coloca a cabra-peixe no céu"],
+         "explain":"Quem fugiu primeiro é quem volta para devolver a força ao rei dos deuses."},
+        {"type":"teach","glyph":"✦","eyebrow":"Os tendões de Zeus","title":"Quem fugiu volta para costurar",
+         "body":["Na luta, Tifão arranca os tendões de Zeus e os esconde numa caverna. O rei do Olimpo fica caído, sem conseguir se mover.","Quem recupera os tendões é Hermes, ao lado de Egipã, o Pã-cabra. Repare: tendão é o que liga o músculo ao osso, e Capricórnio rege os ossos e as articulações. A criatura nascida do medo é a que devolve a estrutura ao deus."]},
+        {"type":"reflect","q":"Que parte da nossa disciplina nasceu de um medo antigo? E o que ela já conseguiu sustentar?","hint":"Fica guardado só no diário da jornada."}
+      ]
+    },
+    {
+      "id": "capricornio-3", "kind": "Planeta", "title": "Saturno, o regente", "glyph": "♄",
+      "light": "planet:saturno", "card": null,
+      "doneTitle": "Saturno acendeu",
+      "doneText": "O regente de Capricórnio está aceso no mapa: o limite que dá forma.",
+      "steps": [
+        {"type":"teach","glyph":"♄","eyebrow":"Planeta regente","title":"O senhor do limite",
+         "body":["Saturno rege Capricórnio. No mapa, ele mostra onde a gente encontra o limite, a demora, a responsabilidade e a forma.","Para os antigos, era o último planeta visível a olho nu. Depois dele, só as estrelas fixas. Saturno era a borda do céu conhecido."]},
+        {"type":"choice","big":true,"q":"Qual destes é o glifo de Saturno?",
+         "opts":["♄","♃","♂","♀"],"a":0,
+         "explain":"Uma cruz sobre uma lua crescente. A cruz é a matéria, a lua é a alma: em Saturno, a matéria pesa sobre a alma. Júpiter tem o desenho invertido. Muitos também veem ali a foice de Cronos."},
+        {"type":"match","q":"Onde Saturno se sente em casa, forte, fraco ou estrangeiro",
+         "pairs":[["Domicílio","Capricórnio e Aquário"],["Exaltação","Libra"],["Exílio","Câncer e Leão"],["Queda","Áries"]],
+         "explain":"Saturno se exalta em Libra, regida pelo Vênus: o limite fica justo quando vira medida entre duas partes. E cai em Áries, onde a pressa não aceita esperar."},
+        {"type":"choice","q":"Quanto tempo Saturno leva, mais ou menos, para dar a volta no zodíaco?",
+         "opts":["Cerca de 29 anos e meio","Cerca de 12 anos","Cerca de 2 anos","Cerca de 84 anos"],"a":0,
+         "explain":"Saturno passa uns dois anos e meio em cada signo. Quando volta ao ponto exato onde estava no nascimento, acontece o retorno de Saturno, por volta dos 29 anos e de novo perto dos 58."},
+        {"type":"teach","glyph":"◯","eyebrow":"O retorno","title":"O planeta que boiaria",
+         "body":["O retorno de Saturno tem fama de crise: a vida cobra a forma do que foi construído até ali, e o que não tinha estrutura cai.","Repare no paradoxo. O planeta que simboliza o peso é o menos denso do sistema solar, menos denso que a água. Num oceano grande o bastante, Saturno boiaria. A cabra-peixe de novo: o que parece pedra por cima sabe flutuar por baixo."]},
+        {"type":"choice","q":"Saturno fica retrógrado cerca de quatro meses e meio por ano. O que acontece de fato no céu?",
+         "opts":["Visto da Terra, ele parece mudar de direção: é uma ilusão de ótica","Ele inverte a órbita em torno do Sol","Ele para de se mover por alguns meses","Ele se afasta do Sol e perde o brilho"],"a":0,
+         "explain":"A Terra, mais rápida, ultrapassa Saturno na órbita e, desse ponto de vista, ele parece recuar. Na leitura simbólica, é tempo de revisar estruturas, não de demolir tudo."},
+        {"type":"reflect","q":"O que a gente construiu até aqui que se sustenta sozinho? E o que só fica de pé à força?","hint":"Pode ser um trabalho, uma relação, um hábito."}
+      ]
+    },
+    {
+      "id": "capricornio-4", "kind": "Mito", "title": "Cronos e o tempo", "glyph": "♄",
+      "light": null,
+      "card": {"kind":"Mito","title":"Cronos devora os filhos","text":"Avisado de que um filho tomaria seu trono, Cronos engole cada criança que nasce. Quem tenta impedir o futuro acaba virando o tempo que devora. Em Roma, o mesmo deus ganha em dezembro uma festa onde todos os limites se suspendem."},
+      "doneTitle": "Carta conquistada: Cronos devora os filhos",
+      "doneText": "O deus que tentou segurar o tempo entrou na coleção.",
+      "steps": [
+        {"type":"teach","glyph":"♄","eyebrow":"O deus por trás do planeta","title":"O filho que derrubou o pai",
+         "body":["Antes de Zeus, quem governava o mundo era Cronos, o mais novo dos titãs, filho de Gaia e Urano.","Urano mantinha os filhos presos no ventre da mãe. Gaia forjou uma foice e entregou ao caçula. Cronos castrou o pai e tomou o céu."]},
+        {"type":"choice","q":"Que instrumento Gaia entrega a Cronos?",
+         "opts":["Uma foice","Um raio","Um tridente","Uma lança"],"a":0,
+         "explain":"A foice é a ferramenta da colheita: corta o que amadureceu. Saturno herdou essa lâmina, e por isso o tempo é pintado com uma foice na mão."},
+        {"type":"teach","glyph":"⚔","eyebrow":"A profecia","title":"Quem toma o trono passa a temer o trono",
+         "body":["Gaia e Urano avisam: assim como Cronos derrubou o pai, um filho dele o derrubaria.","Então Cronos engole cada criança que Reia dá à luz. Héstia, Deméter, Hera, Hades, Poseidon. Ninguém sai do corpo do pai."]},
+        {"type":"order","q":"Coloque a história de Cronos na ordem",
+         "items":["Urano prende os filhos no ventre de Gaia","Cronos castra Urano com a foice","A profecia anuncia que um filho tomará seu trono","Cronos engole os filhos assim que nascem","Reia entrega a Cronos uma pedra enrolada em panos","Cronos devolve os filhos engolidos"],
+         "explain":"Cronos engole até uma pedra achando que era um filho. Quem quer controlar o tempo acaba sem distinguir vida de matéria."},
+        {"type":"teach","glyph":"∞","eyebrow":"Cronos e o tempo","title":"Engolir o futuro",
+         "body":["Do ponto de vista de Cronos, cada filho é o tempo que ainda não chegou. Engolir os filhos é tentar impedir que o futuro aconteça.","Mais tarde, os gregos aproximaram Kronos de Khronos, o tempo. As palavras eram diferentes, mas a imagem colou: quem tenta segurar o tempo vira ele mesmo um devorador. É o risco de Capricórnio: controlar tanto o que vem que nada novo consegue nascer."]},
+        {"type":"teach","glyph":"♑","eyebrow":"Saturno em Roma","title":"A festa sem limites",
+         "body":["Em Roma, o deus teve outro destino. Depois de perder o trono, Saturno se refugiou no Lácio e ensinou a agricultura. O reinado dele ficou lembrado como a Idade de Ouro, quando ninguém era dono de ninguém.","A festa de Saturno, a Saturnália, começava em 17 de dezembro. Senhores serviam os escravizados, as regras se invertiam. O deus do limite era celebrado suspendendo todos os limites, dias antes de o Sol entrar em Capricórnio."]},
+        {"type":"reflect","q":"Que futuro a gente anda engolindo para que nada mude?","hint":"Ninguém além de quem escreve vai ler."}
+      ]
+    },
+    {
+      "id": "capricornio-5", "kind": "Filosofia", "title": "O tempo de Sêneca", "glyph": "∞",
+      "light": null,
+      "card": {"kind":"Filosofia","title":"Sêneca, só o tempo é nosso","text":"Para Sêneca, a vida não é breve: a gente é que a torna breve, entregando o tempo aos pedaços. Lido junto de Capricórnio, a única posse verdadeira deixa de ser o que se acumula e passa a ser o tempo habitado."},
+      "doneTitle": "Carta conquistada: Sêneca",
+      "doneText": "A subjornada de Capricórnio está completa. A terra que deu forma ao tempo passa a mão para o ar de Aquário.",
+      "steps": [
+        {"type":"teach","glyph":"∞","eyebrow":"Filosofia","title":"Um estoico no centro do poder",
+         "body":["Sêneca nasceu em Córdoba, na Hispânia romana, e viveu no coração do império: foi preceptor e conselheiro de Nero.","Era estoico. Os estoicos ensinavam a separar o que depende da gente do que não depende. Para Sêneca, quase nada depende. Quase."]},
+        {"type":"choice","q":"Qual destas ideias é de Sêneca?",
+         "opts":["Não recebemos uma vida breve: nós a tornamos breve","O homem é a medida de todas as coisas","Penso, logo existo","O inferno são os outros"],"a":0,
+         "explain":"Está em Sobre a brevidade da vida. A vida é longa o bastante para quem sabe usá-la. O tempo se perde aos pedaços, emprestado a quem nem precisava dele."},
+        {"type":"teach","glyph":"♑","eyebrow":"Capricórnio e Sêneca","title":"A única propriedade",
+         "body":["Na primeira carta a Lucílio, Sêneca escreve: tudo é alheio, só o tempo é nosso.","Capricórnio é terra, o signo da posse, do patrimônio, do que se acumula. Sêneca desloca tudo: a única coisa que a gente possui de verdade é o tempo, e é justo a que mais se entrega sem perceber. Cronos devorava os filhos para não perder o tempo. Sêneca propõe outro gesto: não segurar o tempo, habitar o tempo."]},
+        {"type":"match","q":"Ligue a ideia de Sêneca ao que ela revela em Capricórnio",
+         "pairs":[["Só o tempo é nosso","A verdadeira posse da terra"],["Enquanto se adia, a vida passa","O risco de esperar o topo para viver"],["Separar o que depende do que não depende","O limite de Saturno como discernimento"]],
+         "explain":"Enquanto se adia, a vida passa: está na mesma carta. É o lado de Capricórnio que trabalha tanto pelo depois que esquece de chegar."},
+        {"type":"teach","glyph":"♄","eyebrow":"O fim de Sêneca","title":"O limite como contorno",
+         "body":["Em 65 depois de Cristo, Nero ordenou a morte de Sêneca. Os relatos antigos contam que ele recebeu a ordem com calma e passou as últimas horas conversando com os amigos.","Ele tinha escrito a vida inteira sobre isso. Quem conhece o limite não vive menos: vive com contorno. Saturno deixa de ser o castigo do tempo e vira a moldura que dá forma a ele."]},
+        {"type":"choice","q":"Juntando Sêneca e Capricórnio, a ambição capricorniana pode ser:",
+         "opts":["Construir algo sem entregar o tempo que é nosso","Chegar ao topo a qualquer custo","Abrir mão de toda conquista material","Esperar a hora certa para começar a viver"],"a":0,
+         "explain":"Sêneca não condena a obra nem a riqueza. Ele pergunta quem está ficando com as horas. A montanha continua lá, e a subida também é vida."},
+        {"type":"reflect","q":"Para quem a gente anda emprestando o tempo que é nosso?","hint":"Escreva do jeito que vier."}
+      ]
+    }
+  ]
+}

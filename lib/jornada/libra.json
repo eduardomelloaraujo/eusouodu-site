@@ -1,0 +1,131 @@
+{
+  "sign": 6,
+  "slug": "libra",
+  "name": "Libra",
+  "subtitle": "o encontro",
+  "element": "ar",
+  "blurb": "O signo do equinócio de setembro, a única balança do céu e o Vênus que pesa o encontro.",
+  "lessons": [
+    {
+      "id": "libra-1", "kind": "Signo", "title": "O ponto de equilíbrio", "glyph": "♎",
+      "light": "sign:6", "card": null,
+      "doneTitle": "Libra acendeu na roda",
+      "doneText": "A metade da roda está acesa. Daqui em diante, o zodíaco olha para o outro.",
+      "steps": [
+        {"type":"teach","glyph":"♎","eyebrow":"Libra","title":"A segunda metade da roda",
+         "body":["Libra é o sétimo signo e abre a segunda metade do zodíaco. Os seis primeiros constroem alguém: corpo, voz, casa, brilho, ofício. A partir daqui, esse alguém encontra o outro.","Libra é ar, o elemento da palavra e do vínculo, aquilo que circula entre as pessoas. E é cardinal: abre uma estação. Ar cardinal é a iniciativa de ir até o outro, propor, conversar, costurar um acordo."]},
+        {"type":"choice","q":"Em que momento o Sol entra em Libra?",
+         "opts":["No equinócio de setembro","No solstício de junho","No equinócio de março","No solstício de dezembro"],"a":0,
+         "explain":"Por volta de 22 ou 23 de setembro, dia e noite têm a mesma duração no planeta inteiro. Aqui no Brasil, começa a primavera. O signo da balança nasce num dos dois dias do ano em que luz e sombra pesam igual."},
+        {"type":"teach","glyph":"☉","eyebrow":"O equinócio","title":"O equilíbrio dura um dia",
+         "body":["No hemisfério norte, onde o zodíaco foi desenhado, o equinócio de setembro é o último dia em que a luz ainda empata com o escuro. Logo depois, as noites ganham.","Libra guarda esse instante. O equilíbrio, para Libra, não é um lugar onde se chega e se fica. É um ponto que só se sustenta enquanto alguém continua ajustando os pratos. Quando a gente para de ajustar, a balança já pendeu."]},
+        {"type":"match","q":"Ligue cada ideia ao que ela é em Libra",
+         "pairs":[["Elemento","Ar"],["Qualidade","Cardinal"],["Regente","O Vênus"],["Parte do corpo","Rins e lombar"]],
+         "explain":"Os rins filtram: separam o que fica do que sai e mantêm o sangue em equilíbrio. É o corpo fazendo, em silêncio, o trabalho da balança."},
+        {"type":"teach","glyph":"◯","eyebrow":"O eixo","title":"Onde o Sol se põe",
+         "body":["Do outro lado da roda está Áries. Na roda natural, Áries ocupa a casa 1, a do ascendente, o ponto do horizonte onde o Sol nasce. Libra ocupa a casa 7, a do descendente, onde o Sol se põe.","O ascendente é como a gente aparece. O descendente é quem a gente encontra. Por isso a casa 7 fala de casamento, de sociedade e também dos inimigos declarados: tudo que chega de fora e devolve a gente a si. O outro aparece justamente na hora em que a luz do eu começa a baixar."]},
+        {"type":"reflect","q":"Em que relação a gente segura sozinho os pratos da balança, para que o equilíbrio pareça natural?","hint":"Uma frase basta. Sem certo nem errado."}
+      ]
+    },
+    {
+      "id": "libra-2", "kind": "Mito", "title": "A balança das estrelas", "glyph": "⚖",
+      "light": null,
+      "card": {"kind":"Mito","title":"A balança de Dike","text":"Dike, a Justiça, filha de Zeus e Têmis, viveu entre os humanos na idade de ouro e subiu ao céu quando eles se tornaram violentos. Ao lado da Virgem em que ela se transformou, ficou a balança. Antes de pesar, aquelas estrelas eram as garras do Escorpião."},
+      "doneTitle": "Carta conquistada: A balança de Dike",
+      "doneText": "O único objeto do zodíaco entrou na coleção.",
+      "steps": [
+        {"type":"teach","glyph":"⚖","eyebrow":"O mito por trás do signo","title":"A lei e a justiça",
+         "body":["Têmis era uma titânide, filha de Urano e Gaia. Ela personifica a ordem divina: o que é justo porque é assim que o mundo se sustenta.","Com Zeus, Têmis teve as Horas. Uma delas é Dike, a justiça que acontece entre as pessoas: nos acordos, nas trocas, nas sentenças."]},
+        {"type":"match","q":"Ligue cada deusa ao que ela representa",
+         "pairs":[["Têmis","A ordem divina"],["Dike","A justiça entre os humanos"],["Eunomia","A boa lei"],["Eirene","A paz"]],
+         "explain":"Eunomia, Dike e Eirene são irmãs, as Horas. Repare na sequência que elas formam: a boa lei, a justiça, a paz. Sem a do meio, a última não se sustenta."},
+        {"type":"teach","glyph":"✦","eyebrow":"A partida","title":"A última a ir embora",
+         "body":["Os poetas contam que, na idade de ouro, Dike andava entre os humanos e falava nas praças. Quando as gerações foram ficando mais duras, ela passou a descer das montanhas só ao entardecer, para repreender.","Na idade do bronze, quando os humanos forjaram as primeiras espadas, ela foi embora para o céu e virou a constelação da Virgem. Ao lado dela, ficou a balança."]},
+        {"type":"order","q":"Coloque a partida de Dike na ordem",
+         "items":["Na idade de ouro, Dike vive entre os humanos","Na idade de prata, ela desce das montanhas só ao entardecer","Os humanos forjam as primeiras espadas","Dike sobe ao céu e vira a Virgem","A balança fica no céu ao lado dela"],
+         "explain":"É assim que o poeta Arato conta. Ovídio dá a ela o nome de Astreia, a estrelada, a última imortal a deixar a terra."},
+        {"type":"choice","q":"Entre as doze constelações do zodíaco, o que torna Libra única?",
+         "opts":["É a única que é um objeto, e não um ser vivo","É a única com duas figuras","É a única ligada a uma deusa","É a única que muda de forma conforme a estação"],"a":0,
+         "explain":"Os outros onze são animais, pessoas ou criaturas. Libra é a única coisa feita por mãos humanas. O signo da relação é um instrumento: não nasce pronto, precisa ser construído e calibrado."},
+        {"type":"teach","glyph":"♏","eyebrow":"Antes da balança","title":"As garras viraram pratos",
+         "body":["Para os gregos antigos, essas estrelas eram as Garras do Escorpião. Até hoje, as duas mais brilhantes de Libra têm nomes árabes que significam garra do sul e garra do norte.","Os babilônios já viam ali uma balança, e foi essa leitura que venceu no tempo dos romanos. A mesma forma que agarrava passou a pesar. O que antes prendia o outro agora mede a distância até ele. Libra nasce desse gesto: abrir a mão que fechava."]},
+        {"type":"reflect","q":"Onde a gente ainda agarra quando poderia pesar?","hint":"Fica guardado só no diário da jornada."}
+      ]
+    },
+    {
+      "id": "libra-3", "kind": "Planeta", "title": "O Vênus, o regente", "glyph": "♀",
+      "light": "planet:venus", "card": null,
+      "doneTitle": "O Vênus acendeu",
+      "doneText": "O regente de Libra está aceso no mapa: o encontro que ganha forma.",
+      "steps": [
+        {"type":"teach","glyph":"♀","eyebrow":"Planeta regente","title":"O que atrai e o que combina",
+         "body":["O Vênus rege Libra e também Touro. Em Touro, ele fala do prazer do corpo e do que a gente valoriza. Em Libra, fala do encontro: a relação, o gosto, a beleza que nasce da proporção, o acordo.","No mapa, o Vênus mostra como a gente ama, o que acha bonito e como faz as pazes."]},
+        {"type":"choice","big":true,"q":"Qual destes é o glifo do Vênus?",
+         "opts":["♀","♂","☽","♃"],"a":0,
+         "explain":"O círculo sobre a cruz. Muitos leem ali o espelho da deusa. O círculo é o espírito, a cruz é a matéria: o Vênus é onde o que a gente sente ganha corpo e forma."},
+        {"type":"match","q":"Onde o Vênus se sente em casa, forte, fraco ou estrangeiro",
+         "pairs":[["Domicílio","Libra"],["Exaltação","Peixes"],["Exílio","Áries"],["Queda","Virgem"]],
+         "explain":"O Vênus também é domiciliado em Touro e exilado em Escorpião. Em Virgem, o amor vira análise e quer corrigir. Em Peixes, ele se dissolve e perdoa: ali o Vênus encontra o amor que não precisa pesar."},
+        {"type":"teach","glyph":"✦","eyebrow":"A estrela da tarde","title":"Duas estrelas, um planeta",
+         "body":["Visto da Terra, o Vênus nunca se afasta muito do Sol: no máximo uns 47 graus. Por isso só aparece perto do amanhecer ou do anoitecer.","Os gregos achavam que eram duas estrelas: Fósforo, a que traz a luz de manhã, e Héspero, a da tarde. Os romanos as chamaram de Lúcifer e Vésper. E Libra é o signo do descendente, o horizonte onde o Sol se põe. Quando a luz do eu baixa, o primeiro brilho que surge no céu é o do Vênus."]},
+        {"type":"choice","q":"Mais ou menos de quanto em quanto tempo o Vênus fica retrógrado?",
+         "opts":["A cada cerca de 18 meses","Todo ano, no mesmo mês","A cada cerca de 12 anos","A cada 3 ou 4 meses, como Mercúrio"],"a":0,
+         "explain":"O ciclo do Vênus com o Sol dura uns 584 dias, e a retrogradação ocupa uns 40 deles. Na leitura simbólica, é tempo de revisar o que a gente valoriza e como se relaciona."},
+        {"type":"teach","glyph":"☉","eyebrow":"O retrógrado","title":"Da tarde para a manhã",
+         "body":["Vênus retrógrado não é o planeta mudando de órbita. Visto da Terra, ele parece mudar de direção: uma ilusão de ótica.","Isso acontece quando ele passa entre a Terra e o Sol. O Vênus some do céu do entardecer e, dias depois, reaparece como estrela da manhã. Héspero vira Fósforo. É o mesmo astro, visto do outro lado do Sol. O que a gente amava ao anoitecer precisa ser reconhecido de novo, com a luz da manhã."]},
+        {"type":"reflect","q":"Que amor antigo a gente precisaria reconhecer com outra luz?","hint":"Pode ser uma pessoa, um lugar, uma versão de si."}
+      ]
+    },
+    {
+      "id": "libra-4", "kind": "Mito", "title": "O pomo da discórdia", "glyph": "◯",
+      "light": null,
+      "card": {"kind":"Mito","title":"O julgamento de Páris","text":"Éris, a Discórdia, joga entre as deusas um pomo de ouro destinado à mais bela. Páris precisa escolher entre Hera, Atena e Afrodite, e escolher uma é fazer inimigas das outras duas. Da escolha nasce a guerra de Troia: em Libra, nenhum juízo sai de graça."},
+      "doneTitle": "Carta conquistada: O julgamento de Páris",
+      "doneText": "O Vênus e a escolha que nunca é neutra entraram na coleção.",
+      "steps": [
+        {"type":"teach","glyph":"♀","eyebrow":"A deusa por trás do planeta","title":"Uma festa sem a Discórdia",
+         "body":["Nas bodas de Peleu e Tétis, todos os deuses foram convidados. Menos Éris, a Discórdia.","Ela apareceu mesmo assim e jogou sobre a mesa um pomo de ouro com uma inscrição: para a mais bela."]},
+        {"type":"choice","q":"Quais deusas disputam o pomo de ouro?",
+         "opts":["Hera, Atena e Afrodite","Hera, Ártemis e Afrodite","Atena, Deméter e Héstia","Afrodite, Perséfone e Hera"],"a":0,
+         "explain":"Três deusas, três valores: o poder, a sabedoria, o desejo. Zeus se recusa a julgar e manda Hermes levar as três até Páris, um príncipe troiano que pastoreava no monte Ida. O rei dos deuses sabe que quem escolhe paga."},
+        {"type":"match","q":"Ligue cada deusa ao que ela ofereceu a Páris",
+         "pairs":[["Hera","Poder e reinos"],["Atena","Vitória e sabedoria na guerra"],["Afrodite","A mulher mais bela do mundo"]],
+         "explain":"Afrodite promete Helena, que já era casada com Menelau, rei de Esparta. O que o Vênus oferece raramente chega sem dono."},
+        {"type":"order","q":"Coloque a história na ordem",
+         "items":["Éris não é convidada para as bodas","O pomo de ouro cai entre as deusas","Hermes leva as três deusas até Páris","Páris entrega o pomo a Afrodite","Páris leva Helena para Troia","Começa a guerra de Troia"],
+         "explain":"Uma festa de casamento, uma convidada esquecida, uma fruta de ouro. Dez anos de guerra cabem nessa sequência."},
+        {"type":"teach","glyph":"⚖","eyebrow":"O juiz","title":"Escolher também é ferir",
+         "body":["Páris foi colocado no lugar da balança. E descobriu que não havia como pesar sem perder: cada deusa escolhida deixava duas ofendidas. Hera e Atena passaram a guerra inteira contra Troia.","A famosa indecisão de Libra costuma ser lida como fraqueza. Por esse mito, ela é outra coisa: o signo que sabe, antes de todos, que toda escolha cria um lado de fora. Libra demora porque enxerga a guerra que mora dentro de cada sim."]},
+        {"type":"choice","q":"No mito, quem são os pais de Harmonia?",
+         "opts":["Ares e Afrodite","Zeus e Hera","Hefesto e Afrodite","Apolo e Têmis"],"a":0,
+         "explain":"Ares, o Marte de Áries. Afrodite, o Vênus de Libra. A harmonia não é filha da paz: é filha dos dois lados do eixo, do impulso que vai e do encanto que atrai. E a história de Páris começa justamente com a Discórdia. Libra não é ausência de conflito. É o conflito encontrando forma."},
+        {"type":"reflect","q":"Qual escolha a gente adia porque já enxerga quem vai ficar do lado de fora?","hint":"Ninguém além de quem escreve vai ler."}
+      ]
+    },
+    {
+      "id": "libra-5", "kind": "Filosofia", "title": "Martin Buber e o encontro", "glyph": "∞",
+      "light": null,
+      "card": {"kind":"Filosofia","title":"Martin Buber, o Eu-Tu","text":"Para Buber, a gente se relaciona com o mundo por duas palavras: Eu-Tu, a do encontro, e Eu-Isso, a do uso. A pessoa só se torna Eu diante de um Tu. Lido junto de Libra, o outro deixa de ser a metade que falta e vira uma presença que não se possui."},
+      "doneTitle": "Carta conquistada: Martin Buber",
+      "doneText": "A subjornada de Libra está completa. A balança que um dia foi garra devolve a roda ao Escorpião, e o ar passa a mão para a água.",
+      "steps": [
+        {"type":"teach","glyph":"∞","eyebrow":"Filosofia","title":"No começo é a relação",
+         "body":["Martin Buber, filósofo judeu nascido em Viena, publicou em 1923 um livro curto chamado Eu e Tu. A ideia de partida parece simples: ninguém é Eu sozinho.","Para Buber, a gente sempre diz Eu junto de outra palavra. Ou Eu-Tu, quando encontra alguém de verdade. Ou Eu-Isso, quando usa, mede, classifica. O mesmo Eu muda conforme a palavra que vem ao lado."]},
+        {"type":"choice","q":"Qual destas frases é de Martin Buber?",
+         "opts":["Toda vida verdadeira é encontro","O inferno são os outros","O ser humano é um animal político","Penso, logo existo"],"a":0,
+         "explain":"Sartre escreveu que o inferno são os outros. Buber diz quase o contrário: a vida acontece no entre, no espaço que nenhum dos dois possui. Esse entre é o território de Libra."},
+        {"type":"teach","glyph":"♎","eyebrow":"Libra e Platão","title":"A metade que falta",
+         "body":["No Banquete de Platão, Aristófanes conta que os humanos eram redondos, com quatro braços e quatro pernas, até Zeus cortá-los ao meio. Desde então, cada um procura a sua metade.","É a imagem mais popular de Libra: alguém incompleto atrás de quem complete. Buber desmonta isso com delicadeza. No Eu-Tu, o outro não é o pedaço que falta na gente. É alguém inteiro, que não se encaixa em nenhum vazio nosso."]},
+        {"type":"match","q":"Ligue cada ideia de Buber ao que ela faz",
+         "pairs":[["Eu-Tu","Encontra o outro inteiro"],["Eu-Isso","Usa, mede e classifica"],["O entre","Onde a relação acontece"]],
+         "explain":"Buber não condena o Eu-Isso. Sem ele não há ciência nem trabalho. O problema começa quando ele vira a única palavra que a gente sabe dizer."},
+        {"type":"teach","glyph":"⚖","eyebrow":"A balança e o Isso","title":"O único objeto do zodíaco",
+         "body":["Libra é a única constelação do zodíaco que é um objeto. Todas as outras são vivas.","E o risco que Buber aponta é justamente esse: transformar o outro em objeto. Pesar, comparar, calcular quanto a pessoa vale, se compensa. A balança é um instrumento do Eu-Isso. O trabalho de Libra é soltar a balança na hora do encontro, sem esquecer como usá-la depois."]},
+        {"type":"choice","q":"Para Buber, o que acontece com todo Tu, cedo ou tarde?",
+         "opts":["Ele volta a ser um Isso, e o encontro precisa recomeçar","Ele se torna eterno","Ele se funde com o Eu","Ele desaparece da vida da gente"],"a":0,
+         "explain":"Buber chama isso de melancolia sublime do nosso destino: nenhum encontro se sustenta para sempre. Libra conhece esse ir e vir. O equilíbrio, como o equinócio, dura um instante e precisa ser refeito."},
+        {"type":"reflect","q":"Com quem a gente parou de dizer Tu e começou a dizer Isso?","hint":"Escreva do jeito que vier."}
+      ]
+    }
+  ]
+}

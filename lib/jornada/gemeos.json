@@ -1,0 +1,133 @@
+{
+  "sign": 2,
+  "slug": "gemeos",
+  "name": "Gêmeos",
+  "subtitle": "a palavra",
+  "element": "ar",
+  "blurb": "O terceiro signo, os irmãos que dividem a imortalidade e o deus que inventou a lira no dia em que nasceu.",
+  "lessons": [
+    {
+      "id": "gemeos-1", "kind": "Signo", "title": "O ar que vira palavra", "glyph": "♊",
+      "light": "sign:2", "card": null,
+      "doneTitle": "Gêmeos acendeu na roda",
+      "doneText": "O terceiro signo está aceso. Depois do impulso e da matéria, a vida aprende a nomear.",
+      "steps": [
+        {"type":"teach","glyph":"♊","eyebrow":"Gêmeos","title":"Depois do corpo, o nome",
+         "body":["O Sol entra em Gêmeos por volta de 21 de maio. É o terceiro signo da roda.","Áries quis existir. Touro quis ter corpo e chão. Gêmeos olha em volta e começa a dar nome às coisas: esta é uma pedra, aquele é um irmão, isso aqui tem outro lado."]},
+        {"type":"choice","q":"Por volta de que data o Sol entra em Gêmeos?",
+         "opts":["21 de maio","21 de março","21 de junho","21 de abril"],"a":0,
+         "explain":"Gêmeos fecha a primavera do hemisfério norte, e aqui no Brasil fecha o outono. É o signo da passagem entre uma estação e outra, e isso já diz muito sobre ele."},
+        {"type":"teach","glyph":"△","eyebrow":"Elemento e qualidade","title":"Ar que não para quieto",
+         "body":["Gêmeos é ar, o elemento do pensamento, da troca e do que circula entre as pessoas.","E é mutável, a qualidade que encerra as estações e prepara a próxima. Ar mutável é o vento que muda de direção: leva sementes, recados, boatos. Não segura nada por muito tempo, porque a função dele é fazer chegar."]},
+        {"type":"match","q":"Ligue cada ideia ao que ela é em Gêmeos",
+         "pairs":[["Elemento","Ar"],["Qualidade","Mutável"],["Regente","Mercúrio"],["Signo oposto","Sagitário"]],
+         "explain":"Gêmeos e Sagitário formam o eixo do conhecimento. Gêmeos é a informação de perto, a conversa da vizinhança. Sagitário é o sentido de longe, a viagem e a filosofia."},
+        {"type":"multi","q":"Escolha as partes do corpo que a tradição liga a Gêmeos",
+         "opts":["Braços e mãos","Pulmões","Ombros","Joelhos","Garganta"],"correct":[0,1,2],
+         "explain":"Gêmeos governa o que vem em par e o que faz a ligação com o mundo: os dois braços, as duas mãos, os dois pulmões. Joelhos são de Capricórnio. A garganta é de Touro."},
+        {"type":"teach","glyph":"☿","eyebrow":"O corpo de Gêmeos","title":"A fala é feita de ar que sai",
+         "body":["Os pulmões puxam o mundo para dentro e devolvem. Inspirar, expirar. É a primeira dupla que o corpo aprende, antes de qualquer irmão.","E toda palavra que a gente diz é feita desse ar que sai. A voz não tem outra matéria. O que entrou como mundo volta como linguagem. Gêmeos mora exatamente nessa troca: ninguém fala com o ar que guarda."]},
+        {"type":"reflect","q":"O que a gente respira em silêncio há tempo demais, e ainda não virou palavra?","hint":"Uma frase basta. Sem certo nem errado."}
+      ]
+    },
+    {
+      "id": "gemeos-2", "kind": "Mito", "title": "O mortal e o imortal", "glyph": "✦",
+      "light": null,
+      "card": {"kind":"Mito","title":"Castor e Pólux","text":"Filhos de Leda, Pólux nasceu de Zeus e era imortal; Castor nasceu de Tíndaro e podia morrer. Quando Castor é morto, Pólux recusa uma eternidade sem o irmão, e Zeus permite que os dois dividam o destino: um dia entre os deuses, outro debaixo da terra. Gêmeos não é a pessoa de duas caras: é a parte imortal que se recusa a abandonar a parte que morre."},
+      "doneTitle": "Carta conquistada: Castor e Pólux",
+      "doneText": "Os irmãos que dividem a imortalidade entraram na coleção.",
+      "steps": [
+        {"type":"teach","glyph":"♊","eyebrow":"O mito por trás do signo","title":"Uma mãe, dois pais",
+         "body":["Leda, rainha de Esparta, foi amada por Zeus, que chegou a ela na forma de um cisne. Na mesma noite, ela se deitou com o marido, Tíndaro.","Dessa dupla origem nasceram irmãos que cresceram juntos e não eram iguais. Pólux era filho de Zeus: imortal. Castor era filho de Tíndaro: mortal. Na mesma casa, Helena e Clitemnestra completavam a família."]},
+        {"type":"choice","q":"Qual dos dois gêmeos era imortal?",
+         "opts":["Pólux, filho de Zeus","Castor, filho de Tíndaro","Os dois, por serem filhos de Leda","Nenhum dos dois"],"a":0,
+         "explain":"A imortalidade vinha do pai divino. Os gêmeos dividiam a infância, a mãe e as aventuras, mas não dividiam o fim. Gêmeos começa aí: duas naturezas que se amam e não têm o mesmo destino."},
+        {"type":"order","q":"Coloque a história na ordem",
+         "items":["Leda gera os filhos de Zeus e de Tíndaro","Os irmãos navegam com os Argonautas","Uma disputa com os primos Idas e Linceu termina em luta","Castor é morto por Idas","Pólux pede a Zeus para não viver sem o irmão","Os dois passam a alternar os dias entre o Olimpo e o mundo dos mortos"],
+         "explain":"Castor domava cavalos, Pólux era pugilista. Juntos protegiam os marinheiros, que viam nas chamas elétricas dos mastros, o fogo de santelmo, a presença dos dois irmãos."},
+        {"type":"teach","glyph":"✦","eyebrow":"A escolha de Pólux","title":"Metade da eternidade",
+         "body":["Zeus oferece a Pólux o lugar que era dele no Olimpo, sozinho. Pólux recusa. Prefere dividir.","Então os dois passam a viver um dia entre os deuses e um dia debaixo da terra, sempre juntos. A fama de Gêmeos é a de ser inconstante, de mudar de humor, de estar leve de manhã e pesado à noite. Lido pelo mito, esse vaivém ganha outro nome: é a parte da gente que poderia voar sozinha descendo, de propósito, para não largar a parte que sofre e morre."]},
+        {"type":"choice","q":"No céu, as duas estrelas mais brilhantes da constelação levam o nome dos irmãos. Qual delas brilha mais?",
+         "opts":["Pólux, a estrela beta","Castor, a estrela alfa","As duas têm exatamente o mesmo brilho","Nenhuma delas é visível a olho nu"],"a":0,
+         "explain":"Pela convenção, a alfa costuma ser a mais brilhante, mas em Gêmeos a beta, Pólux, brilha mais que Castor. O imortal tem mais luz, e mesmo assim o mortal ficou com a primeira letra. No céu, como no mito, um não aparece sem o outro."},
+        {"type":"choice","q":"Na leitura simbólica, o que o mito dos Dióscuros diz sobre Gêmeos?",
+         "opts":["Que o signo carrega duas naturezas que escolhem não se separar","Que geminianos são falsos e mudam de lado","Que um irmão sempre vence o outro","Que a imortalidade é um castigo"],"a":0,
+         "explain":"Jung chamaria de sombra o irmão que a gente prefere não ver. Pólux faz o contrário: vai buscar o irmão no escuro. A duplicidade de Gêmeos, aqui, não é mentira. É fidelidade às duas partes."},
+        {"type":"reflect","q":"Qual parte da gente é Castor, a que cansa e morre um pouco, e qual parte é Pólux, a que poderia seguir sozinha?","hint":"Fica guardado só no diário da jornada."}
+      ]
+    },
+    {
+      "id": "gemeos-3", "kind": "Planeta", "title": "Mercúrio, o regente", "glyph": "☿",
+      "light": "planet:merc", "card": null,
+      "doneTitle": "Mercúrio acendeu",
+      "doneText": "O regente de Gêmeos está aceso no mapa: a mente que liga uma coisa à outra.",
+      "steps": [
+        {"type":"teach","glyph":"☿","eyebrow":"Planeta regente","title":"A mente que faz ponte",
+         "body":["Mercúrio rege Gêmeos. No mapa, ele mostra como a gente pensa, fala, aprende, escreve, negocia, conecta uma ideia na outra.","É o planeta mais rápido e o mais próximo do Sol. O que ele faz é ligar: uma coisa à outra, uma pessoa à outra, o que a gente sente ao que a gente consegue dizer."]},
+        {"type":"choice","big":true,"q":"Qual destes é o glifo de Mercúrio?",
+         "opts":["☿","♀","♃","♄"],"a":0,
+         "explain":"A cruz da matéria, o círculo do espírito e, em cima, a meia-lua, que lembra o chapéu alado do mensageiro. Mercúrio é o único glifo que junta os três sinais."},
+        {"type":"match","q":"Onde Mercúrio se sente em casa, forte, fraco ou estrangeiro",
+         "pairs":[["Domicílio","Gêmeos"],["Exaltação","Virgem"],["Exílio","Sagitário"],["Queda","Peixes"]],
+         "explain":"Mercúrio também é domiciliado em Virgem, onde ainda se exalta, e exilado em Peixes. Sagitário e Peixes são os signos tradicionais de Júpiter: onde a mente quer o sentido inteiro, o detalhe se perde."},
+        {"type":"teach","glyph":"☉","eyebrow":"O mensageiro e o rei","title":"Ele nunca se afasta do Sol",
+         "body":["Visto da Terra, Mercúrio nunca se afasta mais de uns 28 graus do Sol. Por isso, em qualquer mapa, ele está no mesmo signo do Sol ou em um dos dois vizinhos. Nunca mais longe.","Repare no que isso quer dizer. A mente não tem órbita própria: ela gira em volta do que a gente é. O jeito de pensar e de falar fica sempre colado no centro da vida, como o mensageiro que nunca sai de perto do rei para quem trabalha."]},
+        {"type":"choice","q":"Quanto tempo Mercúrio leva, mais ou menos, para percorrer o zodíaco visto da Terra?",
+         "opts":["Cerca de 1 ano","Cerca de 88 anos","Cerca de 1 mês","Cerca de 12 anos"],"a":0,
+         "explain":"Ele dá a volta no Sol em 88 dias, mas como acompanha o Sol de perto, no mapa percorre o zodíaco em mais ou menos um ano, junto com ele. Doze anos é o ciclo de Júpiter."},
+        {"type":"choice","q":"Mercúrio fica retrógrado umas três vezes por ano. O que acontece de fato no céu?",
+         "opts":["Visto da Terra, ele parece mudar de direção: é uma ilusão de ótica","Ele inverte o sentido da órbita","Ele se afasta do Sol mais do que o normal","Ele para de girar por três semanas"],"a":0,
+         "explain":"Mercúrio, mais rápido e mais perto do Sol, ultrapassa a Terra pela parte de dentro e, daqui, parece recuar por umas três semanas. Na leitura simbólica, é tempo de reler, rever, reescrever: o re de tudo aquilo que já foi dito."},
+        {"type":"reflect","q":"O que a gente pensa e não diz, e o que a gente diz sem ter pensado?","hint":"Pode ser uma conversa recente."}
+      ]
+    },
+    {
+      "id": "gemeos-4", "kind": "Mito", "title": "Hermes recém-nascido", "glyph": "☿",
+      "light": null,
+      "card": {"kind":"Mito","title":"A lira e o gado de Apolo","text":"No dia em que nasce, Hermes transforma o casco de uma tartaruga na primeira lira e, à noite, rouba o gado de Apolo apagando o rastro. Descoberto, oferece a lira ao irmão, e os dois rivais viram amigos. O deus de Gêmeos começa a vida fazendo de um bicho morto uma voz e de um inimigo um irmão."},
+      "doneTitle": "Carta conquistada: A lira e o gado de Apolo",
+      "doneText": "Hermes, o deus que atravessa todas as fronteiras, entrou na coleção.",
+      "steps": [
+        {"type":"teach","glyph":"☿","eyebrow":"O deus por trás do planeta","title":"Um dia de vida",
+         "body":["Hermes é filho de Zeus e de Maia, uma das Plêiades, e nasce numa caverna do monte Cilene, na Arcádia.","O hino homérico conta tudo num único dia: nasce ao amanhecer, ao meio-dia já está tocando lira, e à noite rouba o gado de Apolo. Mercúrio é o nome romano dele."]},
+        {"type":"order","q":"Coloque o primeiro dia de Hermes na ordem",
+         "items":["Nasce numa caverna, filho de Maia","Encontra uma tartaruga e faz dela a primeira lira","Rouba cinquenta vacas de Apolo","Volta ao berço e se enrola nas fraldas","Apolo o leva até Zeus","Hermes dá a lira a Apolo"],
+         "explain":"Em menos de um dia, Hermes inventa um instrumento, comete um furto, mente com cara de bebê e faz um acordo. Tudo que Mercúrio rege está nesse primeiro dia."},
+        {"type":"teach","glyph":"✦","eyebrow":"A tartaruga","title":"Um casco vazio que canta",
+         "body":["Na porta da caverna, Hermes vê uma tartaruga. Tira a carne, estica cordas de tripa sobre o casco e faz a primeira lira.","O primeiro gesto do deus de Gêmeos é pegar uma coisa morta e oca e fazer dela uma voz. A linguagem trabalha assim: a palavra é um casco vazio, que só soa porque alguém passou a mão nas cordas."]},
+        {"type":"choice","q":"Como Hermes esconde o roubo do gado?",
+         "opts":["Inverte as pegadas das vacas e calça sandálias de galhos para confundir o rastro","Leva as vacas voando pelo céu","Pede ajuda a Zeus para escondê-las","Transforma as vacas em pedras"],"a":0,
+         "explain":"Ele não esconde as vacas: ele embaralha os sinais. Mercúrio é o senhor dos signos, e quem sabe ler um rastro também sabe escrevê-lo ao contrário. Por isso ele é o deus dos comerciantes, dos tradutores e dos ladrões."},
+        {"type":"teach","glyph":"♊","eyebrow":"De rival a irmão","title":"Outro par de gêmeos",
+         "body":["Apolo descobre tudo e arrasta o bebê até Zeus, que ri da esperteza do filho. Hermes toca a lira, Apolo se encanta, e a troca acontece: a lira vai para Apolo, o gado fica com Hermes, e os dois irmãos por parte de pai viram amigos.","E aqui os Dióscuros reaparecem. Castor e Pólux só podiam estar juntos dividindo os dias, um no Olimpo e outro debaixo da terra. Hermes é o único deus que passa livremente pelos dois lugares: conduz as almas ao Hades e volta ao Olimpo com recados. O que os gêmeos precisaram dividir, o regente deles atravessa."]},
+        {"type":"choice","q":"Por que Hermes é chamado de psicopompo?",
+         "opts":["Porque conduz as almas dos mortos até o Hades","Porque cura as doenças da alma","Porque julga as almas depois da morte","Porque guarda a porta do Olimpo"],"a":0,
+         "explain":"Psicopompo quer dizer condutor de almas. Na leitura junguiana, Hermes é a função que leva a gente do que é consciente ao que está no escuro e traz alguma notícia de volta. Gêmeos é esse ir e vir."},
+        {"type":"reflect","q":"Que coisa vazia e morta na nossa história ainda pode virar voz?","hint":"Ninguém além de quem escreve vai ler."}
+      ]
+    },
+    {
+      "id": "gemeos-5", "kind": "Filosofia", "title": "Sócrates e o diálogo", "glyph": "◯",
+      "light": null,
+      "card": {"kind":"Filosofia","title":"Sócrates, o pensamento em dois","text":"Sócrates não escreveu nada: pensava conversando, fazendo perguntas até a certeza do outro se desfazer. Para Platão, o próprio pensamento é um diálogo silencioso da alma consigo mesma. Lido junto de Gêmeos, pensar é sempre ser dois, e a companhia mais difícil é a de dentro."},
+      "doneTitle": "Carta conquistada: Sócrates",
+      "doneText": "A subjornada de Gêmeos está completa. O ar passa a mão para as águas de Câncer.",
+      "steps": [
+        {"type":"teach","glyph":"◯","eyebrow":"Filosofia","title":"O homem que não escreveu",
+         "body":["Sócrates viveu em Atenas, uns 400 anos antes de Cristo, e não deixou uma linha escrita. Tudo que a gente sabe dele chega pelos diálogos de Platão e de Xenofonte.","Ele passava os dias na praça, conversando com quem aparecesse: um general, um sapateiro, um jovem rico. Fazia perguntas até a certeza do outro começar a rachar."]},
+        {"type":"choice","q":"Como se chama o método de Sócrates de fazer o outro chegar ao próprio pensamento por perguntas?",
+         "opts":["Maiêutica","Dialética hegeliana","Retórica","Ceticismo"],"a":0,
+         "explain":"Maiêutica é a arte de fazer o parto. A mãe de Sócrates, Fenarete, era parteira, e ele dizia fazer o mesmo com as ideias: não colocava nada na cabeça de ninguém, ajudava a nascer o que já estava lá. Gêmeos, aqui, é a conversa como parto."},
+        {"type":"teach","glyph":"♊","eyebrow":"Gêmeos e Sócrates","title":"Ninguém pensa sozinho",
+         "body":["Em dois diálogos, Platão define o pensamento como uma conversa silenciosa da alma consigo mesma. Uma voz pergunta, a outra responde.","Então o pensamento já nasce em par. Mesmo quando a gente está só, está em dupla. Sócrates dizia preferir discordar da cidade inteira a discordar de si mesmo, porque, de todo o resto, dá para ir embora. Do companheiro de dentro, não. Castor e Pólux moram aí: na conversa que nunca termina entre o que em nós sabe e o que em nós duvida."]},
+        {"type":"match","q":"Ligue a ideia socrática ao que ela revela em Gêmeos",
+         "pairs":[["Só sei que nada sei","A curiosidade começa onde a certeza acaba"],["A maiêutica","A conversa faz nascer o que estava escondido"],["O diálogo da alma consigo mesma","Pensar é ser dois"],["Conhece-te a ti mesmo","Nomear é o primeiro jeito de conhecer"]],
+         "explain":"Conhece-te a ti mesmo estava escrito no templo de Apolo em Delfos, e Sócrates fez disso a vida inteira. O irmão de Hermes guardava a frase. Hermes dava o jeito de falar sobre ela."},
+        {"type":"choice","q":"Juntando Sócrates e Gêmeos, a famosa dispersão geminiana pode ser lida como:",
+         "opts":["Uma mente que prefere a pergunta aberta à resposta fechada","Falta de caráter","Incapacidade de amar","Uma fase que passa com a idade"],"a":0,
+         "explain":"Sócrates foi condenado à morte, entre outras coisas, por não parar de perguntar. Gêmeos carrega esse risco: a curiosidade incomoda quem precisa de certezas. Mas é também ela que mantém o pensamento vivo."},
+        {"type":"reflect","q":"Que conversa a gente vem adiando com a voz de dentro?","hint":"Escreva do jeito que vier."}
+      ]
+    }
+  ]
+}
