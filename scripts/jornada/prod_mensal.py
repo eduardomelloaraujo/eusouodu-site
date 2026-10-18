@@ -60,3 +60,15 @@ R('''<b>Passe semanal ativo</b><p>Acesso liberado até ${esc(fmtDT(until))}. Nã
 R('''  if(pago==="semana" || pago==="pendente" || pago==="mes"){
     toast(pago==="mes" ? "Confirmando a assinatura…" : "Confirmando o Pix…");''','''  if(pago==="semana" || pago==="passe" || pago==="pendente" || pago==="mes"){
     toast(pago==="mes" ? "Confirmando a assinatura…" : "Confirmando o pagamento…");''')
+
+# cartão: compra de 30 dias (a recorrência automática do Mercado Pago está desligada por enquanto)
+RM('<div class="pname">Assinatura mensal</div>', '<div class="pname">Mensal no cartão</div>')
+RM('<div class="price">R$ 29,90 <small>por mês</small></div>\n    <p class="how">No cartão de crédito.</p>', '<div class="price">R$ 29,90 <small>por 30 dias</small></div>\n    <p class="how">No cartão de crédito, digitado aqui mesmo. Libera na hora.</p>')
+RM('<li><i>✓</i><span>Libera tudo enquanto a assinatura estiver ativa.</span></li>\n      <li><i>↻</i><span><b>Renova automaticamente</b> a cada mês, no mesmo dia, sempre R$ 29,90.</span></li>\n      <li><i>✕</i><span>Cancela quando quiser, em Meu plano, sem multa. O acesso segue até o fim do mês já pago.</span></li>',
+   '<li><i>✓</i><span>Libera tudo por 30 dias, na hora da compra.</span></li>\n      <li><i>↻</i><span>No fim dos 30 dias a Jornada avisa, e renovar leva um toque.</span></li>\n      <li><i>✓</i><span>Nenhuma cobrança surpresa: nada é cobrado sem a pessoa pedir.</span></li>')
+RM('<button class="btn plain" data-plan="mes">Assinar por R$ 29,90 por mês</button>', '<button class="btn plain" data-plan="mes">Pagar R$ 29,90 no cartão</button>')
+RM('rows=[["Plano","Assinatura mensal"],["Cobrado agora","R$ 29,90 no cartão de crédito"],["Próxima cobrança",fmtD(nx)+": R$ 29,90"],["Renovação","Automática, todo mês no mesmo dia"],["Para cancelar","Meu plano, a qualquer momento, sem multa"]];',
+   'rows=[["Plano","Mensal no cartão"],["Cobrado agora","R$ 29,90 no cartão de crédito"],["Acesso liberado até",fmtDT(new Date(now.getTime()+30*864e5))],["Cobranças automáticas","Nenhuma"],["Depois disso","A Jornada avisa para renovar"]];')
+R('formSubmit:"Assinar por R$ 29,90 por mês"', 'formSubmit:"Pagar R$ 29,90"')
+RM('<tr><td>Renova sozinho?</td><td>Não</td><td>Sim, todo mês</td></tr>', '<tr><td>Renova sozinho?</td><td>Não</td><td>Não, a Jornada avisa</td></tr>')
+RM('<tr><td>Para parar</td><td>Só não pagar de novo</td><td>Cancelar em Meu plano</td></tr>', '<tr><td>Para parar</td><td>Só não pagar de novo</td><td>Só não pagar de novo</td></tr>')

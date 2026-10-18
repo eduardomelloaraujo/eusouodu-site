@@ -208,7 +208,10 @@ async function assinar(req, res) {
   // a referência vira um código, e o código aponta para o e-mail no banco
   const ref = await refAssinatura(email);
   let pa = null, motivo = '';
-  try {
+  // a checagem da assinatura recorrente do Mercado Pago reprova muitos cartões bons (CC_VAL_433) e ainda inutiliza o token:
+  // por enquanto o cartão vai direto para a compra normal de 30 dias, que aprova como qualquer compra online
+  const TENTAR_RECORRENTE = false;
+  if (TENTAR_RECORRENTE) try {
     pa = await mp('/preapproval', {
       method: 'POST',
       body: JSON.stringify({

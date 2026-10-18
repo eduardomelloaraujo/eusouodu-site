@@ -656,16 +656,16 @@ img{max-width:100%}
 
   <div class="pcard mes">
     <span class="badge">Sai mais barato</span>
-    <div class="pname">Assinatura mensal</div>
-    <div class="price">R$ 29,90 <small>por mês</small></div>
-    <p class="how">No cartão de crédito.</p>
+    <div class="pname">Mensal no cartão</div>
+    <div class="price">R$ 29,90 <small>por 30 dias</small></div>
+    <p class="how">No cartão de crédito, digitado aqui mesmo. Libera na hora.</p>
     <ul class="facts">
-      <li><i>✓</i><span>Libera tudo enquanto a assinatura estiver ativa.</span></li>
-      <li><i>↻</i><span><b>Renova automaticamente</b> a cada mês, no mesmo dia, sempre R$ 29,90.</span></li>
-      <li><i>✕</i><span>Cancela quando quiser, em Meu plano, sem multa. O acesso segue até o fim do mês já pago.</span></li>
+      <li><i>✓</i><span>Libera tudo por 30 dias, na hora da compra.</span></li>
+      <li><i>↻</i><span>No fim dos 30 dias a Jornada avisa, e renovar leva um toque.</span></li>
+      <li><i>✓</i><span>Nenhuma cobrança surpresa: nada é cobrado sem a pessoa pedir.</span></li>
       <li><i>✓</i><span>4 passes semanais custariam R$ 39,60. No mensal, R$ 29,90.</span></li>
     </ul>
-    <button class="btn plain" data-plan="mes">Assinar por R$ 29,90 por mês</button>
+    <button class="btn plain" data-plan="mes">Pagar R$ 29,90 no cartão</button>
     <button class="link pix30" data-plan="mes30">Prefere Pix? 30 dias por R$ 29,90, sem renovação</button>
   </div>
 
@@ -677,9 +677,9 @@ img{max-width:100%}
   <table class="cmp">
     <tr><th></th><th>Semanal</th><th>Mensal</th></tr>
     <tr><td>Pagamento</td><td>Pix</td><td>Cartão de crédito</td></tr>
-    <tr><td>Renova sozinho?</td><td>Não</td><td>Sim, todo mês</td></tr>
+    <tr><td>Renova sozinho?</td><td>Não</td><td>Não, a Jornada avisa</td></tr>
     <tr><td>Num mês</td><td>R$ 39,60 se renovar 4 vezes</td><td>R$ 29,90</td></tr>
-    <tr><td>Para parar</td><td>Só não pagar de novo</td><td>Cancelar em Meu plano</td></tr>
+    <tr><td>Para parar</td><td>Só não pagar de novo</td><td>Só não pagar de novo</td></tr>
   </table>
   </div>
   <p class="fine">Pagamentos processados pelo Mercado Pago. O valor cobrado é sempre o que aparece aqui, sem taxa extra. Direito de arrependimento: até 7 dias depois da compra, o valor volta inteiro, é só escrever para falecom@eusouodu.com. Detalhes nos <a href="/jornada/termos.html">Termos de uso</a>.</p>
@@ -1234,7 +1234,7 @@ document.querySelectorAll("[data-plan]").forEach(b=>b.onclick=()=>{
     rows=[["Plano","Passe semanal"],["Pago hoje","R$ 9,90 por Pix"],["Acesso liberado até",fmtDT(until)],["Cobranças automáticas","Nenhuma"],["Depois disso","Volta para a versão grátis, sem perder o progresso"]];
   } else {
     const nx=new Date(now); nx.setMonth(nx.getMonth()+1);
-    rows=[["Plano","Assinatura mensal"],["Cobrado agora","R$ 29,90 no cartão de crédito"],["Próxima cobrança",fmtD(nx)+": R$ 29,90"],["Renovação","Automática, todo mês no mesmo dia"],["Para cancelar","Meu plano, a qualquer momento, sem multa"]];
+    rows=[["Plano","Mensal no cartão"],["Cobrado agora","R$ 29,90 no cartão de crédito"],["Acesso liberado até",fmtDT(new Date(now.getTime()+30*864e5))],["Cobranças automáticas","Nenhuma"],["Depois disso","A Jornada avisa para renovar"]];
   }
   $("sumBox").innerHTML = rows.map(r=>`<div class="row"><span>${esc(r[0])}</span><b>${esc(r[1])}</b></div>`).join("");
   $("payGo").textContent = pending==="semana" ? "Pagar R$ 9,90 no Pix" : pending==="mes30" ? "Pagar R$ 29,90 no Pix" : "Assinar por R$ 29,90 por mês";
@@ -1254,7 +1254,7 @@ async function montarCartao(){
     const mp=new MercadoPago(MPK,{locale:"pt-BR"});
     brickCtl = await mp.bricks().create("cardPayment","cardBrickIn",{
       initialization:{ amount: 29.9, payer:{ email: (S.user&&S.user.email)||"" } },
-      customization:{ paymentMethods:{ types:{ excluded:["debit_card","prepaid_card"] }, maxInstallments:1 }, visual:{ texts:{ formSubmit:"Assinar por R$ 29,90 por mês" }, style:{ customVariables:{ baseColor:"#FF4FAE", borderRadiusLarge:"16px" } } } },
+      customization:{ paymentMethods:{ types:{ excluded:["debit_card","prepaid_card"] }, maxInstallments:1 }, visual:{ texts:{ formSubmit:"Pagar R$ 29,90" }, style:{ customVariables:{ baseColor:"#FF4FAE", borderRadiusLarge:"16px" } } } },
       callbacks:{
         onReady(){},
         onError(e){ console.error("cartao", e); },
