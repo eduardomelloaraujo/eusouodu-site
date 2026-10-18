@@ -1889,6 +1889,7 @@ function landingWire(){
     document.querySelectorAll(".lp-inst").forEach(o=>o.hidden = o.dataset.os!==b.dataset.os);
   });
   const now=$("lpNow"); if(now && typeof deferredPrompt!=="undefined" && deferredPrompt){ now.hidden=false; $("lpInstall").onclick=async()=>{ deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null; now.hidden=true; }; }
+  if(location.hash==="#lpInstalar" || location.hash==="#lpPrecos"){ const alvo=document.getElementById(location.hash.slice(1)); if(alvo){ alvo.classList.add("in"); setTimeout(()=>alvo.scrollIntoView({block:"start"}),50); } }
   const els=document.querySelectorAll(".lp .rv");
   if("IntersectionObserver" in window){
     const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.12});

@@ -151,6 +151,28 @@ p{margin:0}
 @media (max-width:760px){.breve .grade{grid-template-columns:1fr}}
 
 
+/* Jornada: o app, em destaque */
+.jornada{background:linear-gradient(135deg,#F3ECFF 0%,#FFF1E6 48%,#E7FBF3 100%);padding-block:clamp(64px,9vw,128px);border-bottom:1px solid var(--pedra);overflow:hidden}
+.jornada .grade{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,6vw,96px);align-items:center}
+.jornada h2{font-size:clamp(52px,7vw,96px);margin:18px 0 22px}
+.jornada h2 em{font-style:italic;color:#B0428A}
+.jornada .lead{color:#4f4a44;font-size:16px;max-width:50ch}
+.jornada .selo-novo{background:#B0428A}
+.jornada-trilhas{list-style:none;margin:26px 0 0;padding:0;border-top:1px solid rgba(51,50,48,.18)}
+.jornada-trilhas li{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid rgba(51,50,48,.18);font-size:14px}
+.jornada-trilhas li b{display:block;font-weight:500;font-size:15px}
+.jornada-trilhas li span{color:var(--cinza)}
+.jornada-trilhas .n{font-family:var(--display);font-size:30px;line-height:1;font-style:italic;color:#B0428A}
+.jornada .precos{grid-template-columns:repeat(3,1fr);max-width:560px}
+.jornada .preco-op{background:rgba(255,255,255,.7);border-color:rgba(51,50,48,.2)}
+.jornada .preco-op small{color:var(--cinza);font-size:12px}
+.jornada .vitrine{display:block;justify-self:center;width:100%;max-width:520px}
+.jornada .vitrine img{width:100%;height:auto;display:block;filter:drop-shadow(0 24px 40px rgba(60,30,80,.18));animation:flutua 6s ease-in-out infinite}
+@keyframes flutua{50%{transform:translateY(-10px) rotate(-.6deg)}}
+@media (prefers-reduced-motion:reduce){.jornada .vitrine img{animation:none}}
+@media (max-width:860px){.jornada .grade{grid-template-columns:1fr}.jornada .vitrine{max-width:380px;order:-1}.jornada .precos{grid-template-columns:1fr 1fr 1fr}}
+@media (max-width:420px){.jornada .precos{grid-template-columns:1fr}}
+
 /* Novo produto em destaque */
 .acoes-abertura{display:flex;flex-wrap:wrap;gap:20px 28px;align-items:center}
 .musica{background:var(--noite);color:var(--noite-texto);padding-block:clamp(64px,9vw,120px)}
@@ -248,13 +270,14 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
   </defs>
 </svg>
 
-<div class="aviso">Novidade · Música Astral: o mapa vira um disco e toca a música do dia · <a href="/musica/">ouvir a minha, grátis</a></div>
+<div class="aviso">Novidade · Jornada: o app para aprender astrologia, mitologia e filosofia a partir do próprio mapa · <a href="https://jornada.eusouodu.com/">começar grátis</a></div>
 
 <header class="cabecalho">
   <div class="envelope">
     <a class="marca" href="#topo">eu<i>sou</i>odu</a>
     <nav class="menu" aria-label="Seções">
-      <a href="/musica/" class="sempre">Música Astral</a>
+      <a href="https://jornada.eusouodu.com/" class="sempre">Jornada</a>
+      <a href="/musica/">Música Astral</a>
       <a href="#seu-mapa">Seu mapa</a>
       <a href="#semana">A semana</a>
       <a href="#leituras">Leituras</a>
@@ -271,8 +294,30 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
     <div class="texto">
       <p class="rotulo">Astrologia · Simbolismo · Mitologia</p>
       <h1>O mapa como um <em>caminho de volta</em></h1>
-      <p class="lead">Há mais de dez anos o Eduardo lê o céu ao lado dos mitos e do simbolismo. Aqui estão as leituras, os produtos e a energia astrológica de cada semana.</p>
+      <p class="lead">Há mais de dez anos o Eduardo lê o céu ao lado da mitologia e do simbolismo. Aqui estão as leituras, os produtos e a energia astrológica de cada semana.</p>
       <div class="acoes-abertura"><a class="botao" href="/mapa/">Ver os próximos dias no meu mapa</a><a class="link" href="#leituras">Conhecer as leituras <span aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
+
+  <section class="jornada" id="jornada" aria-labelledby="t-jornada">
+    <div class="envelope grade">
+      <div class="jornada-texto">
+        <p class="rotulo"><span class="selo-novo">Novidade</span> App · grátis para começar</p>
+        <h2 id="t-jornada">A <em>Jornada</em></h2>
+        <p class="lead">Um app para aprender astrologia, mitologia e filosofia um passo por dia, como um jogo. A data, a hora e a cidade de nascimento entram, o mapa é calculado na hora, e cada lição acende um pedaço dele. Instala na tela de início do celular, sem loja de aplicativos.</p>
+        <ul class="jornada-trilhas">
+          <li><span class="n">1</span><div><b>A linguagem</b><span>Os doze signos com a mitologia, o planeta regente e uma ideia filosófica. 60 lições.</span></div></li>
+          <li><span class="n">2</span><div><b>O próprio mapa</b><span>Doze lições montadas a partir do mapa natal de quem joga, do Ascendente à síntese.</span></div></li>
+          <li><span class="n">3</span><div><b>Os trânsitos</b><span>O céu de verdade passando sobre o mapa: fases da Lua, retrogradações, eclipses, o retorno de Saturno. E uma lição nova todo dia.</span></div></li>
+        </ul>
+        <div class="precos">
+          <a class="preco-op" href="https://jornada.eusouodu.com/"><span>Para começar</span><b>Grátis</b><small>Áries e a lição do dia</small></a>
+          <a class="preco-op" href="https://jornada.eusouodu.com/"><span>Passe semanal</span><b>R$ 9,90</b><small>no Pix, não renova</small></a>
+          <a class="preco-op" href="https://jornada.eusouodu.com/"><span>Mensal</span><b>R$ 29,90</b><small>no cartão, cancela quando quiser</small></a>
+        </div>
+        <div class="acoes-abertura"><a class="botao" href="https://jornada.eusouodu.com/">Começar a Jornada grátis</a><a class="link" href="https://jornada.eusouodu.com/#lpInstalar">Como instalar no celular <span aria-hidden="true">→</span></a></div>
+      </div>
+      <a class="vitrine" href="https://jornada.eusouodu.com/" aria-label="Abrir a Jornada"><img src="/jornada/vitrine.webp" width="862" height="1000" alt="Duas telas da Jornada: o mapa natal aceso e uma lição sobre o Sol em Câncer" loading="lazy"></a>
     </div>
   </section>
 
@@ -280,7 +325,7 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
     <div class="envelope grade">
       <a class="disco" href="/musica/" aria-label="Abrir a Música Astral"><span class="selo-disco"><i>eu<em>sou</em>odu</i></span></a>
       <div class="musica-texto">
-        <p class="rotulo"><span class="selo-novo">Novidade</span> Grátis</p>
+        <p class="rotulo">Grátis</p>
         <h2 id="t-musica">Música <em>Astral</em></h2>
         <p class="lead">A data, a hora e a cidade entram, o mapa se desenha na tela e vira um disco. No Lado A, as músicas do Sol, da Lua e do Ascendente. No Lado B, a música de hoje, escolhida pelo trânsito que mais toca o mapa, com a leitura do tom explicando por quê.</p>
         <ul class="musica-itens"><li>Uma música nova todo dia</li><li>A imagem do disco pronta para o story</li><li>A música do dia no e-mail, se quiser</li></ul>
