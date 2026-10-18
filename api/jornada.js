@@ -65,6 +65,7 @@ export default async function handler(req, res) {
       case 'checkout': return await checkout(req, res);
       case 'cancelar': return await cancelar(req, res);
       case 'assinar': return await assinar(req, res);
+      case 'diag-mp': return await diagMp(req, res);
       case 'diario': return await diario(req, res);
       case 'sair-emails': return await sairEmails(req, res);
       case 'status': return await status(req, res);
@@ -240,6 +241,15 @@ async function assinar(req, res) {
   await atualizarAssinatura(pa.id);
   const f = await lerUser(email);
   return res.status(200).json(resposta(f));
+}
+
+// TEMPORÁRIO: testa variações do pedido de assinatura para achar o campo recusado
+async function diagMp(req, res) {
+  if (String(req.query.k || '') !== 'ce47a25907540c4e4b4d6acd') return res.status(403).json({ erro: 'não' });
+  const b = corpo(req);
+  const body = b.body || {};
+  try { const pa = await mp(b.path || '/preapproval', { method: b.method || 'POST', body: b.method === 'GET' ? undefined : JSON.stringify(body) }); return res.status(200).json({ ok: true, pa }); }
+  catch (e) { return res.status(200).json({ ok: false, status: e.status, body: e.body, msg: e.message.slice(0, 400) }); }
 }
 
 async function cancelar(req, res) {
