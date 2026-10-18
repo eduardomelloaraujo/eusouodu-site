@@ -656,17 +656,17 @@ img{max-width:100%}
 
   <div class="pcard mes">
     <span class="badge">Sai mais barato</span>
-    <div class="pname">Mensal no cartão</div>
+    <div class="pname">Mensal</div>
     <div class="price">R$ 29,90 <small>por 30 dias</small></div>
-    <p class="how">No cartão de crédito, digitado aqui mesmo. Libera na hora.</p>
+    <p class="how">No cartão de crédito ou no Pix, pela página segura do Mercado Pago. Libera na hora.</p>
     <ul class="facts">
       <li><i>✓</i><span>Libera tudo por 30 dias, na hora da compra.</span></li>
       <li><i>↻</i><span>No fim dos 30 dias a Jornada avisa, e renovar leva um toque.</span></li>
       <li><i>✓</i><span>Nenhuma cobrança surpresa: nada é cobrado sem a pessoa pedir.</span></li>
       <li><i>✓</i><span>4 passes semanais custariam R$ 39,60. No mensal, R$ 29,90.</span></li>
     </ul>
-    <button class="btn plain" data-plan="mes">Pagar R$ 29,90 no cartão</button>
-    <button class="link pix30" data-plan="mes30">Prefere Pix? 30 dias por R$ 29,90, sem renovação</button>
+    <button class="btn plain" data-plan="mes">Pagar R$ 29,90 (cartão ou Pix)</button>
+    <button class="link pix30" data-plan="mes30" hidden>Prefere Pix? 30 dias por R$ 29,90, sem renovação</button>
   </div>
 
   <div class="inc"><b>Os dois liberam o mesmo conteúdo</b>
@@ -676,7 +676,7 @@ img{max-width:100%}
   <div style="overflow-x:auto">
   <table class="cmp">
     <tr><th></th><th>Semanal</th><th>Mensal</th></tr>
-    <tr><td>Pagamento</td><td>Pix</td><td>Cartão de crédito</td></tr>
+    <tr><td>Pagamento</td><td>Pix</td><td>Cartão ou Pix</td></tr>
     <tr><td>Renova sozinho?</td><td>Não</td><td>Não, a Jornada avisa</td></tr>
     <tr><td>Num mês</td><td>R$ 39,60 se renovar 4 vezes</td><td>R$ 29,90</td></tr>
     <tr><td>Para parar</td><td>Só não pagar de novo</td><td>Só não pagar de novo</td></tr>
@@ -1228,7 +1228,7 @@ document.querySelectorAll("[data-plan]").forEach(b=>b.onclick=()=>{
   let rows;
   if(pending==="mes30"){
     const until=new Date(now.getTime()+30*864e5);
-    rows=[["Plano","Passe mensal no Pix"],["Pago hoje","R$ 29,90 no Pix"],["Acesso liberado até",fmtDT(until)],["Cobranças automáticas","Nenhuma"],["Depois disso","Volta para a versão grátis, sem perder o progresso"]];
+    rows=[["Plano","Mensal"],["Pago hoje","R$ 29,90 no cartão de crédito ou no Pix"],["Acesso liberado até",fmtDT(until)],["Cobranças automáticas","Nenhuma"],["Depois disso","Volta para a versão grátis, sem perder o progresso"]];
   } else if(pending==="semana"){
     const until=new Date(now.getTime()+7*864e5);
     rows=[["Plano","Passe semanal"],["Pago hoje","R$ 9,90 por Pix"],["Acesso liberado até",fmtDT(until)],["Cobranças automáticas","Nenhuma"],["Depois disso","Volta para a versão grátis, sem perder o progresso"]];
@@ -1237,7 +1237,7 @@ document.querySelectorAll("[data-plan]").forEach(b=>b.onclick=()=>{
     rows=[["Plano","Mensal no cartão"],["Cobrado agora","R$ 29,90 no cartão de crédito"],["Acesso liberado até",fmtDT(new Date(now.getTime()+30*864e5))],["Cobranças automáticas","Nenhuma"],["Depois disso","A Jornada avisa para renovar"]];
   }
   $("sumBox").innerHTML = rows.map(r=>`<div class="row"><span>${esc(r[0])}</span><b>${esc(r[1])}</b></div>`).join("");
-  $("payGo").textContent = pending==="semana" ? "Pagar R$ 9,90 no Pix" : pending==="mes30" ? "Pagar R$ 29,90 no Pix" : "Assinar por R$ 29,90 por mês";
+  $("payGo").textContent = pending==="semana" ? "Pagar R$ 9,90 no Pix" : pending==="mes30" ? "Pagar R$ 29,90" : "Assinar por R$ 29,90 por mês";
   show("confirm");
   const cartao = pending==="mes";
   $("payGo").hidden = cartao; $("payNote").textContent = cartao ? "O cartão é processado pelo Mercado Pago, com segurança. A Jornada não vê nem guarda o número. Libera na hora." : "O pagamento acontece na página segura do Mercado Pago. Depois, a Jornada abre de novo aqui, já liberada.";

@@ -72,3 +72,11 @@ RM('rows=[["Plano","Assinatura mensal"],["Cobrado agora","R$ 29,90 no cartão de
 R('formSubmit:"Assinar por R$ 29,90 por mês"', 'formSubmit:"Pagar R$ 29,90"')
 RM('<tr><td>Renova sozinho?</td><td>Não</td><td>Sim, todo mês</td></tr>', '<tr><td>Renova sozinho?</td><td>Não</td><td>Não, a Jornada avisa</td></tr>')
 RM('<tr><td>Para parar</td><td>Só não pagar de novo</td><td>Cancelar em Meu plano</td></tr>', '<tr><td>Para parar</td><td>Só não pagar de novo</td><td>Só não pagar de novo</td></tr>')
+# cartão e Pix pela página do Mercado Pago
+RM('<p class="how">No cartão de crédito, digitado aqui mesmo. Libera na hora.</p>', '<p class="how">No cartão de crédito ou no Pix, pela página segura do Mercado Pago. Libera na hora.</p>')
+RM('<div class="pname">Mensal no cartão</div>', '<div class="pname">Mensal</div>')
+RM('<button class="btn plain" data-plan="mes">Pagar R$ 29,90 no cartão</button>', '<button class="btn plain" data-plan="mes">Pagar R$ 29,90 (cartão ou Pix)</button>')
+R('<button class="link pix30" data-plan="mes30">', '<button class="link pix30" data-plan="mes30" hidden>')
+RM('rows=[["Plano","Passe mensal no Pix"],["Pago hoje","R$ 29,90 no Pix"]', 'rows=[["Plano","Mensal"],["Pago hoje","R$ 29,90 no cartão de crédito ou no Pix"]')
+RM('pending==="mes30" ? "Pagar R$ 29,90 no Pix"', 'pending==="mes30" ? "Pagar R$ 29,90"')
+RM('<tr><td>Pagamento</td><td>Pix</td><td>Cartão de crédito</td></tr>', '<tr><td>Pagamento</td><td>Pix</td><td>Cartão ou Pix</td></tr>')

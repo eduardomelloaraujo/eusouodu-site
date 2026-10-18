@@ -38,7 +38,7 @@ const limparProgresso = g => {
 };
 const resposta = u => ({
   email: u.email, perfil: u.perfil, progresso: u.progresso || null, plano: planoPublico(u.plano),
-  precos: { semana: PRECO_SEMANA, mes: PRECO_MES }, mpPublic: MP_PUBLIC || null,
+  precos: { semana: PRECO_SEMANA, mes: PRECO_MES }, mpPublic: CARTAO_NO_APP ? (MP_PUBLIC || null) : null,
 });
 
 const pagina = (titulo, texto, link = APP, botao = 'Abrir a Jornada') => `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${titulo} · Jornada</title></head>
@@ -48,6 +48,9 @@ const pagina = (titulo, texto, link = APP, botao = 'Abrir a Jornada') => `<!doct
 <a href="${link}" style="display:inline-block;background:#FF4FAE;color:#1F1433;font-weight:800;text-decoration:none;padding:13px 20px;border:2.5px solid #1F1433;border-radius:14px">${botao}</a></main></body></html>`;
 
 // Chave pública do Mercado Pago (é pública por definição: serve só para o formulário de cartão no navegador)
+// cartão digitado dentro do app: desligado (o antifraude do Mercado Pago recusava com cc_rejected_high_risk).
+// O cartão vai para a página do Mercado Pago (Checkout Pro), junto com o Pix.
+const CARTAO_NO_APP = false;
 const MP_PUBLIC = process.env.MP_PUBLIC_KEY || 'APP_USR-22d3eeb4-e031-4907-ad43-d0c6e4632b54';
 
 export default async function handler(req, res) {
@@ -175,9 +178,9 @@ async function checkout(req, res) {
   if (plano === 'mes' || plano === 'mes30') {
     // passe mensal no Pix: 30 dias, pago uma vez, sem renovação. A assinatura recorrente no cartão é a ação 'assinar'.
     const pref = {
-      items: [{ id: 'jornada-mes', title: 'Jornada · passe mensal no Pix (30 dias)', quantity: 1, unit_price: PRECO_MES, currency_id: 'BRL' }],
+      items: [{ id: 'jornada-mes', title: 'Jornada · 30 dias', quantity: 1, unit_price: PRECO_MES, currency_id: 'BRL' }],
       payer: { email },
-      payment_methods: { excluded_payment_types: [{ id: 'credit_card' }, { id: 'debit_card' }, { id: 'ticket' }, { id: 'atm' }, { id: 'prepaid_card' }], installments: 1 },
+      payment_methods: { excluded_payment_types: [{ id: 'ticket' }, { id: 'atm' }], installments: 1 },
       metadata: { produto: 'jornada', plano: 'mes', email },
       back_urls: { success: `${APP}/?pago=passe`, pending: `${APP}/?pago=pendente`, failure: `${APP}/?pago=falhou` },
       auto_return: 'approved',
