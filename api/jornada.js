@@ -48,7 +48,7 @@ const pagina = (titulo, texto, link = APP, botao = 'Abrir a Jornada') => `<!doct
 <a href="${link}" style="display:inline-block;background:#FF4FAE;color:#1F1433;font-weight:800;text-decoration:none;padding:13px 20px;border:2.5px solid #1F1433;border-radius:14px">${botao}</a></main></body></html>`;
 
 // Chave pública do Mercado Pago (é pública por definição: serve só para o formulário de cartão no navegador)
-const MP_PUBLIC = process.env.MP_PUBLIC_KEY || '';
+const MP_PUBLIC = process.env.MP_PUBLIC_KEY || 'APP_USR-22d3eeb4-e031-4907-ad43-d0c6e4632b54';
 
 export default async function handler(req, res) {
   const a = String((req.query || {}).a || '');
