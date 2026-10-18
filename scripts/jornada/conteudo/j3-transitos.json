@@ -1,0 +1,312 @@
+{
+  "lua": {
+    "intro": {"title": "Sol e Lua se encontram e se afastam", "body": [
+      "A Lua não tem luz própria. O que a gente chama de fase é só o ângulo entre ela e o Sol, visto daqui. Quando os dois se encontram, a Lua some: é a Lua nova. Quando ficam opostos, ela aparece inteira: é a Lua cheia. De um encontro ao outro, 29,5 dias.",
+      "Os gregos chamavam a lua de mene, e o mês de men. Do latim mensis vieram mês e menstruação, e a mesma raiz antiga deu medida. A Lua foi a primeira régua do tempo. E o corpo já guardava essa conta por dentro muito antes de alguém escrever um calendário."
+    ]},
+    "order": {"q": "Coloque as fases na ordem", "items": ["Lua nova", "Quarto crescente", "Lua cheia", "Quarto minguante"],
+      "explain": "Lua nova é o encontro. No quarto crescente, a Lua está 90 graus à frente do Sol. Na cheia, em oposição. No quarto minguante, de novo a 90 graus, já a caminho do próximo encontro."},
+    "fases": [
+      {"title": "Lua nova", "body": ["Sol e Lua estão no mesmo grau, e a noite fica escura. É semente debaixo da terra: ainda não dá para ver o que nasce. A fase pede intenção mais do que ação. O que se planta aqui não precisa de plateia, só de um nome."]},
+      {"title": "Lua crescente", "body": ["O primeiro fio de luz aparece logo depois do pôr do Sol. A intenção sai do escuro e encontra o mundo, que resiste. É a fase do esforço miúdo, de insistir no começo enquanto o hábito antigo puxa a gente para o lugar de sempre."]},
+      {"title": "Quarto crescente", "body": ["Meia Lua, 90 graus à frente do Sol. A quadratura é uma crise de ação: o plano encontra o obstáculo e precisa de decisão. A fase pede escolha, construção, coragem de cortar o que não cabe. O que não se decide aqui costuma emperrar até a cheia."]},
+      {"title": "Lua gibosa", "body": ["Quase cheia, ainda não inteira. Fase de ajuste fino: revisar, aperfeiçoar, conferir se o que está crescendo é mesmo o que a gente quis plantar. A ansiedade da véspera mora aqui, e também a chance de corrigir a rota antes da luz total."]},
+      {"title": "Lua cheia", "body": ["Sol e Lua em oposição, um de cada lado do céu. Tudo que estava em gestação aparece, inclusive o que a gente preferia não ver. A cheia é colheita e é revelação. Pede olhar para o outro, porque é na relação que o resultado fica visível."]},
+      {"title": "Lua disseminadora", "body": ["A luz começa a diminuir, mas ainda é muita. Hora de espalhar o que se entendeu na cheia: conversar, ensinar, distribuir. O que a gente colheu só ganha sentido quando passa de mão em mão."]},
+      {"title": "Quarto minguante", "body": ["Meia Lua de novo, agora acesa do outro lado. Outra quadratura, outra crise, desta vez de consciência: o que já não faz sentido pede para ser desmontado. Fase de soltar estruturas, encerrar acordos, revisar crenças que ficaram velhas."]},
+      {"title": "Lua balsâmica", "body": ["Os últimos dias antes do novo encontro. A Lua nasce de madrugada, um fio fino antes do Sol. Bálsamo é o que cura e o que embalsama, e a fase guarda os dois sentidos. Pede descanso, silêncio, luto do ciclo que termina. O próximo já está sendo sonhado no escuro."]}
+    ],
+    "natal": [
+      {"title": "Nascer na Lua nova", "body": [
+        "Quem nasce na Lua nova chega com Sol e Lua juntos, quase sempre no mesmo signo. O que a pessoa quer e o que ela sente costumam andar colados. Daí um temperamento de impulso, de se lançar antes de entender, de viver por instinto.",
+        "O risco é não se enxergar de fora: a Lua nova não reflete luz nenhuma. Muitas vezes é o mundo que devolve a imagem, e só então a pessoa descobre o que estava semeando. Uma vida que começa coisas e aprende o sentido delas depois."
+      ]},
+      {"title": "Nascer na Lua crescente", "body": [
+        "Aqui a Lua já se afastou do Sol, mas o fio de luz ainda é fino. O temperamento carrega um esforço para sair do lugar de origem: a família, o passado, o jeito antigo de fazer as coisas.",
+        "Algo de broto rompendo a casca. Essas pessoas costumam sentir uma força que as segura, e crescem contra ela. A tarefa não é vencer o passado de uma vez. É seguir crescendo enquanto ele ainda puxa."
+      ]},
+      {"title": "Nascer no quarto crescente", "body": [
+        "Sol e Lua em quadratura no nascimento: noventa graus de tensão entre o que se quer e o que se sente. Quem nasce aqui tende a viver de crise em crise, e a construir a partir delas. Temperamento de quem age, decide, levanta coisas.",
+        "A meia Lua é metade luz, metade sombra, e a pessoa conhece bem os dois lados. Derrubar e erguer fazem parte do mesmo gesto. Uma vida sem obstáculo talvez nem soubesse para onde ir."
+      ]},
+      {"title": "Nascer na Lua gibosa", "body": [
+        "A Lua está quase cheia. Falta pouco, e esse pouco vira o centro da vida: quem nasce aqui busca aperfeiçoamento, sentido, a técnica certa. Analisa muito. Quer entender por que as coisas são como são.",
+        "A sombra é a sensação de nunca estar pronta. A luz quase inteira lembra o tempo todo que ainda falta. Mas é essa falta que move a pessoa a estudar, revisar, preparar. Algumas vidas são uma longa véspera, e a véspera também é vida."
+      ]},
+      {"title": "Nascer na Lua cheia", "body": [
+        "Na Lua cheia, Sol e Lua se olham de lados opostos do céu. Quem nasce aqui carrega esse eixo por dentro: o que quer e o que sente apontam para direções diferentes, e a vida pede um jeito de juntar os dois.",
+        "Daí um temperamento muito voltado para as relações. É no outro que essa pessoa se vê, como a Lua que só brilha inteira porque está de frente para o Sol. A consciência chega pela tensão. E a tensão, quando encontra forma, vira lucidez."
+      ]},
+      {"title": "Nascer na Lua disseminadora", "body": [
+        "A Lua passou da cheia e começa a minguar, ainda muito clara. Quem nasce aqui parece ter vindo com algo para entregar: uma ideia, uma causa, uma forma de ver. Temperamento de quem ensina, divulga, convence.",
+        "O que essa pessoa entende não fica guardado. Precisa circular. O cuidado é não confundir partilha com pregação. A semente da Lua disseminadora só vinga em terra alheia, e terra alheia tem tempo próprio."
+      ]},
+      {"title": "Nascer no quarto minguante", "body": [
+        "Outra quadratura entre Sol e Lua, só que agora a luz diminui. Quem nasce aqui vive crises de consciência: em algum momento, as crenças herdadas param de servir e precisam ser revistas por dentro.",
+        "Temperamento de quem questiona a estrutura enquanto ainda mora nela. Muitas vezes a pessoa parece estar contra a própria época. Talvez esteja só um pouco à frente, desmontando o que os outros ainda não perceberam que acabou."
+      ]},
+      {"title": "Nascer na Lua balsâmica", "body": [
+        "Nos últimos dias do ciclo, a Lua é um fio fino que nasce antes do Sol. Quem nasce aqui carrega o fim de um ciclo e a semente do próximo. Temperamento introspectivo, às vezes solitário, com uma sensibilidade que parece vir de longe.",
+        "São pessoas que parecem lembrar de coisas que ainda não aconteceram. Como o bálsamo, sabem curar e sabem embalsamar: encerrar, cuidar do que morre, guardar o essencial. O que essas vidas plantam, muitas vezes, só floresce depois."
+      ]}
+    ],
+    "q": "Em que fase do mês a gente costuma começar as coisas, e em que fase costuma largar?"
+  },
+  "mercurio": {
+    "intro": {"title": "Mercúrio retrógrado", "body": [
+      "Mercúrio é o planeta mais perto do Sol e o mais rápido. Cerca de três vezes por ano, por umas três semanas, ele passa entre a Terra e o Sol e ultrapassa a gente pela pista de dentro. Visto daqui, parece mudar de direção no zodíaco. Ilusão de ótica: a órbita é a de sempre, o que muda é o ângulo de quem olha.",
+      "No meio desse período, Mercúrio some na luz do Sol e reaparece do outro lado: entra como estrela da tarde e sai como estrela da manhã. Hermes era o deus que descia ao mundo dos mortos e subia de novo, guiando almas. Foi ele quem buscou Perséfone lá embaixo. O retrógrado é a descida de Hermes, vista do céu."
+    ]},
+    "choice": {"q": "O que acontece de fato quando Mercúrio está retrógrado?",
+      "opts": ["Ele passa entre a Terra e o Sol, nos ultrapassa, e daqui parece mudar de direção", "Ele inverte a órbita em torno do Sol", "Ele se afasta do Sol e quase para", "Ele sai do zodíaco por algumas semanas"],
+      "explain": "É o ângulo de quem olha. Mercúrio, mais rápido e por dentro, ultrapassa a Terra. Hermes não abandona o caminho: desce, atravessa a luz do Sol e reaparece do outro lado, como estrela da manhã."},
+    "periodo": {"title": "O que o período pede", "body": ["As palavras com re são as palavras de Mercúrio retrógrado: rever, reler, refazer, reencontrar, reconsiderar. Não é tempo de pânico com celular quebrado nem de cancelar a vida. É tempo de reler o contrato antes de assinar, de ouvir de novo o que foi dito, de retomar a conversa que ficou no meio."]},
+    "natal_rx": {"title": "Nascer com Mercúrio retrógrado", "body": [
+      "Mais ou menos uma pessoa em cada cinco nasce com Mercúrio retrógrado. O pensamento dessas pessoas costuma trabalhar por dentro antes de sair. Respondem depois, lembram de detalhes que os outros esqueceram, reencontram uma ideia anos mais tarde e descobrem nela outra coisa.",
+      "Não é dificuldade de comunicar. É outro caminho. Hermes conhecia as estradas que todo mundo usa e as passagens que levam ao mundo de baixo. Quem nasce com Mercúrio retrógrado aprende primeiro pelas passagens de baixo: o que entende, entende fundo, e às vezes demora para virar palavra."
+    ]},
+    "natal_direto": {"title": "Nascer com Mercúrio direto", "body": ["Neste mapa, Mercúrio estava direto no nascimento. O pensamento tende a ir para fora com mais facilidade, e a fala acompanha a ideia. Os períodos retrógrados viram, então, um convite para fazer a estrada que não é a de costume, a de Hermes descendo."]},
+    "q": "Que conversa a gente deixou no meio e talvez valha retomar?"
+  },
+  "venus": {
+    "intro": {"title": "A estrela da manhã e a estrela da tarde", "body": [
+      "O Vênus é o astro mais brilhante do céu depois do Sol e da Lua. Às vezes aparece antes do amanhecer, às vezes logo depois do pôr do Sol. Os gregos achavam que eram dois: Fósforo, o portador da luz, de manhã, e Héspero, à tarde. Em latim, Lúcifer e Vésper.",
+      "Em oito anos, o Vênus passa cinco vezes entre a Terra e o Sol, e esses cinco pontos desenham um pentagrama no zodíaco. Antes de virar estrela da manhã, ele some por alguns dias. Os sumérios contavam a descida de Inanna: sete portas, uma peça de roupa deixada em cada, três dias morta, e o retorno."
+    ]},
+    "manha": {"title": "Nascer com o Vênus estrela da manhã", "body": [
+      "Quando o Vênus nasce antes do Sol, ele é Lúcifer, o que traz a luz. Quem nasce assim costuma amar primeiro e entender depois: escolhe pelo impulso, se encanta rápido, sente o desejo como anúncio de algo que ainda vai chegar.",
+      "Lúcifer só virou nome de anjo caído séculos depois, numa leitura de Isaías sobre a estrela da manhã que cai do céu. Antes, era só o astro que vem na frente do dia. O amor dessas pessoas tem algo de Prometeu, o que pensa antes: ele se lança, e às vezes cai, para abrir caminho."
+    ]},
+    "tarde": {"title": "Nascer com o Vênus estrela da tarde", "body": [
+      "Quando o Vênus aparece depois do pôr do Sol, ele é Héspero, a primeira estrela a acender. Quem nasce assim costuma amar com mais pausa: observa, compara, deixa o sentimento assentar antes de chamar de amor.",
+      "Prometeu pensava antes. O irmão, Epimeteu, pensava depois, e foi ele quem recebeu Pandora. O Vênus da tarde tem essa sabedoria do depois: entende o que viveu quando o dia já acabou. Não ama menos. Ama olhando para o que passou, e por isso, muitas vezes, enxerga mais."
+    ]},
+    "choice": {"q": "O que o ciclo de oito anos do Vênus desenha no zodíaco?",
+      "opts": ["Um pentagrama, a estrela de cinco pontas", "Um círculo perfeito", "Uma cruz de quatro braços", "Um triângulo"],
+      "explain": "Em oito anos, o Vênus fica cinco vezes entre a Terra e o Sol, e os cinco pontos formam uma estrela. Depois o desenho recomeça quase no mesmo grau. Por isso, a cada oito aniversários, o Vênus costuma estar perto do mesmo lugar."},
+    "rx": {"title": "O Vênus retrógrado", "body": ["A cada cerca de 19 meses, por uns 40 dias, o Vênus parece mudar de direção no céu. É a passagem pelas portas de Inanna: amor, dinheiro e desejo revistos por dentro. Antigos amores reaparecem, valores se reorganizam. Não é tempo de pressa nas escolhas do coração. É tempo de saber o que a gente deixaria em cada porta."]},
+    "q": "Que peça de roupa a gente já precisou deixar numa porta para conseguir amar de outro jeito?"
+  },
+  "marte": {
+    "intro": {"title": "Marte passando pelo mapa", "body": [
+      "Marte leva cerca de dois anos para dar a volta no zodíaco. Quando está direto, passa umas seis semanas em cada signo. A cada cerca de 26 meses fica retrógrado por uns dois meses e meio, e aí pode demorar muitos meses num mesmo signo, numa mesma casa.",
+      "Onde Marte passa, a casa esquenta: pressa, desejo, vontade de resolver. Março leva o nome dele e abria o ano romano. Era quando se voltava a lavrar a terra e quando os exércitos saíam. A mesma força que rasga o chão para plantar rasga o chão para a guerra. Marte em trânsito pede que a gente escolha qual dos dois."
+    ]},
+    "houses": [
+      {"title": "Marte na casa 1", "body": ["O corpo pede movimento. A paciência encurta, a vontade aparece antes da reflexão. Bom tempo para começar algo com o próprio nome e para gastar força no esforço físico. Também é tempo de cuidar do tom da voz: a força pode chegar antes da gentileza."]},
+      {"title": "Marte na casa 2", "body": ["A briga é por recursos. Dinheiro, valor, o que é nosso. Pode vir vontade de ganhar mais, de gastar por impulso, de defender o que se tem. A casa 2 também é a autoestima: Marte aqui mede quanto a gente acha que vale, e se luta por isso."]},
+      {"title": "Marte na casa 3", "body": ["A palavra ganha fio. Conversas ficam mais diretas, às vezes ásperas. Irmãos, vizinhos, mensagens, trajetos curtos: tudo acelera. Bom tempo para escrever, estudar com garra, dizer o que estava engasgado. O cuidado é com a pressa no trânsito e no teclado."]},
+      {"title": "Marte na casa 4", "body": ["O calor entra em casa. Obra, mudança, arrumação, ou discussão na família. Raivas antigas podem subir do fundo, ligadas ao pai, à mãe, à infância. A casa 4 é a raiz. Marte mexe na terra, e o que estava enterrado aparece para ser olhado, não necessariamente vencido."]},
+      {"title": "Marte na casa 5", "body": ["O desejo quer brincar. Paixão, sexo, esporte, criação, vontade de se mostrar. Com os filhos, mais atrito e mais vitalidade. Bom tempo para criar algo com o corpo inteiro, da dança à cozinha. O risco é transformar o prazer em competição."]},
+      {"title": "Marte na casa 6", "body": ["A força vai para a rotina. Muito trabalho, muita tarefa, pouca paciência com o que emperra. O corpo cobra: inflamações, cansaço, pequenos acidentes de quem anda rápido demais. Também é ótimo para começar um treino, mudar um hábito, atacar as pendências acumuladas."]},
+      {"title": "Marte na casa 7", "body": ["O outro esquenta. Parcerias ficam mais intensas, para o desejo ou para a briga. Às vezes é o outro quem chega com raiva, às vezes é a gente que coloca nele a raiva que não assume. Na casa 7, Marte mostra a força que a gente terceiriza."]},
+      {"title": "Marte na casa 8", "body": ["A descida esquenta. Sexo, dinheiro dividido, heranças, dívidas, crises. O que estava escondido pode vir à tona com força. Marte aqui pede coragem para mexer no que dá medo, inclusive na própria sombra. Também é tempo de negociar, cobrar, encerrar o que já morreu."]},
+      {"title": "Marte na casa 9", "body": ["A vontade é de ir longe. Viagens, cursos, uma causa, uma crença que vira bandeira. As discussões são sobre ideias, verdades, fé. Bom tempo para estudar com fome. O cuidado é com a certeza que vira cruzada: Marte com razão também machuca."]},
+      {"title": "Marte na casa 10", "body": ["A ambição sobe. Carreira, reputação, o lugar no mundo. Pode haver disputa com chefes, conflito com autoridade, vontade de mudar de rumo profissional. É tempo de assumir uma posição em público. A força aparece, e o mundo vê."]},
+      {"title": "Marte na casa 11", "body": ["A ação passa pelos grupos. Amigos, coletivos, projetos, redes. Pode vir vontade de liderar uma causa, ou atrito com quem parecia aliado. Marte aqui mexe nos planos para o futuro e separa as esperanças que ainda têm força de virar gesto."]},
+      {"title": "Marte na casa 12", "body": ["A força vai para dentro e às vezes some. Cansaço sem motivo claro, raiva que não encontra rosto, sonhos agitados. É o lugar de agir nos bastidores: terapia, retiro, trabalho silencioso. Na casa 12, Marte enfrenta inimigos que ninguém vê, e muitos moram na gente."]}
+    ],
+    "choice": {"q": "Por que Marte às vezes passa muitos meses num mesmo signo?",
+      "opts": ["Porque, no retrógrado, visto da Terra, ele parece desacelerar e mudar de direção", "Porque a órbita dele para por alguns meses", "Porque ele é puxado por Júpiter", "Porque alguns signos são maiores que outros"],
+      "explain": "Fora do retrógrado, são umas seis semanas por signo. Com o retrógrado, que vem a cada cerca de 26 meses, a passagem se estende, e a casa onde isso acontece vira um campo de revisão do desejo."},
+    "q": "Onde a gente tem gastado força brigando, quando podia estar plantando?"
+  },
+  "jupiter": {
+    "intro": {"title": "Júpiter, um ano em cada casa", "body": [
+      "Júpiter leva cerca de doze anos para dar a volta no zodíaco: mais ou menos um ano em cada signo. Em signos inteiros, isso quer dizer um ano em cada casa do mapa. A casa por onde ele passa ganha fôlego, horizonte, gente nova, oportunidade.",
+      "Zeus, rei do Olimpo, nunca soube parar: amores, filhos, raios. Mas no começo do reinado ele engoliu Métis, a deusa da prudência, para que ela morasse dentro dele. Júpiter em trânsito carrega essa dupla. A casa que ele toca cresce, e o crescimento só vira sabedoria quando Métis é lembrada."
+    ]},
+    "houses": [
+      {"title": "Júpiter na casa 1", "body": ["Um ano de expansão pessoal. A presença cresce, as pessoas notam, a confiança aumenta. Bom tempo para abrir um ciclo de doze anos com outra imagem de si. O excesso aparece no corpo e no ego: crescer para fora sem perder o tamanho de dentro."], "q": "Que versão da gente quer ocupar mais espaço neste ano?"},
+      {"title": "Júpiter na casa 2", "body": ["O ano favorece dinheiro, recursos, talentos que podem render. Também amplia o valor que a gente se dá. O excesso é gastar como se a fartura fosse eterna. Júpiter aqui pede que o que entra sustente algo que dure mais de um ano."], "q": "O que a gente tem e ainda não reconhece como riqueza?"},
+      {"title": "Júpiter na casa 3", "body": ["A mente se abre. Cursos curtos, leituras, escrita, conversas que mudam a cabeça. Irmãos e vizinhos podem trazer boas notícias. Bom ano para aprender algo novo e dizer em voz alta. O excesso é falar demais e prometer o que não cabe na agenda."], "q": "Que assunto anda chamando a gente para estudar?"},
+      {"title": "Júpiter na casa 4", "body": ["A casa cresce: mudança, reforma, família que aumenta, mais espaço para viver. Também é um ano de reencontro com as raízes, com a história de quem veio antes. O excesso é trazer todo mundo para dentro e não sobrar canto para a gente."], "q": "O que a gente precisa para se sentir em casa de verdade?"},
+      {"title": "Júpiter na casa 5", "body": ["Um ano de alegria, romance, criação, filhos. A vontade de brincar reaparece. Projetos criativos ganham fôlego, e a vida pede prazer sem culpa. O excesso é apostar demais, no jogo ou no amor. Na casa 5, Júpiter lembra que criar também é um jeito de rezar."], "q": "O que a gente faria só pelo prazer de fazer?"},
+      {"title": "Júpiter na casa 6", "body": ["O trabalho do dia a dia ganha espaço: mais tarefas, emprego novo, condições melhores. Bom ano para cuidar da saúde com método e mudar hábitos. O excesso é aceitar tanta tarefa que a rotina vira peso, e o corpo começa a cobrar a conta."], "q": "Que hábito pequeno, mantido por um ano, mudaria o corpo?"},
+      {"title": "Júpiter na casa 7", "body": ["O outro traz crescimento. Parcerias, casamentos, sociedades, contratos. Gente generosa chega, e a generosidade aprende a circular nos dois sentidos. O excesso é esperar que o outro resolva o que é nosso. Júpiter aqui amplia o espelho: no outro, a gente se vê maior."], "q": "Que pessoa fez a gente crescer só por estar perto?"},
+      {"title": "Júpiter na casa 8", "body": ["Crescimento pela profundidade. Dinheiro dos outros, heranças, investimentos, sexualidade, terapia. Crises também podem ser grandes, mas trazem riqueza junto: Plutão, o senhor do mundo de baixo, também era chamado de o rico. O excesso aqui é a dívida."], "q": "O que a gente recebeu de alguém e ainda não soube usar?"},
+      {"title": "Júpiter na casa 9", "body": ["Júpiter está à vontade aqui, na casa que corresponde a Sagitário, o signo dele. Viagens longas, estudo superior, filosofia, fé, publicações, gente de fora. O horizonte se abre. O excesso é a certeza: achar que encontrou a verdade e querer convencer todo mundo dela."], "q": "Que lugar ou ideia distante vem chamando a gente?"},
+      {"title": "Júpiter na casa 10", "body": ["A carreira ganha visibilidade. Promoção, reconhecimento, um lugar no mundo que cresce. É o ano de mostrar o trabalho. O excesso é a vaidade e a promessa grande demais. Júpiter no alto do mapa ilumina, e o que é iluminado fica exposto, o bom e o resto."], "q": "Que trabalho da gente merece ser visto neste ano?"},
+      {"title": "Júpiter na casa 11", "body": ["Amigos, grupos, redes e projetos coletivos se ampliam. Gente nova chega, e sonhos que pareciam distantes encontram aliados. O excesso é se espalhar entre muitos grupos sem pertencer a nenhum. Júpiter aqui mostra que futuro a gente quer construir junto."], "q": "Com quem a gente quer sonhar o próximo passo?"},
+      {"title": "Júpiter na casa 12", "body": ["Um ano mais interno. Crescimento atrás das cortinas: espiritualidade, terapia, sonhos, retiro, cuidado com quem sofre. Parece que nada acontece por fora. É o fim de um ciclo de doze anos, e o próximo está sendo preparado em silêncio. O excesso aqui é fugir."], "q": "O que a gente precisa encerrar em silêncio antes de começar de novo?"}
+    ],
+    "choice": {"q": "Em casas de signos inteiros, quanto tempo Júpiter costuma passar em cada casa do mapa?",
+      "opts": ["Cerca de um ano", "Cerca de um mês", "Cerca de sete anos", "Cerca de dois anos e meio"],
+      "explain": "Júpiter leva uns doze anos para percorrer o zodíaco. Doze signos, doze casas, um ano em cada. E a cada doze anos ele retorna ao signo do nascimento: perto dos 12, dos 24, dos 36, dos 48."}
+  },
+  "saturno": {
+    "intro": {"title": "Saturno, o senhor do tempo", "body": [
+      "Saturno leva cerca de 29,5 anos para dar a volta no zodíaco, uns dois anos e meio em cada casa do mapa. Onde ele passa, a vida pede forma e limite. Quando ele chega ao grau onde estava no nascimento, perto dos 29 anos e de novo perto dos 58, acontece o retorno de Saturno.",
+      "Cronos, o titã, devorava os filhos com medo de perder o trono. Os gregos tinham outra palavra, chronos, o tempo, e com os séculos os dois se misturaram. A foice que Cronos usou contra o pai virou a foice do tempo, e também a da colheita: em Roma, Saturno era o deus que ensinou a plantar. O mesmo gesto corta e colhe."
+    ]},
+    "antes": {"title": "Antes do primeiro retorno", "body": [
+      "Neste mapa, Saturno ainda não completou a primeira volta. Muito da vida foi construído com regras emprestadas: da família, da escola, do que se esperava. Não é falha. É assim que se aprende.",
+      "Cronos engoliu os filhos, e Zeus só escapou porque Reia deu ao titã uma pedra enrolada em panos. Antes do retorno, a gente vive um pouco como essa criança escondida em Creta, crescendo longe do olho do pai. Uma hora o tempo pede que a gente apareça e ocupe o próprio lugar."
+    ]},
+    "durante": {"title": "Atravessando o retorno", "body": [
+      "Saturno está passando perto do lugar onde estava no nascimento. São uns dois ou três anos em que estruturas inteiras são testadas: trabalho, relação, casa, o jeito de ser adulto. O que foi escolhido por medo tende a pesar. O que foi escolhido de verdade, mesmo difícil, aguenta.",
+      "É travessia, não sentença. Saturno não pune: ele mede. A foice que corta o que não tem raiz é a mesma que colhe o que foi plantado com paciência. Muita gente sai do retorno com menos coisas. Nem sempre sabe, ainda, o que ganhou."
+    ]},
+    "depois": {"title": "Depois do primeiro retorno", "body": [
+      "Neste mapa, Saturno já completou pelo menos uma volta. A pessoa já viu uma estrutura cair e outra se erguer, e sabe na pele que o tempo cobra e também devolve. A autoridade começa a vir de dentro, e não só dos outros.",
+      "Perto dos 58, o segundo retorno mexe em outra coisa: o que vai ficar. Em Roma, nas Saturnais, os senhores serviam os escravizados e a ordem se invertia por alguns dias. Depois do retorno, o tempo às vezes faz isso com a gente: o que mandava passa a servir, e o que servia ganha voz."
+    ]},
+    "houses": [
+      {"title": "Saturno na casa 1", "body": ["Uns dois anos e meio em que a vida pesa no corpo e na imagem. Pode vir cansaço, seriedade, a sensação de amadurecer de uma vez. É tempo de assumir quem se é sem esperar aprovação. O que se constrói agora sobre a própria identidade tende a durar décadas."]},
+      {"title": "Saturno na casa 2", "body": ["Dinheiro e recursos pedem estrutura. Pode faltar, ou pode pedir mais controle. É tempo de aprender quanto custa a vida que a gente quer e de construir uma base real. A autoestima também é testada: o valor que a gente se dá precisa encontrar chão."]},
+      {"title": "Saturno na casa 3", "body": ["A mente fica mais séria. Estudo com disciplina, escrita que exige revisão, conversas difíceis com irmãos ou vizinhos. Pode vir a sensação de que a palavra não alcança. É tempo de aprender a falar com precisão, menos e melhor."]},
+      {"title": "Saturno na casa 4", "body": ["A família e a casa pedem responsabilidade. Cuidar de pais, reformar, mudar, enfrentar a herança emocional. As fundações aparecem: onde estão firmes, onde trincaram. Saturno no fundo do mapa constrói raiz, e raiz cresce no escuro."]},
+      {"title": "Saturno na casa 5", "body": ["O prazer passa pelo crivo do tempo. Romances ficam sérios ou acabam, a criação pede método, filhos trazem responsabilidade. Pode faltar leveza. Mas o que se cria agora, com disciplina, tem chance de ficar. Saturno aqui ensina a brincar com compromisso."]},
+      {"title": "Saturno na casa 6", "body": ["A rotina e o corpo cobram. Trabalho pesado, saúde que pede cuidado constante, hábitos que precisam de revisão. É tempo de organizar o dia, a comida, o sono. O corpo vira um relógio, e Saturno é o dono do relógio."]},
+      {"title": "Saturno na casa 7", "body": ["As relações são testadas. Casamentos se firmam ou terminam, sociedades pedem contrato, o outro traz limite. Às vezes chega alguém mais velho ou mais sério. Saturno na casa 7 mostra que compromisso não é prisão quando é escolhido de olhos abertos."]},
+      {"title": "Saturno na casa 8", "body": ["Saturno desce. Dívidas, heranças, impostos, sexualidade, medos antigos. É tempo de encarar o que se divide com os outros e o que se teme perder. A crise aqui é lenta, e por isso funda. O que se atravessa nesse porão muda o alicerce da casa inteira."]},
+      {"title": "Saturno na casa 9", "body": ["Crenças são postas à prova. Estudos longos, uma formação, uma viagem que exige esforço. A fé amadurece ou perde o que tinha de ingênuo. Saturno aqui transforma ideia em método, e quem não aguenta o método descobre que talvez a ideia fosse só desejo."]},
+      {"title": "Saturno na casa 10", "body": ["O ponto mais alto do mapa pede trabalho. Carreira, autoridade, reputação. Pode ser o auge do que foi construído nos últimos anos, ou o momento em que fica claro que a escada estava encostada na parede errada. O mundo cobra responsabilidade, e às vezes entrega reconhecimento."]},
+      {"title": "Saturno na casa 11", "body": ["Amizades e grupos passam pelo filtro do tempo. Alguns vínculos acabam, outros ficam mais sólidos. Planos para o futuro pedem realismo. Saturno na casa 11 deixa perto quem fica nos dias comuns, não só nos dias de festa."]},
+      {"title": "Saturno na casa 12", "body": ["O fim de um ciclo de quase trinta anos. Saturno passa pelos porões do mapa: cansaço, solidão, coisas que terminam sem plateia. É tempo de desmontar com cuidado o que já não serve, antes que ele cruze o Ascendente e tudo recomece. O silêncio aqui também é trabalho."]}
+    ],
+    "choice": {"q": "Por volta de que idade acontece o primeiro retorno de Saturno?",
+      "opts": ["Perto dos 29 anos", "Perto dos 12 anos", "Perto dos 42 anos", "Perto dos 84 anos"],
+      "explain": "Saturno leva uns 29,5 anos para dar a volta. Os 12 marcam o retorno de Júpiter, os 42 a oposição de Urano ao próprio lugar, os 84 o retorno de Urano. O segundo retorno de Saturno vem perto dos 58."},
+    "q": "O que a gente construiu por medo, e o que construiu de verdade?"
+  },
+  "lentos": {
+    "intro": {"title": "Os lentos mudam o terreno", "body": [
+      "Urano leva uns 84 anos para dar a volta, uns sete em cada signo. Netuno, uns 165, uns quatorze em cada. Plutão, uns 248, ficando de 12 a 30 anos num signo. Quando um deles atravessa uma casa do mapa, não é um episódio. É uma estação inteira da vida.",
+      "Urano apareceu em 1781, entre a independência americana e a revolução francesa. Netuno, em 1846, o ano da primeira cirurgia pública com anestesia. Plutão, em 1930, quando a física descia ao núcleo do átomo. Cada planeta lento foi encontrado quando o mundo já estava vivendo o que ele significa."
+    ]},
+    "urano": [
+      {"title": "Urano na casa 1", "body": ["Uns sete anos em que a imagem muda em saltos. Estilo, corpo, nome, jeito de se apresentar. A pessoa estranha quem era. Urano na casa 1 rompe a casca de uma identidade que ficou pequena, e o que aparece por baixo ainda não tem forma fixa."]},
+      {"title": "Urano na casa 2", "body": ["O dinheiro fica instável e os valores mudam. Fontes de renda inesperadas, perdas súbitas, outros jeitos de ganhar. Ao longo desses anos, o que a gente chamava de segurança é trocado por algo mais livre e menos previsível."]},
+      {"title": "Urano na casa 3", "body": ["A mente acende em saltos. Ideias novas, outro jeito de falar e escrever, tecnologia, estudos fora do comum. Irmãos e vizinhança podem mudar. O pensamento antigo não aguenta a voltagem: Urano na casa 3 troca a fiação."]},
+      {"title": "Urano na casa 4", "body": ["O chão de casa se mexe. Mudanças de endereço, família que se reorganiza, revelações sobre a origem. A casa pode virar lugar de liberdade ou de inquietação. Ao longo desses anos, a raiz deixa de ser o que prende e vira o que permite ir."]},
+      {"title": "Urano na casa 5", "body": ["O amor e a criação ficam elétricos. Paixões súbitas, romances fora do roteiro, uma arte que surpreende até quem cria. Filhos podem trazer mudanças inesperadas. Urano aqui quer prazer sem fórmula."]},
+      {"title": "Urano na casa 6", "body": ["A rotina não aguenta ser igual. Mudanças de trabalho, de horário, de hábito. O corpo manda sinais nervosos quando a vida fica presa demais. É tempo de inventar um dia a dia que caiba na pessoa, e não o contrário."]},
+      {"title": "Urano na casa 7", "body": ["As relações precisam de ar. Parcerias que começam ou terminam de repente, pessoas diferentes, acordos fora do padrão. Quem segura demais sente o outro escapar. Urano na casa 7 ensina que um vínculo também se sustenta com espaço."]},
+      {"title": "Urano na casa 8", "body": ["Crises que chegam sem aviso. Dinheiro compartilhado que muda, heranças inesperadas, uma sexualidade que se descobre por outro lado. Urano abre de repente o que estava trancado no porão, e isso assusta e liberta ao mesmo tempo."]},
+      {"title": "Urano na casa 9", "body": ["As crenças viram do avesso. Outra filosofia, outra fé, uma viagem que muda tudo, um estudo que ninguém esperava. A verdade herdada fica estreita. Urano na casa 9 é o professor que chega e diz o contrário do que a gente aprendeu."]},
+      {"title": "Urano na casa 10", "body": ["A carreira pode mudar de direção. Demissões, saltos, vocações que aparecem tarde, a vontade de trabalhar do próprio jeito. A autoridade de fora perde força. Nesses anos, o lugar no mundo é reinventado, às vezes por escolha, às vezes por ruptura."]},
+      {"title": "Urano na casa 11", "body": ["Amigos e grupos mudam. Gente nova, redes diferentes, coletivos que passam a fazer sentido. Urano está em casa aqui, na casa que corresponde a Aquário. Os sonhos para o futuro ganham outra forma, mais livre e menos explicada."]},
+      {"title": "Urano na casa 12", "body": ["Por uns sete anos, o inconsciente fica inquieto. Sonhos estranhos, intuições súbitas, rupturas internas que ninguém vê. Padrões antigos se soltam por baixo. É tempo de preparar no escuro a mudança que vai aparecer quando Urano cruzar o Ascendente."]}
+    ],
+    "netuno": [
+      {"title": "Netuno na casa 1", "body": ["Por muitos anos, a imagem fica mais difusa. A pessoa se torna mais sensível, mais porosa, às vezes difícil de definir até para si mesma. Netuno na casa 1 dissolve contornos. Pode vir confusão. Pode vir também uma presença que acolhe e encanta."]},
+      {"title": "Netuno na casa 2", "body": ["O dinheiro escorre, ou ganha outro sentido. Pode haver confusão nas contas, idealização do que se tem, ou um desapego verdadeiro. Netuno aqui pede atenção aos números e uma revisão honesta do que vale."]},
+      {"title": "Netuno na casa 3", "body": ["O pensamento ganha imagem e música. Escrita poética, intuição nas palavras, conversas que acontecem sem ser ditas. O risco é o mal-entendido, o recado que chega torto. Netuno na casa 3 fala mais por metáfora do que por manual."]},
+      {"title": "Netuno na casa 4", "body": ["A casa vira lugar de sonho ou de névoa. Família idealizada, segredos de origem, saudade de uma casa que talvez nunca tenha existido. Netuno no fundo do mapa toca o lugar mais antigo: a gente procura o lar, e às vezes encontra o oceano."]},
+      {"title": "Netuno na casa 5", "body": ["Amor romântico, criação inspirada, filhos que despertam muita ternura. Paixões podem ser lindas e enganosas ao mesmo tempo. Netuno aqui é o artista e o apaixonado, e os dois enxergam mais do que está lá. Às vezes isso é ilusão. Às vezes é arte."]},
+      {"title": "Netuno na casa 6", "body": ["A rotina se dissolve. Cansaço difícil de explicar, corpo sensível a remédios, alimentos, ambientes. O trabalho pode virar serviço, cuidado, algo com sentido. Netuno na casa 6 pede um dia a dia com espaço para o sagrado e para o descanso."]},
+      {"title": "Netuno na casa 7", "body": ["O outro vira tela. Idealização, encantamento, relações em que alguém salva e alguém é salvo. Pode haver engano, ou uma compaixão enorme. Netuno aqui ensina a amar alguém real, e não a imagem que se projetou nele."]},
+      {"title": "Netuno na casa 8", "body": ["O porão vira mar. Fusão emocional, sexualidade mística, heranças confusas, dinheiro dividido sem clareza. Tempo de luto lento e fundo. Netuno na casa 8 dissolve medos antigos de perder, e às vezes dissolve fronteiras que precisavam existir."]},
+      {"title": "Netuno na casa 9", "body": ["A fé se expande ou se perde no nevoeiro. Espiritualidade, viagens que parecem peregrinação, mestres e gurus. O risco é seguir uma verdade sem olhar. A beleza é descobrir que o sentido não precisa de dogma. Netuno na casa 9 transforma crença em experiência."]},
+      {"title": "Netuno na casa 10", "body": ["A carreira pede sentido mais do que título. Uma vocação artística, espiritual ou de cuidado pode aparecer. A imagem pública fica confusa, ou ganha uma aura. Netuno no alto do mapa faz a gente desconfiar se o trabalho é sonho nosso ou dos outros."]},
+      {"title": "Netuno na casa 11", "body": ["Grupos e amizades viram lugar de ideal. Comunidades espirituais, coletivos artísticos, causas. Também pode haver decepção com quem parecia aliado. Netuno aqui mostra que o futuro sonhado em grupo precisa de alguém acordado."]},
+      {"title": "Netuno na casa 12", "body": ["Netuno está em casa aqui, na casa que corresponde a Peixes. Por muitos anos, o inconsciente sobe à superfície: sonhos vivos, intuição, solidão fecunda. Tempo de meditação, arte, retiro. O risco é fugir. A beleza é mergulhar e saber nadar até a margem."]}
+    ],
+    "plutao": [
+      {"title": "Plutão na casa 1", "body": ["Por muitos anos, a identidade passa por morte e renascimento. A pessoa muda tanto que antigos conhecidos estranham. Pode haver crises de corpo e de imagem. Plutão na casa 1 não reforma: troca a pele inteira, como a serpente."]},
+      {"title": "Plutão na casa 2", "body": ["Dinheiro e valores entram em transformação funda. Perdas que obrigam a refazer a base, ganhos que mudam a relação com o poder. Plutão aqui mexe no que a gente acha que precisa ter para se sentir em segurança, e às vezes leva justamente isso."]},
+      {"title": "Plutão na casa 3", "body": ["A mente desce. O pensamento fica investigativo, obsessivo, capaz de enxergar o que estava escondido. Conversas com irmãos ou vizinhos podem revelar segredos. A palavra ganha poder: o que se diz nesses anos transforma, e também fere."]},
+      {"title": "Plutão na casa 4", "body": ["A casa e a família passam por uma transformação de raiz. Mortes, mudanças, segredos de origem que vêm à tona. Hades mora debaixo da terra, e a casa 4 é o fundo do mapa. O que estava enterrado na história familiar pede para ser visto e, enfim, enterrado direito."]},
+      {"title": "Plutão na casa 5", "body": ["Paixões intensas, criação que vem do fundo, filhos que mudam quem a gente é. O prazer fica mais denso, com medo de perder ou vontade de controlar. Plutão aqui transforma o jeito de amar e de criar. A alegria que sobra depois disso tem raiz."]},
+      {"title": "Plutão na casa 6", "body": ["A rotina e o corpo passam por regeneração. Doenças que pedem mudança radical de hábito, trabalhos que acabam, ofícios que renascem. Plutão na casa 6 mostra que o cotidiano também pode ser lugar de morte e renascimento, um dia de cada vez."]},
+      {"title": "Plutão na casa 7", "body": ["As relações vão fundo. Parcerias que transformam, crises de poder, ciúme, controle, encontros que mudam a vida. Alguém pode entrar como Hades entrou no campo de Perséfone, abrindo o chão. Plutão na casa 7 mostra que ninguém sai inteiro de um encontro verdadeiro."]},
+      {"title": "Plutão na casa 8", "body": ["Plutão está em casa aqui, na casa que corresponde a Escorpião. Por muitos anos, a vida desce: lutos, heranças, sexualidade, crises que mexem em tudo. Travessia longa e funda. Quem atravessa costuma subir com algo que só se encontra no mundo de baixo."]},
+      {"title": "Plutão na casa 9", "body": ["As crenças passam por uma morte. Uma fé termina, outra nasce. Estudos que transformam, viagens que mudam a vida. Plutão na casa 9 não aceita verdade de segunda mão: quer a experiência que confirma, ou que destrói, o que se acreditava."]},
+      {"title": "Plutão na casa 10", "body": ["A carreira e a imagem pública se transformam. Poder, ambição, quedas e ascensões. Uma vocação pode só se revelar depois que a anterior morre. Plutão no alto do mapa ensina que todo lugar no mundo é provisório, e que o poder que dura vem de baixo."]},
+      {"title": "Plutão na casa 11", "body": ["Amigos e grupos passam por renovação funda. Laços que terminam, comunidades que mudam a vida, ideais que se radicalizam. Plutão aqui transforma o sonho de futuro: aquilo que a gente esperava morre, e no lugar fica um espaço que ainda não tem nome."]},
+      {"title": "Plutão na casa 12", "body": ["Por muitos anos, a transformação acontece no inconsciente. Medos antigos, sonhos intensos, memórias que retornam. Plutão nos porões do mapa pede terapia, silêncio, coragem de olhar o que ninguém vê. O que muda aqui só aparece depois, quando ele cruza o Ascendente."]}
+    ],
+    "choice": {"q": "Por que um trânsito de Urano, Netuno ou Plutão por uma casa dura anos?",
+      "opts": ["Porque esses planetas são lentos: passam de 7 a 30 anos em cada signo", "Porque ficam retrógrados o tempo todo", "Porque as casas desses planetas são maiores", "Porque eles só se movem nos eclipses"],
+      "explain": "Urano passa uns sete anos por signo, Netuno uns quatorze, Plutão de 12 a 30. Em signos inteiros, é o mesmo tempo em cada casa. Eles não marcam episódios. Marcam fases inteiras da vida."},
+    "q": "Que paisagem da vida mudou tão devagar que a gente só percebeu depois?"
+  },
+  "eclipses": {
+    "intro": {"title": "Os portais", "body": [
+      "Um eclipse acontece quando a Lua nova ou a Lua cheia cai perto dos nodos lunares, os dois pontos onde a órbita da Lua cruza o caminho do Sol. Isso vem em temporadas, mais ou menos a cada seis meses, e fica num mesmo eixo de signos por cerca de um ano e meio.",
+      "Na Índia, os nodos são Rahu e Ketu. Rahu era um demônio que bebeu o néctar da imortalidade, e Vishnu cortou a cabeça dele antes que o néctar descesse. Desde então a cabeça persegue o Sol e a Lua e os engole. Só que ela não tem corpo: o Sol entra e sai pelo pescoço cortado. Uma escuridão que não consegue segurar a luz."
+    ]},
+    "solar": {"title": "Eclipse solar", "body": ["Acontece na Lua nova: a Lua passa na frente do Sol e o dia escurece. Fala de começo, mas um começo que vem do escuro, sem que a gente veja direito o que está sendo plantado. Nem todo eclipse solar é visível daqui. No mapa, ele conta do mesmo jeito: abre uma porta na casa onde cai."]},
+    "lunar": {"title": "Eclipse lunar", "body": ["Acontece na Lua cheia: a sombra da Terra cobre a Lua, que fica cor de cobre. Fala de culminação, de algo que se revela e se encerra. É a sombra do nosso próprio mundo projetada na Lua. O que vem à tona costuma estar maduro havia tempo."]},
+    "houses": [
+      {"title": "Eclipses na casa 1", "body": ["Os eclipses caem no eixo da casa 1 com a casa 7: o eu e o outro. Por cerca de um ano e meio, mudanças na imagem, no corpo e no jeito de se apresentar puxam mudanças nas parcerias, e o contrário também. Alguma versão da gente fecha, outra pede passagem."]},
+      {"title": "Eclipses na casa 2", "body": ["Eixo da casa 2 com a casa 8: o que é meu e o que é nosso. Dinheiro próprio, dinheiro dividido, heranças, valores, dívidas. Portas financeiras abrem e fecham. O eclipse mexe no que dá segurança: o que a gente possui e o que precisa soltar."]},
+      {"title": "Eclipses na casa 3", "body": ["Eixo da casa 3 com a casa 9: a palavra perto e a verdade longe. Estudos, viagens, irmãos, crenças, mensagens. Um curso começa ou termina, uma ideia antiga cai. Os eclipses aqui mudam o jeito de pensar e o tamanho do mundo onde esse pensamento cabe."]},
+      {"title": "Eclipses na casa 4", "body": ["Eixo da casa 4 com a casa 10: a raiz e o topo. Casa e carreira, família e lugar no mundo. Mudanças de endereço, de emprego, de papel na família. O que se ganha num polo costuma cobrar algo do outro. Tempo de reacomodar o que sustenta e o que expõe."]},
+      {"title": "Eclipses na casa 5", "body": ["Eixo da casa 5 com a casa 11: o prazer próprio e o sonho coletivo. Amores, filhos, criações, amizades, projetos. Romances começam ou terminam, grupos se transformam. Os eclipses aqui deslocam a alegria: do palco para a roda, ou da roda para o palco."]},
+      {"title": "Eclipses na casa 6", "body": ["Eixo da casa 6 com a casa 12: o dia a dia e o que fica por baixo. Rotina, trabalho, saúde, retiro, inconsciente. O corpo pode pedir pausa, o trabalho pode mudar de forma. O que se cala no cotidiano aparece, e o que se reprimia pede cuidado."]},
+      {"title": "Eclipses na casa 7", "body": ["Eixo da casa 7 com a casa 1: o outro e o eu. Casamentos, sociedades, separações, encontros que chegam com cara de destino. O foco está no outro, e por isso a gente se vê de outro jeito. Uma relação que começa ou termina agora costuma redesenhar quem a gente é."]},
+      {"title": "Eclipses na casa 8", "body": ["Eixo da casa 8 com a casa 2: o que é nosso e o que é meu. Crises, lutos, heranças, intimidade, dinheiro compartilhado. Algo morre para que a base se refaça. Os eclipses tocam o porão do mapa: o que se divide com alguém e o que não se consegue dividir."]},
+      {"title": "Eclipses na casa 9", "body": ["Eixo da casa 9 com a casa 3: o longe e o perto. Viagens, estudo superior, fé, publicações, e do outro lado a vizinhança e a fala do dia. Uma crença cai, um horizonte abre. Às vezes a viagem é para fora, às vezes é o pensamento que muda de país."]},
+      {"title": "Eclipses na casa 10", "body": ["Eixo da casa 10 com a casa 4: o topo e a raiz. Carreira, reconhecimento, chefes, e lá embaixo, a família. Um capítulo profissional pode se encerrar ou abrir de repente. O mundo de fora muda, isso mexe na casa, e a casa responde."]},
+      {"title": "Eclipses na casa 11", "body": ["Eixo da casa 11 com a casa 5: o coletivo e o próprio prazer. Amizades, grupos, redes, filhos, amores. Gente entra e sai da vida. Os planos para o futuro se reorganizam, e alguns sonhos terminam para que outros possam ser sonhados de fato."]},
+      {"title": "Eclipses na casa 12", "body": ["Eixo da casa 12 com a casa 6: o que fica por baixo e o cotidiano. Sonhos, inconsciente, solidão, hospitais, retiros, e do outro lado a rotina e o corpo. Coisas terminam sem plateia. Tempo de encerrar, de cuidar, de ouvir o que o corpo e os sonhos andam repetindo."]}
+    ],
+    "choice": {"q": "Por que os eclipses vêm em temporadas, mais ou menos a cada seis meses?",
+      "opts": ["Porque só há eclipse quando a Lua nova ou cheia cai perto dos nodos, e o Sol passa por um deles a cada seis meses", "Porque a Lua para de girar duas vezes por ano", "Porque a Terra muda de órbita nos equinócios", "Porque eclipses só acontecem nos solstícios"],
+      "explain": "O Sol cruza cada nodo uma vez por ano, um de cada lado da roda: dois encontros, duas temporadas. Como os nodos se movem devagar, contra a ordem dos signos, as temporadas ficam cerca de um ano e meio num eixo e depois mudam."},
+    "q": "Que porta se abriu na vida da gente sem pedir licença, e só depois fez sentido?"
+  },
+  "revolucao": {
+    "intro": {"title": "O mapa do aniversário", "body": [
+      "Uma vez por ano, o Sol chega ao grau exato onde estava no nascimento. Esse instante, que pode cair na véspera, no dia ou no dia seguinte ao aniversário, gera um novo mapa: a revolução solar. Ele vale de um aniversário ao outro e mostra o tom do ano pessoal.",
+      "Revolução vem do latim revolvere, girar de novo. Antes de nomear levantes, era a palavra do giro dos astros: Copérnico chamou o livro dele de Das revoluções das esferas celestes. A revolução solar guarda os dois sentidos. O Sol completa o giro, e alguma coisa na gente muda de lugar."
+    ]},
+    "asc": [
+      {"title": "Ascendente em Áries na revolução", "body": ["Um ano de começo. A vida pede iniciativa, decisões rápidas, o corpo em movimento. O carneiro avança de testa, antes de pensar. É um ano para abrir caminho, e para aprender que nem tudo que começa com fogo precisa se resolver no primeiro dia."]},
+      {"title": "Ascendente em Touro na revolução", "body": ["Um ano que pede chão. Corpo, dinheiro, prazer, o que sustenta. As mudanças vêm devagar e ficam. Touro é o pasto que engorda sem pressa. É um ano para plantar algo que só vai ser colhido lá na frente, e para descobrir o valor do que não corre."]},
+      {"title": "Ascendente em Gêmeos na revolução", "body": ["Um ano de movimento e conversa. Estudos, viagens curtas, contatos, muitas ideias ao mesmo tempo. Como Castor e Pólux, um mortal e outro imortal, a vida parece pedir duas coisas de uma vez. É um ano para aprender, trocar e, no meio de tantos caminhos, escolher um."]},
+      {"title": "Ascendente em Câncer na revolução", "body": ["Um ano voltado para dentro de casa. Família, memória, emoção, cuidado. O caranguejo carrega a casca nas costas e anda de lado, nunca de frente. É um ano para fazer ninho, ou para descobrir que o ninho antigo ficou pequeno."]},
+      {"title": "Ascendente em Leão na revolução", "body": ["Um ano de brilho e exposição. Criatividade, alegria, coragem de aparecer. O leão de Nemeia tinha uma pele que nenhuma flecha atravessava, e Héracles a vestiu depois de vencê-lo. É um ano para ser visto, e para lidar com o que acontece quando a luz bate de frente."]},
+      {"title": "Ascendente em Virgem na revolução", "body": ["Um ano de ajuste fino. Rotina, trabalho, saúde, detalhes. Virgem segura a espiga: a colheita que precisa ser separada, grão por grão. É um ano para arrumar o que estava solto, e para lembrar que a perfeição também pode ser um jeito de adiar."]},
+      {"title": "Ascendente em Libra na revolução", "body": ["Um ano voltado para o outro. Parcerias, acordos, beleza, equilíbrio. A balança só se mexe quando tem dois pratos. É um ano para negociar sem desaparecer, e para perceber o que a gente procura no espelho dos outros."]},
+      {"title": "Ascendente em Escorpião na revolução", "body": ["Um ano intenso. Crises, intimidade, segredos que vêm à tona. Como Perséfone diante da romã, a vida pede que a gente prove alguma coisa do mundo de baixo. É um ano de morte simbólica, e o que se perde abre espaço para o que ainda não tem nome."]},
+      {"title": "Ascendente em Sagitário na revolução", "body": ["Um ano de horizonte. Viagens, estudos, fé, vontade de ir mais longe. Quíron, o centauro, era curador e professor, e carregava uma ferida que não fechava. É um ano para alargar o mapa do mundo, e para desconfiar das certezas que chegam fáceis demais."]},
+      {"title": "Ascendente em Capricórnio na revolução", "body": ["Um ano de estrutura e responsabilidade. Carreira, metas, compromissos longos. A cabra com cauda de peixe sobe a montanha sem esquecer o mar de onde veio. É um ano para construir tijolo por tijolo, e para entender que maturidade também inclui descanso."]},
+      {"title": "Ascendente em Aquário na revolução", "body": ["Um ano de mudança. Rupturas, ideias novas, amigos novos, vontade de fazer diferente. O aguadeiro derrama a água para todos, sem guardar para si. É um ano para soltar o que ficou estreito e descobrir a que grupo a gente pertence."]},
+      {"title": "Ascendente em Peixes na revolução", "body": ["Um ano sensível. Sonhos, espiritualidade, arte, compaixão, às vezes confusão. Afrodite e Eros viraram peixes para fugir de Tifão, amarrados por um fio para não se perderem no rio. É um ano para mergulhar sem soltar o fio."]}
+    ],
+    "choice": {"q": "O que é a revolução solar?",
+      "opts": ["O mapa do instante em que o Sol chega ao grau exato do nascimento, a cada ano", "O mapa da Lua cheia que cai no signo solar", "O mapa do equinócio de março, o começo do ano astrológico", "O mapa do retorno de Saturno"],
+      "explain": "Por isso a revolução solar nem sempre cai no dia exato do aniversário: pode ser na véspera ou no dia seguinte. O instante é o mesmo para o mundo todo, mas as casas mudam conforme o lugar onde a pessoa está."},
+    "q": "O que mudou de lugar na gente desde o último aniversário?"
+  },
+  "transitos": {
+    "intro": {"title": "Como se lê um trânsito", "body": [
+      "O mapa natal é uma fotografia do céu no instante do nascimento. Os planetas, porém, seguiram andando. Um trânsito é quando um planeta de hoje passa por um ponto sensível dessa fotografia: o tempo tocando a pessoa.",
+      "Toda leitura tem três partes. Quem passa diz a qualidade do tempo. O planeta natal tocado diz que parte da gente está em jogo. O aspecto, o ângulo entre os dois, diz o modo do encontro. Os gregos tinham duas palavras para o tempo: chronos, o que escorre, e kairós, o instante certo. Um trânsito é chronos virando kairós."
+    ]},
+    "match": {"q": "Ligue cada planeta em trânsito ao que ele traz",
+      "pairs": [["Marte", "Ação e atrito"], ["Júpiter", "Expansão e excesso"], ["Saturno", "Limite e estrutura"], ["Plutão", "Morte e renascimento"]],
+      "explain": "Marte acende, Júpiter amplia, Saturno dá forma, Plutão transforma pela raiz. O mesmo planeta natal, tocado por cada um deles, vive coisas muito diferentes."},
+    "tons": {
+      "marte": "Marte acende o que toca: pressa, desejo, coragem, irritação, um empurrão para agir agora.",
+      "jupiter": "Júpiter amplia o que toca: oportunidade, confiança, generosidade, e o risco de exagerar.",
+      "saturno": "Saturno testa o que toca: pede forma, compromisso e paciência, e mostra o que não se sustenta.",
+      "urano": "Urano desperta o que toca: mudança súbita, liberdade, ruptura, a surpresa que tira do lugar.",
+      "netuno": "Netuno dissolve o que toca: sensibilidade, inspiração, saudade, e também névoa e confusão.",
+      "plutao": "Plutão transforma o que toca pela raiz: crise, intensidade, perda, e um poder que nasce do fundo."
+    },
+    "aspectos": {
+      "conjuncao": "Conjunção: os dois no mesmo ponto, fundidos. O tempo entra direto, sem mediação.",
+      "sextil": "Sextil: 60 graus, uma porta entreaberta. A oportunidade aparece, mas pede um gesto da gente.",
+      "quadratura": "Quadratura: 90 graus, atrito. Algo precisa ser decidido, e a tensão é o que move.",
+      "trigono": "Trígono: 120 graus, fluxo. As coisas encaixam com facilidade, às vezes tanta que passam sem ser notadas.",
+      "oposicao": "Oposição: 180 graus, frente a frente. A tensão aparece no outro, e a consciência nasce desse espelho."
+    },
+    "nenhum": {"title": "Entre marés", "body": ["Neste momento, nenhum planeta lento está em aspecto exato com este mapa. Não quer dizer que nada acontece. É um tempo entre marés, em que os ritmos rápidos, a Lua, Mercúrio, o Vênus e Marte, dão o tom. Às vezes é no intervalo que assenta o que a última travessia deixou."]},
+    "q": "Que parte da gente o tempo anda tocando agora, mesmo que ainda não tenha nome?"
+  },
+  "ano": {
+    "intro": {"title": "Um ano em camadas", "body": [
+      "Ler um ano é ler camadas que andam em velocidades diferentes. Júpiter mostra a casa que ganha fôlego. Saturno, a que pede estrutura. Os eclipses marcam o eixo das portas que abrem e fecham. E a revolução solar dá o tom pessoal, de um aniversário ao outro.",
+      "Nenhuma camada sozinha conta o ano. O fio de Júpiter cruza com o de Saturno, e os eclipses cortam a trama de vez em quando. As Moiras gregas fiavam, mediam e cortavam o fio de cada vida. A astrologia não diz onde o fio vai ser cortado. Mostra a trama, para que a gente reconheça o desenho enquanto ainda está tecendo."
+    ]},
+    "fim": {"title": "O mapa continua andando", "body": [
+      "Primeiro, os signos. Depois, o mapa natal. Agora, o tempo passando sobre ele. O mapa deixou de ser uma fotografia parada: é um céu que continua se mexendo por cima de quem nasceu debaixo dele.",
+      "Penélope tecia de dia e desfazia à noite. Era astúcia: enquanto o tecido não ficasse pronto, ela não precisava escolher. Os trânsitos lembram esse tear. Tecem, desfazem, tecem de novo. Talvez o desenho não seja o que fica pronto. Talvez seja o gesto de voltar ao fio toda noite."
+    ]},
+    "q": "Se a gente olhasse o último ano como um tecido, que fio apareceria mais?"
+  }
+}

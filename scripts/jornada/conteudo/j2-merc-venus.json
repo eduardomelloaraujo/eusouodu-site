@@ -1,0 +1,438 @@
+{
+  "merc": {
+    "intro": {
+      "title": "O mensageiro entre mundos",
+      "body": [
+        "Mercúrio é o planeta mais próximo do Sol e o mais rápido: dá a volta nele em 88 dias. No mapa natal, ele organiza como a gente pensa, fala, aprende, nomeia e negocia. É a mente que traduz o mundo em palavras.",
+        "O deus por trás é Hermes. No primeiro dia de vida, roubou o gado de Apolo e, com o casco de uma tartaruga, inventou a lira. Mensageiro, ladrão, padroeiro dos comerciantes e guia das almas até o Hades. O mesmo deus serve aos vivos e aos mortos. A palavra também: com ela a gente chega no outro, e com ela a gente engana."
+      ]
+    },
+    "signQ": {
+      "explain": "Mercúrio não tem tom próprio: na tradição, é o planeta que se converte, que toma a cor de onde está. Por isso o signo diz quase tudo sobre esta mente: se ela corre, se ela mede, se ela sente antes de pensar."
+    },
+    "match": {
+      "q": "Ligue cada ideia ao que ela é em Mercúrio",
+      "pairs": [
+        ["Deus grego", "Hermes"],
+        ["Domicílio", "Gêmeos e Virgem"],
+        ["Retrogradação", "Cerca de 3 vezes por ano"],
+        ["Distância máxima do Sol", "Cerca de 28 graus"]
+      ],
+      "explain": "Mercúrio nunca se afasta muito do Sol. Por isso, em qualquer mapa, ele está no signo do Sol ou num dos dois vizinhos: a mente pensa sempre perto de quem a gente é."
+    },
+    "signs": [
+      {
+        "title": "Mercúrio em Áries",
+        "body": [
+          "Em Áries, Mercúrio pensa no impulso. A ideia chega inteira, de uma vez, e já quer virar frase antes de virar plano. É uma mente de largada: rápida, direta, que fala primeiro e entende no caminho.",
+          "Hermes nasceu de manhã, ao meio-dia já tocava lira e à noite roubava o gado de Apolo. Áries é o signo dessa pressa de existir. Aqui a palavra é carneiro: avança de testa. Abre portas que pouca gente ousaria abrir. E às vezes machuca quem estava atrás da porta.",
+          "Quando Ares e Afrodite ficaram presos na rede de Hefesto, diante de todos os deuses, foi Hermes quem fez a piada: disse que trocaria de lugar com Ares, nem que fossem três vezes mais correntes. Mercúrio em Áries tem isso. Diz em voz alta o que a sala inteira pensou. A frase que constrange também é a que libera."
+        ],
+        "q": "Que frase a gente disse rápido demais e, mesmo assim, precisava ser dita?"
+      },
+      {
+        "title": "Mercúrio em Touro",
+        "body": [
+          "Em Touro, Mercúrio desacelera. A mente pensa com as mãos, com a boca, com o tempo. Não aceita uma ideia porque ela é brilhante: aceita quando a ideia aguenta peso, quando pode ser tocada, provada, guardada.",
+          "Touro é regido pelo Vênus, e o mito do signo é Zeus transformado num touro branco, tão manso que Europa sobe nas costas dele. Mercúrio aqui aprende essa mansidão. Fala devagar, convence pela presença. A sombra é a teimosia: a ideia que entrou não sai mais, mesmo quando o mundo já mudou.",
+          "Hermes, recém-nascido, roubou cinquenta vacas de Apolo. Quando foi descoberto, não devolveu o rebanho: tocou a lira, e Apolo ficou tão encantado que trocou o gado pelo instrumento. Mercúrio em Touro sabe essa coisa antiga. A palavra também é bem. Um jeito de dizer pode valer mais que o rebanho inteiro."
+        ],
+        "q": "Qual ideia a gente segura há anos só porque já se acostumou com o peso dela?"
+      },
+      {
+        "title": "Mercúrio em Gêmeos",
+        "body": [
+          "Em Gêmeos, Mercúrio está em casa, no elemento ar. A mente é solta, curiosa, liga uma coisa à outra sem pedir licença. Conversa, pergunta, troca de assunto, volta. Aprende rápido porque não tem medo de não saber.",
+          "O mito de Gêmeos é Castor e Pólux, um mortal e outro imortal. Quando Castor morreu, Pólux pediu para dividir com ele a imortalidade, e os dois passaram a alternar os dias entre o Olimpo e o mundo dos mortos. Hermes faz esse mesmo caminho: é o mensageiro que sobe e desce.",
+          "Por isso a mente de Gêmeos parece dupla. Ela não mente quando muda de ideia: ela visita o outro lado. Uma parte da gente fica no alto, leve, brincando com as palavras. A outra desce, e sabe coisas que não cabem numa conversa. A sombra é falar muito para não precisar descer."
+        ],
+        "q": "Sobre o que a gente fala bastante justamente para não ter que sentir?"
+      },
+      {
+        "title": "Mercúrio em Câncer",
+        "body": [
+          "Em Câncer, Mercúrio pensa pela memória. A mente guarda tom de voz, cheiro de cozinha, a frase que alguém da família disse uma vez e nunca mais saiu. Aprende quando se sente segura. Lembra com o corpo inteiro.",
+          "Câncer é regido pela Lua, e o caranguejo do mito foi enviado por Hera para morder o pé de Héracles na luta contra a Hidra. Foi esmagado, e mesmo assim ganhou o céu. Mercúrio aqui fala como o caranguejo anda: de lado. Chega no assunto por fora, testa a água antes de entrar.",
+          "Hermes nasceu numa caverna no monte Cilene. Na noite do roubo, voltou de mansinho, deitou no berço e se enrolou nas fraldas, fingindo ser só um bebê. Mercúrio em Câncer conhece esse berço. A mente se recolhe na casca quando o mundo aperta. E é lá dentro, no escuro conhecido, que ela pensa melhor."
+        ],
+        "q": "Que lembrança antiga ainda decide como a gente fala com quem ama?"
+      },
+      {
+        "title": "Mercúrio em Leão",
+        "body": [
+          "Em Leão, Mercúrio fala para ser visto. A mente pensa em cena, em narrativa, em gesto. Não quer só explicar: quer que a explicação tenha brilho, que a história tenha herói, que quem escuta sinta alguma coisa.",
+          "O leão de Nemeia tinha uma pele que nenhuma arma atravessava. Héracles só venceu quando largou as flechas e lutou com as mãos. Leão é regido pelo Sol, e Mercúrio nunca se afasta dele. Aqui a palavra é coroa e é pele: protege o coração, mas pode virar armadura difícil de tirar.",
+          "Hermes inventou a lira e entregou o instrumento a Apolo, o deus da luz. Desde então é Apolo quem toca diante dos deuses. Mercúrio em Leão às vezes vive esse acordo: cria a música e deixa outro brilhar com ela. Ou o contrário. A criação e o palco moram em lugares diferentes da mesma pessoa."
+        ],
+        "q": "Quando a gente conta a própria história, quem fica de fora do palco?"
+      },
+      {
+        "title": "Mercúrio em Virgem",
+        "body": [
+          "Em Virgem, Mercúrio está em casa e exaltado ao mesmo tempo. É o único planeta com domicílio e exaltação no mesmo signo. A mente aqui separa, mede, classifica, corrige. Enxerga o pequeno erro que desmonta a teoria inteira.",
+          "Virgem é terra. Em Gêmeos, Hermes voa; em Virgem, ele pousa. A figura do signo é Astreia, a deusa da justiça que viveu entre os humanos e foi a última imortal a deixar a terra. Ela segura uma espiga de trigo: o pensamento que serve, que alimenta, que faz a vida funcionar.",
+          "Análise vem do grego e quer dizer desatar, soltar os nós. Mercúrio em Virgem não critica por crueldade. Ele desata. A sombra aparece quando o nó que a gente mais quer desfazer é a própria gente, e a mente vira uma lupa apontada para dentro, procurando defeito o dia inteiro."
+        ],
+        "q": "Em que parte da vida a gente corrige tanto que esquece de habitar?"
+      },
+      {
+        "title": "Mercúrio em Libra",
+        "body": [
+          "Em Libra, Mercúrio pensa em dois pratos. Toda ideia vem acompanhada do outro lado dela. A mente pesa, compara, escuta antes de responder. Fala bonito, com cuidado, procurando a frase que não fere.",
+          "Libra é regido pelo Vênus e guarda a balança de Astreia. Hermes aqui vira diplomata, o mensageiro que leva a palavra entre deuses que não se suportam. A força é a mediação. A sombra é ficar tanto tempo pesando que a decisão vai embora antes da gente.",
+          "Quando Éris jogou no banquete a maçã de ouro para a mais bela, Zeus não quis escolher. Mandou Hermes levar as três deusas até Páris. Mercúrio em Libra conhece esse papel: conduzir a decisão sem tomar a decisão. Mas Páris escolheu, e Troia queimou. Pesar demais também é um jeito de deixar alguém escolher pela gente."
+        ],
+        "q": "Qual opinião a gente adotou por amor e nunca chegou a conferir se era nossa?"
+      },
+      {
+        "title": "Mercúrio em Escorpião",
+        "body": [
+          "Em Escorpião, Mercúrio pensa no subsolo. A mente não aceita a superfície da conversa: escuta o que ficou sem dizer, a pausa, o tom que mudou. Investiga. Desconfia. E muitas vezes acerta.",
+          "Escorpião é água fixa, regido por Plutão e, na tradição, por Marte. Hermes é o psicopompo, o deus que leva as almas até o Hades e conhece o caminho de volta. Mercúrio aqui tem passe livre no mundo de baixo. Fala de morte, de sexo, de dinheiro, de segredo, sem desviar o olhar.",
+          "Quando Perséfone precisou sair do Hades, Zeus não mandou um herói nem um guerreiro. Mandou Hermes, o mensageiro, buscá-la. Mercúrio em Escorpião sabe que certas portas só abrem com a palavra exata. A mesma frase que expõe uma ferida é a que permite sair dela. A sombra é usar essa precisão para ferir."
+        ],
+        "q": "Que conversa a gente sabe que precisa ter e ainda guarda no escuro?"
+      },
+      {
+        "title": "Mercúrio em Sagitário",
+        "body": [
+          "Em Sagitário, Mercúrio está em exílio. É o signo oposto a Gêmeos: lá, a mente coleciona dados; aqui, ela quer sentido. Não basta saber o que aconteceu. Precisa saber o que aquilo significa, para onde aponta, que verdade carrega.",
+          "O centauro do signo costuma ser lido como Quíron, o sábio que educou Aquiles, Asclépio e Jasão. Sagitário é regido por Júpiter, e Mercúrio aqui fala como professor, como pregador, como viajante. Generaliza rápido, às vezes rápido demais: transforma um caso em lei, uma experiência em filosofia de vida.",
+          "Exílio não é defeito. É estar longe da língua materna. Mercúrio em Sagitário fala sempre como quem traduz de outro idioma: a ideia é maior que as palavras disponíveis. Por isso, tantas vezes, os outros entendem a intenção antes da frase. O que se perde no detalhe volta como horizonte."
+        ],
+        "q": "Que verdade a gente repete tanto que parou de conferir se ainda é verdade?"
+      },
+      {
+        "title": "Mercúrio em Capricórnio",
+        "body": [
+          "Em Capricórnio, Mercúrio pensa em estrutura. A mente quer saber se a ideia se sustenta no tempo, se tem custo, se aguenta a realidade. Fala pouco e pesa cada palavra, como quem assina contrato.",
+          "Capricórnio é regido por Saturno, o deus do tempo. O símbolo é a cabra com cauda de peixe: sobe a montanha sem esquecer que veio do mar. Mercúrio aqui é estrategista. Aprende devagar e não esquece. A sombra é a dureza, a frase seca que protege e afasta ao mesmo tempo.",
+          "Hermes era o deus dos marcos de pedra nas estradas, as hermas, que mostravam a divisa entre terras e o caminho a seguir. Uma mensagem de pedra, que não muda com o vento. Mercúrio em Capricórnio é essa herma. Quando diz uma coisa, a frase vira chão onde os outros se apoiam. E pesa saber disso."
+        ],
+        "q": "O que a gente nunca falou por medo de que a frase ficasse para sempre?"
+      },
+      {
+        "title": "Mercúrio em Aquário",
+        "body": [
+          "Em Aquário, Mercúrio pensa à distância. A mente sobe, olha o sistema inteiro, vê o padrão que quem está dentro não vê. Gosta de ideias novas, de conversas que viram tudo do avesso, do que ainda não foi pensado.",
+          "Aquário é regido por Urano e, na tradição, por Saturno. O mito é Ganimedes, o jovem que Zeus levou ao Olimpo para servir a bebida dos deuses. Ele derrama do alto. Mercúrio aqui é a mente que traz algo de cima e distribui para todos: a ideia que não pertence a uma pessoa só.",
+          "Ganimedes foi arrancado da terra para servir aos imortais, longe de casa. Mercúrio em Aquário conhece esse lugar alto. Pensa do Olimpo enquanto mora num corpo que sente frio, saudade, ciúme. Às vezes a ideia sobre o afeto chega muito antes do afeto. E a gente explica o que ainda não sentiu."
+        ],
+        "q": "Qual sentimento a gente transformou em teoria para não precisar senti-lo de perto?"
+      },
+      {
+        "title": "Mercúrio em Peixes",
+        "body": [
+          "Em Peixes, Mercúrio está em exílio e em queda ao mesmo tempo. A mente que separa e nomeia cai no signo onde tudo se mistura. Pensa por imagem, por sonho, por intuição. Sabe coisas sem saber como sabe.",
+          "Peixes é regido por Netuno e, na tradição, por Júpiter. O mito são dois peixes amarrados por uma corda: Afrodite e Eros, que se jogaram no rio para fugir do monstro Tifão. Mercúrio aqui perde o contorno da lógica e ganha o da poesia. A sombra é a confusão, a frase que diz tudo e não diz nada.",
+          "Hermes também era o condutor dos sonhos: com o caduceu, fechava e abria os olhos dos mortais. Na queda, Mercúrio em Peixes não perde a função de mensageiro. Muda de turno. Leva recados à noite, por dentro do sonho, numa língua que acordada a gente não fala, mas reconhece."
+        ],
+        "q": "Que sonho voltou mais de uma vez com um recado que a gente ainda não traduziu?"
+      }
+    ],
+    "houses": [
+      {
+        "title": "Mercúrio na casa 1",
+        "body": [
+          "A casa 1 é o Ascendente: o corpo, o jeito de chegar, a primeira impressão. Com Mercúrio aqui, a mente aparece antes da pessoa. A gente é lida pela fala, pelo olhar curioso, pelas mãos que explicam enquanto a boca conta.",
+          "Na tradição, a casa 1 é o lugar da alegria de Mercúrio, onde ele mais se sente bem no mapa. O mensageiro na porta de entrada. A identidade vira algo que se move, muda de tom a cada conversa. Talvez por isso seja tão difícil responder quem a gente é numa frase só."
+        ]
+      },
+      {
+        "title": "Mercúrio na casa 2",
+        "body": [
+          "A casa 2 fala do que a gente tem e do que a gente valoriza: dinheiro, recursos, o corpo como sustento. Com Mercúrio aqui, a palavra vira ofício. Ideia, fala, escrita, comércio podem ser o próprio ganha-pão.",
+          "Hermes é o deus dos comerciantes, e a mesma raiz latina, merx, aparece em Mercúrio, mercado e mercadoria. Nesta casa a mente sabe negociar, dar preço, trocar. O que a gente pode trabalhar é a outra face: pensar em dinheiro o tempo todo, conversar com a falta como se ela fosse plano."
+        ]
+      },
+      {
+        "title": "Mercúrio na casa 3",
+        "body": [
+          "A casa 3 é a da vizinhança, dos irmãos, dos trajetos curtos, da escola, da conversa de todo dia. É território natural de Mercúrio. Com ele aqui, a mente circula: mensagem, rua, ônibus, livro aberto no meio do caminho.",
+          "Hermes protegia as estradas e quem estava de passagem, não os grandes heróis. A casa 3 é essa estrada miúda. Irmãos, primos e colegas costumam ter papel grande na formação do pensamento. Quem falou primeiro com a gente, ou mais alto, ainda ecoa na nossa voz."
+        ]
+      },
+      {
+        "title": "Mercúrio na casa 4",
+        "body": [
+          "A casa 4 é o fundo do mapa: a casa, a família, as raízes, o que vem antes da gente. Com Mercúrio aqui, a mente se formou nas conversas de cozinha, nos silêncios da mesa, na língua particular que cada família inventa.",
+          "Hermes nasceu escondido numa caverna, filho de Maia, uma ninfa que vivia longe dos deuses. Na casa 4, o pensamento também nasce no recolhido. Muitas ideias têm a idade da infância. Escrever sobre a própria família pode ser o jeito mais direto de entender o resto do mundo."
+        ]
+      },
+      {
+        "title": "Mercúrio na casa 5",
+        "body": [
+          "A casa 5 é a do prazer, do jogo, da criação, dos filhos, do amor que brinca. Com Mercúrio aqui, a mente se diverte. Inventa, conta história, faz piada, escreve, ensina criança. Pensar é uma forma de brincar.",
+          "Hermes inventou a lira no primeiro dia de vida. Nenhum deus pediu: ele quis. Mercúrio na casa 5 tem essa criação sem encomenda. O que podemos trabalhar é o momento em que a brincadeira vira obrigação de brilhar em toda conversa, e o jogo deixa de ser jogo."
+        ]
+      },
+      {
+        "title": "Mercúrio na casa 6",
+        "body": [
+          "A casa 6 é a da rotina, do trabalho de todo dia, da saúde, dos pequenos cuidados. Com Mercúrio aqui, a mente organiza. Faz listas, resolve, conserta, aprende fazendo. Funciona bem no método e no ofício.",
+          "Hermes era o servidor dos deuses, o que corria entre o Olimpo e a terra cumprindo recados. Na casa 6, Mercúrio conhece esse serviço. E conhece o preço: a mente que não para cobra no corpo, no sono, no estômago. O pensamento aqui adoece e também cura."
+        ]
+      },
+      {
+        "title": "Mercúrio na casa 7",
+        "body": [
+          "A casa 7 é a do outro: parceria, casamento, sociedade, e também o adversário declarado. Com Mercúrio aqui, a gente pensa melhor em dupla. A conversa com alguém vira o lugar onde as ideias nascem.",
+          "Esta posição costuma atrair gente que fala, escreve, pensa rápido, ou relações em que a palavra é o centro. Hermes era o mensageiro entre as partes. Nesta casa, a gente aprende sobre a própria mente pelo que escuta. E às vezes deixa o outro falar no nosso lugar."
+        ]
+      },
+      {
+        "title": "Mercúrio na casa 8",
+        "body": [
+          "A casa 8 é a das crises, das heranças, do dinheiro dos outros, da sexualidade, da morte. Com Mercúrio aqui, a mente desce. Quer entender o que está escondido, o que assusta, o que muda alguém para sempre.",
+          "É o território de Hermes psicopompo, o guia que acompanhava as almas até o Hades. Mercúrio na casa 8 pode ser quem os outros procuram na hora difícil, porque consegue nomear a dor sem fugir dela. Pensar sobre a morte, aqui, é um jeito de pensar sobre a vida."
+        ]
+      },
+      {
+        "title": "Mercúrio na casa 9",
+        "body": [
+          "A casa 9 é a das viagens longas, dos estudos superiores, da fé, da filosofia, das outras línguas. Com Mercúrio aqui, a mente quer ir longe. Aprende viajando, lendo, encontrando gente de outro lugar e de outro jeito de pensar.",
+          "Na tradição, a casa 9 é a casa de Deus, o lugar das grandes perguntas. Hermes deixa de levar recados e vira intérprete do sagrado: a palavra hermenêutica, a arte de interpretar, costuma ser ligada ao nome dele. Aqui, uma única frase de um livro pode reorganizar uma vida."
+        ]
+      },
+      {
+        "title": "Mercúrio na casa 10",
+        "body": [
+          "A casa 10 é o meio do céu: carreira, reputação, o que o mundo vê da gente. Com Mercúrio aqui, a mente vai para o público. A voz, a escrita, o ensino, a comunicação podem virar vocação e assinatura.",
+          "Hermes era conhecido no Olimpo inteiro justamente porque circulava por todos os lugares. Mercúrio na casa 10 torna o pensamento visível. O que podemos trabalhar é a pressão: quando cada frase vira vitrine, a gente para de pensar em voz alta e só fala o que já está pronto."
+        ]
+      },
+      {
+        "title": "Mercúrio na casa 11",
+        "body": [
+          "A casa 11 é a dos amigos, dos grupos, das redes, das esperanças. Com Mercúrio aqui, as ideias nascem no coletivo. A conversa entre amigos, a troca no grupo, o projeto em comum alimentam a mente.",
+          "Na tradição, a casa 11 é o bom espírito, o lugar dos aliados. Hermes, que tinha trânsito em todos os mundos, se sente bem aqui. A mente vira ponte entre pessoas que não se conheciam. Às vezes a gente sabe mais dos planos dos amigos do que dos próprios."
+        ]
+      },
+      {
+        "title": "Mercúrio na casa 12",
+        "body": [
+          "A casa 12 é a do recolhimento, dos bastidores, dos hospitais e retiros, do que a gente não enxerga em si. Com Mercúrio aqui, a mente trabalha no escondido. Pensa melhor sozinha, à noite, longe do barulho.",
+          "Hermes também conduzia os sonhos. Na casa 12, a palavra pode ter sido calada cedo, ou dita só para dentro, e por isso sai em escrita, em diário, em sonho, em reza. Muita gente com Mercúrio aqui descobre que pensava coisas lindas que nunca contou a ninguém."
+        ]
+      }
+    ]
+  },
+  "venus": {
+    "intro": {
+      "title": "A estrela que atrai",
+      "body": [
+        "O Vênus é o astro mais brilhante do céu depois da Lua. Aparece ao amanhecer ou ao entardecer, sempre perto do Sol, nunca no meio da noite. No mapa natal, ele organiza o que a gente deseja, o que acha belo, como ama, o valor que se dá e o que atrai.",
+        "A deusa por trás é Afrodite. Na versão de Hesíodo, Crono cortou o sexo do pai, Urano, o Céu, e jogou no mar. Da espuma nasceu Afrodite. A beleza não veio de um encontro delicado: veio de uma ferida no céu. Talvez por isso o que a gente ama de verdade sempre toca em algum corte antigo."
+      ]
+    },
+    "signQ": {
+      "explain": "O Vênus fala a língua do signo em que está. Em Touro ele ama pelo toque, em Aquário pela liberdade, em Câncer pelo cuidado. O signo mostra o que este mapa acha bonito e do que precisa para se sentir amado."
+    },
+    "match": {
+      "q": "Ligue cada ideia ao que ela é no Vênus",
+      "pairs": [
+        ["Deusa grega", "Afrodite"],
+        ["Domicílio", "Touro e Libra"],
+        ["Exaltação", "Peixes"],
+        ["Ciclo no céu", "Pentagrama de 8 anos"]
+      ],
+      "explain": "A cada 8 anos, o Vênus encontra o Sol cinco vezes em pontos que, ligados, desenham uma estrela de cinco pontas. O planeta da beleza traça no céu uma figura perfeita."
+    },
+    "signs": [
+      {
+        "title": "Vênus em Áries",
+        "body": [
+          "Em Áries, o Vênus está em exílio. O planeta da atração cai no signo da conquista, regido por Marte. O amor chega de repente, quer agora, se acende no primeiro olhar. Gosta de ir atrás, de ser surpreendido, de sentir o coração na boca.",
+          "Afrodite e Ares foram amantes, e Hefesto prendeu os dois numa rede invisível diante dos deuses. Em Áries, o Vênus mora nessa cama: o desejo tem pressa e não se esconde. A força é a coragem de dizer que quer. A sombra é perder o interesse quando a caça acaba e o amor pede tempo.",
+          "Da união de Afrodite e Ares nasceram Fobos e Deimos, o medo e o pavor. E nasceu também Harmonia. Os três irmãos vêm do mesmo amor. Vênus em Áries conhece essa família inteira. O mesmo desejo que assusta é o que pode virar harmonia, quando o fogo aprende a ficar."
+        ],
+        "q": "Quando a gente perde o interesse, é o amor que acabou ou a pressa?"
+      },
+      {
+        "title": "Vênus em Touro",
+        "body": [
+          "Em Touro, o Vênus está em casa, no elemento terra. O amor aqui é corpo, presença, constância. Comida boa, tecido macio, música, cheiro de pele. Vênus em Touro não ama a ideia de alguém: ama o alguém que está ali.",
+          "O mito do signo é Zeus transformado num touro branco, tão manso e perfumado que Europa se aproxima, enfeita os chifres dele com flores e sobe no animal. A atração de Touro é assim: lenta, sensorial, sem susto. A sombra é a posse, confundir amar com guardar.",
+          "Repare no glifo do Vênus: um círculo sobre uma cruz. A tradição lê o círculo como espírito e a cruz como matéria. Em Touro, essa figura se resolve: o espírito aparece pela matéria. Um prato feito com tempo, um abraço que demora, um jardim regado todo dia. Aqui o sagrado cabe na mão."
+        ],
+        "q": "O que a gente chama de amor e, olhando de perto, é medo de perder?"
+      },
+      {
+        "title": "Vênus em Gêmeos",
+        "body": [
+          "Em Gêmeos, o Vênus se apaixona pela conversa. O amor começa na troca, na piada, na mensagem que chega tarde da noite. A atração é mental antes de ser física, e uma pessoa interessante vale mais que uma pessoa bonita.",
+          "Gêmeos é regido por Mercúrio, e Hermes foi um dos amores de Afrodite. Desse encontro nasceu Hermafrodito, com o nome dos dois. Vênus em Gêmeos guarda esse parentesco: desejo e palavra se misturam. A força é a leveza. A sombra é a dispersão, querer muitos para não precisar escolher um.",
+          "Castor e Pólux, os gêmeos do signo, dividiram a imortalidade: um dia no Olimpo, outro no mundo de baixo. Vênus em Gêmeos ama assim, em dois lugares. Parte da gente quer leveza, outra quer profundidade, e muitas vezes as duas não cabem na mesma pessoa. Ou cabem, mas em dias diferentes."
+        ],
+        "q": "Que tipo de conversa faz a gente se apaixonar, e o que ela tem que o silêncio não tem?"
+      },
+      {
+        "title": "Vênus em Câncer",
+        "body": [
+          "Em Câncer, o Vênus ama cuidando. O afeto aparece em comida quente, em lembrar do que o outro gosta, em fazer da relação um lugar para voltar. A beleza aqui tem cheiro de casa.",
+          "Câncer é regido pela Lua, o astro da mãe e da memória. Afrodite também foi mãe: de Eros, de Harmonia, de Eneias. Vênus em Câncer liga o amor romântico ao amor mais antigo, o da infância. A sombra é amar como quem protege demais, ou procurar no parceiro o colo que faltou.",
+          "Na queda de Troia, Eneias saiu da cidade em chamas com o pai nas costas e o filho pela mão. Quem abriu caminho no meio do fogo foi a mãe dele, Afrodite. Daquela fuga nasceria Roma. Vênus em Câncer sabe que o amor de família pode ser o que salva e o que pesa nas costas. Às vezes, é o mesmo amor."
+        ],
+        "q": "Que gesto de cuidado a gente aprendeu em casa e ainda repete sem perceber?"
+      },
+      {
+        "title": "Vênus em Leão",
+        "body": [
+          "Em Leão, o Vênus ama em grande. O afeto é declaração, festa, presente, gesto inesquecível. Ama quem admira e precisa ser admirado de volta. O amor aqui tem plateia, nem que seja de uma pessoa só.",
+          "Leão é regido pelo Sol, e o Vênus nunca se afasta muito dele. O leão de Nemeia tinha uma pele que nenhuma arma furava. Vênus em Leão também se protege pelo brilho: é generoso, caloroso, bonito de ver. A sombra é o orgulho ferido, que prefere perder o amor a perder a pose.",
+          "Psiquê era tão bonita que os templos de Afrodite ficaram vazios: todos iam olhar a moça. A deusa, ferida, mandou Eros fazer Psiquê se apaixonar pelo pior dos homens. Eros se apaixonou por ela. Vênus em Leão conhece esse ciúme do brilho alheio. E sabe o que vem depois: ser admirado de longe não é ser amado de perto."
+        ],
+        "q": "De quem a gente precisa de aplauso para sentir que foi amado?"
+      },
+      {
+        "title": "Vênus em Virgem",
+        "body": [
+          "Em Virgem, o Vênus está em queda. O planeta do prazer cai no signo da análise, regido por Mercúrio. O amor aqui não é grande gesto: é atenção. Lembrar do remédio, consertar a torneira, perceber o cansaço antes de o outro dizer.",
+          "Virgem é a figura que segura a espiga de trigo, ligada a Deméter e a Astreia. É um amor de colheita: trabalhado, útil, cotidiano. A força é a devoção concreta. A sombra é a crítica, achar defeito em quem ama e mais ainda em si, até parecer que nada merece ser amado.",
+          "Queda não quer dizer que o amor falta. Quer dizer que ele se curva, como quem se abaixa para cuidar. Afrodite andava com as Cárites, as Graças, que banhavam, perfumavam e vestiam a deusa. Vênus em Virgem é uma dessas Graças: faz a beleza acontecer e, quase sempre, fica fora do retrato."
+        ],
+        "q": "Qual defeito a gente procura em quem ama para não precisar se mostrar por inteiro?"
+      },
+      {
+        "title": "Vênus em Libra",
+        "body": [
+          "Em Libra, o Vênus está em casa, no elemento ar. Aqui ele não ama pelo toque, como em Touro: ama pela harmonia. Beleza de proporção, de gentileza, de encontro justo. A relação é o lugar onde a gente se conhece.",
+          "Libra é a balança, o signo do equinócio de setembro, quando dia e noite têm o mesmo tamanho. O Vênus aqui procura esse equilíbrio no amor: dar e receber na mesma medida. A força é a delicadeza. A sombra é sumir dentro da relação para manter a paz, concordar para não perder.",
+          "Afrodite foi casada com Hefesto, o deus manco e feio que forjava as coisas mais belas do Olimpo. A deusa da beleza ao lado do artesão da beleza. Vênus em Libra entende essa aliança estranha: o belo não está só no rosto, está no que é feito com cuidado. E nem todo casamento justo é um casamento feliz."
+        ],
+        "q": "Em que relação a gente mantém a paz pagando com a própria vontade?"
+      },
+      {
+        "title": "Vênus em Escorpião",
+        "body": [
+          "Em Escorpião, o Vênus está em exílio. O planeta do prazer leve cai no signo da profundidade, da fusão, do que não se diz. O amor aqui é inteiro ou não é. Quer atravessar a pele, conhecer o segredo, ficar com tudo.",
+          "Escorpião é regido por Plutão e, na tradição, por Marte. Afrodite amou Adônis, e Perséfone, rainha do mundo de baixo, também o quis. Zeus dividiu o ano do rapaz entre as duas. Vênus em Escorpião vive esse amor partido entre a luz e o subterrâneo. A sombra é o ciúme, a prova de lealdade que nunca basta.",
+          "Adônis morreu ferido por um javali. Do sangue dele, Afrodite fez nascer a anêmona, uma flor que dura pouco e que o vento leva. Vênus em Escorpião conhece isso: aqui a beleza nasce da perda. O que a gente ama com essa intensidade transforma a gente, e não devolve igual."
+        ],
+        "q": "Que amor mudou a gente de um jeito que não tem volta?"
+      },
+      {
+        "title": "Vênus em Sagitário",
+        "body": [
+          "Em Sagitário, o Vênus ama em movimento. O amor precisa de horizonte: viagem, conversa sobre sentido, alguém de outro lugar, de outra cultura, de outra visão de mundo. Prender é matar. A atração nasce do que amplia.",
+          "Sagitário é regido por Júpiter, e o centauro do signo costuma ser lido como Quíron, o sábio da floresta. Vênus em Sagitário ama quem ensina e quem aprende. A força é a generosidade, a alegria. A sombra é fugir quando o amor deixa de ser aventura e vira rotina, com o horizonte servindo de desculpa.",
+          "Quíron foi ferido por uma flecha envenenada e, imortal, não podia morrer da ferida. Era o maior curador da Grécia e não conseguia curar a si mesmo. Vênus em Sagitário às vezes ama assim: dá ao outro um mundo inteiro de sentido e guarda no peito uma flecha que nunca contou de onde veio."
+        ],
+        "q": "Quando a gente quer ir embora de um amor, está indo para algum lugar ou fugindo de algum?"
+      },
+      {
+        "title": "Vênus em Capricórnio",
+        "body": [
+          "Em Capricórnio, o Vênus ama com o tempo. Não se entrega no primeiro encontro: observa, testa, constrói. O afeto aparece em compromisso, em presença confiável, em planos longos. Aqui, cumprir o que prometeu é uma forma de beleza.",
+          "Capricórnio é regido por Saturno, o deus do tempo, e o Vênus aqui aprende com ele que o amor amadurece. Muita gente com esse posicionamento ama melhor com os anos. A força é a lealdade. A sombra é o controle, mostrar o amor só depois de ter certeza de que é seguro.",
+          "Crono, o deus que os romanos chamaram de Saturno, foi quem cortou o Céu com uma foice. Da espuma daquele corte nasceu Afrodite. A deusa do amor é filha da foice do tempo. Vênus em Capricórnio guarda essa origem: aqui a beleza vem do limite, do que foi encerrado. O amor que dura é o que já sobreviveu a um fim."
+        ],
+        "q": "O que a gente exige que o outro prove antes de deixar ele chegar perto?"
+      },
+      {
+        "title": "Vênus em Aquário",
+        "body": [
+          "Em Aquário, o Vênus ama em liberdade. O afeto precisa de espaço, de amizade, de respeito pela diferença. A atração surge pelo que é original, estranho, fora do padrão. Um amor que vira cela perde o encanto.",
+          "Aquário é regido por Urano e, na tradição, por Saturno. Urano é o Céu, o pai distante de cujo corte nasceu Afrodite. Vênus em Aquário volta para esse pai: ama um pouco de cima, pensando o amor, desenhando novos formatos de relação. A sombra é o desapego como defesa, a frieza que se veste de liberdade.",
+          "Pigmalião desprezava as mulheres de Chipre e esculpiu em marfim a mulher ideal. Apaixonou-se pela estátua. Afrodite teve pena e deu vida a ela. Vênus em Aquário conhece o risco de amar uma ideia. E conhece o milagre: às vezes o ideal desce do pedestal e ganha um corpo que respira, tem humor, discorda."
+        ],
+        "q": "Quanto da nossa liberdade no amor é desejo e quanto é medo de depender?"
+      },
+      {
+        "title": "Vênus em Peixes",
+        "body": [
+          "Em Peixes, o Vênus está exaltado. O planeta do amor chega ao signo onde as fronteiras se dissolvem. O afeto aqui é compaixão, fusão, entrega. Ama sem medir, perdoa antes do pedido, vê beleza no que está ferido.",
+          "O mito de Peixes é da própria Afrodite: fugindo do monstro Tifão, ela e o filho Eros se jogaram no rio e viraram peixes, amarrados por uma corda para não se perderem. O Vênus aqui está dentro do próprio mito. A força é a delicadeza que alcança o outro. A sombra é se perder no outro e chamar isso de amor.",
+          "Afrodite nasceu da espuma do mar. Em Peixes, o último signo, o Vênus volta para a água de onde veio. A exaltação não é o amor mais forte: é o amor que lembra onde nasceu. Por isso dói tanto, aqui, qualquer amor que exija endurecer. A água não sabe ser parede."
+        ],
+        "q": "Onde termina a compaixão e começa o lugar em que a gente se esquece?"
+      }
+    ],
+    "houses": [
+      {
+        "title": "Vênus na casa 1",
+        "body": [
+          "A casa 1 é o Ascendente: o corpo, a aparência, o jeito de chegar. Com o Vênus aqui, a primeira impressão costuma vir pela graça, pelo charme, pelo cuidado com a aparência. A beleza está na presença.",
+          "Afrodite chegou a Chipre saindo do mar, e a relva nascia por onde ela pisava. Com o Vênus na casa 1, chegar é um acontecimento. O que podemos trabalhar é o outro lado: quando a gente aprende cedo que agradar abre portas e já não sabe mostrar o desagrado."
+        ]
+      },
+      {
+        "title": "Vênus na casa 2",
+        "body": [
+          "A casa 2 é a dos recursos, do dinheiro, do que a gente valoriza e do valor que a gente se dá. Com o Vênus aqui, prazer e posse conversam: o gosto por coisas bonitas, por conforto, por qualidade.",
+          "Touro, o signo natural da casa 2, é domicílio do Vênus, e ele se sente à vontade aqui. O dinheiro pode vir pela beleza, pela arte, pelo trato com as pessoas. Autoestima e conta bancária costumam andar juntas, e vale perceber quando uma começa a medir a outra."
+        ]
+      },
+      {
+        "title": "Vênus na casa 3",
+        "body": [
+          "A casa 3 é a das conversas, dos irmãos, da vizinhança, dos trajetos curtos. Com o Vênus aqui, a fala é gentil e a palavra tem charme. Escrever bonito, falar com doçura, apaziguar briga de irmãos.",
+          "O Vênus nesta casa costuma trazer afeto pelos lugares de todo dia: a padaria, a rua, o caminho de casa. Muita gente com essa posição se apaixona por quem encontra no cotidiano, perto. O amor mora na troca miúda, numa mensagem bem escrita."
+        ]
+      },
+      {
+        "title": "Vênus na casa 4",
+        "body": [
+          "A casa 4 é o fundo do mapa: a família, a casa, as raízes. Com o Vênus aqui, a beleza nasce em casa. O lar é refúgio e é obra: decorar, receber, cozinhar, fazer do espaço um lugar que abraça.",
+          "O que a gente viu de amor na infância vira molde. Com o Vênus na casa 4, esse molde é forte, para o bem e para o pesado. Às vezes a gente passa a vida tentando recriar a casa que teve. Ou a casa que não teve."
+        ]
+      },
+      {
+        "title": "Vênus na casa 5",
+        "body": [
+          "A casa 5 é a do prazer, do romance, dos filhos, da criação, do jogo. Na tradição, é o lugar da alegria do Vênus, onde ele mais se sente bem. Com ele aqui, o amor brinca, a arte flui, o prazer tem lugar na vida.",
+          "Eros, o filho de Afrodite, era pintado como um menino com arco e flechas, atirando por diversão. A casa 5 é esse amor-criança, que flecha sem pensar. O que podemos trabalhar é a seriedade que chega depois: quando o prazer vira tarefa, ele some."
+        ]
+      },
+      {
+        "title": "Vênus na casa 6",
+        "body": [
+          "A casa 6 é a da rotina, do trabalho diário, da saúde, do serviço. Com o Vênus aqui, a beleza mora no cotidiano: um ambiente de trabalho agradável, colegas queridos, uma rotina que dá prazer.",
+          "Muita gente com o Vênus na casa 6 encontra amor no trabalho, ou trabalha com beleza, cuidado, bem-estar. O corpo sente quando o dia a dia fica feio ou pesado. Cuidar de si, aqui, é menos luxo e mais higiene da alma."
+        ]
+      },
+      {
+        "title": "Vênus na casa 7",
+        "body": [
+          "A casa 7 é a do outro: casamento, parceria, sociedade. Libra, o signo natural desta casa, é domicílio do Vênus. Com ele aqui, a relação ocupa o centro da vida. A gente se reconhece no encontro.",
+          "Esta posição costuma atrair parceiros gentis, bonitos, ou relações em que a harmonia vale muito. O que podemos trabalhar é o quanto da própria beleza a gente terceiriza: esperar que o outro traga aquilo que a gente não cultiva em si."
+        ]
+      },
+      {
+        "title": "Vênus na casa 8",
+        "body": [
+          "A casa 8 é a das crises, das heranças, da sexualidade, do dinheiro dividido, da morte. Com o Vênus aqui, o amor quer profundidade. Encontros que transformam, intimidade que vai ao fundo, desejo intenso.",
+          "Antes de Afrodite, os sumérios chamavam este astro de Inana. No mito, ela desce ao mundo dos mortos por sete portas e deixa uma joia ou uma veste em cada uma, até chegar nua. O Vênus na casa 8 conhece essa descida: o amor que tira as camadas. Luto, sexo e tabu também são lugares de beleza."
+        ]
+      },
+      {
+        "title": "Vênus na casa 9",
+        "body": [
+          "A casa 9 é a das viagens longas, dos estudos, da fé, da filosofia. Com o Vênus aqui, a gente se apaixona por ideias, culturas, lugares distantes. A beleza tem sotaque estrangeiro.",
+          "Pode ser amor por alguém de outro país, ou uma vida que se abre por causa de uma viagem. Também é a beleza que vira crença: a arte como espiritualidade, o sagrado visto no que é bonito. Às vezes a gente ama um lugar antes de pisar nele."
+        ]
+      },
+      {
+        "title": "Vênus na casa 10",
+        "body": [
+          "A casa 10 é o meio do céu: carreira, reputação, imagem pública. Com o Vênus aqui, o mundo enxerga a gente pela graça, pelo gosto, pela capacidade de agradar. A vocação pode passar por arte, beleza, moda, diplomacia.",
+          "O Vênus no ponto mais alto do mapa costuma trazer facilidade com o público e boa reputação. O que podemos trabalhar é a outra face: quando ser bem visto vira prisão, e a gente não pode ter um dia feio diante de ninguém."
+        ]
+      },
+      {
+        "title": "Vênus na casa 11",
+        "body": [
+          "A casa 11 é a dos amigos, dos grupos, das redes, das esperanças. Com o Vênus aqui, a amizade é uma forma de amor. Os grupos costumam acolher, e muitos amores nascem entre amigos.",
+          "Na tradição, a casa 11 é o bom espírito, o lugar dos aliados e dos benefícios que chegam pelas pessoas. O Vênus fica bem aqui. A beleza vira projeto coletivo. E às vezes a gente cuida tanto do grupo que esquece de perguntar quem cuida da gente."
+        ]
+      },
+      {
+        "title": "Vênus na casa 12",
+        "body": [
+          "A casa 12 é a dos bastidores, do recolhimento, do que fica escondido. Com o Vênus aqui, o amor pode ser secreto, silencioso, guardado. Afetos que não se dizem, belezas que só a gente percebe.",
+          "Peixes, signo onde o Vênus se exalta, é o signo natural da casa 12. Os dois falam a mesma língua. Aqui o amor serve sem plateia: cuidar de quem está doente, de quem está sozinho, de quem passa despercebido. A compaixão é a forma mais discreta da beleza."
+        ]
+      }
+    ]
+  }
+}

@@ -1,11 +1,11 @@
 # Gera a versão de venda (jornada.eusouodu.com) a partir do template do protótipo.
 import json, glob, re, shutil, os
-SC = '/tmp/claude-0/-home-claude/b8583d26-fc93-5d41-82d1-e8e963fd6640/scratchpad/'
-REPO = '/home/claude/eusouodu-site/'
+HERE = os.path.dirname(os.path.abspath(__file__)) + '/'
+REPO = os.path.abspath(HERE + '../..') + '/'
 OUT = REPO + 'jornada/'
 os.makedirs(OUT, exist_ok=True)
 
-units = sorted([json.load(open(f)) for f in glob.glob('/home/claude/jornada/units/*.json')], key=lambda u: u['sign'])
+units = sorted([json.load(open(f)) for f in [HERE + 'aries.json'] + [f for f in glob.glob(REPO + 'lib/jornada/*.json') if os.path.basename(f) not in ('mapa.json', 'transitos.json')]], key=lambda u: u['sign'])
 aries = units[0]
 catalog = []
 for u in units:
@@ -16,8 +16,8 @@ for u in units:
         c['lessons'] = [{k: l[k] for k in ('id', 'kind', 'title', 'glyph', 'light', 'card', 'doneTitle', 'doneText')} | {'locked': True} for l in u['lessons']]
     catalog.append(c)
 
-s = open('/home/claude/jornada/app.tpl.html').read()
-css = open(SC + 'css.css').read()
+s = open(HERE + 'app.tpl.html').read()
+css = open(HERE + 'css.css').read()
 s = s.replace('<!--CSS-->', css)
 
 def R(old, new, count=1):
@@ -374,6 +374,9 @@ R('if(S.user && S.chart){ show("home"); renderHome(); } else startOnb(false);', 
   }
 })();''')
 
+exec(open(HERE + 'prod_j23.py').read())
+exec(open(HERE + 'prod_landing.py').read())
+
 # confere que nada do protótipo ficou
 for ruim in ['prevSw', 'preview', 'protótipo', 'Protótipo', 'simula o pagamento', 'Recarregar luas']:
     assert ruim not in s, 'sobrou: ' + ruim
@@ -388,5 +391,4 @@ R('if("serviceWorker" in navigator) window.addEventListener("load", ()=>navigato
   'if("serviceWorker" in navigator && /^jornada\\./.test(location.hostname)) window.addEventListener("load", ()=>navigator.serviceWorker.register("/jornada/sw.js",{scope:"/"}).catch(()=>{}));')
 s = s.replace('<span class="sun">☉&#xFE0E;</span>', '<span class="sun">☽&#xFE0E;</span>')
 open(OUT + "index.html", "w").write(s)
-shutil.copy(SC + 'npm/package/astronomy.browser.min.js', OUT + 'astronomy.browser.min.js')
 print('ok', len(s))

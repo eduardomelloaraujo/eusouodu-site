@@ -275,6 +275,113 @@ textarea{
 
 <style>
 [hidden]{display:none!important}
+/* página de captação */
+.onb.landing .top2{display:none}
+.onb.landing .foot{background:linear-gradient(to top, var(--creme) 70%, rgba(255,245,232,0))}
+.lp{position:relative;padding-bottom:130px}
+.lp-sky{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+.lp-sky i{position:absolute;left:var(--x);bottom:-40px;font-style:normal;font-size:var(--s);font-family:var(--display);font-weight:800;color:var(--tinta);opacity:.13;animation:lpfloat var(--d) linear infinite;animation-delay:var(--w)}
+@keyframes lpfloat{0%{transform:translateY(0) rotate(0)}100%{transform:translateY(-115vh) rotate(160deg)}}
+.lp-hero{display:grid;justify-items:center;text-align:center;gap:12px;padding-top:18px}
+.lp-kicker{font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;border:1.5px solid var(--tinta);border-radius:99px;padding:3px 12px;background:var(--limao);animation:lpbob 3s ease-in-out infinite}
+@keyframes lpbob{50%{transform:translateY(-3px) rotate(-1.5deg)}}
+.lp-hero .logo{font-family:var(--display);font-style:italic;font-weight:900;font-size:clamp(58px,17vw,84px);letter-spacing:-.035em;line-height:.95;background:linear-gradient(100deg,var(--tinta) 30%,var(--chiclete) 50%,var(--tinta) 70%);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:lpshine 6s ease-in-out infinite}
+@keyframes lpshine{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+.lp-wheel{position:relative;width:min(74vw,280px);aspect-ratio:1;margin:4px 0}
+.lp-wheel .spin{width:100%;animation:spin 70s linear infinite}
+.lp-wheel .spin svg{width:100%;height:auto;overflow:visible}
+.lp-orbit{position:absolute;inset:-14px;border:2px dashed var(--chiclete);border-radius:50%;animation:spin 24s linear infinite reverse;opacity:.6}
+.lp-orbit::after{content:"";position:absolute;top:-8px;left:50%;width:14px;height:14px;border-radius:50%;background:var(--limao);border:2.5px solid var(--tinta);box-shadow:0 0 0 4px rgba(242,255,125,.45)}
+.lp .tagline{font-family:var(--display);font-weight:700;font-size:clamp(23px,6.4vw,30px);line-height:1.18;max-width:20ch;text-wrap:balance;margin:2px 0 0}
+.lp-lead{margin:0;max-width:36ch;font-size:16px;line-height:1.55;color:var(--suave);font-weight:500;text-wrap:pretty}
+.lp .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.lp .chips span{border:1.5px solid var(--tinta);border-radius:99px;padding:4px 12px;font-size:13px;font-weight:700;box-shadow:2px 2px 0 var(--tinta)}
+.lp .chips .c1{background:var(--menta)} .lp .chips .c2{background:var(--rosa)} .lp .chips .c3{background:var(--ceu)}
+.lp-cta{max-width:340px;margin-top:8px;background:var(--chiclete);font-size:17px;animation:lppulse 2.6s ease-in-out infinite}
+@keyframes lppulse{0%,100%{box-shadow:4px 4px 0 var(--tinta)}50%{box-shadow:4px 4px 0 var(--tinta),0 0 0 8px rgba(255,79,174,.18)}}
+.lp-fine{margin:0;font-size:13px;color:var(--suave);font-weight:600}
+.lp-sec{margin-top:54px}
+.lp-eyebrow{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--chiclete)}
+.lp h2{font-family:var(--display);font-weight:900;font-size:clamp(27px,7.4vw,34px);line-height:1.08;letter-spacing:-.02em;margin:6px 0 16px;text-wrap:balance}
+.lp h3{font-family:var(--display);font-weight:800;font-size:19px;line-height:1.2;margin:0 0 4px}
+.lp p{line-height:1.55}
+.lp-sub{margin:-6px 0 16px;color:var(--suave);font-weight:500}
+.lp-steps{display:grid;gap:12px}
+.lp-step{display:flex;gap:14px;align-items:flex-start;border:var(--borda);border-radius:20px;padding:14px;background:var(--papel);box-shadow:var(--sombra)}
+.lp-step>b{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:var(--borda);font-family:var(--display);font-size:20px;font-weight:900}
+.lp-step.s1>b{background:var(--pessego)} .lp-step.s2>b{background:var(--lilas)} .lp-step.s3>b{background:var(--limao)}
+.lp-step p{margin:0;font-size:15px;color:var(--suave);font-weight:500}
+.lp-phone{border:var(--borda);border-radius:30px;padding:18px 16px 16px;background:var(--papel);box-shadow:6px 6px 0 var(--tinta);max-width:340px;margin:0 auto;position:relative;overflow:hidden}
+.lp-bar{height:12px;border:2px solid var(--tinta);border-radius:99px;overflow:hidden;background:var(--creme)}
+.lp-bar i{display:block;height:100%;width:30%;background:var(--menta);border-right:2px solid var(--tinta);animation:lpbar 6s ease-in-out infinite}
+@keyframes lpbar{0%,20%{width:30%}60%,100%{width:62%}}
+.lp-q{font-family:var(--display);font-weight:800;font-size:21px;line-height:1.2;margin:16px 0 12px}
+.lp-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lp-opts span{border:var(--borda);border-radius:14px;padding:12px 10px;text-align:center;font-weight:700;background:var(--papel);box-shadow:2px 2px 0 var(--tinta)}
+.lp-opts .ok{animation:lpok 6s ease-in-out infinite}
+@keyframes lpok{0%,25%{background:var(--papel)}32%,100%{background:var(--menta);transform:translate(1px,1px)}}
+.lp-sheet{margin:14px -16px -16px;padding:14px 16px;border-top:var(--borda);background:var(--menta);font-size:14px;font-weight:500;transform:translateY(105%);animation:lpsheet 6s ease-in-out infinite}
+.lp-sheet b{display:block;font-family:var(--display);font-size:18px;font-weight:900}
+@keyframes lpsheet{0%,38%{transform:translateY(105%)}48%,92%{transform:translateY(0)}100%{transform:translateY(105%)}}
+.lp-js{display:grid;gap:14px}
+.lp-j{position:relative;border:var(--borda);border-radius:22px;padding:18px 16px 14px 16px;box-shadow:var(--sombra);overflow:hidden}
+.lp-j.j1{background:var(--pessego)} .lp-j.j2{background:var(--lilas)} .lp-j.j3{background:var(--ceu)}
+.lp-j .n{position:absolute;right:10px;top:-14px;font-family:var(--display);font-style:italic;font-weight:900;font-size:96px;line-height:1;color:rgba(31,20,51,.12)}
+.lp-j p{margin:0 0 10px;font-size:15px;font-weight:500;max-width:40ch;position:relative}
+.lp-j small{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--tinta);border-radius:99px;padding:2px 9px;background:var(--papel)}
+.lp-prices{display:grid;gap:12px}
+.lp-p{position:relative;border:var(--borda);border-radius:22px;padding:16px;background:var(--papel);box-shadow:var(--sombra)}
+.lp-p .pn{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
+.lp-p .pv{font-family:var(--display);font-weight:900;font-size:36px;line-height:1.05;margin:2px 0 6px}
+.lp-p .pv small{font-family:var(--body);font-size:14px;font-weight:700;color:var(--suave)}
+.lp-p p{margin:0;font-size:15px;font-weight:500}
+.lp-p .tag{position:absolute;top:-12px;right:14px;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid var(--tinta);border-radius:99px;padding:2px 9px;background:var(--limao)}
+.lp-p.wk{background:var(--menta)}
+.lp-p.mo{background:var(--rosa);transform:rotate(-.6deg)}
+.lp-p.mo::before{content:"";position:absolute;inset:0;border-radius:20px;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);background-size:250% 100%;animation:lpsweep 4.5s ease-in-out infinite;pointer-events:none}
+@keyframes lpsweep{0%{background-position:120% 0}60%,100%{background-position:-60% 0}}
+.lp-incl{margin:14px 0 0;font-size:14px;font-weight:600;color:var(--suave);text-align:center}
+.lp-tabs{display:grid;grid-template-columns:1fr 1fr;border:var(--borda);border-radius:16px;overflow:hidden;box-shadow:3px 3px 0 var(--tinta);margin-bottom:14px}
+.lp-tabs button{display:flex;align-items:center;justify-content:center;gap:7px;padding:11px;border:0;background:var(--papel);font-weight:800}
+.lp-tabs button+button{border-left:var(--borda)}
+.lp-tabs button.on{background:var(--limao)}
+.lp-tabs svg{width:18px;height:18px}
+.lp-inst{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:st}
+.lp-inst li{counter-increment:st;position:relative;border:var(--borda);border-radius:18px;padding:12px 14px 12px 58px;background:var(--papel)}
+.lp-inst li::before{content:counter(st);position:absolute;left:12px;top:12px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:var(--borda);background:var(--ceu);font-family:var(--display);font-weight:900}
+.lp-inst li b{display:block;font-family:var(--display);font-weight:800;font-size:17px}
+.lp-inst li span{font-size:15px;font-weight:500;color:var(--suave)}
+.lp-inst em{font-style:normal;font-weight:800;color:var(--tinta)}
+.lp-inst .ic{display:inline-grid;place-items:center;width:26px;height:26px;border:1.5px solid var(--tinta);border-radius:8px;background:var(--creme);vertical-align:-7px;color:var(--tinta);margin:0 2px}
+.lp-inst .ic svg{width:16px;height:16px;fill:currentColor}
+.lp-inst li.lp-now{padding:12px;text-align:center}
+.lp-inst li.lp-now::before{display:none}
+.lp-faq{border:var(--borda);border-radius:16px;background:var(--papel);margin-bottom:10px;overflow:hidden}
+.lp-faq summary{cursor:pointer;list-style:none;padding:13px 44px 13px 14px;font-weight:800;position:relative}
+.lp-faq summary::-webkit-details-marker{display:none}
+.lp-faq summary::after{content:"+";position:absolute;right:14px;top:50%;transform:translateY(-50%);font-family:var(--display);font-size:24px;font-weight:900;transition:transform .2s}
+.lp-faq[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.lp-faq[open] summary{background:var(--limao);border-bottom:var(--borda)}
+.lp-faq p{margin:0;padding:12px 14px 14px;font-size:15px;font-weight:500}
+.lp-end{margin-top:56px;display:grid;justify-items:center;text-align:center;gap:10px}
+.lp-end .spin.small{width:120px;animation:spin 40s linear infinite}
+.lp-end .spin svg{width:100%;height:auto}
+.lp-end .link{background:none;border:0;font-weight:700;text-decoration:underline;text-underline-offset:3px;color:var(--suave)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (min-width:700px){
+  .onb.landing{max-width:760px}
+  .lp-steps,.lp-js,.lp-prices{grid-template-columns:repeat(3,1fr)}
+  .lp-step{flex-direction:column}
+  .lp-sec{margin-top:72px}
+}
+@media (prefers-reduced-motion:reduce){
+  .lp *,.lp *::before,.lp *::after{animation:none!important}
+  .lp-sheet{transform:none}
+  .lp-opts .ok{background:var(--menta)}
+  .rv{opacity:1;transform:none;transition:none}
+}
+
 html{-webkit-text-size-adjust:100%}
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{margin:0}
@@ -400,6 +507,9 @@ img{max-width:100%}
 .road.open{background:var(--limao)} .road.open .num{background:var(--chiclete)}
 .road.done{background:var(--menta)}
 .road.soon{box-shadow:none;border-style:dashed;background:rgba(255,255,255,.55)}
+.road.locked{background:rgba(255,255,255,.7)} .road.locked .num{background:var(--lilas)}
+.road .st .lock{display:inline-block;width:11px;height:11px;margin-right:4px;vertical-align:-1px;position:static}
+.road .st .lock svg{width:11px;height:11px;fill:var(--tinta)}
 .road.soon .num{border-style:dashed;color:var(--suave)}
 .road.soon b{color:var(--suave)}
 .sec{display:flex;align-items:baseline;justify-content:space-between;margin-top:40px}
@@ -551,7 +661,7 @@ img{max-width:100%}
   </div>
 
   <div class="inc"><b>Os dois liberam o mesmo conteúdo</b>
-    <ul><li>As 12 subjornadas da linguagem, de Áries a Peixes: 60 lições</li><li>Todas as 36 cartas de mito e filosofia</li><li>Luas ilimitadas, sem pausa por erro</li><li>As novas lições do mapa natal e dos trânsitos assim que forem lançadas, sem custo extra</li></ul>
+    <ul><li>As 12 subjornadas da linguagem, de Áries a Peixes: 60 lições</li><li>As 12 lições do próprio mapa natal</li><li>As 12 lições dos trânsitos, com o céu de verdade</li><li>Todas as 36 cartas de mito e filosofia</li><li>Luas ilimitadas, sem pausa por erro</li></ul>
   </div>
 
   <div style="overflow-x:auto">
@@ -816,16 +926,18 @@ function startOnb(edit){
 }
 function renderOnb(){
   const st = OSTEPS[ob.step], d=ob.d, box=$("ostage");
+  $("onb").classList.toggle("landing", st==="intro"); if(st!=="intro") window.scrollTo(0,0);
   $("odots").innerHTML = OSTEPS.slice(1,6).map((_,i)=>`<i class="${i<ob.step?"on":""}"></i>`).join("");
   $("odots").style.visibility = (st==="intro"||st==="calc")?"hidden":"visible";
   $("oBack").style.visibility = (ob.step>(ob.edit?1:0) && st!=="calc")?"visible":"hidden";
   const next=$("oNext"), alt=$("oAlt"); alt.hidden=true; next.hidden=false; next.disabled=false;
   const err = `<p class="oerr" id="oerr"></p>`;
   if(st==="intro"){
-    box.innerHTML = `<div class="hero"><div class="logo">Jornada</div><div class="spin">${wheelSVG(null,true)}</div><div class="tagline">Astrologia, mito e filosofia. Um passo por dia, a partir do próprio mapa.</div><div class="chips"><span>12 signos</span><span>36 cartas</span><span>Mapa natal</span></div></div>`;
-    next.textContent="Começar"; alt.hidden=false; alt.textContent="Já tenho uma conta";
+    box.innerHTML = landingHTML();
+    next.textContent="Começar grátis"; alt.hidden=false; alt.textContent="Já tenho uma conta";
     alt.onclick=loginModal;
     next.onclick=()=>{ ob.step++; renderOnb(); };
+    landingWire();
   }
   if(st==="name"){
     box.innerHTML = `<h2>Primeiro, um nome</h2><p class="sub">É assim que a jornada vai chamar.</p><input class="field" id="f1" type="text" autocomplete="given-name" placeholder="Nome" value="${esc(d.name||"")}">${err}`;
@@ -987,8 +1099,8 @@ function wheelSVG(newLit, all){
 const OFFS = [0,-60,-78,-34,30,64];
 const INTRO = {
   1:`<b>Aprender a linguagem.</b> Doze subjornadas, de Áries a Peixes. Cada uma atravessa o signo, o mito, o planeta regente, o deus por trás dele e uma ideia filosófica.`,
-  2:`<b>Encontrar no próprio mapa.</b> Aqui o símbolo vira espelho: cada lição usa o mapa natal de quem joga. A primeira já está aberta; as próximas chegam aos poucos.`,
-  3:`<b>Ler os trânsitos.</b> A energia astrológica de cada dia passando sobre o mapa. A lição do dia já está aberta; as próximas chegam aos poucos.`
+  2:`<b>Encontrar no próprio mapa.</b> Aqui o símbolo vira espelho: doze lições montadas a partir do mapa natal de quem joga, do Ascendente à síntese. A primeira é grátis.`,
+  3:`<b>Ler os trânsitos.</b> O céu de verdade passando sobre o mapa: fases da Lua, retrogradações, eclipses, o retorno de Saturno, a revolução solar. A lição do dia é grátis e muda todo dia.`
 };
 function lessonOpen(ui, li){
   if(ui>0 && !planActive()) return false;
@@ -1041,14 +1153,29 @@ function renderJ1(body){
   });
 }
 function renderRoad(body, list){
+  const j = list===J2 ? 2 : 3, on = planActive();
   const box = document.createElement("div"); box.className="roadmap";
   list.forEach((it,i)=>{
-    const L = it[2], done = L && S.done.includes(L.id);
     const b = document.createElement("button");
-    b.className = "road " + (L ? (done?"done":"open") : "soon");
-    b.innerHTML = `<span class="num">${i+1}</span><span><b>${esc(it[0])}</b><small>${esc(it[1])}</small></span><span class="st">${L?(done?"Feita":"Jogar"):"Em breve"}</span>`;
-    if(list===J2 && i===0 && !L){ b.className="road open"; b.querySelector(".st").textContent="Completar"; }
-    b.onclick = () => { if(L){ if(L.id==="hoje" && S.daily===today()) return; startLesson(L); } else if(list===J2 && i===0) startOnb(true); };
+    let cls="open", st="Jogar", sub=it[1], go=null;
+    if(i===0){
+      const L=it[2];
+      if(j===3){ const dd=S.daily===today(); cls=dd?"done":"open"; st=dd?"Feita hoje":"Jogar"; go=()=>{ if(!dd && L) startLesson(L); }; }
+      else if(!L){ st="Completar"; go=()=>startOnb(true); }
+      else { const dn=S.done.includes(L.id); cls=dn?"done":"open"; st=dn?"Feita":"Jogar"; go=()=>startLesson(L); }
+    } else if(!on){
+      cls="locked"; st="Com plano"; go=payModal;
+    } else if(!CT){
+      st="Abrir"; go=async()=>{ toast("Abrindo a lição…"); await loadContent(); const L=buildJ(j,i); if(L && !L.needTime) startLesson(L); else if(L && L.needTime) startOnb(true); else toast("A lição não carregou. Confira a internet e tente de novo."); };
+    } else {
+      const L=buildJ(j,i);
+      if(!L){ cls="soon"; st="Indisponível"; }
+      else if(L.needTime){ st="Completar"; sub="Precisa da hora de nascimento: toque para completar"; go=()=>startOnb(true); }
+      else { const dn=S.done.includes(L.id); cls=dn?"done":"open"; st=dn?"Feita":"Jogar"; go=()=>startLesson(L); }
+    }
+    b.className = "road "+cls;
+    b.innerHTML = `<span class="num">${i+1}</span><span><b>${esc(it[0])}</b><small>${esc(sub)}</small></span><span class="st">${cls==="locked"?lockIcon():""}${esc(st)}</span>`;
+    b.onclick = () => { if(go) go(); };
     box.appendChild(b);
   });
   body.appendChild(box);
@@ -1178,6 +1305,7 @@ async function loadContent(){
     const r = await api("conteudo");
     const bySlug = Object.fromEntries(r.unidades.map(u=>[u.slug,u]));
     UNITS = UNITS.map(u => bySlug[u.slug] || u);
+    if(r.mapa && r.transitos) CT = {mapa:r.mapa, transitos:r.transitos};
     contentLoaded=true; renderIfHome();
   }catch(e){ if(e.status===402){ S.plan=S.plan&&{...S.plan, ativo:false}; } }
 }
@@ -1251,6 +1379,523 @@ function renderInstall(){
   const go=$("insGo"); if(go) go.onclick=async()=>{ deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null; renderInstall(); };
 }
 if("serviceWorker" in navigator && /^jornada\./.test(location.hostname)) window.addEventListener("load", ()=>navigator.serviceWorker.register("/jornada/sw.js",{scope:"/"}).catch(()=>{}));
+
+/* ---------- jornadas 2 e 3: lições montadas a partir do mapa natal e do céu real ---------- */
+// O texto vem do servidor (lib/jornada/mapa.json e transitos.json) para quem tem plano ativo.
+let CT = null;
+const PNX = Object.assign({}, PN, {urano:["Urano","Urano"], netuno:["Netuno","Netuno"], plutao:["Plutão","Plutão"]});
+const PGL = {sol:"☉", lua:"☽", merc:"☿", venus:"♀", marte:"♂", jupiter:"♃", saturno:"♄", urano:"♅", netuno:"♆", plutao:"♇", asc:"AC"};
+const KW = {sol:"a identidade", lua:"as emoções", merc:"o pensamento", venus:"o afeto", marte:"o desejo", jupiter:"a fé", saturno:"o limite", urano:"a ruptura", netuno:"o sonho", plutao:"a transformação"};
+const ASP = [["conjuncao",0,"Conjunção","☌"],["sextil",60,"Sextil","⚹"],["quadratura",90,"Quadratura","□"],["trigono",120,"Trígono","△"],["oposicao",180,"Oposição","☍"]];
+const ELN = {fogo:"Fogo", terra:"Terra", ar:"Ar", agua:"Água"};
+const MODN = ["cardinal","fixo","mutavel"], MODL = {cardinal:"Cardinal", fixo:"Fixa", mutavel:"Mutável"};
+const FASES = ["Lua nova","Lua crescente","Quarto crescente","Lua gibosa","Lua cheia","Lua disseminadora","Quarto minguante","Lua balsâmica"];
+const HINT = "Uma frase basta. Sem certo nem errado.";
+const BODY = {merc:"Mercury", venus:"Venus", marte:"Mars", jupiter:"Jupiter", saturno:"Saturn", urano:"Uranus", netuno:"Neptune", plutao:"Pluto"};
+const norm360 = x => ((x%360)+360)%360;
+const wrap180 = x => { x = norm360(x); return x>180 ? x-360 : x; };
+const first = () => ((S.user&&S.user.name)||"").trim().split(" ")[0];
+const others3 = (right, pool) => shuffle(pool.filter(x=>x!==right)).slice(0,3);
+const signOpts = s => [SIGN_NAMES[s], ...others3(SIGN_NAMES[s], SIGN_NAMES)];
+const houseOf = lon => ((signOf(lon)-signOf(S.chart.asc)+12)%12)+1;
+const hasAsc = () => !!(S.chart && S.chart.hasAsc);
+const fmtMY = d => d.toLocaleDateString("pt-BR",{month:"long", year:"numeric"});
+const fmtDY = d => d.toLocaleDateString("pt-BR",{day:"numeric", month:"long", year:"numeric"});
+const art = k => PNX[k][1];             // "o Sol", "a Lua", "Mercúrio", "o Vênus"
+const Art = k => cap1(PNX[k][1]);
+const nm = k => PNX[k][0];
+
+function lonAt(k, date){
+  const A = window.Astronomy;
+  if(k==="sol") return A.SunPosition(date).elon;
+  if(k==="lua") return A.EclipticGeoMoon(date).lon;
+  return A.Ecliptic(A.GeoVector(A.Body[BODY[k]], date, true)).elon;
+}
+function birthDate(){
+  const u=S.user, c=u&&u.cityData; if(!u||!c) return null;
+  const [y,m,d]=u.birth.split("-").map(Number), [h,mi]=(u.unknownTime?"12:00":u.time).split(":").map(Number);
+  return localToUTC(y,m,d,h,mi,c[3]);
+}
+function ascAt(date, lat, lon){
+  const A=window.Astronomy;
+  const ramc = norm360(A.SiderealTime(date)*15 + lon);
+  const T2 = (date - Date.UTC(2000,0,1,12)) / (36525*864e5);
+  const e=(23.4393-0.0130*T2)*Math.PI/180, rr=ramc*Math.PI/180, ph=lat*Math.PI/180;
+  return norm360(Math.atan2(Math.cos(rr), -(Math.sin(rr)*Math.cos(e) + Math.tan(ph)*Math.sin(e)))*180/Math.PI);
+}
+function meanNode(date){ const T=(date - Date.UTC(2000,0,1,12))/(36525*864e5); return norm360(125.04452 - 1934.136261*T + 0.0020708*T*T); }
+const isRetro = (k, date) => wrap180(lonAt(k, new Date(+date+864e5/2)) - lonAt(k, new Date(+date-864e5/2))) < 0;
+// períodos retrógrados a partir de uma data, amostrando dia a dia
+function retroPeriods(k, from, days){
+  const out=[]; let cur=null, prev=lonAt(k,from);
+  for(let i=1;i<=days;i++){
+    const d=new Date(+from+i*864e5), l=lonAt(k,d), rx=wrap180(l-prev)<0; prev=l;
+    if(rx && !cur) cur={start:d, lon:l};
+    if(!rx && cur){ cur.end=d; out.push(cur); cur=null; if(out.length>=2) break; }
+  }
+  if(cur){ cur.end=null; out.push(cur); }
+  return out;
+}
+function nextIngress(k, from, days){
+  const s0=signOf(lonAt(k,from));
+  for(let i=1;i<=days;i++){ const d=new Date(+from+i*864e5), s=signOf(lonAt(k,d)); if(s!==s0) return {date:d, sign:s}; }
+  return null;
+}
+const houseTxt = lon => hasAsc() ? `, na casa ${houseOf(lon)} deste mapa` : "";
+const posLine = k => `Neste mapa, ${art(k)} está em ${SIGN_NAMES[signOf(S.chart.pts[k])]}, a ${degOf(S.chart.pts[k])} graus${hasAsc()?`, na casa ${houseOf(S.chart.pts[k])}`:""}.`;
+const T_ = (o, fb) => (o && o.title) || fb || "";
+const B_ = o => (o && o.body) ? o.body.slice() : [];
+function digStep(k){
+  const s=signOf(S.chart.pts[k]), dg=dignity(k,s);
+  const opts=[dg, ...shuffle(["Domicílio","Exaltação","Exílio","Queda","Nenhuma: ele é peregrino"].filter(x=>x!==dg)).slice(0,3)];
+  return {type:"choice", q:`Para ${art(k)}, ${SIGN_NAMES[s]} é signo de:`, opts, a:0, explain:DIG_TXT[dg]};
+}
+function houseChoice(k){
+  const h=houseOf(S.chart.pts[k]);
+  return {type:"choice", chart:true, q:`E em qual casa ${art(k)} está neste mapa?`, opts:["Casa "+h, ...others3(h,[1,2,3,4,5,6,7,8,9,10,11,12]).map(n=>"Casa "+n)], a:0,
+    explain:`A casa ${h} fala de ${HOUSES[h]}. É o terreno onde ${art(k)} trabalha.`};
+}
+const needTime = (id, title) => ({id, needTime:true, title});
+
+/* ----- jornada 2 ----- */
+function j2Planet(k, id, nextName){
+  const c=CT.mapa[k], P=S.chart.pts[k], s=signOf(P), sg=c.signs[s];
+  const steps=[
+    {type:"teach", chart:true, eyebrow:`O mapa de ${first()}`, title:c.intro.title, body:c.intro.body},
+    Object.assign({type:"match"}, c.match),
+    {type:"choice", chart:true, q:`Em que signo está ${art(k)} neste mapa?`, opts:signOpts(s), a:0, explain:c.signQ.explain},
+    {type:"teach", glyph:SIGNS[s], eyebrow:`${nm(k)} em ${SIGN_NAMES[s]} · ${degOf(P)} graus`, title:sg.title, body:sg.body},
+    digStep(k)
+  ];
+  if(hasAsc()){ const h=houseOf(P), hc=c.houses[h-1]; steps.push(houseChoice(k), {type:"teach", glyph:PGL[k], eyebrow:`Casa ${h}`, title:hc.title, body:hc.body}); }
+  steps.push({type:"reflect", q:sg.q, hint:HINT});
+  return {id, kind:"No mapa", title:nm(k), glyph:PGL[k], light:"planet:"+k, card:null,
+    doneTitle:`${Art(k)} acendeu no mapa`,
+    doneText:`${posLine(k)} ${nextName?`Próxima parada: ${nextName}.`:""}`.trim(), steps};
+}
+function j2JupSat(id){
+  const M=CT.mapa, steps=[{type:"teach", glyph:"♃", eyebrow:"Júpiter e Saturno", title:M.par.title, body:M.par.body}, Object.assign({type:"choice", a:0}, M.ciclos)];
+  for(const k of ["jupiter","saturno"]){
+    const c=M[k], P=S.chart.pts[k], s=signOf(P), sg=c.signs[s];
+    steps.push({type:"teach", glyph:PGL[k], eyebrow:nm(k), title:c.intro.title, body:c.intro.body});
+    const body=[posLine(k), ...sg.body]; if(hasAsc()) body.push(...c.houses[houseOf(P)-1].body);
+    steps.push({type:"teach", glyph:SIGNS[s], eyebrow:`${nm(k)} em ${SIGN_NAMES[s]}`, title:sg.title, body}, digStep(k));
+  }
+  steps.push({type:"reflect", q:M.saturno.signs[signOf(S.chart.pts.saturno)].q, hint:HINT});
+  return {id, kind:"No mapa", title:"Júpiter e Saturno", glyph:"♃", light:"planet:jupiter", card:null,
+    doneTitle:"O que expande e o que dá forma", doneText:`Júpiter em ${SIGN_NAMES[signOf(S.chart.pts.jupiter)]}, Saturno em ${SIGN_NAMES[signOf(S.chart.pts.saturno)]}. Próxima parada: os planetas de geração.`, steps};
+}
+function j2Lentos(id){
+  const c=CT.mapa.lentos, steps=[{type:"teach", glyph:"♅", eyebrow:"Os planetas de geração", title:c.intro.title, body:c.intro.body}, Object.assign({type:"choice", a:0}, c.choice)];
+  steps.push({type:"choice", chart:true, q:"Em que signo está Plutão neste mapa?", opts:signOpts(signOf(S.chart.pts.plutao)), a:0,
+    explain:"Plutão leva de 12 a 30 anos em cada signo. Quem nasceu perto do mesmo ano divide esse Plutão: o signo fala da geração, a casa fala de cada um."});
+  for(const k of ["urano","netuno","plutao"]){
+    const P=S.chart.pts[k], s=signOf(P), sg=(c[k].signs||{})[String(s)];
+    const body=[posLine(k), ...(sg?sg.body:B_(c[k].intro))]; if(hasAsc()) body.push(...c[k].houses[houseOf(P)-1].body);
+    steps.push({type:"teach", glyph:PGL[k], eyebrow:`${nm(k)} em ${SIGN_NAMES[s]}`, title:sg?sg.title:T_(c[k].intro), body});
+  }
+  steps.push({type:"reflect", q:c.q, hint:HINT});
+  return {id, kind:"No mapa", title:"Urano, Netuno e Plutão", glyph:"♇", light:"planet:plutao", card:null,
+    doneTitle:"A geração e a pessoa", doneText:"O que é de todo mundo, morando numa casa só deste mapa. Próxima parada: as doze casas.", steps};
+}
+function j2Casas(id){
+  if(!hasAsc()) return needTime(id, "As doze casas");
+  const c=CT.mapa.casas, ks=["sol","lua","merc","venus","marte","jupiter","saturno","urano","netuno","plutao"];
+  const occ={}; ks.forEach(k=>{ const h=houseOf(S.chart.pts[k]); (occ[h]=occ[h]||[]).push(k); });
+  const rank=h=>(occ[h]||[]).length*10 + ((occ[h]||[]).some(k=>k==="sol"||k==="lua")?1:0);
+  const hs=[1,2,3,4,5,6,7,8,9,10,11,12], top=hs.slice().sort((a,b)=>rank(b)-rank(a))[0], hc=c.houses[top-1];
+  const empty=hs.filter(h=>!occ[h]);
+  const lista=occ[top].map(art); const listaTxt = lista.length>1 ? lista.slice(0,-1).join(", ")+" e "+lista.at(-1) : lista[0];
+  const steps=[
+    {type:"teach", chart:true, eyebrow:`O mapa de ${first()}`, title:c.intro.title, body:c.intro.body},
+    {type:"teach", glyph:"✛", eyebrow:"Os ângulos", title:c.angulos.title, body:c.angulos.body},
+    Object.assign({type:"order"}, c.order),
+    {type:"choice", chart:true, q:"Qual casa reúne mais planetas neste mapa?", opts:["Casa "+top, ...others3(top, hs.filter(h=>rank(h)<rank(top))).map(n=>"Casa "+n)], a:0,
+     explain:`Na casa ${top} estão ${listaTxt}. É ali que este mapa concentra a vida.`},
+    {type:"teach", glyph:String(top), eyebrow:`Casa ${top} · ${occ[top].length} ${occ[top].length>1?"planetas":"planeta"}`, title:cap1(hc.name), body:hc.body},
+  ];
+  if(empty.length) steps.push({type:"teach", glyph:"◯", eyebrow:"As casas vazias", title:c.vazia.title, body:[`Neste mapa, ${empty.length} ${empty.length>1?"casas estão vazias":"casa está vazia"}: ${empty.length>1?empty.slice(0,-1).join(", ")+" e "+empty.at(-1):empty[0]}.`, ...c.vazia.body]});
+  steps.push({type:"reflect", q:hc.q, hint:HINT});
+  return {id, kind:"No mapa", title:"As doze casas", glyph:"✛", light:null, card:null, doneTitle:"Os cenários do mapa", doneText:`A casa ${top} é a mais cheia deste mapa. Próxima parada: os aspectos.`, steps};
+}
+function aspectsBetween(A, B, orbs){
+  const out=[];
+  for(const [ka,la] of A) for(const [kb,lb] of B){
+    if(ka===kb) continue;
+    const d=Math.abs(wrap180(la-lb));
+    for(const [t,ang,name,gl] of ASP){ const orb=Math.abs(d-ang), lim=orbs[t]; if(orb<=lim) out.push({a:ka, b:kb, t, name, gl, orb, ang}); }
+  }
+  return out.sort((x,y)=>x.orb-y.orb);
+}
+function j2Aspectos(id){
+  const c=CT.mapa.aspectos, P=S.chart.pts;
+  const pess=["sol","lua","merc","venus","marte","jupiter","saturno"], all=pess.concat(["urano","netuno","plutao"]);
+  const seen=new Set(), asp=[];
+  aspectsBetween(pess.map(k=>[k,P[k]]), all.map(k=>[k,P[k]]), {conjuncao:6, sextil:4, quadratura:6, trigono:6, oposicao:6}).forEach(x=>{
+    const key=[x.a,x.b].sort().join("|"); if(seen.has(key)) return; seen.add(key); asp.push(x); });
+  const fill = (x) => c.tipos[x.t].combo.replaceAll("{A}",art(x.a)).replaceAll("{B}",art(x.b)).replaceAll("{a}",KW[x.a]).replaceAll("{b}",KW[x.b]);
+  const steps=[{type:"teach", chart:true, eyebrow:"As conversas do mapa", title:c.intro.title, body:c.intro.body}, Object.assign({type:"match"}, c.match)];
+  const names=ASP.map(a=>a[2]);
+  asp.slice(0,2).forEach((x,i)=>{
+    const tp=c.tipos[x.t], orb=Math.round(x.orb*10)/10;
+    if(i===0) steps.push({type:"choice", chart:true, q:`Qual aspecto liga ${art(x.a)} e ${art(x.b)} neste mapa?`, opts:[x.name, ...others3(x.name,names)], a:0,
+      explain:`${Art(x.a)} e ${art(x.b)} estão a ${Math.round(Math.abs(wrap180(P[x.a]-P[x.b])))} graus um do outro, perto dos ${x.ang} graus de ${x.t==='conjuncao'?'uma':'um'} ${x.name.toLowerCase()}.`});
+    steps.push({type:"teach", glyph:x.gl, eyebrow:`${x.name} · ${orb.toString().replace(".",",")} ${orb===1?"grau":"graus"} de folga`, title:`${Art(x.a)} e ${art(x.b)}`, body:[...tp.body, fill(x)]});
+  });
+  if(!asp.length) steps.push({type:"teach", glyph:"◯", eyebrow:"Neste mapa", title:c.nenhum.title, body:c.nenhum.body});
+  steps.push({type:"reflect", q:asp.length?c.tipos[asp[0].t].q:c.tipos.conjuncao.q, hint:HINT});
+  return {id, kind:"No mapa", title:"Os aspectos", glyph:"△", light:null, card:null, doneTitle:"As conversas entre os planetas",
+    doneText:asp.length?`O aspecto mais exato deste mapa: ${art(asp[0].a)} e ${art(asp[0].b)} em ${asp[0].name.toLowerCase()}. Próxima parada: os nodos lunares.`:"Próxima parada: os nodos lunares.", steps};
+}
+function j2Nodos(id){
+  const c=CT.mapa.nodos, bd=birthDate(); if(!bd) return null;
+  const N=meanNode(bd), s=signOf(N), op=(s+6)%12, ex=c.eixos[s];
+  const steps=[
+    {type:"teach", glyph:"☊", eyebrow:"Os nodos lunares", title:c.intro.title, body:c.intro.body},
+    {type:"choice", q:"Em que signo está o Nodo Norte neste mapa?", opts:signOpts(s), a:0, explain:`No nascimento, o Nodo Norte estava em ${SIGN_NAMES[s]}, a ${degOf(N)} graus. Ele leva cerca de um ano e meio em cada signo, caminhando ao contrário da ordem dos signos.`},
+    {type:"choice", q:`Com o Nodo Norte em ${SIGN_NAMES[s]}, onde fica o Nodo Sul?`, opts:signOpts(op), a:0, explain:"Os dois nodos são sempre opostos: são as duas pontas da mesma linha, a cabeça e a cauda do dragão."},
+    {type:"teach", glyph:"☊", eyebrow:`Nodo Norte em ${SIGN_NAMES[s]}`, title:ex.title, body:ex.body}
+  ];
+  if(hasAsc()){ const h=houseOf(N); steps.push({type:"teach", glyph:"☋", eyebrow:`Casa ${h}`, title:c.houses[h-1].title, body:c.houses[h-1].body}); }
+  steps.push({type:"reflect", q:ex.q, hint:HINT});
+  return {id, kind:"No mapa", title:"Os nodos lunares", glyph:"☊", light:null, card:null, doneTitle:"A cabeça e a cauda do dragão", doneText:`Nodo Norte em ${SIGN_NAMES[s]}, Nodo Sul em ${SIGN_NAMES[op]}. Próxima parada: a síntese.`, steps};
+}
+function j2Sintese(id){
+  const c=CT.mapa.sintese, P=S.chart.pts, w={sol:2,lua:2,merc:1,venus:1,marte:1,jupiter:1,saturno:1};
+  const el={fogo:0,terra:0,ar:0,agua:0}, md={cardinal:0,fixo:0,mutavel:0};
+  const add=(lon,n)=>{ const s=signOf(lon); el[SIGN_EL[s]]+=n; md[MODN[s%3]]+=n; };
+  for(const k in w) add(P[k], w[k]); if(hasAsc()) add(S.chart.asc, 2);
+  const els=Object.keys(el).sort((a,b)=>el[b]-el[a]), mds=Object.keys(md).sort((a,b)=>md[b]-md[a]);
+  const dom=els[0], low=els[3], mdom=mds[0];
+  const trio=`Sol em ${SIGN_NAMES[signOf(P.sol)]}, Lua em ${SIGN_NAMES[signOf(P.lua)]}${hasAsc()?`, Ascendente em ${SIGN_NAMES[signOf(S.chart.asc)]}`:""}.`;
+  const steps=[
+    {type:"teach", chart:true, eyebrow:`O mapa de ${first()}`, title:c.intro.title, body:[...c.intro.body, `Neste mapa: ${trio}`]},
+    {type:"choice", q:"Qual elemento predomina neste mapa?", opts:[ELN[dom], ...Object.values(ELN).filter(x=>x!==ELN[dom])], a:0,
+     explain:`Contando Sol, Lua${hasAsc()?" e Ascendente com peso dois":" com peso dois"} e os outros planetas pessoais, ${ELN[dom].toLowerCase()} soma ${el[dom]} pontos neste mapa.`},
+    {type:"teach", glyph:"△", eyebrow:`Muito ${ELN[dom].toLowerCase()}`, title:c.elementos[dom].muito.title, body:c.elementos[dom].muito.body}
+  ];
+  if(el[low] <= 2) steps.push({type:"teach", glyph:"▽", eyebrow:`Pouco ${ELN[low].toLowerCase()}`, title:c.elementos[low].pouco.title, body:c.elementos[low].pouco.body});
+  steps.push({type:"choice", q:"E qual modalidade predomina?", opts:[MODL[mdom], ...Object.values(MODL).filter(x=>x!==MODL[mdom]), "Nenhuma: todas empatam"], a:0,
+    explain:"Cardinal começa, fixo sustenta, mutável transforma. É o jeito como este mapa se move no tempo."},
+    {type:"teach", glyph:"◯", eyebrow:`Modalidade ${MODL[mdom].toLowerCase()}`, title:c.modos[mdom].title, body:c.modos[mdom].body},
+    {type:"teach", chart:true, eyebrow:"A síntese", title:c.fim.title, body:c.fim.body},
+    {type:"reflect", q:c.q, hint:HINT});
+  return {id, kind:"No mapa", title:"A síntese", glyph:"✦", light:null, card:null, doneTitle:"O mapa inteiro como uma história", doneText:"A segunda jornada termina aqui. A terceira coloca este mapa em movimento: a energia astrológica de cada dia passando sobre ele.", steps};
+}
+
+/* ----- jornada 3 ----- */
+const NOW = () => new Date();
+function j3Lua(id){
+  const c=CT.transitos.lua, A=window.Astronomy, now=NOW();
+  const ph=A.MoonPhase(now), fi=Math.floor(norm360(ph)/45), ill=Math.round(A.Illumination(A.Body.Moon, now).phase_fraction*100);
+  const nn=A.SearchMoonPhase(0, now, 40).date, nf=A.SearchMoonPhase(180, now, 40).date;
+  const where = d => { const l=lonAt("lua", d); return `em ${SIGN_NAMES[signOf(l)]}${houseTxt(l)}`; };
+  const steps=[
+    {type:"teach", glyph:"☽", eyebrow:"A Lua e suas fases", title:c.intro.title, body:c.intro.body},
+    Object.assign({type:"order"}, c.order),
+    {type:"teach", glyph:"☽", eyebrow:"Hoje · "+fmtD(now), title:c.fases[fi].title||FASES[fi], body:[`Fase de hoje: ${FASES[fi]}, com ${ill}% do disco iluminado.`, ...c.fases[fi].body, `A próxima Lua nova é em ${fmtD(nn)}, ${where(nn)}. A próxima Lua cheia, em ${fmtD(nf)}, ${where(nf)}.`]}
+  ];
+  const bd=birthDate();
+  if(bd){ const ni=Math.floor(norm360(A.MoonPhase(bd))/45);
+    steps.push({type:"choice", q:`Em que fase estava a Lua no nascimento de ${first()}?`, opts:[FASES[ni], ...others3(FASES[ni],FASES)], a:0, explain:"A fase natal mostra a conversa entre o Sol e a Lua no instante do nascimento: o quanto a luz já tinha crescido ou minguado."},
+      {type:"teach", glyph:"☽", eyebrow:`No nascimento · ${FASES[ni]}`, title:c.natal[ni].title, body:c.natal[ni].body}); }
+  steps.push({type:"reflect", q:c.q, hint:HINT});
+  return {id, kind:"Trânsitos", title:"A Lua e suas fases", glyph:"☽", light:null, card:null, doneTitle:"O ritmo da Lua", doneText:`Próxima Lua nova: ${fmtD(nn)}. Próxima Lua cheia: ${fmtD(nf)}.`, steps};
+}
+function rxLine(k, nomeTxt){
+  const now=NOW(), dias={merc:400, venus:620, marte:820}[k];
+  const per=retroPeriods(k, new Date(+now-1*864e5), dias);
+  if(isRetro(k, now)){ const p=per[0]; return {agora:true, txt:`${nomeTxt} está retrógrado agora, em ${SIGN_NAMES[signOf(lonAt(k,now))]}${houseTxt(lonAt(k,now))}${p&&p.end?`, até por volta de ${fmtD(p.end)}`:""}.`}; }
+  const p=per[0]; if(!p) return {txt:""};
+  return {txt:`O próximo ${nomeTxt.replace(/^O /,"")} retrógrado começa por volta de ${fmtDY(p.start)}, em ${SIGN_NAMES[signOf(p.lon)]}${houseTxt(p.lon)}${p.end?`, e termina por volta de ${fmtD(p.end)}`:""}.`, p};
+}
+function j3Mercurio(id){
+  const c=CT.transitos.mercurio, r=rxLine("merc","Mercúrio"), bd=birthDate();
+  const steps=[{type:"teach", glyph:"☿", eyebrow:"Mercúrio retrógrado", title:c.intro.title, body:c.intro.body}, Object.assign({type:"choice", a:0}, c.choice),
+    {type:"teach", glyph:"☿", eyebrow:r.agora?"Agora":"O próximo", title:c.periodo.title, body:[r.txt, ...c.periodo.body].filter(Boolean)}];
+  if(bd){ const rx=isRetro("merc", bd), o=rx?c.natal_rx:c.natal_direto;
+    steps.push({type:"choice", q:`No nascimento de ${first()}, Mercúrio estava:`, opts:rx?["Retrógrado","Direto","Estacionado no Sol","Fora do zodíaco"]:["Direto","Retrógrado","Estacionado no Sol","Fora do zodíaco"], a:0, explain:"Nascer com Mercúrio retrógrado acontece com cerca de uma em cada cinco pessoas. Muda o caminho do pensamento, não a inteligência."},
+      {type:"teach", glyph:"☿", eyebrow:"No nascimento", title:o.title, body:o.body}); }
+  steps.push({type:"reflect", q:c.q, hint:HINT});
+  return {id, kind:"Trânsitos", title:"Mercúrio retrógrado", glyph:"☿", light:null, card:null, doneTitle:"A ilusão de ótica de Hermes", doneText:r.txt||"Mercúrio fica retrógrado cerca de três vezes por ano.", steps};
+}
+function j3Venus(id){
+  const c=CT.transitos.venus, A=window.Astronomy, bd=birthDate(), now=NOW();
+  const steps=[{type:"teach", glyph:"♀", eyebrow:"Os ciclos do Vênus", title:c.intro.title, body:c.intro.body}, Object.assign({type:"choice", a:0}, c.choice)];
+  if(bd){ const e=A.Elongation(A.Body.Venus, bd), m=e.visibility==="morning";
+    steps.push({type:"choice", q:`No nascimento de ${first()}, o Vênus era:`, opts:m?["Estrela da manhã","Estrela da tarde"]:["Estrela da tarde","Estrela da manhã"], a:0, explain:m?"O Vênus estava a oeste do Sol: nascia antes dele e brilhava na madrugada.":"O Vênus estava a leste do Sol: aparecia depois do pôr do Sol, no começo da noite."},
+      {type:"teach", glyph:"♀", eyebrow:"No nascimento", title:(m?c.manha:c.tarde).title, body:(m?c.manha:c.tarde).body}); }
+  const en=A.Elongation(A.Body.Venus, now), r=rxLine("venus","O Vênus");
+  steps.push({type:"teach", glyph:"♀", eyebrow:"Agora · "+fmtD(now), title:c.rx.title, body:[`Hoje o Vênus está em ${SIGN_NAMES[signOf(lonAt("venus",now))]}${houseTxt(lonAt("venus",now))} e aparece como estrela da ${en.visibility==="morning"?"manhã":"tarde"}.`, r.txt, ...c.rx.body].filter(Boolean)},
+    {type:"reflect", q:c.q, hint:HINT});
+  return {id, kind:"Trânsitos", title:"Os ciclos do Vênus", glyph:"♀", light:null, card:null, doneTitle:"Estrela da manhã, estrela da tarde", doneText:r.txt||"", steps};
+}
+function j3Lento(k, id, title, glyph, dias){
+  const c=CT.transitos[k], now=NOW(), l=lonAt(k,now), s=signOf(l), ing=nextIngress(k, now, dias);
+  const line=`Hoje ${art(k)} está em ${SIGN_NAMES[s]}${houseTxt(l)}${isRetro(k,now)?", em movimento retrógrado":""}.${ing?` Entra em ${SIGN_NAMES[ing.sign]} por volta de ${fmtDY(ing.date)}.`:""}`;
+  const steps=[{type:"teach", glyph, eyebrow:title, title:c.intro.title, body:c.intro.body}, Object.assign({type:"choice", a:0}, c.choice)];
+  if(hasAsc()){ const h=houseOf(l), hc=c.houses[h-1];
+    steps.push({type:"choice", chart:true, q:`Por qual casa deste mapa ${art(k)} passa agora?`, opts:["Casa "+h, ...others3(h,[1,2,3,4,5,6,7,8,9,10,11,12]).map(n=>"Casa "+n)], a:0, explain:`Com Ascendente em ${SIGN_NAMES[signOf(S.chart.asc)]}, ${SIGN_NAMES[s]} é a casa ${h}: ${HOUSES[h]}.`},
+      {type:"teach", glyph, eyebrow:`Agora · casa ${h}`, title:hc.title, body:[line, ...hc.body]});
+    steps.push({type:"reflect", q:hc.q||c.q, hint:HINT});
+  } else {
+    steps.push({type:"teach", glyph, eyebrow:"Agora", title:`${Art(k)} em ${SIGN_NAMES[s]}`, body:[line, "Com a hora de nascimento, esta lição mostra a casa do mapa por onde ele passa. Dá para completar em Dados de nascimento, no fim da tela inicial."]},
+      {type:"reflect", q:c.q||(c.houses[0]&&c.houses[0].q), hint:HINT});
+  }
+  return {id, kind:"Trânsitos", title, glyph, light:null, card:null, doneTitle:title, doneText:line, steps};
+}
+function saturnReturns(bd){
+  const nat=lonAt("saturno", bd), out=[];
+  for(const [a,b] of [[26,33],[55,62]]){
+    let prev=null;
+    for(let t=+bd+a*365.25*864e5; t<+bd+b*365.25*864e5; t+=3*864e5){
+      const d=wrap180(lonAt("saturno", new Date(t))-nat);
+      if(prev!==null && prev<0 && d>=0 && Math.abs(d)<20){ out.push(new Date(t)); break; }
+      prev=d;
+    }
+  }
+  return out;
+}
+function j3Saturno(id){
+  const c=CT.transitos.saturno, bd=birthDate(), now=NOW(), l=lonAt("saturno",now);
+  const steps=[{type:"teach", glyph:"♄", eyebrow:"O retorno de Saturno", title:c.intro.title, body:c.intro.body}, Object.assign({type:"choice", a:0}, c.choice)];
+  let done="";
+  if(bd){
+    const rs=saturnReturns(bd), age=d=>Math.floor((d-bd)/(365.25*864e5));
+    const near=rs.find(d=>Math.abs(d-now)<1.3*365.25*864e5), fut=rs.find(d=>d>now);
+    const st = near ? "durante" : (fut && rs.indexOf(fut)===0) ? "antes" : "depois";
+    const ref = near || fut || rs[0];
+    const line = ref ? (st==="durante" ? `O retorno de Saturno deste mapa está acontecendo agora: o Saturno do céu ${ref<now?"voltou":"volta"} ao grau do nascimento por volta de ${fmtMY(ref)}, aos ${age(ref)} anos.`
+      : st==="antes" ? `O primeiro retorno de Saturno deste mapa acontece por volta de ${fmtMY(ref)}, aos ${age(ref)} anos.`
+      : `O primeiro retorno de Saturno deste mapa aconteceu por volta de ${fmtMY(rs[0])}, aos ${age(rs[0])} anos.${fut?` O segundo vem por volta de ${fmtMY(fut)}.`:""}`) : "";
+    steps.push({type:"teach", glyph:"♄", eyebrow:{antes:"Antes do retorno",durante:"Durante o retorno",depois:"Depois do retorno"}[st], title:c[st].title, body:[line, ...c[st].body].filter(Boolean)});
+    done=line;
+  }
+  if(hasAsc()){ const h=houseOf(l); steps.push({type:"teach", glyph:"♄", eyebrow:`Agora · casa ${h}`, title:c.houses[h-1].title, body:[`Hoje Saturno está em ${SIGN_NAMES[signOf(l)]}, na casa ${h} deste mapa.`, ...c.houses[h-1].body]}); }
+  steps.push({type:"reflect", q:c.q, hint:HINT});
+  return {id, kind:"Trânsitos", title:"O retorno de Saturno", glyph:"♄", light:null, card:null, doneTitle:"A travessia de Cronos", doneText:done, steps};
+}
+function j3Lentos(id){
+  const c=CT.transitos.lentos, now=NOW();
+  const steps=[{type:"teach", glyph:"♅", eyebrow:"Os lentos", title:c.intro.title, body:c.intro.body}, Object.assign({type:"choice", a:0}, c.choice)];
+  for(const k of ["urano","netuno","plutao"]){
+    const l=lonAt(k,now), s=signOf(l), line=`Hoje ${art(k)} está em ${SIGN_NAMES[s]}${houseTxt(l)}${isRetro(k,now)?", em movimento retrógrado":""}.`;
+    if(hasAsc()){ const o=c[k][houseOf(l)-1]; steps.push({type:"teach", glyph:PGL[k], eyebrow:`${nm(k)} · casa ${houseOf(l)}`, title:o.title, body:[line, ...o.body]}); }
+    else steps.push({type:"teach", glyph:PGL[k], eyebrow:nm(k), title:`${Art(k)} em ${SIGN_NAMES[s]}`, body:[line]});
+  }
+  steps.push({type:"reflect", q:c.q, hint:HINT});
+  return {id, kind:"Trânsitos", title:"Os lentos", glyph:"♇", light:null, card:null, doneTitle:"O terreno que muda devagar", doneText:"Urano, Netuno e Plutão passam anos na mesma casa do mapa.", steps};
+}
+function nextEclipses(from){
+  const A=window.Astronomy;
+  const so=A.SearchGlobalSolarEclipse(from), lu=A.SearchLunarEclipse(from);
+  const kindS={total:"total", annular:"anular", partial:"parcial", hybrid:"híbrido"}, kindL={total:"total", partial:"parcial", penumbral:"penumbral"};
+  const sd=so.peak.date, ld=lu.peak.date;
+  return {solar:{date:sd, lon:lonAt("sol",sd), kind:kindS[so.kind]||so.kind}, lunar:{date:ld, lon:lonAt("lua",ld), kind:kindL[lu.kind]||lu.kind}};
+}
+function j3Eclipses(id){
+  const c=CT.transitos.eclipses, E=nextEclipses(NOW());
+  const ls = e => `${fmtDY(e.date)}, em ${SIGN_NAMES[signOf(e.lon)]}${houseTxt(e.lon)}`;
+  const steps=[{type:"teach", glyph:"☊", eyebrow:"Eclipses", title:c.intro.title, body:c.intro.body}, Object.assign({type:"choice", a:0}, c.choice),
+    {type:"teach", glyph:"☉", eyebrow:`Próximo eclipse solar · ${E.solar.kind}`, title:c.solar.title, body:[`O próximo eclipse do Sol acontece em ${ls(E.solar)}.`, ...c.solar.body]},
+    {type:"teach", glyph:"☽", eyebrow:`Próximo eclipse lunar · ${E.lunar.kind}`, title:c.lunar.title, body:[`O próximo eclipse da Lua acontece em ${ls(E.lunar)}.`, ...c.lunar.body]}];
+  if(hasAsc()){ const h=houseOf(E.solar.lon); steps.push({type:"teach", glyph:"✦", eyebrow:`Casa ${h} deste mapa`, title:c.houses[h-1].title, body:c.houses[h-1].body}); }
+  steps.push({type:"reflect", q:c.q, hint:HINT});
+  return {id, kind:"Trânsitos", title:"Eclipses", glyph:"☊", light:null, card:null, doneTitle:"Os portais do semestre", doneText:`Próximo eclipse solar: ${fmtDY(E.solar.date)}. Próximo lunar: ${fmtDY(E.lunar.date)}.`, steps};
+}
+function solarReturn(){
+  const A=window.Astronomy, bd=birthDate(); if(!bd) return null;
+  const nat=S.chart.pts.sol, now=NOW();
+  const t=A.SearchSunLongitude(nat, new Date(+now-20*864e5), 400); if(!t) return null;
+  const d=t.date, c=S.user.cityData;
+  return {date:d, asc: hasAsc() ? ascAt(d, c[1], c[2]) : null, past: d<now};
+}
+function j3Revolucao(id){
+  const c=CT.transitos.revolucao, sr=solarReturn();
+  const steps=[{type:"teach", glyph:"☉", eyebrow:"A revolução solar", title:c.intro.title, body:c.intro.body}, Object.assign({type:"choice", a:0}, c.choice)];
+  if(sr){
+    const hr=sr.date.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit", timeZone:S.user.cityData[3]});
+    steps.push({type:"teach", glyph:"☉", eyebrow:sr.past?"A revolução deste ano":"A próxima revolução", title:`${fmtDY(sr.date)}, às ${hr}`, body:[`É o instante em que o Sol ${sr.past?"voltou":"volta"} exatamente ao grau em que estava no nascimento de ${first()}: ${SIGN_NAMES[signOf(S.chart.pts.sol)]}, ${degOf(S.chart.pts.sol)} graus. O horário é o da cidade de nascimento.`]});
+    if(sr.asc!==null){ const s=signOf(sr.asc), o=c.asc[s];
+      steps.push({type:"choice", q:"Calculada para a cidade de nascimento, em que signo está o Ascendente dessa revolução solar?", opts:signOpts(s), a:0, explain:"O Ascendente da revolução solar muda todo ano, porque o Sol volta ao mesmo grau, mas a Terra está girada de outro jeito."},
+        {type:"teach", glyph:SIGNS[s], eyebrow:`Ascendente da revolução em ${SIGN_NAMES[s]}`, title:o.title, body:o.body}); }
+  }
+  steps.push({type:"reflect", q:c.q, hint:HINT});
+  return {id, kind:"Trânsitos", title:"A revolução solar", glyph:"☉", light:null, card:null, doneTitle:"O mapa do aniversário", doneText:sr?`Revolução solar: ${fmtDY(sr.date)}.`:"", steps};
+}
+function transitAspects(now){
+  const P=S.chart.pts, nat=["sol","lua","merc","venus","marte"].map(k=>[k,P[k]]); if(hasAsc()) nat.push(["asc",S.chart.asc]);
+  const tr=["marte","jupiter","saturno","urano","netuno","plutao"].map(k=>[k,lonAt(k,now)]);
+  const out=[];
+  for(const [kt,lt] of tr) for(const [kn,ln] of nat){
+    const d=Math.abs(wrap180(lt-ln)), lim=kt==="marte"?2:3;
+    for(const [t,ang,name,gl] of ASP){ if(t==="sextil" && kt!=="marte" && kt!=="jupiter") continue; const orb=Math.abs(d-ang); if(orb<=lim) out.push({t:kt, n:kn, asp:t, name, gl, orb, w:orb - ({plutao:1.5,netuno:1.2,urano:1.2,saturno:1,jupiter:.5,marte:0}[kt])}); }
+  }
+  return out.sort((a,b)=>a.w-b.w);
+}
+const aCon = n => n.startsWith("o ") ? "ao "+n.slice(2) : n.startsWith("a ") ? "à "+n.slice(2) : "a "+n;
+const natName = k => k==="asc" ? "o Ascendente" : art(k);
+function j3Transitos(id){
+  const c=CT.transitos.transitos, now=NOW(), tr=transitAspects(now);
+  const steps=[{type:"teach", chart:true, eyebrow:"Trânsitos no próprio mapa", title:c.intro.title, body:c.intro.body}, Object.assign({type:"match"}, c.match)];
+  const top=[]; for(const x of tr){ if(top.length>=3) break; if(!top.some(y=>y.t===x.t)) top.push(x); }
+  top.forEach((x,i)=>{
+    const orb=Math.round(x.orb*10)/10;
+    if(i===0) steps.push({type:"choice", q:`Agora, ${art(x.t)} em trânsito faz ${x.name.toLowerCase()} com qual ponto deste mapa?`, opts:[cap1(natName(x.n)), ...others3(cap1(natName(x.n)), ["O Sol","A Lua","Mercúrio","O Vênus","Marte","O Ascendente"])], a:0,
+      explain:`${Art(x.t)} do céu de hoje está a ${orb.toString().replace(".",",")} grau do aspecto exato com ${natName(x.n)} do nascimento.`});
+    steps.push({type:"teach", glyph:PGL[x.t], eyebrow:`${x.name} · ${orb.toString().replace(".",",")} de folga`, title:`${Art(x.t)} ${({conjuncao:"sobre",sextil:"em sextil com",quadratura:"em quadratura com",trigono:"em trígono com",oposicao:"em oposição"})[x.asp]}${x.asp==="oposicao"?" "+aCon(natName(x.n)):" "+natName(x.n)}`, body:[c.tons[x.t], c.aspectos[x.asp]]});
+  });
+  if(!top.length) steps.push({type:"teach", glyph:"◯", eyebrow:"Agora", title:c.nenhum.title, body:c.nenhum.body});
+  steps.push({type:"reflect", q:c.q, hint:HINT});
+  return {id, kind:"Trânsitos", title:"Trânsitos no próprio mapa", glyph:"✦", light:null, card:null, doneTitle:"O tempo tocando o mapa",
+    doneText: top.length ? `O trânsito mais forte agora: ${art(top[0].t)} ${({conjuncao:"em conjunção com",sextil:"em sextil com",quadratura:"em quadratura com",trigono:"em trígono com",oposicao:"em oposição"})[top[0].asp]} ${top[0].asp==="oposicao"?aCon(natName(top[0].n)):natName(top[0].n)}.` : "Nenhum trânsito lento está exato neste momento.", steps};
+}
+function j3Ano(id){
+  const c=CT.transitos.ano, now=NOW(), in12=new Date(+now+365*864e5);
+  const ju=lonAt("jupiter",now), ju2=lonAt("jupiter",in12), sa=lonAt("saturno",now), E=nextEclipses(now), sr=solarReturn();
+  const lines=[
+    `Júpiter: hoje em ${SIGN_NAMES[signOf(ju)]}${houseTxt(ju)}; daqui a um ano, em ${SIGN_NAMES[signOf(ju2)]}${houseTxt(ju2)}.`,
+    `Saturno: em ${SIGN_NAMES[signOf(sa)]}${houseTxt(sa)}.`,
+    `Eclipses: o próximo solar em ${fmtD(E.solar.date)}, em ${SIGN_NAMES[signOf(E.solar.lon)]}; o próximo lunar em ${fmtD(E.lunar.date)}, em ${SIGN_NAMES[signOf(E.lunar.lon)]}.`
+  ];
+  if(sr) lines.push(`Revolução solar: ${fmtDY(sr.date)}${sr.asc!==null?`, com Ascendente em ${SIGN_NAMES[signOf(sr.asc)]}`:""}.`);
+  const steps=[{type:"teach", glyph:"✦", eyebrow:"O ano astrológico", title:c.intro.title, body:c.intro.body},
+    {type:"teach", chart:true, eyebrow:`O ano de ${first()}`, title:"As camadas dos próximos meses", body:lines},
+    {type:"choice", q:"Qual destes planetas leva cerca de um ano em cada signo?", opts:["Júpiter","Saturno","Marte","Plutão"], a:0, explain:"Júpiter dá a volta no zodíaco em cerca de 12 anos: um signo por ano, uma casa do mapa por ano. Por isso ele é a régua do ano."},
+    {type:"teach", glyph:"✦", eyebrow:"As três jornadas", title:c.fim.title, body:c.fim.body},
+    {type:"reflect", q:c.q, hint:HINT}];
+  return {id, kind:"Trânsitos", title:"O ano astrológico", glyph:"✦", light:null, card:null, doneTitle:"As três jornadas completas", doneText:"A linguagem, o próprio mapa e o tempo passando por ele. A lição do dia continua todo dia.", steps};
+}
+
+const J2B = [null,
+  id=>j2Planet("sol",id,"a Lua"), id=>j2Planet("lua",id,"Mercúrio"), id=>j2Planet("merc",id,"o Vênus"), id=>j2Planet("venus",id,"Marte"), id=>j2Planet("marte",id,"Júpiter e Saturno"),
+  j2JupSat, j2Lentos, j2Casas, j2Aspectos, j2Nodos, j2Sintese];
+const J3B = [null, j3Lua, j3Mercurio, j3Venus, id=>j3Lento("marte",id,"Marte em trânsito","♂",200), id=>j3Lento("jupiter",id,"Júpiter, um ano por signo","♃",500), j3Saturno, j3Lentos, j3Eclipses, j3Revolucao, j3Transitos, j3Ano];
+const buildCache = {};
+function buildJ(j, i){
+  const id=(j===2?"mapa-":"tr-")+(i+1);
+  if(!CT || !S.chart) return null;
+  const key=id+"|"+today()+"|"+(S.user&&S.user.birth)+(S.user&&S.user.time)+(S.user&&S.user.city);
+  if(buildCache[key]) return buildCache[key];
+  try{ const L=(j===2?J2B:J3B)[i](id); if(L && !L.needTime) L.steps.forEach(s=>{ if(s.type==="choice" && s.opts) s.opts=s.opts.filter((x,k,a)=>a.indexOf(x)===k); }); buildCache[key]=L; return L; }
+  catch(e){ console.error("jornada", id, e); return null; }
+}
+
+/* ---------- página de captação (primeira tela de quem ainda não entrou) ---------- */
+const PRECO_S = "R$ 9,90", PRECO_M = "R$ 29,90";
+const ICO_SHARE = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 11H6a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-2" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>`;
+const ICO_PLUS = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>`;
+const ICO_DOTS = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>`;
+const ICO_APPLE = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8s-1.8-.8-3-.8C7 7.3 5.5 8.2 4.7 9.7c-1.7 2.9-.4 7.3 1.2 9.6.8 1.1 1.7 2.4 3 2.4 1.2 0 1.6-.8 3-.8s1.8.8 3 .8c1.3 0 2.1-1.2 2.9-2.3.9-1.3 1.3-2.6 1.3-2.7 0 0-2.6-1-2.7-4.1zM14.1 5.6c.6-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.1 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z" fill="currentColor"/></svg>`;
+const ICO_DROID = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9h10a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1h-1v2.5a1.5 1.5 0 0 1-3 0V18h-2v2.5a1.5 1.5 0 0 1-3 0V18H7a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1zm-3 1.5a1.5 1.5 0 0 1 3 0v5a1.5 1.5 0 0 1-3 0zm13 0a1.5 1.5 0 0 1 3 0v5a1.5 1.5 0 0 1-3 0zM7.2 8a4.9 4.9 0 0 1 9.6 0zM9.5 5.8a.6.6 0 1 0 0-1.2.6.6 0 0 0 0 1.2zm5 0a.6.6 0 1 0 0-1.2.6.6 0 0 0 0 1.2z" fill="currentColor"/></svg>`;
+function landingHTML(){
+  const ios=/iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
+  const site = /^jornada\./.test(location.hostname) ? location.host : "jornada.eusouodu.com";
+  const fl = "♈♉♊♋♌♍♎♏♐♑♒♓☉☽☿♀♂♃♄".split("").map((c,i)=>`<i style="--x:${(i*53)%100}%;--d:${8+(i*7)%9}s;--w:${-(i*1.7)%9}s;--s:${14+(i*5)%16}px">${g(c)}</i>`).join("");
+  return `<div class="lp">
+  <div class="lp-sky" aria-hidden="true">${fl}</div>
+  <section class="lp-hero">
+    <div class="lp-kicker">@eusouodu apresenta</div>
+    <div class="logo">Jornada</div>
+    <div class="lp-wheel"><div class="spin">${wheelSVG(null,true)}</div><span class="lp-orbit"></span></div>
+    <h1 class="tagline">Astrologia, mito e filosofia. Um passo por dia, a partir do próprio mapa.</h1>
+    <p class="lp-lead">Lições curtas, como um jogo, para aprender a ler o céu e o próprio mapa natal. Escritas pelo astrólogo Eduardo, que trabalha com astrologia há mais de 10 anos.</p>
+    <div class="chips"><span class="c1">24 lições de mapa e trânsitos</span><span class="c2">60 lições de signos</span><span class="c3">36 cartas</span></div>
+    <button class="btn lp-cta" data-go="start">Começar grátis</button>
+    <p class="lp-fine">Sem cartão. Áries inteira e a lição do dia são grátis para sempre.</p>
+  </section>
+
+  <section class="lp-sec rv">
+    <div class="lp-eyebrow">Como funciona</div>
+    <h2>Três minutos por dia. O mapa acende.</h2>
+    <div class="lp-steps">
+      <div class="lp-step s1"><b>1</b><div><h3>O mapa primeiro</h3><p>Data, hora e cidade de nascimento. O mapa natal é calculado na hora, com o horário de verão histórico de cada cidade já descontado.</p></div></div>
+      <div class="lp-step s2"><b>2</b><div><h3>Uma lição por vez</h3><p>Explicação, pergunta, ligar pares, colocar em ordem e uma reflexão no fim. Errar custa uma lua. Acertar soma pontos e sequência.</p></div></div>
+      <div class="lp-step s3"><b>3</b><div><h3>O céu se acende</h3><p>Cada signo e cada planeta aprendido acende na roda do mapa. Os mitos e as ideias viram cartas de coleção.</p></div></div>
+    </div>
+  </section>
+
+  <section class="lp-sec rv">
+    <div class="lp-eyebrow">Uma lição de verdade</div>
+    <h2>Assim é jogar.</h2>
+    <div class="lp-phone" aria-hidden="true">
+      <div class="lp-bar"><i></i></div>
+      <div class="lp-q">Em que signo o Vênus está em casa?</div>
+      <div class="lp-opts"><span>Áries</span><span class="ok">Touro</span><span>Escorpião</span><span>Virgem</span></div>
+      <div class="lp-sheet"><b>Isso!</b> O Vênus rege Touro e Libra: no corpo e no encontro, ele fala a própria língua.</div>
+    </div>
+  </section>
+
+  <section class="lp-sec rv">
+    <div class="lp-eyebrow">As três jornadas</div>
+    <h2>Da linguagem ao próprio céu.</h2>
+    <div class="lp-js">
+      <div class="lp-j j1"><span class="n">1</span><h3>A linguagem</h3><p>Doze subjornadas, de Áries a Peixes. Em cada uma: o signo, o mito, o planeta regente, o deus por trás dele e uma ideia filosófica.</p><small>12 subjornadas · 60 lições</small></div>
+      <div class="lp-j j2"><span class="n">2</span><h3>O próprio mapa</h3><p>O símbolo vira espelho. Ascendente, Sol, Lua, Mercúrio, o Vênus, Marte, os planetas lentos, as casas, os aspectos, os nodos e a síntese, montados a partir do mapa de quem joga.</p><small>12 lições personalizadas</small></div>
+      <div class="lp-j j3"><span class="n">3</span><h3>Os trânsitos</h3><p>O céu de verdade passando sobre o mapa: as fases da Lua, Mercúrio retrógrado, os ciclos do Vênus, o retorno de Saturno, os eclipses, a revolução solar. E uma lição nova todo dia.</p><small>12 lições · 1 lição por dia</small></div>
+    </div>
+  </section>
+
+  <section class="lp-sec rv" id="lpPrecos">
+    <div class="lp-eyebrow">Planos</div>
+    <h2>Começa grátis. Abre tudo quando quiser.</h2>
+    <div class="lp-prices">
+      <div class="lp-p free"><div class="pn">Grátis</div><div class="pv">R$ 0</div><p>Áries inteira, a primeira lição do mapa natal e a lição do dia. Sem cartão, sem prazo.</p></div>
+      <div class="lp-p wk"><span class="tag">Por Pix</span><div class="pn">Passe semanal</div><div class="pv">${PRECO_S}<small> / 7 dias</small></div><p>Tudo aberto por uma semana. Não renova sozinho: nenhuma cobrança automática.</p></div>
+      <div class="lp-p mo"><span class="tag">Melhor valor</span><div class="pn">Mensal</div><div class="pv">${PRECO_M}<small> / mês</small></div><p>Tudo aberto, todo mês, no cartão. Cancela em um toque, sem multa.</p></div>
+    </div>
+    <p class="lp-incl">Nos dois planos: as três jornadas inteiras, as 36 cartas de mito e filosofia e luas sem fim.</p>
+  </section>
+
+  <section class="lp-sec rv" id="lpInstalar">
+    <div class="lp-eyebrow">No celular</div>
+    <h2>Vira um app na tela de início.</h2>
+    <p class="lp-sub">Sem loja de aplicativos, em poucos segundos. O ícone da Jornada fica junto dos outros apps e abre em tela cheia.</p>
+    <div class="lp-tabs" role="tablist"><button role="tab" data-os="ios" class="${ios?"on":""}">${ICO_APPLE}iPhone</button><button role="tab" data-os="and" class="${ios?"":"on"}">${ICO_DROID}Android</button></div>
+    <ol class="lp-inst" data-os="ios" ${ios?"":"hidden"}>
+      <li><b>Abrir no Safari</b><span>Entrar em <em>${esc(site)}</em> pelo Safari, o navegador da bússola.</span></li>
+      <li><b>Tocar em Compartilhar</b><span>O quadrado com a seta para cima <span class="ic">${ICO_SHARE}</span>, na barra de baixo.</span></li>
+      <li><b>Adicionar à Tela de Início</b><span>Descer a lista, tocar em <span class="ic">${ICO_PLUS}</span> Adicionar à Tela de Início e depois em Adicionar.</span></li>
+    </ol>
+    <ol class="lp-inst" data-os="and" ${ios?"hidden":""}>
+      <li><b>Abrir no Chrome</b><span>Entrar em <em>${esc(site)}</em> pelo Chrome.</span></li>
+      <li><b>Tocar nos três pontinhos</b><span>O menu <span class="ic">${ICO_DOTS}</span>, no canto de cima.</span></li>
+      <li><b>Instalar app</b><span>Tocar em Instalar app, ou Adicionar à tela inicial, e confirmar.</span></li>
+      <li class="lp-now" id="lpNow" hidden><button class="btn small" id="lpInstall">Instalar agora</button></li>
+    </ol>
+  </section>
+
+  <section class="lp-sec rv">
+    <div class="lp-eyebrow">Dúvidas</div>
+    <details class="lp-faq"><summary>Precisa saber astrologia?</summary><p>Não. A primeira jornada começa do zero, pelo grau zero da roda, e cada lição explica antes de perguntar.</p></details>
+    <details class="lp-faq"><summary>E sem a hora de nascimento?</summary><p>Dá para começar sem ela e completar depois. Sem a hora, o Ascendente e as casas ficam de fora; o resto funciona inteiro.</p></details>
+    <details class="lp-faq"><summary>Como é o pagamento?</summary><p>Pelo Mercado Pago: Pix no passe semanal, cartão no mensal. Até 7 dias depois da compra, o valor volta inteiro, é só escrever para falecom@eusouodu.com.</p></details>
+    <details class="lp-faq"><summary>O progresso fica salvo?</summary><p>Fica na conta, ligado ao e-mail. Para abrir em outro celular, chega um link de entrada, sem senha.</p></details>
+  </section>
+
+  <section class="lp-end rv">
+    <div class="spin small">${wheelSVG(null,true)}</div>
+    <h2>O mapa já está no céu. Falta a gente ler.</h2>
+    <button class="btn lp-cta" data-go="start">Calcular o meu mapa</button>
+    <button class="link" data-go="login">Já tenho uma conta</button>
+    <nav class="footer"><a href="/jornada/termos.html">Termos de uso</a><a href="/jornada/privacidade.html">Privacidade</a><a href="mailto:falecom@eusouodu.com">falecom@eusouodu.com</a><a href="https://instagram.com/eusouodu" target="_blank" rel="noopener">@eusouodu</a></nav>
+  </section>
+</div>`;
+}
+function landingWire(){
+  document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{ if(b.dataset.go==="login") loginModal(); else { ob.step++; renderOnb(); } });
+  document.querySelectorAll(".lp-tabs button").forEach(b=>b.onclick=()=>{
+    document.querySelectorAll(".lp-tabs button").forEach(x=>x.classList.toggle("on", x===b));
+    document.querySelectorAll(".lp-inst").forEach(o=>o.hidden = o.dataset.os!==b.dataset.os);
+  });
+  const now=$("lpNow"); if(now && typeof deferredPrompt!=="undefined" && deferredPrompt){ now.hidden=false; $("lpInstall").onclick=async()=>{ deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null; now.hidden=true; }; }
+  const els=document.querySelectorAll(".lp .rv");
+  if("IntersectionObserver" in window){
+    const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold:.12});
+    els.forEach(e=>io.observe(e));
+  } else els.forEach(e=>e.classList.add("in"));
+}
+window.addEventListener("beforeinstallprompt", ()=>setTimeout(()=>{ const n=$("lpNow"); if(n && n.hidden && deferredPrompt){ n.hidden=false; $("lpInstall").onclick=async()=>{ deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null; n.hidden=true; }; } }, 0));
 
 /* ---------- motor da lição ---------- */
 let L=null, Q=[], pos=0, sel=null, stats=null, onMain=null;
@@ -1458,7 +2103,7 @@ $("oBack").onclick=()=>{ if(ob.step>0){ ob.step -= (ob.edit && OSTEPS[ob.step]==
     toast(pago==="mes" ? "Confirmando a assinatura…" : "Confirmando o Pix…");
     const done = () => pago==="mes" ? (S.plan && S.plan.type==="mes" && S.plan.status==="authorized") : planActive();
     for(let i=0;i<20 && !done();i++){ await new Promise(r=>setTimeout(r,3000)); try{ applyServer(await api("sync",{query: pa?`&preapproval_id=${encodeURIComponent(pa)}`:""})); }catch(e){} }
-    if(done()){ await loadContent(); renderHome(); toast(pago==="mes" ? "Assinatura confirmada: a jornada inteira está aberta." : "Pronto: as doze subjornadas estão abertas."); }
+    if(done()){ await loadContent(); renderHome(); toast(pago==="mes" ? "Assinatura confirmada: a jornada inteira está aberta." : "Pronto: as três jornadas estão abertas."); }
     else toast("O pagamento ainda está sendo confirmado. Assim que cair, a jornada libera sozinha.");
   }
 })();

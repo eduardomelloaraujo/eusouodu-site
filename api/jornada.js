@@ -1,7 +1,7 @@
 // Jornada: uma única função com várias ações (?a=...), para caber no limite de funções da Vercel.
 // entrar · pedir-link · abrir · sync · conteudo · checkout · cancelar · webhook · diario · sair-emails · status
 import {
-  temBanco, redis, K, okEmail, sessao, lerToken, lerUser, salvarUser, planoAtivo, planoPublico, unidadesPagas,
+  temBanco, redis, K, okEmail, sessao, lerToken, lerUser, salvarUser, planoAtivo, planoPublico, unidadesPagas, conteudoJornadas,
   mp, atualizarAssinatura, processarPix, enviarEmail, emailBoasVindas, emailEntrada, emailFimPasse,
   APP, SITE, PRECO_SEMANA, PRECO_MES,
 } from '../lib/jornada.mjs';
@@ -142,8 +142,8 @@ async function conteudo(req, res) {
   const email = quem(req);
   if (!email) return res.status(401).json({ erro: 'Sessão expirada.' });
   const u = await lerUser(email);
-  if (!u || !planoAtivo(u.plano)) return res.status(402).json({ erro: 'Essas subjornadas são para quem tem um plano ativo.' });
-  return res.status(200).json({ unidades: unidadesPagas() });
+  if (!u || !planoAtivo(u.plano)) return res.status(402).json({ erro: 'Essas lições são para quem tem um plano ativo.' });
+  return res.status(200).json({ unidades: unidadesPagas(), ...conteudoJornadas() });
 }
 
 async function checkout(req, res) {

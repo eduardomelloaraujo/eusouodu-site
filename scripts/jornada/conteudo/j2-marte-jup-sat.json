@@ -1,0 +1,599 @@
+{
+  "marte": {
+    "intro": {
+      "title": "O deus que o Olimpo detestava",
+      "body": [
+        "Marte é o planeta do desejo em movimento. No mapa, mostra como a gente quer, como se defende, onde a raiva acende e de que jeito vai atrás do que importa. Na Grécia, era Ares, o deus mais detestado do Olimpo. Na Ilíada, o próprio pai, Zeus, diz que ele é o mais odioso dos deuses.",
+        "Só que Ares e Afrodite tiveram filhos. Fobos e Deimos, o Medo e o Pavor, que hoje dão nome às duas luas de Marte. E Harmonia. A guerra e o amor, juntos, geraram a harmonia. Quem expulsa Marte de si costuma perder junto a capacidade de fazer as pazes de verdade: só se reconcilia quem admitiu que brigou."
+      ]
+    },
+    "signQ": {
+      "explain": "O signo é o clima em que Marte age. O mesmo desejo pode avançar como fogo, resistir como terra, argumentar como ar ou contornar como água."
+    },
+    "match": {
+      "q": "Ligue cada parte da leitura de Marte ao que ela mostra",
+      "pairs": [
+        ["O planeta", "O que deseja e luta"],
+        ["O signo", "O jeito de ir atrás"],
+        ["A casa", "Onde a briga acontece"],
+        ["A dignidade", "Se ele está à vontade"]
+      ],
+      "explain": "Planeta é o quê, signo é o como, casa é o onde. A dignidade diz se Marte age em terreno próprio ou emprestado."
+    },
+    "signs": [
+      {
+        "title": "Marte em Áries",
+        "body": [
+          "Em Áries, Marte está em casa. É o domicílio dele, e o desejo sai sem tradução: quer, vai. Não espera a reunião acabar nem o clima ficar bom. A raiva acende rápido e apaga rápido, como fogo em palha seca.",
+          "A força é a coragem de ser o primeiro. Entrar na sala, puxar o assunto, assinar antes de ter todas as garantias. A sombra é confundir intensidade com verdade: o que arde muito na hora parece importante, e às vezes é só fome de começo.",
+          "No mito, Ares quase nunca vence. Diomedes o fere com a ajuda de Atena, e ele sobe ao Olimpo gritando como nove ou dez mil guerreiros. Marte em Áries conhece essa ferida: a pressa que perde batalhas. O que esse Marte aprende não é frear. É escolher por quem vale correr."
+        ],
+        "q": "Em que briga recente a gente entrou antes de saber se queria ganhar?"
+      },
+      {
+        "title": "Marte em Touro",
+        "body": [
+          "Em Touro, Marte está em exílio. Touro é casa do Vênus, signo do prazer e da permanência, e ali o deus da guerra precisa aprender um ritmo que não é o dele. O desejo anda devagar. Mas quando finca o pé, não sai.",
+          "Esse Marte luta por corpo, por chão, por dinheiro, por comida, pelo que dá para tocar. A raiva demora a vir e se acumula em silêncio, como água atrás de uma barragem. Quando rompe, assusta todo mundo, inclusive quem a carregava.",
+          "Antes de virar deus da guerra, o Marte romano protegia os campos. Os camponeses rezavam a ele pelas colheitas e pelo gado. Em Touro, Marte reencontra essa versão mais antiga de si: a força que defende o que cresce devagar. Uma coragem que não aparece na batalha, aparece em quem cuida do mesmo pedaço de terra por anos."
+        ],
+        "q": "O que a gente defende com teimosia por medo de perder o chão?"
+      },
+      {
+        "title": "Marte em Gêmeos",
+        "body": [
+          "Em Gêmeos, Marte briga com palavras. O desejo é curioso, inquieto, muda de alvo no meio do caminho. A arma é o argumento, a resposta rápida, a mensagem enviada antes de reler.",
+          "A força está na agilidade: desmontar uma situação difícil com uma pergunta certeira, negociar, convencer, lutar de muitos jeitos. A sombra é a dispersão. Dez frentes abertas, nenhuma terminada, e uma ironia afiada que fere sem perceber que feriu.",
+          "Os gigantes Aloadas prenderam Ares num jarro de bronze por treze meses. Quem o tirou de lá, às escondidas, foi Hermes, o mensageiro. Em Gêmeos, Marte depende de Hermes para sair do jarro: a fala é a saída. E vira o próprio jarro quando a gente só fala e nunca age."
+        ],
+        "q": "Qual conversa a gente vence na cabeça e nunca tem de verdade?"
+      },
+      {
+        "title": "Marte em Câncer",
+        "body": [
+          "Em Câncer, Marte está em queda. O signo da Lua, da casa e do cuidado não sabe bem o que fazer com um deus armado. O desejo vem envolto em sentimento, e a raiva costuma sair de lado: no silêncio, na porta batida, na mágoa que fica cozinhando.",
+          "Mas olha o caranguejo. Anda de lado, carrega a casa nas costas e tem duas pinças que não soltam. Quando alguém ameaça quem ele ama, esse Marte vira o bicho mais feroz da praia. A força é proteger. A sombra é atacar achando que está só se defendendo.",
+          "Hera mandou um caranguejo morder o pé de Héracles enquanto ele lutava com a Hidra. O bicho morreu esmagado, e Hera o pôs no céu. Pequeno demais para a luta, entrou nela mesmo assim, por lealdade. Marte em queda não é Marte fraco: é Marte lutando a briga dos outros, às vezes antes da própria."
+        ],
+        "q": "Por quem a gente briga com uma coragem que não tem para brigar por si?"
+      },
+      {
+        "title": "Marte em Leão",
+        "body": [
+          "Em Leão, Marte quer ser visto agindo. O desejo é teatral no melhor sentido: tem coração, gesto largo, orgulho. Esse Marte luta pelo que ama e pelo que o faz se sentir vivo, e luta de cabeça erguida.",
+          "A força é a generosidade da coragem: defender o amigo em público, assumir o palco quando todo mundo trava. A sombra é o orgulho ferido, que transforma qualquer crítica em afronta e qualquer derrota em humilhação. Leão perdoa quase tudo, menos ser ignorado.",
+          "O primeiro trabalho de Héracles foi o leão de Nemeia, cuja pele nenhuma arma furava. Ele estrangulou o bicho com as mãos e passou a vestir a pele como armadura. Marte em Leão faz algo parecido com o orgulho: quando consegue vencê-lo, ele vira proteção. Quando não consegue, é o leão que veste a gente."
+        ],
+        "q": "Em que situação a gente prefere perder a parecer pequeno?"
+      },
+      {
+        "title": "Marte em Virgem",
+        "body": [
+          "Em Virgem, Marte trabalha. O desejo se organiza em tarefa, método, lista. Esse Marte não grita: corrige. A raiva aparece como crítica, como irritação com o detalhe errado, o prazo furado, a louça deixada na pia.",
+          "A força é rara: a coragem de fazer bem feito o que não recebe aplauso. Consertar, revisar, cuidar do corpo com disciplina. A sombra é virar a lâmina para dentro. Sem onde agir, esse Marte ataca a si mesmo em forma de cobrança, ansiedade, ombro travado.",
+          "Atena, a deusa que pensava a guerra, desprezava Ares justamente porque ele lutava sem plano. Em Virgem, Marte se aproxima de Atena: troca a fúria pela estratégia, o golpe pela precisão. A guerra vira ofício. E todo ofício bem feito carrega uma pequena violência contra o caos."
+        ],
+        "q": "Qual cobrança a gente dirige ao próprio corpo como se ele fosse um inimigo?"
+      },
+      {
+        "title": "Marte em Libra",
+        "body": [
+          "Em Libra, Marte está em exílio. É a casa do Vênus, signo do encontro e da medida, e o deus da guerra chega ali sem saber onde guardar a espada. O desejo passa pelo outro: o que ele vai achar, se é justo, se vai estragar a relação.",
+          "A força é lutar pela justiça, por quem está em desvantagem. Esse Marte negocia bem e enxerga os dois lados de qualquer briga. A sombra é engolir a raiva para manter a paz, até o dia em que ela volta inteira, fora de hora, por um motivo pequeno.",
+          "Ares foi o primeiro réu de um tribunal. Matou um filho de Poseidon que tinha violentado a filha dele, e os deuses o julgaram numa colina de Atenas que ficou com o nome do acusado: Areópago, a colina de Ares. Foi absolvido. Em Libra, a guerra aceita ser pesada na balança, e isso também pede coragem."
+        ],
+        "q": "Qual raiva a gente guardou para não estragar o clima, e onde ela foi parar?"
+      },
+      {
+        "title": "Marte em Escorpião",
+        "body": [
+          "Em Escorpião, Marte também está em casa, no domicílio noturno. Antes da descoberta de Plutão, era o único regente do signo. Aqui o desejo é fundo, concentrado e não se espalha: escolhe um alvo e vai até o fim.",
+          "Esse Marte não briga por qualquer coisa. Observa, guarda, espera. A força é a resistência emocional, a capacidade de atravessar crise, luto e intimidade sem fugir. A sombra é o rancor de longa duração, a estratégia de quem nunca esqueceu e só espera a hora.",
+          "Em Áries, Marte é a espada à luz do dia. Em Escorpião, é o veneno. O escorpião não precisa ser grande para derrubar um gigante, precisa saber onde picar. Por isso esse Marte assusta: conhece o ponto fraco dos outros. Quando amadurece, usa o mesmo saber para curar, como quem sabe exatamente onde dói."
+        ],
+        "q": "Qual mágoa antiga a gente ainda guarda como uma arma?"
+      },
+      {
+        "title": "Marte em Sagitário",
+        "body": [
+          "Em Sagitário, Marte luta por uma ideia. O desejo é largo, aventureiro, quer estrada e sentido. Esse Marte se acende quando acredita em alguma coisa e se apaga quando a vida vira rotina sem horizonte.",
+          "A força é a coragem de defender o que parece verdadeiro, de mudar de país, de discutir filosofia na mesa do bar até as três da manhã. A sombra é a cruzada: quando a ideia vira bandeira, esse Marte para de ouvir e começa a converter.",
+          "A flecha que mais doeu entre os centauros foi uma flecha amiga. Héracles acertou Quíron, o centauro sábio, por acidente, e a ferida envenenada nunca fechou. Marte em Sagitário pode ferir em nome da verdade quem só queria conversar. A franqueza é uma flecha. Depois de solta, não volta à aljava."
+        ],
+        "q": "Em nome de qual verdade a gente já feriu alguém que só queria conversar?"
+      },
+      {
+        "title": "Marte em Capricórnio",
+        "body": [
+          "Em Capricórnio, Marte está exaltado. É onde ele rende mais: o desejo ganha disciplina, plano e paciência. Esse Marte não quer ganhar a briga de hoje, quer chegar ao topo daqui a dez anos, e aguenta o frio da subida.",
+          "A força é a ambição que trabalha. Acordar cedo, sustentar o projeto, aguentar a hierarquia até poder mudá-la. A sombra é a dureza: tratar o próprio cansaço como fraqueza e os outros como degraus. Às vezes esse Marte vence tudo e esquece por que queria.",
+          "Capricórnio é a casa de Saturno, o planeta do limite. O deus da guerra rende mais justamente no signo do freio. Todo atleta sabe disso: a força aparece quando encontra uma forma. A raiva com estrutura vira trabalho. E o trabalho com raiva dentro constrói coisas que duram."
+        ],
+        "q": "O que a gente está construindo com a raiva que nunca disse em voz alta?"
+      },
+      {
+        "title": "Marte em Aquário",
+        "body": [
+          "Em Aquário, Marte luta pelo coletivo. O desejo é rebelde, inventivo, se acende diante de qualquer regra que não faça sentido. Esse Marte prefere a causa à briga pessoal: é mais fácil se indignar pelo mundo do que pelo que dói em casa.",
+          "A força é a coragem de destoar, no grupo da família, no trabalho, na turma, e de propor o que ainda não tem nome. A sombra é a frieza: discutir como quem defende tese, ganhar no argumento e perder a pessoa.",
+          "Na astrologia moderna, Prometeu costuma ser a imagem de Aquário: o titã que roubou o fogo dos deuses para entregá-lo aos humanos. Ficou acorrentado numa rocha, com uma águia comendo o fígado dele todo dia. Marte em Aquário conhece essa corrente. A revolta que liberta os outros também pode isolar quem a carrega."
+        ],
+        "q": "Contra qual regra a gente se rebela, e qual obedece sem perceber?"
+      },
+      {
+        "title": "Marte em Peixes",
+        "body": [
+          "Em Peixes, Marte nada. O desejo é difuso, sensível, muda de forma conforme a maré do ambiente. Esse Marte custa a dizer o que quer, porque sente o que todo mundo quer ao mesmo tempo.",
+          "A força é a compaixão em ação: lutar pelo que sofre, defender quem não tem voz, criar a partir do que sente. A sombra é a raiva que se dissolve antes de virar gesto e reaparece como cansaço, vitimização, sumiço. Às vezes esse Marte desiste da briga e chama isso de paz.",
+          "O mito de Peixes é uma fuga. Perseguidos pelo monstro Tifão, Afrodite e Eros se jogam no rio e viram dois peixes, presos um ao outro por uma corda. Afrodite, a amante de Ares. Em Peixes, Marte aprende com ela que fugir também pode salvar. A coragem, aqui, às vezes é saber a hora de mergulhar."
+        ],
+        "q": "De qual briga a gente fugiu, e o que a fuga salvou?"
+      }
+    ],
+    "houses": [
+      {
+        "title": "Marte na casa 1",
+        "body": [
+          "Na casa 1, Marte está no corpo e na cara. Aparece antes de qualquer palavra: no jeito de andar, na voz, no impulso. Essa presença costuma ser lida como força, às vezes como agressividade, mesmo sem intenção.",
+          "A vida pede movimento físico. Quando o corpo fica parado, a raiva procura outra saída. A tradição liga esse Marte a marcas na cabeça e no rosto, como se o corpo guardasse o rastro dos começos. É também quem chega primeiro e abre caminho para os outros."
+        ]
+      },
+      {
+        "title": "Marte na casa 2",
+        "body": [
+          "Na casa 2, Marte luta por recursos. O desejo se mede em dinheiro, objetos, segurança material. E em valor próprio, o recurso mais disputado de todos.",
+          "Esse Marte ganha com esforço e gasta com impulso. Sabe correr atrás, sabe pedir aumento. O que pode aprender é que nem toda falta se resolve comprando, e nem toda conta no vermelho é prova de fracasso."
+        ]
+      },
+      {
+        "title": "Marte na casa 3",
+        "body": [
+          "Na casa 3, Marte mora na fala, nos trajetos, nos irmãos e vizinhos. Discussão no grupo da família, buzina no trânsito, a mensagem escrita com raiva: o pequeno cotidiano é o campo de batalha.",
+          "A força é a palavra afiada e o raciocínio rápido. Muitas vezes a primeira briga da vida foi com um irmão, e foi ali que esse Marte aprendeu a lutar. Quem não teve irmão às vezes briga com o mundo inteiro como se ele fosse um."
+        ]
+      },
+      {
+        "title": "Marte na casa 4",
+        "body": [
+          "Na casa 4, Marte está no fundo do mapa: na casa, na família, nas raízes. A raiva costuma ter origem doméstica. Brigas antigas, uma casa barulhenta, um pai ou uma mãe que era puro fogo.",
+          "Esse Marte constrói, reforma, muda de endereço, defende o lar com as unhas. A sombra é trazer a guerra para dentro sem perceber que a briga de agora repete uma cena da infância. Para esse Marte, sossegar pode ser o gesto mais corajoso."
+        ]
+      },
+      {
+        "title": "Marte na casa 5",
+        "body": [
+          "Na casa 5, Marte deseja brincando. É a casa do prazer, da criação, dos filhos, do romance e dos jogos. Esse Marte é competitivo no futebol de domingo e intenso na paquera.",
+          "A força é a coragem de criar e se expor: subir no palco, mostrar o desenho, ter filhos, se apaixonar sem garantia. A sombra é transformar o prazer em disputa. Quando tudo vira prova, até o hobby cansa."
+        ]
+      },
+      {
+        "title": "Marte na casa 6",
+        "body": [
+          "Na casa 6, Marte está no lugar que a tradição chama de alegria dele: a casa do trabalho, da rotina e da saúde. Aqui o guerreiro vira operário, e o corpo vira campo de treino.",
+          "A força é a disposição para o serviço pesado, para resolver o que ninguém quer encarar no escritório. A sombra é a raiva que vai parar no corpo, na inflamação, na briga com o colega. Esse Marte precisa de uma tarefa à altura, senão inventa uma guerra."
+        ]
+      },
+      {
+        "title": "Marte na casa 7",
+        "body": [
+          "Na casa 7, Marte está nas parcerias e nos inimigos declarados. O desejo se acende no encontro com o outro, e o outro costuma ser alguém forte, direto, às vezes briguento.",
+          "Com frequência, quem tem Marte aqui atrai a raiva que não reconhece em si. O parceiro briga, o sócio confronta, e a gente fica parecendo a pessoa calma da história. A força é a parceria que se desafia. Uma boa relação, aqui, tem atrito e sobrevive a ele."
+        ]
+      },
+      {
+        "title": "Marte na casa 8",
+        "body": [
+          "Na casa 8, Marte vai fundo. É a casa da intimidade, do sexo, das crises, das heranças e do dinheiro dividido. O desejo aqui não quer superfície.",
+          "Esse Marte atravessa perdas e reconstruções com uma coragem que assusta. A sombra é a disputa de poder: herança brigada, ciúme, controle. A tradição chama a casa 8 de casa da morte, e Marte nela ensina que algumas lutas só terminam quando a gente deixa algo morrer."
+        ]
+      },
+      {
+        "title": "Marte na casa 9",
+        "body": [
+          "Na casa 9, Marte luta por crenças. Viagens, estudo, religião, filosofia: o desejo quer horizonte e se inflama quando alguém ofende aquilo em que a gente acredita.",
+          "A força é a coragem de mudar de cidade, de fé, de ideia. A sombra é o fervor, que transforma qualquer conversa num debate a vencer. Esse Marte cresce quando aceita que a verdade também é uma viagem, e não um território a conquistar."
+        ]
+      },
+      {
+        "title": "Marte na casa 10",
+        "body": [
+          "Na casa 10, Marte fica no ponto mais alto do mapa, à vista de todos. A carreira é o campo de batalha, e a ambição é pública.",
+          "A força é a liderança, a coragem de assumir responsabilidade e conquistar posição. A sombra é a briga com chefes e autoridades, e a fama de pessoa difícil. Esse Marte trabalha bem quando a guerra é contra o problema, e não contra as pessoas da reunião."
+        ]
+      },
+      {
+        "title": "Marte na casa 11",
+        "body": [
+          "Na casa 11, Marte age em grupo. Amigos, coletivos, causas, redes: o desejo ganha força quando é compartilhado.",
+          "A força é mobilizar gente, puxar o movimento, defender os amigos. A sombra é a briga dentro da turma, a amizade que acaba por disputa. Esse Marte pode descobrir que alguns dos desejos mais fundos não cabem numa vida individual, só num nós."
+        ]
+      },
+      {
+        "title": "Marte na casa 12",
+        "body": [
+          "Na casa 12, Marte age nos bastidores. A casa do que fica escondido, do isolamento, dos hospitais e das prisões guarda um guerreiro que muitas vezes não se mostra.",
+          "A raiva aqui é difícil de reconhecer: aparece no sonho, no cansaço sem motivo, na sabotagem silenciosa. A força é a luta invisível, cuidar de quem não é visto, servir sem plateia. Quando sai da sombra, esse Marte descobre que nunca foi fraco. Só lutava onde ninguém olhava."
+        ]
+      }
+    ]
+  },
+  "jupiter": {
+    "intro": {
+      "title": "O filho que escapou de ser engolido",
+      "body": [
+        "Júpiter é o maior planeta do sistema solar. No mapa, mostra onde a vida se expande: fé, sentido, generosidade, oportunidade. E mostra o excesso, porque o que cresce sem medida ocupa espaço demais. Ele passa cerca de um ano em cada signo, então quem nasceu no mesmo ano costuma dividir o mesmo Júpiter.",
+        "No mito, Júpiter é Zeus. O pai, Cronos, engolia os filhos ao nascer. Reia, a mãe, enrolou uma pedra em panos e entregou ao marido no lugar do bebê. Zeus cresceu escondido em Creta e voltou para libertar os irmãos. Antes de ser o rei dos deuses, o deus da fé foi uma criança que sobreviveu escondida."
+      ]
+    },
+    "signs": [
+      {
+        "title": "Júpiter em Áries",
+        "body": [
+          "Em Áries, Júpiter acredita no começo. A fé é impulsiva, otimista, e se renova a cada projeto novo. Esse Júpiter cresce quando arrisca e encolhe quando espera permissão. A sombra é querer tudo já e se entediar na metade.",
+          "Em Creta, os guerreiros curetes batiam as lanças nos escudos em volta do berço de Zeus, para que Cronos não ouvisse o choro. A primeira proteção do deus foi barulho. Em Áries, a sorte de Júpiter também faz barulho: aparece quando a gente se mexe, não quando fica quieto esperando."
+        ],
+        "q": "Qual começo a gente adia esperando uma garantia que nunca chega?"
+      },
+      {
+        "title": "Júpiter em Touro",
+        "body": [
+          "Em Touro, Júpiter expande pelo corpo e pelos bens. A fé é concreta: acredita no que pode tocar, comer, guardar. Esse Júpiter tende a prosperar devagar e com raiz. A sombra é o conforto em excesso: comer além da fome, comprar além da necessidade, ficar onde é seguro e já não é vivo.",
+          "Escondido em Creta, Zeus foi amamentado pela cabra Amalteia. Um dos chifres dela virou a cornucópia, o chifre da abundância, que nunca esvazia. Em Touro, a generosidade de Júpiter tem cheiro de mesa farta. E a mesa farta só é sagrada enquanto alimenta, não quando entope."
+        ],
+        "q": "Onde a abundância já virou excesso na vida da gente?"
+      },
+      {
+        "title": "Júpiter em Gêmeos",
+        "body": [
+          "Em Gêmeos, Júpiter está em exílio. O planeta do sentido grande chega ao signo das perguntas e das mil versões. A fé aqui não é uma: são muitas, todas interessantes. A força é a curiosidade sem fim. A sombra é tanta informação que o sentido escapa entre as abas abertas.",
+          "Os gêmeos do céu, Castor e Pólux, tinham pais diferentes. Pólux era filho de Zeus e imortal. Castor, mortal. Quando Castor morreu, Pólux pediu para dividir com ele a imortalidade, e os dois passaram a alternar dias entre o Olimpo e o mundo dos mortos. Em Gêmeos, Júpiter cresce quando reparte."
+        ],
+        "q": "Sobre o que a gente sabe muito e ainda não entendeu?"
+      },
+      {
+        "title": "Júpiter em Câncer",
+        "body": [
+          "Em Câncer, Júpiter está exaltado. O planeta da generosidade encontra o signo do cuidado, e a fé ganha colo. Esse Júpiter expande pela família, pela casa, pela comida feita para muita gente. A sombra é proteger demais, alimentar quem já está cheio, criar dependência por amor.",
+          "Zeus só existiu porque uma mãe enganou o pai com uma pedra enrolada em panos. O primeiro milagre da vida dele foi um gesto de cuidado. Por isso Júpiter se exalta em Câncer: a fé, na origem, é a sensação de ter sido protegido quando tudo ameaçava engolir a gente."
+        ],
+        "q": "Quem a gente alimenta além do que precisa, e por quê?"
+      },
+      {
+        "title": "Júpiter em Leão",
+        "body": [
+          "Em Leão, Júpiter quer brilhar com generosidade. A fé é solar: acredita em si, na própria criatividade, no direito de ocupar espaço. Esse Júpiter dá festa, dá presente, dá palco aos outros. A sombra é a grandiosidade, a necessidade de ser admirado inflando a vida até ela virar espetáculo.",
+          "Zeus era rei, mas o trono dele dependia de ser reconhecido como justo pelos outros deuses. Rei que só brilha para si perde o Olimpo. Em Leão, a grandeza de Júpiter dura enquanto aquece os outros, e começa a apagar no dia em que precisa de plateia para existir."
+        ],
+        "q": "O que a gente faz para ser admirado que já não dá prazer?"
+      },
+      {
+        "title": "Júpiter em Virgem",
+        "body": [
+          "Em Virgem, Júpiter está em exílio. O planeta do excesso encontra o signo da medida, e a fé passa a morar no detalhe: na tarefa bem feita, no cuidado com o corpo, no método. A sombra é encolher o horizonte até ele caber numa planilha, ou desconfiar de toda alegria que não foi merecida.",
+          "Virgem é a donzela que segura uma espiga de trigo. A imagem do signo é a colheita, cada grão separado da palha. Em Virgem, o deus do trovão descobre que o sagrado também cabe numa coisa pequena, desde que seja feita inteira."
+        ],
+        "q": "Qual pequena tarefa a gente faz com algo parecido com fé?"
+      },
+      {
+        "title": "Júpiter em Libra",
+        "body": [
+          "Em Libra, Júpiter expande pelas relações. A fé está no encontro, na justiça, na beleza e no acordo. Esse Júpiter faz alianças, casa, se associa, prospera com o outro. A sombra é depender do outro para ter sentido, ou acreditar que tudo se resolve se todo mundo for gentil.",
+          "Zeus era também o protetor dos hóspedes e dos juramentos. Os gregos chamavam de xenia a lei sagrada de receber bem quem chega, mesmo um desconhecido. Em Libra, Júpiter lembra que a hospitalidade já foi uma forma de religião, e que quebrar um acordo era ofender um deus."
+        ],
+        "q": "Que acordo a gente mantém por gentileza e não por verdade?"
+      },
+      {
+        "title": "Júpiter em Escorpião",
+        "body": [
+          "Em Escorpião, Júpiter expande pelo fundo. A fé nasce da crise, da intimidade, do que foi atravessado. Esse Júpiter desconfia de otimismo de superfície: confia no que sobreviveu. A sombra é o excesso de intensidade, de controle, de desejo de poder sobre o que é dos outros.",
+          "Depois da vitória sobre os titãs, Zeus e os irmãos tiraram a sorte para dividir o mundo. A Hades coube o reino dos mortos. Júpiter em Escorpião desce até a parte do mundo que ficou com o irmão, e volta de lá com uma fé que já não tem medo do escuro."
+        ],
+        "q": "Qual perda a gente atravessou que mudou aquilo em que a gente acredita?"
+      },
+      {
+        "title": "Júpiter em Sagitário",
+        "body": [
+          "Em Sagitário, Júpiter está em casa, no domicílio diurno. A fé corre solta: estrada, estudo, viagem, filosofia, vontade de entender o mundo inteiro. Esse Júpiter encontra sorte se mexendo, e um mapa de outro país pode fazer mais por ele do que um conselho.",
+          "A sombra é a pregação, a certeza moral, a promessa grande demais. Em casa, Júpiter cresce sem freio e esquece que até os deuses erram. O arqueiro de Sagitário aponta a flecha para o alto. A fé, aqui, é o desejo de passar do próprio tamanho, e o risco de nunca mais caber em lugar nenhum."
+        ],
+        "q": "Em que a gente acredita tanto que parou de questionar?"
+      },
+      {
+        "title": "Júpiter em Capricórnio",
+        "body": [
+          "Em Capricórnio, Júpiter está em queda. O planeta da expansão entra no signo do limite e da estrutura, e a fé precisa provar que é real. Esse Júpiter cresce devagar, por mérito, por trabalho. A sombra é desconfiar da alegria e só acreditar no que custou caro.",
+          "Capricórnio é a casa de Saturno, que é Cronos, o pai que tentou engolir Zeus. Aqui o filho mora na casa do pai. Júpiter em queda é a fé que precisa crescer sob o olhar de quem não acreditava nela, e que, por isso, aprende a construir com as próprias mãos."
+        ],
+        "q": "Qual alegria a gente só se permite depois de pagar por ela?"
+      },
+      {
+        "title": "Júpiter em Aquário",
+        "body": [
+          "Em Aquário, Júpiter expande pelo coletivo. A fé está no futuro, nas ideias novas, nos amigos e nas causas. Esse Júpiter quer um mundo mais justo e acredita que dá para inventá-lo. A sombra é o idealismo que ama a humanidade e se irrita com as pessoas.",
+          "O aguadeiro de Aquário costuma ser Ganimedes, o jovem que Zeus, em forma de águia, levou ao Olimpo para servir a bebida dos deuses. O rei do céu precisou de alguém que repartisse. Em Aquário, a abundância de Júpiter só faz sentido quando é servida a todos, e não guardada no alto."
+        ],
+        "q": "Que ideia de futuro a gente defende e ainda não pratica?"
+      },
+      {
+        "title": "Júpiter em Peixes",
+        "body": [
+          "Em Peixes, Júpiter está em casa, no domicílio noturno. Antes de Netuno, era ele o regente do signo. A fé aqui é oceânica: compaixão, espiritualidade, imaginação, a sensação de que tudo está ligado. A sombra é a fuga para o sonho e a generosidade sem margem que dissolve a própria vida.",
+          "Em Sagitário, Júpiter é o arqueiro que mira longe. Em Peixes, é o mar, que não precisa mirar porque já está em toda parte. O mesmo planeta tem duas casas e duas fés: a que busca e a que se entrega. Quem tem Júpiter aqui costuma conhecer melhor a segunda, e sentir falta da primeira."
+        ],
+        "q": "Para onde a gente foge quando a realidade aperta?"
+      }
+    ],
+    "houses": [
+      {
+        "title": "Júpiter na casa 1",
+        "body": [
+          "Na casa 1, Júpiter está no corpo e na presença. Costuma dar um ar de otimismo, de quem ocupa espaço e é lembrado. A vida se abre quando há confiança em si. O excesso aparece quando tudo parece caber numa pessoa só."
+        ]
+      },
+      {
+        "title": "Júpiter na casa 2",
+        "body": [
+          "Na casa 2, Júpiter fala de recursos e de valor próprio. Pode trazer facilidade para ganhar e generosidade para gastar. A sorte, aqui, depende de uma medida: quanto é suficiente. Sem ela, o dinheiro entra largo e sai mais largo ainda."
+        ]
+      },
+      {
+        "title": "Júpiter na casa 3",
+        "body": [
+          "Na casa 3, Júpiter expande pela palavra, pelos irmãos, pelos primeiros estudos e pelos trajetos do dia a dia. Uma conversa no ônibus pode mudar um rumo. A sombra é falar demais e prometer na mensagem o que não cabe na semana."
+        ]
+      },
+      {
+        "title": "Júpiter na casa 4",
+        "body": [
+          "Na casa 4, Júpiter mora na família e nas raízes. Casa cheia, mesa grande, um avô que contava histórias. Ou o avesso: a família que prometeu muito. Com os anos, esse Júpiter tende a construir um lar maior do que o que recebeu."
+        ]
+      },
+      {
+        "title": "Júpiter na casa 5",
+        "body": [
+          "Na casa 5, Júpiter expande pela criação, pelos filhos, pelo prazer e pelo romance. A alegria é generosa e contagia. A sombra é a aposta: o jogo, a festa que não acaba, o amor que precisa ser grandioso para parecer real."
+        ]
+      },
+      {
+        "title": "Júpiter na casa 6",
+        "body": [
+          "Na casa 6, Júpiter cresce na rotina e no trabalho diário. Pode trazer bons colegas, um ofício com sentido, um corpo que responde ao cuidado. O excesso aparece na agenda: aceitar mais tarefas do que cabem e chamar isso de vocação."
+        ]
+      },
+      {
+        "title": "Júpiter na casa 7",
+        "body": [
+          "Na casa 7, Júpiter expande pelo outro. Parcerias e casamento costumam trazer crescimento, viagem, ideias novas. O risco é idealizar quem está ao lado e esperar que o parceiro entregue o sentido que a gente ainda não encontrou."
+        ]
+      },
+      {
+        "title": "Júpiter na casa 8",
+        "body": [
+          "Na casa 8, Júpiter mora nas crises, na intimidade e nos recursos divididos. Herança, sociedade, dinheiro do outro. Mais fundo, uma fé que aparece depois das perdas. Esse Júpiter sabe que algumas coisas só crescem depois de morrer um pouco."
+        ]
+      },
+      {
+        "title": "Júpiter na casa 9",
+        "body": [
+          "Na casa 9, Júpiter está num lugar que fala a língua dele: viagem, estudo superior, filosofia, religião. A fé busca mapas grandes. A sombra é virar dono da verdade. A abertura chega quando o mundo se mostra maior do que qualquer doutrina sobre ele."
+        ]
+      },
+      {
+        "title": "Júpiter na casa 10",
+        "body": [
+          "Na casa 10, Júpiter fica no alto do mapa. Carreira, reputação, lugar no mundo: o reconhecimento tende a vir, às vezes cedo. O cuidado é não inflar a imagem pública até ela ficar maior do que a vida que a sustenta."
+        ]
+      },
+      {
+        "title": "Júpiter na casa 11",
+        "body": [
+          "Na casa 11, Júpiter está no lugar que a tradição chama de alegria dele: amigos, grupos, esperanças. A sorte chega pelos outros. Um convite, uma indicação, uma comunidade que abre a porta. Esse Júpiter floresce quando o sonho é dividido."
+        ]
+      },
+      {
+        "title": "Júpiter na casa 12",
+        "body": [
+          "Na casa 12, Júpiter age escondido. Muitos astrólogos leem aqui uma proteção discreta, que chega sem nome em hospitais, retiros, momentos de solidão. A fé é íntima, quase secreta, e às vezes só se deixa ver no escuro."
+        ]
+      }
+    ]
+  },
+  "saturno": {
+    "intro": {
+      "title": "O pai que engolia os filhos",
+      "body": [
+        "Saturno é o planeta do tempo, do limite e da forma. No mapa, mostra onde a vida pesa, onde a gente se sente cobrado, atrasado, insuficiente. E onde, com os anos, constrói algo que dura. É o professor severo do zodíaco: lento, exigente, e raramente fala à toa.",
+        "No mito, Saturno é Cronos, que feriu o pai com uma foice e engoliu os próprios filhos com medo de perder o trono. Mas Roma lembrava de outro Saturno: o rei da Idade de Ouro, sem fome e sem senhores. Na festa dele, a Saturnália, escravos e senhores trocavam de lugar. O devorador também guardava a colheita."
+      ]
+    },
+    "signs": [
+      {
+        "title": "Saturno em Áries",
+        "body": [
+          "Em Áries, Saturno está em queda. O planeta da paciência entra no signo da pressa, e começar vira um problema. Esse Saturno sente que precisa de permissão para existir, ou se cobra iniciativa o tempo todo, como se cada hesitação fosse uma falha de caráter.",
+          "Cronos chegou ao poder com um golpe de foice, e Áries é o signo do primeiro golpe. Aqui, Saturno precisa aprender a começar sem cortar ninguém, nem a si mesmo. Com os anos, nasce uma coragem rara: a de quem começa com medo e começa assim mesmo."
+        ],
+        "q": "O que a gente não começa porque ainda não se sente pronto?"
+      },
+      {
+        "title": "Saturno em Touro",
+        "body": [
+          "Em Touro, Saturno pesa sobre a segurança, o dinheiro e o corpo. Muitas vezes vem de uma história de escassez, real ou sentida, que deixa um medo silencioso de faltar. Esse Saturno guarda, economiza e desconfia do prazer, como se aproveitar fosse arriscado.",
+          "O Saturno romano era deus da semeadura, e Touro é o signo da terra cultivada. Aqui o limite ensina que tudo que tem raiz demora. A abundância vem, mas no tempo da planta, não no da ansiedade. Quem tem esse Saturno costuma terminar a vida com mais chão do que começou."
+        ],
+        "q": "Qual medo de faltar ainda decide as escolhas da gente?"
+      },
+      {
+        "title": "Saturno em Gêmeos",
+        "body": [
+          "Em Gêmeos, Saturno pesa sobre a palavra e o pensamento. Pode haver medo de falar errado, de parecer burro, de não saber o suficiente. Na escola, às vezes, era a criança que sabia a resposta e não levantava a mão.",
+          "Hermes, o deus de Gêmeos, é leve, rápido, tem asas nos pés. Aqui ele carrega uma pedra no bolso. E a pedra dá peso ao que ele diz. Com o tempo, esse Saturno vira rigor: estuda a fundo, escreve com cuidado, pensa antes de falar. O que sai dessa boca costuma ser lembrado."
+        ],
+        "q": "O que a gente deixou de dizer por medo de parecer pouco inteligente?"
+      },
+      {
+        "title": "Saturno em Câncer",
+        "body": [
+          "Em Câncer, Saturno está em exílio. O planeta da regra entra na casa da Lua, do afeto e da família. A história emocional costuma ter um peso: carinho que foi pouco, responsabilidade que veio cedo, uma infância que precisou agir como adulta.",
+          "Cronos engolia os filhos para não perdê-los para o futuro. Em Câncer, essa imagem chega muito perto: o medo de perder pode virar controle sobre quem a gente ama. Com o tempo, esse Saturno aprende a construir um lar que segura sem engolir."
+        ],
+        "q": "Que cuidado a gente recebeu cedo demais, em forma de responsabilidade?"
+      },
+      {
+        "title": "Saturno em Leão",
+        "body": [
+          "Em Leão, Saturno está em exílio. O planeta da sombra entra na casa do Sol, e brilhar vira esforço. Pode haver medo de se mostrar, de ser ridículo, de não ser especial o bastante. Ou uma cobrança dura de ser excelente sempre que alguém está olhando.",
+          "Saturno é o planeta mais distante que se vê a olho nu: a fronteira do céu antigo. O Sol é o centro. Quando a fronteira mora na casa do centro, a alegria vira trabalho. Com os anos, esse Saturno encontra um brilho que não depende de aplauso, o de quem continua criando sem plateia."
+        ],
+        "q": "O que a gente criaria se ninguém fosse ver?"
+      },
+      {
+        "title": "Saturno em Virgem",
+        "body": [
+          "Em Virgem, Saturno se entende bem com o método. A cobrança cai sobre o trabalho, a saúde, o detalhe. Esse Saturno revisa três vezes, se culpa pelo erro mínimo e confunde valor pessoal com produtividade.",
+          "A virgem do signo segura uma espiga, e o Saturno romano era o deus da colheita. Os dois se reconhecem. Aqui o tempo trabalha a favor: o ofício feito com cuidado, ano após ano, amadurece até virar uma competência que ninguém tira. A cobrança de hoje é a semente dessa colheita, se não sufocar antes."
+        ],
+        "q": "Em que parte da rotina a gente se cobra como se estivesse sempre em prova?"
+      },
+      {
+        "title": "Saturno em Libra",
+        "body": [
+          "Em Libra, Saturno está exaltado. O planeta da lei encontra o signo da justiça, e a regra ganha medida. Esse Saturno leva relações a sério: compromissos, contratos, acordos. Pode demorar a assumir um vínculo, ou assumir cedo e sentir o peso.",
+          "Na Saturnália, por alguns dias, senhores serviam os escravos e a hierarquia virava do avesso. O deus severo presidia a festa da igualdade. Em Libra, Saturno mostra a face mais justa: o limite que existe para que ninguém engula ninguém."
+        ],
+        "q": "Que acordo numa relação a gente mantém por medo, e não por justiça?"
+      },
+      {
+        "title": "Saturno em Escorpião",
+        "body": [
+          "Em Escorpião, Saturno pesa sobre a intimidade, o poder e as perdas. Pode haver dificuldade de confiar, de se entregar, de dividir dinheiro ou corpo. Esse Saturno se protege muito porque aprendeu cedo que a intimidade pode doer.",
+          "Depois de destronado, Cronos tem dois destinos nos mitos. Em algumas versões, fica preso no Tártaro, o fundo do mundo. Em outras, vira rei das Ilhas dos Bem-Aventurados. Saturno em Escorpião carrega os dois: o mesmo fundo que prende pode, com o tempo, virar um lugar de paz."
+        ],
+        "q": "Em quem a gente ainda não confia, e desde quando?"
+      },
+      {
+        "title": "Saturno em Sagitário",
+        "body": [
+          "Em Sagitário, Saturno pesa sobre a fé e as ideias. Pode haver uma educação religiosa rígida, ou o medo de não ter em que acreditar. Esse Saturno leva a verdade muito a sério e às vezes transforma crença em regra.",
+          "Sagitário é a casa de Júpiter, o filho que derrubou Saturno. Aqui o pai mora na casa do filho, e o limite precisa aprender com a fé. Com o tempo, esse Saturno constrói uma filosofia própria, testada pela vida, e vira aquele professor que a gente lembra décadas depois."
+        ],
+        "q": "Qual crença a gente herdou e nunca testou?"
+      },
+      {
+        "title": "Saturno em Capricórnio",
+        "body": [
+          "Em Capricórnio, Saturno está em casa, no domicílio noturno: disciplina, ambição, responsabilidade. Esse Saturno sobe a montanha devagar e não para. Costuma amadurecer cedo, às vezes cedo demais. A sombra é a dureza, o trabalho como único valor, a solidão no topo.",
+          "O símbolo do signo é uma cabra com cauda de peixe: metade escala a montanha, metade vem do mar. Mesmo em casa, Saturno guarda uma origem líquida. A estrutura mais firme deste zodíaco nasceu de algo que um dia foi água, emoção, maré."
+        ],
+        "q": "Desde quando a gente é mais adulto do que gostaria?"
+      },
+      {
+        "title": "Saturno em Aquário",
+        "body": [
+          "Em Aquário, Saturno também está em casa, no domicílio diurno. Antes de Urano, era o único regente do signo. Aqui o limite serve ao coletivo: regras para o grupo, estrutura para a ideia nova, responsabilidade com o futuro. A sombra é a rigidez de quem ama os princípios mais do que as pessoas.",
+          "Saturno é o planeta dos anéis. E os anéis não são uma moldura sólida: são bilhões de pedaços de gelo e rocha girando juntos. Em Aquário, Saturno mostra uma forma feita de muitos. A estrutura, aqui, é o próprio grupo."
+        ],
+        "q": "Que regra a gente defende para os outros e não segue?"
+      },
+      {
+        "title": "Saturno em Peixes",
+        "body": [
+          "Em Peixes, Saturno pesa sobre o que não tem forma: medo, culpa, a sensação difusa de não pertencer. Esse Saturno às vezes carrega tristezas que nem são dele, como se fosse responsável pelo sofrimento do mundo.",
+          "Saturno é o planeta menos denso do sistema solar. Numa banheira grande o bastante, ele boiaria. O planeta mais pesado da astrologia flutua na água, e Peixes é a água sem margem. Com o tempo, esse Saturno aprende a dar forma ao invisível: arte, fé, cuidado, um limite que protege sem endurecer."
+        ],
+        "q": "Que culpa a gente carrega que nunca foi nossa?"
+      }
+    ],
+    "houses": [
+      {
+        "title": "Saturno na casa 1",
+        "body": [
+          "Na casa 1, Saturno está no corpo e na presença. A pessoa costuma parecer séria, contida, mais velha, mesmo quando criança. O início da vida pode ter sido pesado. Com os anos, o rosto vai ficando mais leve, como se a idade devolvesse o que a infância cobrou."
+        ]
+      },
+      {
+        "title": "Saturno na casa 2",
+        "body": [
+          "Na casa 2, Saturno pesa sobre o dinheiro e o valor próprio. Medo de faltar, trabalho duro para ganhar, dificuldade de cobrar o que vale. Com o tempo, constrói uma segurança sólida, feita de anos e não de sorte."
+        ]
+      },
+      {
+        "title": "Saturno na casa 3",
+        "body": [
+          "Na casa 3, Saturno pesa sobre a fala, os primeiros estudos e os irmãos. Uma escola difícil, um irmão que foi responsabilidade, uma palavra que custava sair. Com o tempo, vira rigor: um jeito de escrever e pensar com uma seriedade rara."
+        ]
+      },
+      {
+        "title": "Saturno na casa 4",
+        "body": [
+          "Na casa 4, Saturno mora nas raízes. Pode ter havido uma casa de regras duras, um pai ou uma mãe ausente ou exigente, uma família que pesou. O chão costuma ser construído tarde, e com as próprias mãos."
+        ]
+      },
+      {
+        "title": "Saturno na casa 5",
+        "body": [
+          "Na casa 5, Saturno pesa sobre o prazer, a criação e os filhos. Brincar pode parecer perda de tempo, criar pode dar medo de julgamento. Com os anos, a alegria vira ofício, e a pessoa leva a sério justamente o que antes temia."
+        ]
+      },
+      {
+        "title": "Saturno na casa 6",
+        "body": [
+          "Na casa 6, Saturno trabalha. Rotina pesada, corpo que cobra a conta, sensação de nunca ter terminado. A força é a disciplina diária, o ofício construído tarefa por tarefa. O cuidado é não fazer da vida uma lista que nunca acaba."
+        ]
+      },
+      {
+        "title": "Saturno na casa 7",
+        "body": [
+          "Na casa 7, Saturno pesa sobre as parcerias. Relações que chegam tarde, parceiros mais velhos ou mais sérios, compromisso vivido como responsabilidade. O outro vira professor. Com o tempo, esse Saturno constrói vínculos que atravessam décadas."
+        ]
+      },
+      {
+        "title": "Saturno na casa 8",
+        "body": [
+          "Na casa 8, Saturno guarda as portas da intimidade, das perdas e dos bens divididos. Medo de se entregar, burocracia em heranças, lutos que ensinam cedo. Com o tempo, a pessoa atravessa crises como quem já conhece o caminho."
+        ]
+      },
+      {
+        "title": "Saturno na casa 9",
+        "body": [
+          "Na casa 9, Saturno pesa sobre a fé, os estudos e as viagens. Formação longa, dúvida religiosa, medo de ir longe. Com os anos, a crença que fica é a que foi testada, e a pessoa pode virar referência naquilo que estudou."
+        ]
+      },
+      {
+        "title": "Saturno na casa 10",
+        "body": [
+          "Na casa 10, Saturno fica no alto do mapa, no lugar da carreira e da reputação. A ambição é séria e o caminho é lento, às vezes com quedas públicas e recomeços. O que se constrói aqui tende a durar, porque foi feito com tempo."
+        ]
+      },
+      {
+        "title": "Saturno na casa 11",
+        "body": [
+          "Na casa 11, Saturno pesa sobre os amigos e os grupos. Poucos amigos, às vezes mais velhos, uma sensação antiga de não caber na turma. Com os anos, os amigos que ficam são para a vida, e os sonhos ganham plano."
+        ]
+      },
+      {
+        "title": "Saturno na casa 12",
+        "body": [
+          "Na casa 12, Saturno está no lugar que a tradição chama de alegria dele: isolamento, retiro, o que fica escondido. Medos sem nome, solidão que pesa. E também a disciplina interior de quem sabe ficar só e transforma o silêncio em obra."
+        ]
+      }
+    ]
+  },
+  "ciclos": {
+    "q": "Quanto tempo Júpiter e Saturno levam, mais ou menos, para dar a volta no zodíaco?",
+    "opts": [
+      "Júpiter, cerca de 12 anos; Saturno, cerca de 29,5",
+      "Júpiter, cerca de 2 anos; Saturno, cerca de 12",
+      "Júpiter, cerca de 29,5 anos; Saturno, cerca de 84",
+      "Júpiter, cerca de 7 anos; Saturno, cerca de 19"
+    ],
+    "explain": "Por isso Júpiter volta ao ponto do nascimento perto dos 12, 24 e 36 anos, e Saturno perto dos 29 e dos 58. Os dois se encontram no céu a cada 20 anos, mais ou menos: a última vez foi em dezembro de 2020, no começo de Aquário."
+  },
+  "par": {
+    "title": "O pai, o filho e a cabeça aberta",
+    "body": [
+      "Júpiter expande, Saturno dá forma. Um diz sim, o outro pergunta quanto custa. Sozinho, Júpiter vira excesso. Sozinho, Saturno vira prisão. Na roda, os dois são vizinhos: os signos de Saturno, Capricórnio e Aquário, ficam entre os de Júpiter, Sagitário e Peixes. O limite mora cercado de fé.",
+      "Zeus derrota Cronos e obriga o pai a devolver os filhos engolidos. Depois, avisado de que um filho de Métis tomaria o trono dele, engole Métis grávida. O filho que escapou de ser devorado repete o gesto do pai. E da cabeça de Zeus, aberta a machado, nasce Atena, já armada. A sabedoria sai de dentro do medo."
+    ]
+  }
+}

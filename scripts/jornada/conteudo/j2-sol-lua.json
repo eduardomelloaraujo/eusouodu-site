@@ -1,0 +1,438 @@
+{
+  "sol": {
+    "intro": {
+      "title": "A luz que organiza",
+      "body": [
+        "No mapa natal, o Sol é o centro. Os outros planetas giram em volta dele, e na vida é parecido: ele mostra o que a gente precisa viver para se sentir vivo, o que dá calor e direção. Os gregos chamavam essa luz de Hélio, o titã que atravessava o céu num carro de fogo, do leste ao oeste, todo dia.",
+        "Faetonte, filho de Hélio, pediu para guiar o carro do pai por um único dia. Perdeu as rédeas, queimou a terra e caiu fulminado por Zeus. Depois a luz ganhou o rosto de Apolo, e no templo dele em Delfos estava escrito: Conhece-te a ti mesmo. O Sol do mapa pede isso. Brilhar no próprio carro, não no do pai."
+      ]
+    },
+    "signQ": {
+      "explain": "O Sol é sempre a vontade de existir. O signo diz em que tom essa luz acende, com que mito por trás e com que medo por perto."
+    },
+    "match": {
+      "q": "Ligue cada pista ao que ela diz do Sol",
+      "pairs": [
+        ["Glifo", "Círculo com um ponto"],
+        ["Volta pelo zodíaco", "Cerca de 1 ano"],
+        ["Signo de domicílio", "Leão"],
+        ["Titã que conduz o carro", "Hélio"]
+      ],
+      "explain": "O ponto no meio do círculo é o centro que organiza tudo em volta. E como o Sol leva um ano para dar a volta, ele passa uns 30 dias em cada signo."
+    },
+    "signs": [
+      {
+        "title": "O Sol em Áries",
+        "body": [
+          "Áries é a exaltação do Sol. O ano astrológico começa quando ele entra ali, no equinócio de março, e no hemisfério norte a luz passa a vencer a noite. Aqui o centro da vida é começar. A vitalidade acende quando tem algo a abrir, um caminho que ainda ninguém pisou.",
+          "O mito do signo é o carneiro de ouro que tira Frixo do altar de sacrifício. O Sol em Áries tem esse instinto: sair de onde querem queimar a gente. A força é a coragem de aparecer sem pedir licença. A sombra é tratar toda espera como sacrifício e partir antes de saber se era fuga ou começo.",
+          "Foi Hélio quem viu Ares e Afrodite juntos e contou tudo a Hefesto. Ares é o regente de Áries. No signo do deus da guerra, o Sol ganha força justamente porque não deixa o desejo no escuro. O que adoece aqui raramente é a raiva dita. É a raiva que a gente engoliu para parecer calma."
+        ],
+        "q": "O que a gente começou só para não ficar parado onde doía?"
+      },
+      {
+        "title": "O Sol em Touro",
+        "body": [
+          "Em Touro, o Sol desacelera. Signo de terra fixa, regido pelo Vênus, ele pede raiz antes de brilho. A vitalidade vem do corpo e do que dura: o pão feito em casa, o toque, o dinheiro que chega ao fim do mês, a planta que precisa de uma estação inteira para dar fruto.",
+          "O mito é Zeus transformado num touro branco, manso, com cheiro de flor. Europa sobe nas costas dele por confiança. A força do Sol em Touro é essa presença calma que faz o outro relaxar perto. A sombra é a teimosia de quem confunde segurança com não sair do lugar.",
+          "Mas o touro entra no mar e leva Europa até Creta, e ela nunca volta. Lá, vira mãe de Minos, o rei. O signo da estabilidade guarda a história de uma travessia sem retorno. A calma também desloca. O Sol em Touro descobre, às vezes tarde, que a terra firme ficava do outro lado da água."
+        ],
+        "q": "O que a gente segura com tanta força que já não consegue aproveitar?"
+      },
+      {
+        "title": "O Sol em Gêmeos",
+        "body": [
+          "Em Gêmeos, o Sol se ilumina quando circula. Signo de ar mutável, regido por Mercúrio, ele vive de troca: perguntar, ler, contar, ligar uma ideia à outra. O centro da vida não é um ponto fixo. É uma conversa que ainda não terminou.",
+          "O mito é o dos gêmeos Castor e Pólux. Pólux era filho de Zeus e imortal. Castor era mortal. Quando Castor morre, Pólux se recusa a viver sem ele e pede para dividir a própria imortalidade. Desde então, os dois repartem os dias entre o Olimpo e o mundo dos mortos.",
+          "Por isso o Sol em Gêmeos parece disperso e não é. Ele carrega um irmão por dentro: uma parte que voa e outra que sabe que vai morrer. A leveza vem de quem conhece o peso. A sombra é fugir de um lado pelo outro, falar demais para não sentir. A força é trazer notícias dos dois mundos."
+        ],
+        "q": "Que parte da gente fica no escuro enquanto a outra conversa?"
+      },
+      {
+        "title": "O Sol em Câncer",
+        "body": [
+          "Câncer é água cardinal, regido pela Lua. Quando o Sol entra ali, a luz encontra a casa. O centro da vida passa a ser cuidar e pertencer: a família de sangue ou a escolhida, a cozinha, as fotos guardadas na caixa, o lugar para onde a gente volta quando tudo dá errado.",
+          "O mito é estranho. Héracles lutava contra a Hidra quando Hera mandou um caranguejo morder o pé dele. O bicho foi esmagado na hora. Mesmo assim, Hera o colocou no céu. Um herói enorme, uma criatura pequena que perde, e uma deusa que honra a lealdade mais do que a vitória.",
+          "O Sol entra em Câncer no solstício de junho: no hemisfério norte, o dia mais longo do ano. Dali em diante, a luz começa a diminuir. O signo do cuidado nasce no auge do Sol, no exato momento em que ele começa a ceder espaço à noite. Quem tem o Sol aqui brilha abrindo lugar para que algo cresça em volta."
+        ],
+        "q": "De quem a gente cuida tanto que esquece de se deixar cuidar?"
+      },
+      {
+        "title": "O Sol em Leão",
+        "body": [
+          "Leão é a casa do Sol. Aqui ele está em domicílio, sem tradução: o centro da vida é criar algo que só a gente poderia criar, e ser visto fazendo isso. Calor, generosidade, palco, coração. No corpo, o signo governa justamente o coração.",
+          "O mito é o leão de Nemeia, de pele que nenhuma arma furava. Héracles tenta flechas, tenta a clava. Nada. Acaba estrangulando o bicho com as mãos. Depois tenta tirar a pele e nenhuma lâmina corta. Só a garra do próprio leão consegue.",
+          "E Héracles passa o resto da vida vestido com aquela pele. O herói não se livra do leão: vira o leão. O orgulho do Sol em Leão funciona assim. Ninguém de fora consegue dobrá-lo, só o próprio orgulho, quando decide. E a força que parecia ameaça vira manto. A sombra é precisar de plateia para saber que está vivo."
+        ],
+        "q": "O que a gente cria que só parece valer se alguém aplaudir?"
+      },
+      {
+        "title": "O Sol em Virgem",
+        "body": [
+          "Em Virgem, terra mutável regida por Mercúrio, o Sol brilha no detalhe. A vitalidade vem de fazer bem feito, de separar, de entender como uma coisa funciona por dentro. É o signo da colheita: a hora de escolher o grão bom e deixar a palha.",
+          "A virgem do céu segura uma espiga, a estrela Espiga. Muitos a ligam a Astreia, a deusa da justiça que viveu entre os humanos na Idade de Ouro. Quando o mundo se corrompeu, ela foi a última imortal a deixar a terra. Subiu e virou constelação.",
+          "Virgem, no sentido antigo, não falava de corpo intocado. Falava de quem pertence a si mesma. Astreia não partiu por nojo, partiu por não aceitar viver pela metade. O Sol em Virgem critica porque lembra de uma ordem possível. A força é servir sem se perder. A sombra é corrigir o mundo inteiro e nunca se dar por pronta."
+        ],
+        "q": "Que perfeição a gente exige antes de se permitir estar na vida?"
+      },
+      {
+        "title": "O Sol em Libra",
+        "body": [
+          "Libra é a queda do Sol. Ele entra no signo no equinócio de setembro, e no hemisfério norte a noite passa a vencer o dia. A luz que em Áries se exalta, aqui precisa dividir o céu. O centro da vida passa pelo outro: o encontro, a beleza, a justiça.",
+          "Queda não é defeito. É o Sol aprendendo a não ser centro sozinho. Regido pelo Vênus, Libra brilha quando consegue pesar os dois lados, escutar, desenhar acordos, achar a forma bonita de uma situação feia. A sombra é sumir dentro do que agrada e descobrir anos depois que a balança pesou para um lado só.",
+          "Libra é o único signo do zodíaco representado por um objeto. Os outros são bichos, gente, criaturas. E os gregos viam nessas estrelas as pinças do Escorpião. Foi em Roma que a balança se firmou de vez. O signo da delicadeza nasceu de uma garra. O Sol em Libra também sabe agarrar, quando precisa."
+        ],
+        "q": "Em que relação a gente cede tanto que já não lembra o que queria?"
+      },
+      {
+        "title": "O Sol em Escorpião",
+        "body": [
+          "Em Escorpião, água fixa regida por Marte e, na astrologia moderna, por Plutão, o Sol brilha no escuro. É o signo que atravessa o fim de outubro e novembro, a época de Finados. O centro da vida aqui é ir fundo: no desejo, na crise, no segredo, no que a maioria prefere não olhar.",
+          "O mito é Órion, o caçador gigante que jurou matar todos os animais da terra. Gaia respondeu com um escorpião, pequeno, rente ao chão, e foi ele quem derrubou o gigante. O Sol em Escorpião tem esse faro para o ponto fraco, nos outros e em si. A força é a lealdade. A sombra é o controle e o medo de ser visto por completo.",
+          "Quando Hades levou Perséfone para o mundo dos mortos, foi Hélio quem contou a Deméter onde a filha estava. O Sol foi a testemunha do que aconteceu embaixo da terra. O Sol em Escorpião faz isso: leva luz para onde as coisas foram enterradas. Não para resgatar tudo. Para que o que está lá deixe de ser segredo."
+        ],
+        "q": "O que a gente esconde por medo de perder o controle da própria história?"
+      },
+      {
+        "title": "O Sol em Sagitário",
+        "body": [
+          "Em Sagitário, fogo mutável regido por Júpiter, o Sol se acende quando enxerga longe. A vitalidade vem do sentido: uma viagem, uma fé, um estudo, um horizonte que faz o dia de hoje caber numa história maior. Muito tempo no mesmo lugar apaga a chama.",
+          "O centauro do signo costuma ser lido como Quíron, o mais sábio da espécie, professor de Asclépio, de Aquiles e de Jasão. Uma flecha de Héracles, envenenada com o sangue da Hidra, o atingiu por acidente. Quíron era imortal. Não podia morrer, e a ferida não fechava.",
+          "Quíron acaba entregando a imortalidade para poder descansar, e Zeus o coloca entre as estrelas. O arqueiro do zodíaco é um curador que não se curou. O otimismo do Sol em Sagitário não nasce da ingenuidade. Nasce de quem viu a ferida e decidiu mirar acima dela. A sombra é pregar a verdade para não sentir a dor."
+        ],
+        "q": "Que horizonte a gente persegue para não olhar a ferida de perto?"
+      },
+      {
+        "title": "O Sol em Capricórnio",
+        "body": [
+          "Em Capricórnio, terra cardinal regida por Saturno, o Sol brilha devagar e para durar. O centro da vida é construir: um nome, uma obra, uma estrutura que segure quem vem depois. A vitalidade cresce com o tempo, e muita gente com o Sol aqui se sente mais leve aos cinquenta do que aos vinte.",
+          "A criatura do signo é metade cabra, metade peixe. Um dos mitos conta que Pã, fugindo do monstro Tifão, pulou num rio e tentou virar bicho para escapar. Ficou com as duas formas ao mesmo tempo. A cabra sobe a montanha. O peixe guarda a memória da água. O Sol em Capricórnio escala sem esquecer de onde veio.",
+          "O Sol entra em Capricórnio no solstício de dezembro: no hemisfério norte, a noite mais longa do ano. Dali em diante, a luz volta a crescer, e Roma festejava nesses dias o Sol Invicto. O signo mais sério do zodíaco começa com o renascimento da luz. A sombra é acreditar que só vale o que custou caro."
+        ],
+        "q": "O que a gente adia para quando finalmente tiver merecido?"
+      },
+      {
+        "title": "O Sol em Aquário",
+        "body": [
+          "Aquário é o exílio do Sol. Fica do lado oposto a Leão, onde ele reina. Lá, a luz é o centro. Aqui, ela é de todos. Regido por Saturno e, na astrologia moderna, por Urano, o signo pede que o brilho sirva ao grupo, à ideia, ao que ainda está por vir.",
+          "O mito do signo é Ganimedes, o jovem que Zeus levou ao Olimpo para servir os deuses. No céu, ele derrama água de um jarro. Quem tem o Sol em Aquário costuma conhecer cedo essa sensação: um lugar um pouco fora, o olhar de quem foi levado para longe e passou a ver a vida de cima.",
+          "Em algumas versões, Prometeu rouba o fogo acendendo uma tocha nas rodas do carro do Sol, e entrega aos humanos. O exílio do Sol é isso: a luz que sai do centro e vai parar na mão de todo mundo. A força é a liberdade. A sombra é ficar tão longe do próprio calor que ninguém consegue chegar perto."
+        ],
+        "q": "Onde a gente se sente fora justamente por ser quem é?"
+      },
+      {
+        "title": "O Sol em Peixes",
+        "body": [
+          "Em Peixes, água mutável regida por Júpiter e, na astrologia moderna, por Netuno, o Sol se dissolve um pouco. Último signo da roda, ele carrega um pedaço de todos os outros. A vitalidade vem do que não tem borda: música, mar, sonho, fé, a compaixão por quem sofre.",
+          "O mito conta que Afrodite e o filho, Eros, fugindo de Tifão, se jogaram num rio e viraram peixes. Para não se perderem na correnteza, amarraram um ao outro com uma corda. Por isso os dois peixes do signo nadam em direções opostas e continuam presos.",
+          "A corda guarda o sentido do signo. Peixes não é só o que se dissolve: é o que se dissolve amarrado a alguém. O Sol em Peixes precisa de um fio para entrar no mar sem desaparecer: uma arte, uma prática, um vínculo. Sem fio, a sensibilidade vira fuga. Com fio, vira um jeito de enxergar no escuro."
+        ],
+        "q": "Qual é o fio que impede a gente de se perder quando mergulha?"
+      }
+    ],
+    "houses": [
+      {
+        "title": "O Sol na casa 1",
+        "body": [
+          "A casa 1 é o corpo, a aparência, o jeito de chegar. Com o Sol aqui, a luz está na porta: a pessoa é notada antes de falar, e o que ela é aparece no rosto, na postura, no modo de entrar numa sala.",
+          "A vitalidade depende de agir por conta própria. Quando alguém tenta apagar esse brilho, o corpo sente primeiro: cansaço, irritação, febre de vontade. O trabalho aqui é aprender a diferença entre ser o centro e ocupar o próprio lugar."
+        ]
+      },
+      {
+        "title": "O Sol na casa 2",
+        "body": [
+          "A casa 2 é o que sustenta a vida: dinheiro, bens, talentos, o corpo como recurso, os valores. Com o Sol aqui, a identidade se acende no que se produz com as próprias mãos e no que se consegue manter.",
+          "A autoestima e o extrato do banco podem se confundir. Um mês ruim parece um julgamento sobre quem a gente é. O caminho é descobrir o que vale mesmo quando ninguém compra."
+        ]
+      },
+      {
+        "title": "O Sol na casa 3",
+        "body": [
+          "A casa 3 é a vizinhança, os irmãos, a escola, a fala do dia a dia, os caminhos curtos. Com o Sol aqui, a luz mora na palavra: escrever, ensinar, explicar, contar o que viu no caminho da padaria.",
+          "Os irmãos, ou quem fez esse papel, costumam pesar muito na formação. A vitalidade cai quando a rotina fica muda e cresce quando tem alguém do lado para trocar ideia. Uma mente com Sol na casa 3 adoece de silêncio."
+        ]
+      },
+      {
+        "title": "O Sol na casa 4",
+        "body": [
+          "A casa 4 é o chão: a casa, a família de origem, as raízes, o que a gente herda sem escolher. É o fundo do mapa, a meia-noite. Com o Sol aqui, a luz está no lugar mais escuro do céu.",
+          "Isso dá uma vida que se ilumina por dentro, longe do palco. O pai, ou quem segurou esse lugar, costuma ser central, pela presença ou pela falta. Muitas vezes o propósito é construir um lar diferente do que veio."
+        ]
+      },
+      {
+        "title": "O Sol na casa 5",
+        "body": [
+          "A casa 5 é a do prazer, dos filhos, do jogo, do namoro, de tudo que a gente cria só porque dá vontade. O Sol aqui pisa um terreno muito parecido com Leão: a luz quer brincar e ser vista.",
+          "A vitalidade depende de criar. Pode ser filho, pode ser arte, festa, um projeto que ninguém pediu. Quando a vida vira só obrigação, esse Sol apaga. Ele lembra que alegria também é coisa séria."
+        ]
+      },
+      {
+        "title": "O Sol na casa 6",
+        "body": [
+          "A casa 6 é a rotina, o trabalho diário, a saúde, o corpo que adoece e se cuida, os bichos de estimação. Com o Sol aqui, a identidade se acende no fazer: ser útil, resolver, ter método.",
+          "O corpo costuma avisar quando o propósito se perdeu: dor nas costas, insônia, gastrite. O trabalho, aqui, é não reduzir o próprio valor ao que se entrega no fim do dia. Servir é diferente de desaparecer."
+        ]
+      },
+      {
+        "title": "O Sol na casa 7",
+        "body": [
+          "A casa 7 é o outro: casamento, sócios, parcerias, e também os adversários declarados. Fica no poente do mapa, de frente para a casa 1. Com o Sol aqui, a luz se reconhece no espelho de alguém.",
+          "É comum atrair pessoas que brilham muito e demorar a perceber que parte daquela luz era projeção. O crescimento vem quando a relação deixa de ser o palco do outro e vira encontro de dois centros."
+        ]
+      },
+      {
+        "title": "O Sol na casa 8",
+        "body": [
+          "A casa 8 é o que é dividido e o que escapa do controle: sexo, morte, heranças, dívidas, o dinheiro do outro, as crises que mudam a vida. Com o Sol aqui, a luz desce até o porão.",
+          "A identidade costuma se formar em perdas e travessias, às vezes cedo demais. Daí vem uma força rara: ficar presente onde os outros fogem. A vitalidade volta depois de cada fim, mas só depois que o fim é aceito."
+        ]
+      },
+      {
+        "title": "O Sol na casa 9",
+        "body": [
+          "A casa 9 é o horizonte: viagens longas, estudo, filosofia, fé, outras línguas. Na tradição antiga, era chamada de casa do Deus, e era ali que o Sol tinha alegria. Ele se sente à vontade nesse terreno.",
+          "A luz se acende com sentido. Quem tem o Sol na casa 9 precisa acreditar no que faz e, de tempos em tempos, ir longe para enxergar a própria casa. A sombra é virar dono da verdade. A força é ensinar um caminho já percorrido."
+        ]
+      },
+      {
+        "title": "O Sol na casa 10",
+        "body": [
+          "A casa 10 é o ponto mais alto do mapa, o meio-dia: carreira, reputação, o lugar que se ocupa no mundo. Com o Sol aqui, a luz está no alto do céu, visível de longe.",
+          "A vida pede uma obra pública, algo que leve o nome da pessoa. Ambição e cobrança andam juntas, e muitas vezes começaram na expectativa de um pai ou de uma mãe. O trabalho é separar o topo desejado do topo herdado."
+        ]
+      },
+      {
+        "title": "O Sol na casa 11",
+        "body": [
+          "A casa 11 é a dos amigos, dos grupos, das causas e dos planos para o futuro. Na tradição, era a casa do bom espírito. Com o Sol aqui, a luz se acende no coletivo: numa turma, num projeto, numa rede.",
+          "A identidade se forma em quem a gente escolhe ter por perto. Pode haver desconforto em brilhar sozinho e uma facilidade enorme de brilhar junto. A sombra é se diluir no grupo. A força é fazer do futuro um projeto compartilhado."
+        ]
+      },
+      {
+        "title": "O Sol na casa 12",
+        "body": [
+          "A casa 12 é a parte escondida do mapa: isolamento, hospitais, retiros, o que se faz longe dos olhos, o inconsciente. Com o Sol aqui, a luz acabou de nascer: já passou do horizonte leste, mas ainda está baixa, perdida na névoa da manhã.",
+          "Muita gente com o Sol na casa 12 cresce sentindo que não é vista. E a força dela trabalha mesmo nos bastidores: cuidando, criando, rezando, escutando. É a claridade da primeira hora. Já ilumina tudo, antes que alguém pense em olhar para cima."
+        ]
+      }
+    ]
+  },
+  "lua": {
+    "intro": {
+      "title": "A luz que volta",
+      "body": [
+        "A Lua devolve a luz do Sol e muda de rosto a cada noite. No mapa, ela mostra o que a gente aprendeu antes de ter palavras: como foi cuidada, como se acalma, o que o corpo procura quando o mundo pesa. É a memória que mora no corpo. O ritmo, a fome, o colo.",
+        "Os gregos deram à Lua mais de uma deusa. Selene, irmã de Hélio. Hécate, da tocha nas encruzilhadas. E Ártemis, que segundo o mito nasceu primeiro e ajudou a própria mãe, Leto, a parir o gêmeo Apolo. Uma filha que mal nasce e já cuida da mãe. Muita Lua começa exatamente assim."
+      ]
+    },
+    "signQ": {
+      "explain": "A Lua é o jeito de se acalmar, mas cada signo pede um colo diferente. O signo diz do que esse corpo precisa para voltar a se sentir seguro."
+    },
+    "match": {
+      "q": "Ligue cada pista ao que ela diz da Lua",
+      "pairs": [
+        ["Volta pelo zodíaco", "Cerca de 27 dias"],
+        ["Ciclo das fases", "Cerca de 29 dias e meio"],
+        ["Signo de domicílio", "Câncer"],
+        ["Deusa das encruzilhadas", "Hécate"]
+      ],
+      "explain": "A Lua passa uns dois dias e meio em cada signo. É o astro mais rápido do mapa, e por isso fala do humor que muda dentro de uma mesma semana."
+    },
+    "signs": [
+      {
+        "title": "A Lua em Áries",
+        "body": [
+          "Em Áries, a Lua sente rápido e reage antes de pensar. Signo de fogo regido por Marte, ele dá a ela um corpo que se acalma pela ação: andar, correr, resolver, brigar e logo depois esquecer. As emoções chegam como faísca e passam como faísca.",
+          "Ártemis é a Lua caçadora, de arco na mão, correndo pelo mato com as ninfas. Ela não espera ninguém. A Lua em Áries tem algo dessa deusa: precisa de espaço para se mexer e não suporta ser contida. A força é a franqueza. A sombra é a impaciência com a própria tristeza.",
+          "Por trás da pressa, às vezes, mora uma criança que precisou se virar sozinha cedo demais. Cuidar de si virou correr na frente. A Lua em Áries aprende, com o tempo, que pedir colo também é coragem. Talvez a mais difícil que ela conhece."
+        ],
+        "q": "O que a gente resolve correndo para não ter que sentir parado?"
+      },
+      {
+        "title": "A Lua em Touro",
+        "body": [
+          "Touro é a exaltação da Lua. Aqui ela fica estável, sensual, enraizada no corpo. Signo de terra fixa regido pelo Vênus, ele acalma com coisas simples: comida boa, cheiro conhecido, a mesma cama, o tecido macio, o tempo sem pressa.",
+          "No céu, o Touro carrega as Plêiades, as sete irmãs. Os antigos gregos marcavam a colheita e o arado pelo nascer e pelo pôr dessas estrelas. A Lua em Touro é esse relógio da terra: o corpo sabe a hora de comer, de dormir, de parar, e adoece quando esse ritmo é atropelado.",
+          "Exaltação é quando o planeta é recebido como hóspede de honra. A Lua, que muda de forma o tempo todo, é honrada justamente no signo que não muda. A emoção encontra ali o que mais lhe falta: chão. A sombra é se apegar tanto ao chão que nenhuma maré nova consegue entrar."
+        ],
+        "q": "Qual é o pequeno ritual do corpo que faz a gente voltar para casa?"
+      },
+      {
+        "title": "A Lua em Gêmeos",
+        "body": [
+          "Em Gêmeos, signo de ar regido por Mercúrio, a Lua se acalma falando. Entender o que sente é o primeiro jeito de sentir. Uma conversa, um áudio comprido, um livro aberto na cabeceira: o colo aqui é feito de palavras.",
+          "Hermes, o Mercúrio dos gregos, era o deus que transitava entre os mundos, um dos poucos que descia ao reino dos mortos e voltava. A Lua em Gêmeos tem esse trânsito por dentro. Muda de humor depressa, conversa com várias partes de si e raramente fica muito tempo numa emoção só.",
+          "Os gêmeos do céu, Castor e Pólux, dividiam os dias entre a vida e a morte para não se separarem. A Lua em Gêmeos também divide: uma metade sente, a outra comenta o que está sentindo. É um jeito de sobreviver ao excesso. O risco é explicar tão bem a dor que ela nunca chega a doer."
+        ],
+        "q": "Que sentimento a gente transforma em assunto para não ter que sentir?"
+      },
+      {
+        "title": "A Lua em Câncer",
+        "body": [
+          "Câncer é a casa da Lua. Ela está em domicílio, sem filtro: a memória é viva, a sensibilidade é funda, o cuidado é instintivo. A Lua em Câncer lembra do cheiro da casa da avó, da música da infância, da frase dita há vinte anos.",
+          "O signo é o caranguejo, que carrega a casa no corpo. Duro por fora, mole por dentro, ele anda de lado: não enfrenta de frente, contorna. É assim que a Lua em Câncer se protege. Recolhe-se na carapaça quando sente perigo e só sai quando a maré acalma.",
+          "O caranguejo do mito foi mandado por Hera para atacar Héracles. Hera, a deusa que perseguiu Héracles a vida inteira, era a madrasta dele. O signo da mãe guarda a história de uma madrasta. A Lua em Câncer sabe disso no corpo: o cuidado e a ferida às vezes chegam pela mesma mão."
+        ],
+        "q": "Que cuidado a gente recebeu misturado com alguma ferida?"
+      },
+      {
+        "title": "A Lua em Leão",
+        "body": [
+          "Em Leão, signo de fogo regido pelo Sol, a Lua precisa ser vista para se sentir segura. Ela se acalma com calor, afeto declarado, elogio sincero, alguém que note quando ela chega. Não é vaidade. É o corpo pedindo prova de que é amado.",
+          "A Lua brilha com a luz do Sol. Em Leão, ela mora na casa dele. É como uma filha morando na casa do pai: herda o brilho, mas pode passar a vida esperando aprovação. A força da Lua em Leão é a generosidade enorme, o coração aberto, o prazer de fazer festa para os outros.",
+          "Selene era irmã de Hélio. Ele atravessava o dia, ela atravessava a noite, cada um no próprio carro. A Lua em Leão aprende isso devagar: ela não precisa competir com o Sol nem viver de reflexo. Tem carro próprio. A sombra é o drama quando falta plateia. A força é iluminar a noite dos outros."
+        ],
+        "q": "De quem a gente ainda espera o aplauso que faz o corpo descansar?"
+      },
+      {
+        "title": "A Lua em Virgem",
+        "body": [
+          "Em Virgem, signo de terra regido por Mercúrio, a Lua se acalma pondo ordem. Arrumar a gaveta, limpar a cozinha, fazer uma lista, cuidar do corpo com atenção. Quando o mundo de dentro bagunça, as mãos organizam o de fora.",
+          "A virgem do céu segura uma espiga, e muitos veem nela Deméter, a deusa do trigo, ou a filha, Perséfone. A Lua em Virgem cuida desse jeito: nutre pelos detalhes. Lembra do remédio, corta a fruta, percebe antes de todo mundo que alguém não está bem. E sente muito pelo intestino, pela pele, pelo sono.",
+          "Quando Perséfone foi levada, Deméter parou de fazer o trigo crescer, e a terra inteira ficou sem colheita. O signo da espiga guarda a história de uma mãe que, de tanta dor, parou de nutrir o mundo. A Lua em Virgem tende a fazer o contrário: sofre e trabalha mais. Às vezes a cura é parar, até alguém notar o que falta."
+        ],
+        "q": "O que a gente arruma por fora quando por dentro está tudo fora do lugar?"
+      },
+      {
+        "title": "A Lua em Libra",
+        "body": [
+          "Em Libra, signo de ar regido pelo Vênus, a Lua se acalma em harmonia. Ambiente bonito, conversa gentil, relação equilibrada. Briga, grito e grosseria desregulam o corpo inteiro. A paz do outro vira condição para a própria paz.",
+          "A balança costuma ser ligada a Têmis, a deusa da ordem justa, e à filha dela, Astreia. Justiça, para os gregos, era um jeito de manter o mundo em proporção. A Lua em Libra tem esse senso fino: percebe na hora quando algo está desigual numa mesa, num casal, numa amizade. E sofre com isso.",
+          "A Lua já brilha com uma luz que recebe. Em Libra, signo do outro, ela vira espelho duas vezes: reflete o Sol e reflete quem está perto. A força é a delicadeza. A sombra é passar a vida medindo o humor alheio sem saber mais qual é o próprio. O equilíbrio começa quando a gente põe algo de si no prato da balança."
+        ],
+        "q": "Que desconforto a gente engole para manter a paz?"
+      },
+      {
+        "title": "A Lua em Escorpião",
+        "body": [
+          "Escorpião é a queda da Lua. Aqui a emoção não flutua: afunda. Signo de água fixa regido por Marte e por Plutão, ele dá à Lua uma intensidade que assusta, primeiro a ela mesma. O que se sente é inteiro, e o que se perde é lembrado por muito tempo.",
+          "Queda não quer dizer fraqueza. Quer dizer que a Lua, que pede segurança, foi parar no signo do sexo, da morte, do segredo. O colo aqui é raro e precioso. A confiança demora a nascer e, quando nasce, vira pacto. A sombra é a desconfiança como defesa, e o silêncio que pune.",
+          "Das deusas da Lua, Hécate é a que conhece o mundo de baixo. Quando Hades levou Perséfone, foi ela quem ouviu o grito, pegou a tocha e acompanhou Deméter na busca. Depois, ficou ao lado de Perséfone no reino dos mortos. A Lua em Escorpião é essa companhia: não foge da dor de ninguém, porque já desceu na própria."
+        ],
+        "q": "Em quem a gente confia o bastante para mostrar o que dói?"
+      },
+      {
+        "title": "A Lua em Sagitário",
+        "body": [
+          "Em Sagitário, signo de fogo regido por Júpiter, a Lua se acalma indo embora um pouco. Uma estrada, um curso novo, uma ideia grande, um céu aberto. Ficar presa numa emoção pesada por muito tempo parece insuportável. Ela precisa de sentido para atravessar a dor.",
+          "O centauro é metade humano, metade cavalo: o instinto que corre e a mente que procura. Quíron, o centauro sábio, criou heróis que não eram filhos dele, como Aquiles e Jasão. Muita Lua em Sagitário encontra colo fora de casa: num mestre, numa viagem, num livro, numa outra cultura.",
+          "Sagitário e Ártemis carregam o mesmo arco. E todo arqueiro sabe: a flecha só vai longe se a corda for puxada até perto do peito. Quanto mais perto do coração, mais longe ela voa. A liberdade da Lua em Sagitário não começa na estrada. Começa quando ela aceita trazer a dor para junto do peito antes de soltar."
+        ],
+        "q": "Para onde a gente foge quando a casa fica pequena para o que sente?"
+      },
+      {
+        "title": "A Lua em Capricórnio",
+        "body": [
+          "Capricórnio é o exílio da Lua. Fica do lado oposto a Câncer, a casa dela. Lá, a emoção é água morna. Aqui, encontra a montanha fria de Saturno: responsabilidade, controle, contenção. A Lua em Capricórnio aprende cedo a segurar o choro e resolver.",
+          "Saturno é Cronos, o titã que engolia os filhos assim que nasciam, com medo de perder o trono. Reia, a mãe, só salvou Zeus enrolando uma pedra num pano e entregando ao marido no lugar do bebê. É a mãe que, para proteger, precisa ser dura e esperta ao mesmo tempo.",
+          "Muita gente com a Lua em Capricórnio sente que recebeu uma pedra no lugar do colo. Um cuidado prático, seco, com pouco carinho dito. Mas a pedra de Reia era o próprio cuidado: foi ela que salvou o filho. Essa Lua ama assim, com estrutura e presença. A sombra é esquecer que ela também tem direito a ser bebê."
+        ],
+        "q": "Que choro a gente aprendeu a adiar para depois que tudo estivesse resolvido?"
+      },
+      {
+        "title": "A Lua em Aquário",
+        "body": [
+          "Em Aquário, signo de ar regido por Saturno e por Urano, a Lua se acalma com espaço. Ela precisa sentir no próprio tempo, de amigos mais do que de grude, de ideias que deem sentido ao que dói. Toque demais, cobrança emocional, intimidade imposta: tudo isso aperta.",
+          "Ganimedes, o jovem que Zeus levou ao Olimpo, passou a viver longe da família, entre imortais. A Lua em Aquário costuma ter essa sensação de ser um pouco de fora, mesmo dentro de casa, e de cuidar melhor de um coletivo do que de uma pessoa só.",
+          "Mas a água do aguadeiro não é para ele beber. Ele derrama. A emoção da Lua em Aquário não some: circula. Vira causa, amizade, cuidado com quem está à margem. A frieza que tanta gente enxerga pode ser uma distância que permite amar muita gente ao mesmo tempo. O difícil é deixar uma pessoa chegar perto."
+        ],
+        "q": "Quem a gente mantém longe para não precisar depender?"
+      },
+      {
+        "title": "A Lua em Peixes",
+        "body": [
+          "Em Peixes, signo de água regido por Júpiter e por Netuno, a Lua não tem borda. Sente o que está no ambiente, absorve o humor dos outros, chora com filme, com música, com a notícia de alguém que nem conhece. Acalma no mar, no sono, na arte, na oração.",
+          "Selene se apaixonou por Endimião, um pastor mortal. Numa das versões, ela pede que ele durma para sempre, jovem e belo, e desce toda noite para vê-lo. Dormir, sonhar, amar alguém que não acorda: a Lua em Peixes conhece bem esse território entre o vivido e o sonhado.",
+          "Selene amou alguém que nunca abriu os olhos para ela. A Lua em Peixes corre esse risco: amar a imagem, cuidar de quem não acorda, dar colo sem receber. Mas carrega também o dom mais raro da roda: ficar com a dor de alguém sem precisar consertar. O trabalho é saber onde termina a gente e começa o mar."
+        ],
+        "q": "De quem a gente cuida esperando que um dia acorde?"
+      }
+    ],
+    "houses": [
+      {
+        "title": "A Lua na casa 1",
+        "body": [
+          "A casa 1 é o corpo e o jeito de aparecer. Com a Lua aqui, a emoção está no rosto: os outros percebem o humor antes de qualquer palavra. A aparência muda com as fases, e a pessoa parece outra de uma semana para a seguinte.",
+          "Tem uma qualidade acolhedora que faz estranhos contarem a vida no primeiro encontro. O desafio é não virar espelho de todo mundo que chega. O corpo pede ritmo próprio: comida na hora, sono respeitado."
+        ]
+      },
+      {
+        "title": "A Lua na casa 2",
+        "body": [
+          "A casa 2 é o dinheiro, os bens, os talentos, o que dá sustento. Com a Lua aqui, a segurança emocional se mistura com a material. Uma reserva guardada, a despensa cheia, as coisas no lugar: isso acalma.",
+          "A renda pode oscilar como as fases, e muitas vezes vem de cuidar, alimentar, vender o que conforta. Gastar pode virar consolo. O trabalho é perceber quando a compra é, na verdade, fome de colo."
+        ]
+      },
+      {
+        "title": "A Lua na casa 3",
+        "body": [
+          "A casa 3 é a fala, os irmãos, a vizinhança, a escola. Na tradição antiga, era a casa da Deusa, e era ali que a Lua tinha alegria. Ela se sente bem nesse terreno do dia a dia.",
+          "A mente se acalma conversando, escrevendo, andando pelo bairro. Um irmão, um primo ou um colega de infância pode ter feito papel de mãe. A memória mora nas palavras: diário, carta guardada, o grupo da família no celular."
+        ]
+      },
+      {
+        "title": "A Lua na casa 4",
+        "body": [
+          "A casa 4 é o lar, a família, as raízes, a infância. É o lugar natural da Lua: o fundo do mapa, a meia-noite, o abrigo. A casa física importa muito, e mudar, reformar ou arrumar mexe direto com o humor.",
+          "A história da família pesa e nutre ao mesmo tempo. O vínculo com a mãe, ou com quem cuidou, tende a ser intenso. Muita gente com a Lua aqui só se sente inteira quando tem um canto próprio, mesmo pequeno, com cheiro conhecido."
+        ]
+      },
+      {
+        "title": "A Lua na casa 5",
+        "body": [
+          "A casa 5 é a do prazer, dos filhos, do namoro, da criação. Com a Lua aqui, sentir e criar viram a mesma coisa. Brincar acalma. Cozinhar para os amigos, dançar, pintar: o corpo se regula pela alegria.",
+          "Os filhos, quando chegam, ocupam um lugar enorme na vida emocional. E a criança de dentro também pede espaço. A sombra é depender do entusiasmo dos outros para se sentir amada."
+        ]
+      },
+      {
+        "title": "A Lua na casa 6",
+        "body": [
+          "A casa 6 é a rotina, o trabalho diário, a saúde. Com a Lua aqui, o corpo é termômetro da alma: estômago, sono, pele, intestino, tudo responde ao que se sente e ao que não se diz.",
+          "Cuidar vira quase um ofício, e pode aparecer em trabalhos de saúde, de alimentação, de assistência. Essa Lua precisa de rotina, mas de uma rotina com afeto. Hábito sem cuidado vira obrigação, e obrigação adoece."
+        ]
+      },
+      {
+        "title": "A Lua na casa 7",
+        "body": [
+          "A casa 7 é o outro: casamento, parceria, contratos. Com a Lua aqui, a segurança emocional passa pela relação. Ter alguém do lado acalma, e a solidão pesa mais do que em outras posições.",
+          "Pode haver busca de parceiros que cuidem como mãe, ou de pessoas para cuidar como filhos. O equilíbrio vem quando o colo vai e volta. Relação, aqui, é casa, e por isso uma separação pode parecer uma mudança de endereço da alma."
+        ]
+      },
+      {
+        "title": "A Lua na casa 8",
+        "body": [
+          "A casa 8 é o terreno do que escapa do controle: morte, sexo, heranças, crise, o dinheiro do outro. Com a Lua aqui, as emoções são fundas e muitas vezes guardadas. A intimidade é intensa, ou não é.",
+          "Perdas e segredos de família podem ter marcado cedo. Mas é também uma Lua que sabe estar presente nas horas difíceis: no hospital, no velório, na madrugada de crise. Ela se acalma quando pode falar do que os outros evitam."
+        ]
+      },
+      {
+        "title": "A Lua na casa 9",
+        "body": [
+          "A casa 9 é o horizonte: viagens, estudo, fé, filosofia, outras culturas. Com a Lua aqui, a alma se acalma longe. Uma viagem pode curar o que meses em casa não curaram.",
+          "Pode haver uma mãe vinda de outro lugar, uma família de outra religião, ou a sensação de casa em lugares que não são os de origem. A fé, de qualquer tipo, funciona como colo. Aprender também."
+        ]
+      },
+      {
+        "title": "A Lua na casa 10",
+        "body": [
+          "A casa 10 é o topo do mapa: carreira, reputação, vida pública. Com a Lua aqui, as emoções ficam à mostra e o público responde a elas. Muita gente com essa posição trabalha cuidando de muitos ao mesmo tempo.",
+          "A mãe, ou quem cuidou, costuma ter peso grande nas escolhas de carreira. A reputação mexe com o humor. A sombra é viver para a imagem. A força é transformar cuidado em obra."
+        ]
+      },
+      {
+        "title": "A Lua na casa 11",
+        "body": [
+          "A casa 11 é a dos amigos, dos grupos, dos sonhos e dos projetos de futuro. Com a Lua aqui, amigo é família. É no grupo que a pessoa se sente acolhida e onde aprende a acolher.",
+          "As amizades mudam com as fases da vida, e cada fase traz uma turma nova. Fazer planos acalma. O risco é cuidar de todo mundo no grupo e ninguém perceber quando é ela quem precisa."
+        ]
+      },
+      {
+        "title": "A Lua na casa 12",
+        "body": [
+          "A casa 12 é a parte escondida da vida: isolamento, inconsciente, retiro, hospitais, o que se vive em silêncio. Com a Lua aqui, muita emoção fica guardada, às vezes sem nome, às vezes sem que a própria pessoa perceba.",
+          "Precisa de solidão para se recompor. Os sonhos da noite falam muito. Às vezes a história da mãe tem um capítulo não contado. Terapia, arte, oração e água ajudam essa Lua a subir para a superfície, devagar, como a maré."
+        ]
+      }
+    ]
+  }
+}

@@ -19,6 +19,9 @@ App de astrologia, mito e filosofia por assinatura. Instala na tela de início d
 
 - `jornada/`: o app (`index.html`, gerado), ícones, `manifest.webmanifest`, `sw.js`, `termos.html`, `privacidade.html`.
 - `lib/jornada/*.json`: as 11 subjornadas pagas (Touro a Peixes). Ficam fora da pasta pública e só saem pela API para quem tem plano ativo. Áries vai dentro do `index.html`, grátis.
+- `lib/jornada/mapa.json` e `lib/jornada/transitos.json`: os textos pagos das jornadas 2 (o próprio mapa) e 3 (os trânsitos). As lições são montadas no celular a partir do mapa natal e do céu real (`scripts/jornada/j23.js`). Os textos-fonte ficam em `scripts/jornada/conteudo/` e são juntados com `python3 scripts/jornada/juntar.py`.
+- Página de captação: a primeira tela de quem ainda não entrou (`scripts/jornada/landing.js` e `landing.css`).
+- Gerar o app: `python3 scripts/jornada/prod.py` (lê `scripts/jornada/app.tpl.html`, `aries.json`, `css.css` e as etapas `prod_j23.py` e `prod_landing.py`). Testar: `python3 scripts/jornada/testar.py` (Chromium, vários mapas). Voz: `python3 scripts/jornada/checar_voz.py arquivo.json`.
 - `api/jornada.js`: uma função com as ações `entrar`, `pedir-link`, `abrir`, `sync`, `conteudo`, `checkout`, `cancelar`, `webhook`, `diario`, `sair-emails`, `status`.
 - `lib/jornada.mjs`: contas, sessões assinadas, planos, Mercado Pago e e-mails.
 - Passe semanal: R$ 9,90 por Pix (preferência do Mercado Pago só com Pix), soma 7 dias. Mensal: R$ 29,90 no cartão (assinatura `preapproval` do Mercado Pago).
