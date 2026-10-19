@@ -24,6 +24,17 @@ Gerar vídeo exige uma placa de vídeo (GPU) forte. Os caminhos reais:
 
 Sem venda a terceiros, o app não precisa de créditos nem de cobrança: é um painel só seu.
 
+### O computador do eusouodu: um iMac
+
+iMac não tem placa NVIDIA. O que decide é o chip (menu Apple > Sobre este Mac):
+
+- **Chip Intel**: não serve para gerar imagem nem vídeo. Fica o caminho B ou C.
+- **Chip Apple (M1 a M4)**: a memória é compartilhada com o processador, e o iMac vai até 24 a 32 GB.
+  - **Imagem: funciona bem.** Modelos como FLUX schnell e SDXL rodam em programas gratuitos para Mac (Draw Things, DiffusionBee, ComfyUI). Leva de segundos a cerca de um minuto por imagem.
+  - **Vídeo: funciona, mas devagar.** Modelos leves (Wan 2.2 de 5B, LTX) rodam em Mac com 16 GB ou mais. Um clipe de poucos segundos pode levar de vários minutos a mais de meia hora, e com 8 GB não vale a pena.
+
+Caminho recomendado para o eusouodu: **imagens no iMac (de graça)** e **vídeos por GPU alugada ou serviço pago** só quando precisar, para os Reels que forem ao ar.
+
 As regras continuam valendo: nada de burlar créditos, paywall ou login do Higgsfield, e nada de usar a API interna deles.
 
 ## Como este mapa foi feito
