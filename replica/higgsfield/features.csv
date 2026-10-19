@@ -1,0 +1,21 @@
+feature,area,priority,original,clone,notes
+Gerar imagem a partir de texto,imagem,must,yes,no,modelo aberto com licença comercial (ex.: FLUX.1 schnell Apache 2.0; conferir a licença antes)
+Presets de estilo para imagem,imagem,must,yes,no,os presets do orbe são seus: céu noturno; mitologia; signos; paleta âmbar do eusouodu
+Transformar imagem em vídeo curto,vídeo,must,yes,no,Wan 2.2 (Apache 2.0) roda em placa de 24 GB quantizado
+Presets de movimento de câmera (aproximar; girar; subir),vídeo,must,yes,no,o original tem cerca de 70; começar com 6 a 8; nomes e prompts próprios
+Formato vertical 9:16 para Reels e Stories,vídeo,must,yes,no,
+Fila de gerações com status (na fila; gerando; pronto; erro),geral,must,yes,no,gerar vídeo leva minutos; a fila é o coração do app
+Biblioteca com tudo que foi gerado,biblioteca,must,yes,no,
+Baixar imagem e vídeo,biblioteca,must,yes,no,
+Gerar texto em vídeo direto (sem imagem de partida),vídeo,should,yes,no,
+Personagem consistente a partir de fotos (o seu rosto),personagem,should,yes,no,"Soul ID" no original; aberto: LoRA treinado nas suas fotos; só com fotos de quem consentiu
+Editar parte da imagem (inpaint),imagem,should,yes,no,
+Sincronizar boca com áudio (lipsync),vídeo,should,yes,no,modelos abertos existem mas são pesados; voz pode vir do ElevenLabs que você já conectou
+Combinar até 3 movimentos de câmera,vídeo,could,yes,no,"Cinema Studio" no original
+Esboço para vídeo,vídeo,could,yes,no,
+Escolher entre vários modelos de vídeo,vídeo,could,yes,no,no original isso é revenda de modelos pagos; no seu só entra o que você roda ou paga
+Acesso a Veo; Kling; Sora; Seedance,modelos,could,yes,skip,são modelos pagos de outras empresas; não existe versão grátis; só via API paga de cada uma
+Modelo Soul do Higgsfield,modelos,could,yes,skip,modelo proprietário deles; não se copia
+Créditos; planos e cobrança,assinatura,could,yes,skip,é para uso só seu no negócio; sem venda a terceiros não precisa de créditos
+Feed da comunidade e galeria pública,comunidade,could,yes,skip,a rede e o conteúdo dos usuários deles
+Presets; exemplos e marca do Higgsfield,marca,could,yes,skip,pertence ao original
