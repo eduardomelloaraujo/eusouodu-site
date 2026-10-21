@@ -52,7 +52,7 @@
   // The week comes from semana.json and only shows while it covers today (Bahia time), never a past week.
   const hojeBA = new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 10);
   const esc = (t) => String(t).replace(/[&<>"]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[m]));
-  fetch("semana.json?t=" + Date.now(), { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((s) => {
+  if (document.getElementById("semana-luas")) fetch("/semana.json?t=" + Date.now(), { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((s) => {
     if (!s || !s.titulo || s.inicio > hojeBA || s.fim < hojeBA) return;
     document.getElementById("semana-t").textContent = s.rotuloDatas + ".";
     document.getElementById("semana-titulo").textContent = s.titulo;
@@ -116,7 +116,7 @@
   }
 
   // Passages: between two sections, a constellation fading from one product's colour to the next.
-  const cenas = [...document.querySelectorAll("main > section[data-tom]")];
+  const cenas = [...document.querySelectorAll("main > section.cena[data-tom]")];
   cenas.forEach((sec, i) => {
     const de = i ? corDe(cenas[i - 1]) : "#F5F3EE", para = corDe(sec);
     let sem = (i + 3) * 7919;
@@ -157,6 +157,7 @@
 
   // The dome: a starfield that turns with time and scroll around a pole below the horizon.
   const ceu = document.getElementById("ceu");
+  if (!ceu) return;
   const ctx = ceu.getContext("2d");
   let w, h, dpr, estrelas = [], cadentes = [], proxima = performance.now() + 3000;
   // Mostly white, with the real colours of blue, yellow, orange and red stars.

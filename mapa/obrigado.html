@@ -6,32 +6,38 @@
 <title>Obrigado · A semana no seu mapa</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Albert+Sans:wght@300;400;500&display=swap">
+<meta name="theme-color" content="#05060A">
+<link rel="preload" href="/fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
 <style>
-:root{color-scheme:light;--tinta:#333230;--cinza:#6F6B62;--ouro:#9C7A44;--pedra:#E4E1D8}
-*{box-sizing:border-box}
-body{margin:0;background:#fff;color:var(--tinta);font-family:'Albert Sans','Helvetica Neue',Arial,sans-serif;font-weight:300;line-height:1.7;padding:0 16px}
-main{max-width:620px;margin:0 auto;padding-block:clamp(56px,12vw,140px);display:flex;flex-direction:column;gap:22px}
-.marca{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;text-decoration:none;color:inherit}
-.marca i{color:var(--ouro)}
-h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(40px,7vw,64px);line-height:1.05;margin:0}
-p{margin:0;color:var(--cinza);font-size:16px}
-.frase{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:22px;color:var(--tinta);border-top:1px solid var(--pedra);padding-top:22px}
-a.link{color:var(--tinta);font-size:14px;font-weight:500;text-decoration:none;border-bottom:1px solid currentColor;align-self:flex-start;padding-bottom:3px}
+.obrigado { max-width: 680px; margin: 0 auto; padding: clamp(40px, 10vh, 120px) var(--margem) 120px; display: flex; flex-direction: column; gap: 24px; }
+.obrigado h1 { font-size: clamp(44px, 7vw, 80px); line-height: 1; letter-spacing: -.04em; font-weight: 650; }
+.obrigado p { color: var(--luz-2); font-size: 19px; }
+.obrigado .frase { color: var(--luz); font-size: clamp(22px, 2.4vw, 28px); font-weight: 500; letter-spacing: -.02em; border-top: 1px solid var(--linha); padding-top: 24px; }
+.obrigado .ajuda { color: var(--luz-3); font-size: 16px; }
+.lua-grande { width: 96px; margin: 0; }
 </style>
 </head>
-<body>
-<main>
-  <a class="marca" href="/">eu<i>sou</i>odu</a>
-  <h1 id="t">O relatório está sendo preparado</h1>
+<body data-tom="semana">
+<div id="nebulosa" aria-hidden="true"></div>
+<canvas id="ceu" aria-hidden="true"></canvas>
+<header class="topo">
+  <a class="marca" href="/" aria-label="eusouodu, início">eusouodu</a>
+  <nav aria-label="Principal"><a href="/">Voltar ao site</a></nav>
+</header>
+<main class="obrigado">
+  <svg class="lua-grande" id="lua-grande" viewBox="0 0 40 40" role="img" aria-label="A Lua de hoje"></svg>
+  <h1 id="t">O relatório está sendo preparado.</h1>
   <p id="m">Assim que o pagamento é confirmado, os trânsitos são calculados no mapa informado e o relatório é escrito. Em poucos minutos ele chega no e-mail, em PDF, e uma cópia chega logo depois.</p>
   <p class="frase">Enquanto isso, o céu continua andando.</p>
-  <p style="background:#F6F5F1;padding:16px 18px;color:#333230">Se o relatório não chegar em até 1 hora, olhe a caixa de spam e de promoções. Se não estiver lá, escreva para falecom@eusouodu.com com o seu nome e o e-mail usado na compra, que a gente reenvia.</p>
-  <a class="link" href="/">Voltar ao site</a>
+  <p class="ajuda">Se o relatório não chegar em até 1 hora, olhe a caixa de spam e de promoções. Se não estiver lá, escreva para falecom@eusouodu.com com o seu nome e o e-mail usado na compra, que a gente reenvia.</p>
+  <p class="hoje-linha"><span id="hoje-texto" style="color:var(--sol);font-size:14px"></span></p>
+  <div class="acoes"><a class="link-claro" href="/">Voltar ao site<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a></div>
 </main>
 <script>
 if(new URLSearchParams(location.search).get('pendente')){document.getElementById('t').textContent='Pagamento em análise';document.getElementById('m').textContent='O Mercado Pago ainda está confirmando o pagamento. Assim que ele for aprovado, o relatório é preparado e enviado para o e-mail informado, sem precisar fazer mais nada.';}
 try{sessionStorage.removeItem('mapa-form')}catch(e){}
 </script>
+<script src="/main.js"></script>
 </body>
 </html>
