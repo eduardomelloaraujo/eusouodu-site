@@ -1,6 +1,6 @@
 // Jornada: guarda o essencial para abrir rápido e funcionar com internet fraca.
 // A página sempre tenta a versão nova primeiro; sem internet, usa a última guardada.
-const V = 'jornada-v1';
+const V = 'jornada-v2'; // v2: tema planetário (o manifesto em cache tinha a cor antiga)
 const BASE = ['/', '/jornada/astronomy.browser.min.js', '/jornada/manifest.webmanifest', '/jornada/icon-192.png', '/jornada/icon-512.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(V).then(c => c.addAll(BASE)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== V).map(k => caches.delete(k)))).then(() => self.clients.claim())); });

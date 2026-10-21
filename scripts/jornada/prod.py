@@ -41,7 +41,7 @@ R('<title>Jornada do Zodíaco</title>', '''<title>Jornada · astrologia, mitolog
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Jornada">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta property="og:title" content="Jornada · astrologia, mitologia e filosofia">
 <meta property="og:description" content="Um passo por dia, a partir do próprio mapa natal.">
 <meta property="og:image" content="https://jornada.eusouodu.com/og.png">''')

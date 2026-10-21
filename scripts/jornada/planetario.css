@@ -99,7 +99,7 @@ textarea{background-color:rgba(245,243,238,.04);background-image:repeating-linea
 .sheet.ok h4{color:var(--p-mar)} .sheet.bad h4{color:var(--p-erro)} .sheet.note h4{color:var(--p-sol)}
 .tile{background:rgba(245,243,238,.04)}
 .tile.g{border-color:rgba(255,181,71,.4)} .tile.e{border-color:rgba(255,143,184,.4)} .tile.o{border-color:rgba(127,232,210,.4)}
-.modal{background:rgba(2,3,6,.7);backdrop-filter:blur(6px)}
+.modal{background:rgba(2,3,6,.7);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .modal .box{background:#0D0F17;border:1px solid var(--line)}
 .plan{background:rgba(245,243,238,.04)}
 .plan.best{background:rgba(185,166,255,.14);border-color:var(--p-lilas)}
@@ -151,7 +151,8 @@ textarea{background-color:rgba(245,243,238,.04);background-image:repeating-linea
 .facts li{background:rgba(245,243,238,.05);border:1px solid var(--line)}
 .facts li i{color:var(--p-sol);font-style:normal}
 .road.soon,.road.locked,.cardm.locked{background:rgba(245,243,238,.04)}
-.btn.plain{background:var(--tinta);color:var(--creme)}
+.btn.plain{background:transparent;color:var(--tinta);border:1px solid rgba(245,243,238,.3)}
+.pcard .btn.plain{background:var(--tinta);color:var(--creme);border:0}
 .pcard{border-color:var(--line)}
 .pcard.semana{background:linear-gradient(135deg,rgba(138,180,255,.16),rgba(138,180,255,.03));border-color:rgba(138,180,255,.35)}
 .pcard.mes{background:linear-gradient(135deg,rgba(255,181,71,.18),rgba(255,181,71,.03));border-color:rgba(255,181,71,.45)}
@@ -174,3 +175,9 @@ textarea{background-color:rgba(245,243,238,.04);background-image:repeating-linea
 .road.locked .num{background:rgba(185,166,255,.12);color:var(--p-lilas);border:0}
 /* the grotesk reads heavy above 700; display numbers and titles sit at 600-650 */
 .road b,.road .num,.tile b,.chip .n,.disc,.lp-step>b,.lp-p .pv,.free b,.inc b,.next-unit h3,.stats,.daily .go{font-weight:650!important}
+
+/* collected cards: tinted by kind */
+.cardm.Mitologia{background:linear-gradient(160deg,rgba(255,143,184,.22),rgba(255,143,184,.04));border-color:rgba(255,143,184,.45)}
+.cardm.Filosofia{background:linear-gradient(160deg,rgba(138,180,255,.22),rgba(138,180,255,.04));border-color:rgba(138,180,255,.45)}
+.cardm small{text-transform:none;letter-spacing:0;font-weight:600;font-size:11px}
+.cardm b{font-weight:600!important}
