@@ -81,6 +81,7 @@ main, .topo, .rodape { position: relative; z-index: 1; }
   text-align: center;
   padding: 4vh var(--margem) 18vh;
   position: relative;
+  overflow: hidden; /* the dome arc is 260vw wide; without this the page slides sideways on phones */
 }
 h1 {
   font-size: clamp(48px, 8vw, 96px);
