@@ -127,7 +127,7 @@ footer a{text-decoration:none}
     </div>
     <div class="amostra" aria-label="Exemplo do que chega no e-mail">
       <p class="rotulo">Exemplo · o ritmo da semana</p>
-      <div class="ritmo">
+      <div class="ritmo" id="ritmo-ex" data-estrela='<span style="color:var(--ouro)">★</span>'>
         <div class="m">ter<b>13</b></div><div class="f top">qua<b>14</b><span style="color:var(--ouro)">★</span></div><div class="m">qui<b>15</b></div><div class="f top">sex<b>16</b><span style="color:var(--ouro)">★</span></div><div class="d">sáb<b>17</b></div><div class="m">dom<b>18</b></div><div class="f">seg<b>19</b></div>
       </div>
       <p style="font-size:12px;color:var(--cinza)">Dias de energia mais fluida, mista e mais desafiadora. As estrelas marcam os dias de destaque.</p>
@@ -248,6 +248,15 @@ footer a{text-decoration:none}
     }catch(err){ erro.textContent=err.message; bt.disabled=false; bt.textContent='Ir para o pagamento'; }
   });
 })();
+</script>
+<script>
+/* Exemplo do ritmo: sempre os próximos 7 dias a partir de amanhã (fuso da Bahia). */
+(function(){var el=document.getElementById('ritmo-ex');if(!el)return;
+var nomes=['dom','seg','ter','qua','qui','sex','sáb'],cls=['m','f top','m','f top','d','m','f'],est=el.getAttribute('data-estrela'),h='';
+var base=new Date(Date.now()-3*3600e3);base.setUTCHours(12,0,0,0);
+for(var i=0;i<7;i++){var d=new Date(base.getTime()+(i+1)*864e5);
+h+='<div class="'+cls[i]+'">'+nomes[d.getUTCDay()]+'<b>'+d.getUTCDate()+'</b>'+(cls[i].indexOf('top')>-1?est:'')+'</div>'}
+el.innerHTML=h})();
 </script>
 </body>
 </html>

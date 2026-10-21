@@ -348,7 +348,7 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
       </div>
       <div class="novo-amostra" aria-label="Exemplo do relatório">
         <p class="rotulo">Exemplo · o ritmo da semana</p>
-        <div class="ritmo">
+        <div class="ritmo" id="ritmo-ex" data-estrela='<i>★</i>'>
           <div class="m">ter<b>13</b></div><div class="f top">qua<b>14</b><i>★</i></div><div class="m">qui<b>15</b></div><div class="f top">sex<b>16</b><i>★</i></div><div class="d">sáb<b>17</b></div><div class="m">dom<b>18</b></div><div class="f">seg<b>19</b></div>
         </div>
         <ul>
@@ -361,20 +361,16 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
     </div>
   </section>
 
-  <section class="secao semana" id="semana" aria-labelledby="t-semana">
+  <section class="secao semana" id="semana" aria-labelledby="t-semana" hidden>
     <div class="envelope grade">
       <div class="lado">
         <p class="rotulo">Energia astrológica da semana</p>
-        <p class="data" id="s-datas">12 a 18 de outubro</p>
+        <p class="data" id="s-datas"></p>
         <p style="color:var(--cinza);font-size:14px">O vídeo completo sai no Instagram toda semana. Aqui fica o resumo para voltar a ele quando quiser.</p>
       </div>
       <div>
-        <h2 id="t-semana">Depois da Lua Nova em Libra</h2>
-        <div class="corpo" id="s-corpo">
-          <p>A Lua acabou de renascer em Libra, e a semana ainda carrega o escuro fértil dos começos. Libra é o signo da balança, mas a balança só funciona para quem aceita pesar.</p>
-          <p>O que pede atenção agora são os acordos que a gente fez calado. Com as pessoas, com o trabalho, com a imagem que a gente sustenta para continuar sendo querido.</p>
-          <p>A Lua cresce devagar. E o primeiro peso que aparece no prato quase nunca é o que a gente esperava.</p>
-        </div>
+        <h2 id="t-semana">Energia astrológica da semana</h2>
+        <div class="corpo" id="s-corpo"></div>
         <div class="luas" id="luas" aria-label="A Lua em cada dia da semana"></div>
         <p class="nota" id="s-fases">A Lua de cada dia, desenhada como aparece no céu do hemisfério sul.</p>
         <div class="chamada">
@@ -822,7 +818,6 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
   if('IntersectionObserver' in window){new IntersectionObserver(es=>{visivel=es[0].isIntersecting;if(visivel&&!calmo)iniciar()}).observe(cv)}
 
   /* ---------- Semana: lê semana.json e desenha a Lua de cada dia (hemisfério sul) ---------- */
-  const SEMANA_PADRAO={"inicio": "2026-10-12", "fim": "2026-10-18", "rotuloDatas": "12 a 18 de outubro", "titulo": "Depois da Lua Nova em Libra", "paragrafos": ["A Lua acabou de renascer em Libra, e a semana ainda carrega o escuro fértil dos começos. Libra é o signo da balança, mas a balança só funciona para quem aceita pesar.", "O que pede atenção agora são os acordos que a gente fez calado. Com as pessoas, com o trabalho, com a imagem que a gente sustenta para continuar sendo querido.", "A Lua cresce devagar. E o primeiro peso que aparece no prato quase nunca é o que a gente esperava."], "dias": [{"data": "2026-10-12", "dia": "segunda", "fase": 0.0643, "luaSigno": "Escorpião"}, {"data": "2026-10-13", "dia": "terça", "fase": 0.0961, "luaSigno": "Escorpião"}, {"data": "2026-10-14", "dia": "quarta", "fase": 0.1272, "luaSigno": "Sagitário"}, {"data": "2026-10-15", "dia": "quinta", "fase": 0.1579, "luaSigno": "Sagitário"}, {"data": "2026-10-16", "dia": "sexta", "fase": 0.1882, "luaSigno": "Capricórnio"}, {"data": "2026-10-17", "dia": "sábado", "fase": 0.2183, "luaSigno": "Capricórnio"}, {"data": "2026-10-18", "dia": "domingo", "fase": 0.2485, "luaSigno": "Capricórnio"}], "fasesDaLua": [{"fase": "Lua Crescente", "data": "2026-10-18", "hora": "13:13", "dia": "domingo", "signo": "Capricórnio", "grau": "25°18'"}], "chamada": {"texto": "Cada mapa recebe essa semana de um jeito. A leitura de como esses dias tocam as casas e os planetas de cada pessoa, dia a dia, já está disponível.", "rotulo": "Ver a semana no meu mapa", "link": "/mapa/"}, "instagram": "https://instagram.com/eusouodu"};
   const abrev={segunda:'seg','terça':'ter',quarta:'qua',quinta:'qui',sexta:'sex','sábado':'sáb',domingo:'dom'};
   function desenhoLua(p){
     const r=15,c=18,k=Math.cos(2*Math.PI*p),rx=Math.abs(k)*r;
@@ -845,8 +840,11 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
       document.getElementById('s-chamada-link').href=s.chamada.link;
     }
   }
-  mostrarSemana(SEMANA_PADRAO);
-  fetch('semana.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(s=>{if(s&&s.titulo)mostrarSemana(s)}).catch(()=>{});
+  /* Só mostra a semana se o semana.json cobrir hoje (fuso da Bahia). Texto de semana passada nunca aparece. */
+  const hojeBA=new Date(Date.now()-3*3600e3).toISOString().slice(0,10);
+  fetch('semana.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(s=>{
+    if(s&&s.titulo&&s.fim>=hojeBA&&s.inicio<=hojeBA){mostrarSemana(s);document.getElementById('semana').hidden=false}
+  }).catch(()=>{});
 
   /* ---------- Roda zodiacal (destaque e atendimento) ---------- */
   const glifos=['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
@@ -883,5 +881,14 @@ footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-wi
 })();
 </script>
 
+<script>
+/* Exemplo do ritmo: sempre os próximos 7 dias a partir de amanhã (fuso da Bahia). */
+(function(){var el=document.getElementById('ritmo-ex');if(!el)return;
+var nomes=['dom','seg','ter','qua','qui','sex','sáb'],cls=['m','f top','m','f top','d','m','f'],est=el.getAttribute('data-estrela'),h='';
+var base=new Date(Date.now()-3*3600e3);base.setUTCHours(12,0,0,0);
+for(var i=0;i<7;i++){var d=new Date(base.getTime()+(i+1)*864e5);
+h+='<div class="'+cls[i]+'">'+nomes[d.getUTCDay()]+'<b>'+d.getUTCDate()+'</b>'+(cls[i].indexOf('top')>-1?est:'')+'</div>'}
+el.innerHTML=h})();
+</script>
 </body>
 </html>
