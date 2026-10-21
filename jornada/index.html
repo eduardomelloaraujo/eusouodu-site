@@ -1,6 +1,6 @@
 <title>Jornada · astrologia, mitologia e filosofia</title>
 <meta name="description" content="Aprender astrologia um passo por dia, a partir do próprio mapa natal. Signos, mitologia, planetas e filosofia, com o astrólogo Eduardo (@eusouodu).">
-<meta name="theme-color" content="#FFF5E8">
+<meta name="theme-color" content="#05060A">
 <link rel="manifest" href="/jornada/manifest.webmanifest">
 <link rel="icon" href="/jornada/icon-192.png">
 <link rel="apple-touch-icon" href="/jornada/apple-touch-icon.png">
@@ -542,6 +542,184 @@ img{max-width:100%}
 .won .cardm .cg{font-size:40px}
 .modal .cardtext{font-size:16px;line-height:1.6;color:var(--tinta);font-weight:500;margin:0 0 18px}
 .modal .ck{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid var(--tinta);border-radius:99px;padding:1px 8px;margin-bottom:8px}
+</style>
+<style>
+/* Tema planetário: a cúpula do eusouodu.com por cima das cores do jogo.
+   Entra por último (prod.py), então só troca aparência; nenhuma regra de comportamento mora aqui. */
+@font-face{font-family:"Schibsted Grotesk";src:url("/fonts/schibsted-grotesk-latin-wght-normal.woff2") format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Schibsted Grotesk";src:url("/fonts/schibsted-grotesk-latin-ext-wght-normal.woff2") format("woff2");font-weight:100 900;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2C60-2C7F,U+A720-A7FF}
+:root{
+  /* the old pastels were surfaces under dark ink; on the dome they become deep tinted panes under light ink */
+  --creme:#05060A; --papel:#0F111A; --tinta:#F5F3EE; --suave:#B9B7C4;
+  --rosa:#331A2C; --menta:#11342E; --lilas:#241D46; --limao:#33270F; --ceu:#132A45; --pessego:#3A2216; --erro:#3E1719;
+  --chiclete:#FF8FB8;
+  --line:rgba(245,243,238,.16);
+  --gold:#FFB547; --ink:var(--papel); --ink-2:var(--papel);
+  --borda:1px solid rgba(245,243,238,.16);
+  --sombra:none;
+  --display:"Schibsted Grotesk",system-ui,sans-serif;
+  --body:"Schibsted Grotesk",system-ui,sans-serif;
+  /* bright star colours for states and accents */
+  --p-sol:#FFB547; --p-azul:#8AB4FF; --p-lilas:#B9A6FF; --p-rosa:#FF8FB8; --p-mar:#7FE8D2; --p-erro:#FF9A8C;
+  color-scheme:dark;
+}
+body{
+  background:
+    radial-gradient(1.2px 1.2px at 12% 18%,rgba(245,243,238,.8),transparent),
+    radial-gradient(1px 1px at 72% 9%,rgba(245,243,238,.6),transparent),
+    radial-gradient(1.4px 1.4px at 38% 42%,rgba(138,180,255,.8),transparent),
+    radial-gradient(1px 1px at 88% 36%,rgba(245,243,238,.55),transparent),
+    radial-gradient(1.2px 1.2px at 22% 68%,rgba(255,181,71,.7),transparent),
+    radial-gradient(1px 1px at 61% 77%,rgba(245,243,238,.5),transparent),
+    radial-gradient(1.3px 1.3px at 93% 88%,rgba(185,166,255,.7),transparent),
+    radial-gradient(1px 1px at 5% 93%,rgba(245,243,238,.5),transparent),
+    radial-gradient(1px 1px at 50% 3%,rgba(245,243,238,.45),transparent),
+    radial-gradient(1.1px 1.1px at 80% 58%,rgba(255,143,184,.6),transparent);
+  background-size:260px 260px;
+  background-color:var(--creme);
+  background-attachment:fixed;
+  font-size:17px;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{content:"";position:fixed;inset:auto 0 0 0;height:45vh;pointer-events:none;z-index:-1;background:radial-gradient(120% 90% at 50% 120%,rgba(255,181,71,.14),transparent 65%)}
+
+/* flat light: no hard offset shadows anywhere; the only glows are stars */
+*,*::before,*::after{box-shadow:none!important}
+.pt-lit{filter:drop-shadow(0 0 6px rgba(255,181,71,.7))}
+.chart svg [stroke="var(--tinta)"],.minichart svg [stroke="var(--tinta)"],.lp-wheel svg [stroke="var(--tinta)"],.lp-end svg [stroke="var(--tinta)"]{stroke:rgba(245,243,238,.32)}
+
+/* type: one grotesk, upright, tight at size */
+h1,h2,h3,h4,.q,.brand,.logo,.tagline{font-style:normal!important;letter-spacing:-.03em}
+.brand,.logo{font-weight:650!important}
+.unit h2,.teach h2,.center h2,.modal h3,.ostage h2,.lp h2,.sheet h4{font-weight:650!important}
+.q,.daily h3,.next-unit h3,.lp h3,.plan b,.trio .t b{font-weight:600!important}
+.unit h2 em{font-style:normal;color:var(--p-sol)}
+.eyebrow,.eyebrow-l,.nlabel small,.tile span,.tag,.brand small,.trio .t small,.lp-eyebrow,.lp-kicker,.lp-p .pn,.lp-p .tag,.lp-j small,.daily .eyebrow,.unit .eyebrow{text-transform:none!important;letter-spacing:0!important;font-weight:600!important}
+.brand small{font-size:12px}
+.eyebrow-l,.tag{border:0;padding:3px 10px;border-radius:999px;background:rgba(185,166,255,.16);color:var(--p-lilas)}
+.tag{background:rgba(255,181,71,.16);color:var(--p-sol)}
+
+/* buttons: the white pill of the site; states in star colours */
+.btn{border:0;border-radius:999px;background:var(--tinta);color:var(--creme);text-transform:none;letter-spacing:0;font-weight:600;font-size:17px;min-height:54px;transition:transform .4s cubic-bezier(.16,1,.3,1),background-color .3s}
+.btn:active{transform:scale(.98)}
+.btn:disabled{background:rgba(245,243,238,.08);color:var(--suave);border:0}
+.btn.okb{background:var(--p-mar)} .btn.badb{background:var(--p-erro)} .btn.goldb{background:var(--p-sol)}
+.sheet .btn{background:var(--tinta);color:var(--creme)}
+.link,.reset,.edit{color:var(--suave)}
+button:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--p-sol);outline-offset:3px}
+
+/* surfaces: hairline, rounded, no fill noise */
+.stat{background:rgba(245,243,238,.05)}
+.stat.fire{background:rgba(255,143,184,.12)} .stat.xp{background:rgba(255,181,71,.12)} .stat.moon{background:rgba(185,166,255,.12)}
+.stat svg{stroke:currentColor}
+.daily{background:linear-gradient(135deg,rgba(255,181,71,.16),rgba(255,181,71,.04));border-color:rgba(255,181,71,.35)}
+.daily.done{background:rgba(245,243,238,.04);border-color:var(--line)}
+.unit{background:linear-gradient(135deg,rgba(255,143,184,.16),rgba(185,166,255,.06));border-color:rgba(255,143,184,.3)}
+.unit::after{color:var(--p-rosa);opacity:.18}
+.next-unit{background:rgba(245,243,238,.03);border:1px dashed rgba(245,243,238,.3)}
+
+/* the path: open node is the star to tap */
+.disc{background:var(--papel);border:1px dashed rgba(245,243,238,.3)}
+.node.open .disc{background:var(--p-sol);color:var(--creme);border:0}
+.node.open .disc::after{border:1.5px solid var(--p-sol)}
+.node.done .disc{color:var(--tinta);border:1px solid rgba(245,243,238,.25)}
+.check{background:var(--p-sol);color:var(--creme);border:0}
+.lock{background:var(--papel);border:1px solid var(--line)}
+
+/* lessons */
+.prog{background:rgba(245,243,238,.08);border:0;height:12px}
+.prog i{background:linear-gradient(90deg,var(--p-lilas),var(--p-sol));border-right:0}
+.opt,.chip{background:rgba(245,243,238,.04);border:1px solid var(--line)}
+.opt.sel{background:rgba(138,180,255,.16);border-color:var(--p-azul)}
+.opt.right,.chip.right{background:rgba(127,232,210,.16);border-color:var(--p-mar)}
+.opt.wrong,.chip.wrong{background:rgba(255,154,140,.16);border-color:var(--p-erro)}
+.answer{border-bottom:1px dashed rgba(245,243,238,.3)}
+.answer .chip{background:rgba(255,143,184,.12);border-color:rgba(255,143,184,.4)}
+textarea{background-color:rgba(245,243,238,.04);background-image:repeating-linear-gradient(transparent 0 27px,rgba(185,166,255,.18) 27px 28px)}
+.teach .big,.center .big{background:radial-gradient(circle at 50% 40%,rgba(255,181,71,.28),rgba(255,181,71,.06));border:1px solid rgba(255,181,71,.4)}
+.foot{background:linear-gradient(to top,var(--creme) 72%,rgba(5,6,10,0))}
+.sheet{background:#11131C;border-top:1px solid var(--line)}
+.sheet.ok{background:#0E2622;border-top-color:var(--p-mar)}
+.sheet.bad{background:#2A1418;border-top-color:var(--p-erro)}
+.sheet.note{background:#251D0E;border-top-color:var(--p-sol)}
+.sheet.ok h4{color:var(--p-mar)} .sheet.bad h4{color:var(--p-erro)} .sheet.note h4{color:var(--p-sol)}
+.tile{background:rgba(245,243,238,.04)}
+.tile.g{border-color:rgba(255,181,71,.4)} .tile.e{border-color:rgba(255,143,184,.4)} .tile.o{border-color:rgba(127,232,210,.4)}
+.modal{background:rgba(2,3,6,.7);backdrop-filter:blur(6px)}
+.modal .box{background:#0D0F17;border:1px solid var(--line)}
+.plan{background:rgba(245,243,238,.04)}
+.plan.best{background:rgba(185,166,255,.14);border-color:var(--p-lilas)}
+.field{background:rgba(245,243,238,.04);border:1px solid var(--line)}
+.field:focus{outline:none;border-color:var(--p-sol)}
+.oerr{color:var(--p-erro)}
+
+/* landing */
+.onb.landing .foot{background:linear-gradient(to top,var(--creme) 70%,rgba(5,6,10,0))}
+.lp-sky i{color:var(--tinta);opacity:.16}
+.lp-kicker{background:rgba(255,181,71,.14);color:var(--p-sol);border:0;padding:4px 14px}
+.lp-hero .logo{background-image:linear-gradient(100deg,var(--tinta) 30%,var(--p-sol) 50%,var(--tinta) 70%);font-size:clamp(64px,19vw,96px)}
+.lp-orbit{border:1.5px dashed rgba(255,181,71,.55)}
+.lp-orbit::after{background:var(--p-sol);border:0;box-shadow:0 0 14px 3px rgba(255,181,71,.7)!important}
+.lp .chips span{border:0;background:rgba(245,243,238,.06)}
+.lp .chips .c1{color:var(--p-mar);background:rgba(127,232,210,.12)} .lp .chips .c2{color:var(--p-rosa);background:rgba(255,143,184,.12)} .lp .chips .c3{color:var(--p-azul);background:rgba(138,180,255,.12)}
+.lp-cta{background:var(--tinta);animation:none}
+.lp-eyebrow{color:var(--p-sol)}
+.lp-step,.lp-p,.lp-faq,.lp-inst li,.lp-phone{background:rgba(245,243,238,.035)}
+.lp-step>b{border:0;color:var(--creme)}
+.lp-step.s1>b{background:var(--p-rosa)} .lp-step.s2>b{background:var(--p-lilas)} .lp-step.s3>b{background:var(--p-sol)}
+.lp-j{background:rgba(245,243,238,.035)}
+.lp-j.j1{border-color:rgba(255,143,184,.4)} .lp-j.j2{border-color:rgba(185,166,255,.4)} .lp-j.j3{border-color:rgba(138,180,255,.4)}
+.lp-j .n{color:rgba(245,243,238,.07)}
+.lp-j small,.lp-p .tag{border:0;background:rgba(245,243,238,.08)}
+.lp-p.wk{border-color:rgba(127,232,210,.4)}
+.lp-p.mo{transform:none;border-color:var(--p-sol);background:linear-gradient(135deg,rgba(255,181,71,.16),rgba(255,181,71,.03))}
+.lp-p.mo .tag{background:var(--p-sol);color:var(--creme)}
+.lp-p.mo::before{background-image:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.1) 50%,transparent 65%)}
+.lp-bar{border:0;background:rgba(245,243,238,.08)}
+.lp-bar i{background:linear-gradient(90deg,var(--p-lilas),var(--p-sol));border:0}
+.lp-opts span{background:rgba(245,243,238,.04)}
+@keyframes lpok{0%,25%{background:rgba(245,243,238,.04)}32%,100%{background:rgba(127,232,210,.2);border-color:#7FE8D2}}
+.lp-sheet{background:#0E2622;border-top:1px solid var(--p-mar)}
+.lp-sheet b{color:var(--p-mar)}
+.lp-tabs{border:1px solid var(--line)}
+.lp-tabs button{background:transparent}
+.lp-tabs button+button{border-left:1px solid var(--line)}
+.lp-tabs button.on{background:rgba(255,181,71,.16);color:var(--p-sol)}
+.lp-inst li::before{background:rgba(138,180,255,.16);color:var(--p-azul);border:0}
+.lp-inst .ic{background:rgba(245,243,238,.06);border-color:var(--line)}
+.lp-faq[open] summary{background:rgba(255,181,71,.1)}
+.lp-faq summary::after{color:var(--p-sol)}
+.inst-aviso{background:rgba(255,181,71,.12);border-color:rgba(255,181,71,.4)}
+@media (prefers-reduced-motion:reduce){.lp-opts .ok{background:rgba(127,232,210,.2)}}
+
+/* plans screen and other panes that had white glass hard-coded */
+.free{background:rgba(245,243,238,.035);border:1px dashed rgba(245,243,238,.3)}
+.facts li{background:rgba(245,243,238,.05);border:1px solid var(--line)}
+.facts li i{color:var(--p-sol);font-style:normal}
+.road.soon,.road.locked,.cardm.locked{background:rgba(245,243,238,.04)}
+.btn.plain{background:var(--tinta);color:var(--creme)}
+.pcard{border-color:var(--line)}
+.pcard.semana{background:linear-gradient(135deg,rgba(138,180,255,.16),rgba(138,180,255,.03));border-color:rgba(138,180,255,.35)}
+.pcard.mes{background:linear-gradient(135deg,rgba(255,181,71,.18),rgba(255,181,71,.03));border-color:rgba(255,181,71,.45)}
+.pcard .badge{background:var(--p-sol);color:var(--creme);border:0}
+.pcard .price{font-variant-numeric:normal;font-weight:650!important;letter-spacing:-.03em}
+.paytag{background:rgba(255,181,71,.16);color:var(--p-sol);border:0}
+.cmp th{background:rgba(245,243,238,.05)}
+.pcard .price small{letter-spacing:0}
+
+/* lesson lists: glass rows, the open one lit amber */
+.road{background:rgba(245,243,238,.035)}
+.road .num{background:rgba(245,243,238,.06);border:1px solid var(--line)}
+.road .st{border:1px solid var(--line);background:transparent;text-transform:none;letter-spacing:0;font-size:13px;font-weight:600}
+.road.open{background:linear-gradient(135deg,rgba(255,181,71,.16),rgba(255,181,71,.03));border-color:rgba(255,181,71,.4)}
+.road.open .num{background:var(--p-sol);color:var(--creme);border:0}
+.road.open .st{background:var(--tinta);color:var(--creme);border:0}
+.road.done{background:rgba(127,232,210,.07);border-color:rgba(127,232,210,.3)}
+.road.done .num{background:transparent;color:var(--p-mar);border-color:rgba(127,232,210,.5)}
+.road.done .st{color:var(--p-mar);border-color:rgba(127,232,210,.4)}
+.road.locked .num{background:rgba(185,166,255,.12);color:var(--p-lilas);border:0}
+/* the grotesk reads heavy above 700; display numbers and titles sit at 600-650 */
+.road b,.road .num,.tile b,.chip .n,.disc,.lp-step>b,.lp-p .pv,.free b,.inc b,.next-unit h3,.stats,.daily .go{font-weight:650!important}
 </style>
 
 
@@ -1960,7 +2138,7 @@ function manifestoComSessao(){
     const base=location.origin;
     const m={name:"Jornada · astrologia, mitologia e filosofia", short_name:"Jornada", lang:"pt-BR",
       start_url: base+"/#s="+encodeURIComponent(TOKEN), scope: base+"/", display:"standalone", orientation:"portrait",
-      background_color:"#FFF5E8", theme_color:"#FFF5E8",
+      background_color:"#05060A", theme_color:"#05060A",
       icons:[{src:base+"/jornada/icon-192.png",sizes:"192x192",type:"image/png"},{src:base+"/jornada/icon-512.png",sizes:"512x512",type:"image/png"},{src:base+"/jornada/icon-maskable.png",sizes:"512x512",type:"image/png",purpose:"maskable"}]};
     const url=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:"application/manifest+json"}));
     const l=document.querySelector('link[rel="manifest"]'); if(l) l.href=url;

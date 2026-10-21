@@ -34,7 +34,7 @@ def RX(pat, new, flags=re.S):
 # ---------- cabeça: PWA, biblioteca local ----------
 R('<title>Jornada do Zodíaco</title>', '''<title>Jornada · astrologia, mitologia e filosofia</title>
 <meta name="description" content="Aprender astrologia um passo por dia, a partir do próprio mapa natal. Signos, mitologia, planetas e filosofia, com o astrólogo Eduardo (@eusouodu).">
-<meta name="theme-color" content="#FFF5E8">
+<meta name="theme-color" content="#05060A">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -391,5 +391,8 @@ for a, b in [('href="manifest.webmanifest"', 'href="/jornada/manifest.webmanifes
 R('if("serviceWorker" in navigator) window.addEventListener("load", ()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));',
   'if("serviceWorker" in navigator && /^jornada\\./.test(location.hostname)) window.addEventListener("load", ()=>navigator.serviceWorker.register("/jornada/sw.js",{scope:"/"}).catch(()=>{}));')
 s = s.replace('<span class="sun">☉&#xFE0E;</span>', '<span class="sun">☽&#xFE0E;</span>')
+# tema planetário (o mesmo céu do eusouodu.com) por último, por cima de todo o resto
+_i = s.rindex('</style>') + len('</style>')
+s = s[:_i] + '\n<style>\n' + open(HERE + 'planetario.css').read() + '</style>' + s[_i:]
 open(OUT + "index.html", "w").write(s)
 print('ok', len(s))

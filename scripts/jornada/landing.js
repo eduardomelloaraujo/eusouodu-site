@@ -134,7 +134,7 @@ function manifestoComSessao(){
     const base=location.origin;
     const m={name:"Jornada · astrologia, mitologia e filosofia", short_name:"Jornada", lang:"pt-BR",
       start_url: base+"/#s="+encodeURIComponent(TOKEN), scope: base+"/", display:"standalone", orientation:"portrait",
-      background_color:"#FFF5E8", theme_color:"#FFF5E8",
+      background_color:"#05060A", theme_color:"#05060A",
       icons:[{src:base+"/jornada/icon-192.png",sizes:"192x192",type:"image/png"},{src:base+"/jornada/icon-512.png",sizes:"512x512",type:"image/png"},{src:base+"/jornada/icon-maskable.png",sizes:"512x512",type:"image/png",purpose:"maskable"}]};
     const url=URL.createObjectURL(new Blob([JSON.stringify(m)],{type:"application/manifest+json"}));
     const l=document.querySelector('link[rel="manifest"]'); if(l) l.href=url;
