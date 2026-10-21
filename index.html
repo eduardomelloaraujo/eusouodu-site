@@ -2,893 +2,186 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Astrologia, simbolismo e mitologia com o Eduardo (@eusouodu). Leituras do mapa natal, a energia astrológica da semana e atendimento individual.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>eusouodu · astrologia, simbolismo e mitologia</title>
+<meta name="description" content="Astrologia lida com mitologia e simbolismo por Eduardo Mello. Apps, leituras e a energia astrológica de cada semana, a partir do seu mapa natal.">
+<meta name="theme-color" content="#05060A">
 <meta property="og:title" content="eusouodu">
 <meta property="og:description" content="Astrologia, simbolismo e mitologia. Leituras do mapa natal e a energia astrológica da semana.">
 <meta property="og:url" content="https://eusouodu.com">
-<meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=2">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-<title>eusouodu · astrologia, simbolismo e mitologia</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Albert+Sans:wght@300;400;500&display=swap">
-<style>
-html{padding-top:env(safe-area-inset-top,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
-/* Layout: editorial em faixas largas, como um catálogo de boticário; texto pequeno e calmo, imagem grande, muito ar.
-   Uma única aparência, escolhida de propósito (papel quente), com faixas escuras para ritmo. */
-:root{
-  color-scheme:light;
-  --papel:#FFFFFF;      /* fundo */
-  --areia:#F6F5F1;      /* faixas claras */
-  --pedra:#E4E1D8;      /* linhas e molduras */
-  --tinta:#333230;      /* texto */
-  --cinza:#6F6B62;      /* texto secundário */
-  --noite:#252421;      /* faixas escuras */
-  --noite-texto:#F2EFE2;
-  --ambar:#9C7A44;      /* acento único */
-  --oliva:#4E4F3E;
-  --display:'Cormorant Garamond','Iowan Old Style','Times New Roman',serif;
-  --texto:'Albert Sans','Helvetica Neue',Arial,sans-serif;
-  --gutter:clamp(16px,4vw,48px);
-  --max:1280px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--papel);color:var(--tinta);font-family:var(--texto);font-weight:300;font-size:15px;line-height:1.7;margin:0;-webkit-font-smoothing:antialiased}
-a{color:inherit}
-:focus-visible{outline:1px solid var(--tinta);outline-offset:4px}
-h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance;line-height:1.08;letter-spacing:-.005em}
-p{margin:0}
-.rotulo{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--cinza)}
-.envelope{max-width:var(--max);margin:0 auto;padding-inline:var(--gutter)}
-.link{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:500;letter-spacing:.04em;text-decoration:none;padding-bottom:4px;border-bottom:1px solid currentColor;transition:gap .25s ease}
-.link:hover{gap:16px}
-.botao{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 28px;background:var(--tinta);color:var(--papel);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.06em;border:1px solid var(--tinta);transition:background .25s,color .25s;cursor:pointer;font-family:var(--texto)}
-.botao:hover{background:transparent;color:var(--tinta)}
-.botao.claro{background:var(--noite-texto);color:var(--noite);border-color:var(--noite-texto)}
-.botao.claro:hover{background:transparent;color:var(--noite-texto)}
-
-/* Faixa de aviso */
-.aviso{background:var(--noite);color:var(--noite-texto);font-size:12px;letter-spacing:.06em;text-align:center;padding:10px var(--gutter)}
-.aviso a{text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--noite-texto) 50%,transparent)}
-
-/* Cabeçalho */
-.cabecalho{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--papel) 94%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--pedra)}
-.cabecalho .envelope{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:64px}
-.marca{font-family:var(--display);font-size:26px;letter-spacing:.02em;text-decoration:none;line-height:1}
-.marca i{font-style:italic;color:var(--ambar)}
-.menu{display:flex;gap:28px;font-size:13px;letter-spacing:.04em;overflow-x:auto;scrollbar-width:none}
-.menu::-webkit-scrollbar{display:none}
-.menu a{text-decoration:none;white-space:nowrap;padding-block:6px;border-bottom:1px solid transparent}
-.menu a:hover{border-color:var(--tinta)}
-@media (max-width:640px){.menu a:not(.sempre){display:none}}
-
-/* Abertura */
-.abertura{display:grid;grid-template-columns:1.1fr 1fr;min-height:min(78vh,720px)}
-.abertura .quadro{background:#FFFFFF;position:relative;overflow:hidden;min-height:340px}
-.abertura .quadro canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y}
-.abertura .texto{display:flex;flex-direction:column;justify-content:center;gap:28px;padding:64px clamp(24px,6vw,96px)}
-.abertura h1{font-size:clamp(44px,6.2vw,84px)}
-.abertura h1 em{font-style:italic;color:var(--ambar)}
-.abertura p.lead{max-width:40ch;color:var(--cinza);font-size:16px}
-@media (max-width:860px){.abertura{grid-template-columns:1fr}.abertura .quadro{aspect-ratio:4/3.4;min-height:0;max-width:100%}.abertura .texto{padding:48px var(--gutter) 56px}}
-
-/* Seções */
-.secao{padding-block:clamp(72px,10vw,140px)}
-.cab-secao{display:grid;grid-template-columns:1fr 2fr;gap:32px;align-items:end;margin-bottom:clamp(40px,6vw,72px)}
-.cab-secao h2{font-size:clamp(36px,4.6vw,60px)}
-.cab-secao p{color:var(--cinza);max-width:52ch}
-@media (max-width:760px){.cab-secao{grid-template-columns:1fr;gap:16px}}
-
-/* Semana */
-.semana{background:var(--areia)}
-.semana .grade{display:grid;grid-template-columns:1fr 2fr;gap:clamp(32px,6vw,96px)}
-.semana .lado{display:flex;flex-direction:column;gap:14px}
-.semana .data{font-family:var(--display);font-size:28px;font-variant-numeric:lining-nums tabular-nums}
-.semana h2{font-size:clamp(38px,5vw,64px);margin-bottom:28px}
-.semana .corpo{display:flex;flex-direction:column;gap:18px;max-width:60ch;font-size:16px}
-.semana .corpo p:first-child::first-letter{font-family:var(--display);float:left;font-size:72px;line-height:.82;padding:6px 10px 0 0;color:var(--ambar)}
-.luas{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin-top:44px;padding-top:28px;border-top:1px solid var(--pedra);max-width:620px}
-.lua{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cinza);font-variant-numeric:tabular-nums}
-.lua svg{width:100%;max-width:38px;height:auto}
-.lua b{font-weight:500;color:var(--tinta);letter-spacing:0;font-size:13px}
-.nota{font-size:12px;color:var(--cinza);margin-top:12px;max-width:60ch}
-.chamada{margin-top:40px;padding:28px;background:var(--papel);border:1px solid var(--pedra);display:flex;flex-direction:column;gap:12px;max-width:60ch}
-.chamada p:not(.rotulo){font-family:var(--display);font-size:22px;line-height:1.3}
-.chamada .link{align-self:flex-start}
-@media (max-width:760px){.semana .grade{grid-template-columns:1fr}}
-
-/* Leituras */
-.vitrine{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,32px)}
-.item{display:flex;flex-direction:column;gap:22px;text-decoration:none;min-width:0}
-.item .imagem{aspect-ratio:4/5;max-width:100%;overflow:hidden;position:relative}
-.item .imagem svg{position:absolute;inset:0;width:100%;height:100%;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.item:hover .imagem svg{transform:scale(1.035)}
-.item h3{font-size:30px}
-.item .desc{color:var(--cinza);font-size:14.5px;max-width:42ch}
-.ficha{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;font-size:13px;border-top:1px solid var(--pedra);padding-top:16px}
-.ficha dt{color:var(--cinza)}
-.ficha dd{margin:0}
-.preco-linha{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:auto}
-.preco{font-family:var(--display);font-size:26px;font-variant-numeric:lining-nums}
-.preco small{font-family:var(--texto);font-size:12px;color:var(--cinza);margin-left:6px}
-@media (max-width:960px){.vitrine{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:620px){.vitrine{grid-template-columns:1fr;gap:56px}}
-
-/* Manifesto */
-.manifesto{background:var(--noite);color:var(--noite-texto);text-align:center}
-.manifesto blockquote{margin:0 auto;max-width:22ch;font-family:var(--display);font-size:clamp(34px,5vw,64px);line-height:1.12;font-style:italic}
-.manifesto .rotulo{color:color-mix(in srgb,var(--noite-texto) 60%,transparent);margin-top:36px;display:block}
-
-/* Destaque Odisseia */
-.destaque{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;background:var(--areia)}
-.destaque .imagem{position:relative;min-height:520px;overflow:hidden}
-.destaque .imagem svg{position:absolute;inset:0;width:100%;height:100%}
-.destaque .texto{padding:clamp(48px,7vw,112px) clamp(24px,6vw,96px);display:flex;flex-direction:column;gap:26px;justify-content:center}
-.destaque h2{font-size:clamp(40px,5vw,68px)}
-.destaque h2 em{font-style:italic}
-.destaque p{color:var(--cinza);max-width:48ch;font-size:16px}
-.episodios{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:8px 32px;font-size:13px;border-top:1px solid var(--pedra);padding-top:22px}
-.episodios div{display:flex;flex-direction:column}
-.episodios b{font-family:var(--display);font-weight:400;font-size:30px;line-height:1.1;font-variant-numeric:lining-nums}
-.episodios span{color:var(--cinza)}
-.acoes{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
-@media (max-width:860px){.destaque{grid-template-columns:1fr}.destaque .imagem{min-height:0;aspect-ratio:1/1;max-width:100%}.episodios{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 16px}}
-
-/* Em breve */
-.breve .grade{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:start}
-.breve h2{font-size:clamp(38px,4.6vw,60px);margin-block:14px 22px}
-.breve p.lead{color:var(--cinza);max-width:46ch;font-size:16px;margin-bottom:28px}
-.lista{list-style:none;margin:0;padding:0;border-top:1px solid var(--pedra)}
-.lista li{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--pedra);align-items:start}
-.lista svg{width:32px;height:32px}
-.lista strong{display:block;font-weight:500;font-size:15px;margin-bottom:2px}
-.lista span{color:var(--cinza);font-size:14px}
-@media (max-width:760px){.breve .grade{grid-template-columns:1fr}}
-
-
-/* Jornada: o app, em destaque */
-.jornada{background:linear-gradient(135deg,#F3ECFF 0%,#FFF1E6 48%,#E7FBF3 100%);padding-block:clamp(64px,9vw,128px);border-bottom:1px solid var(--pedra);overflow:hidden}
-.jornada .grade{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,6vw,96px);align-items:center}
-.jornada h2{font-size:clamp(52px,7vw,96px);margin:18px 0 22px}
-.jornada h2 em{font-style:italic;color:#B0428A}
-.jornada .lead{color:#4f4a44;font-size:16px;max-width:50ch}
-.jornada .selo-novo{background:#B0428A}
-.jornada-trilhas{list-style:none;margin:26px 0 0;padding:0;border-top:1px solid rgba(51,50,48,.18)}
-.jornada-trilhas li{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid rgba(51,50,48,.18);font-size:14px}
-.jornada-trilhas li b{display:block;font-weight:500;font-size:15px}
-.jornada-trilhas li span{color:var(--cinza)}
-.jornada-trilhas .n{font-family:var(--display);font-size:30px;line-height:1;font-style:italic;color:#B0428A}
-.jornada .precos{grid-template-columns:repeat(3,1fr);max-width:560px}
-.jornada .preco-op{background:rgba(255,255,255,.7);border-color:rgba(51,50,48,.2)}
-.jornada .preco-op small{color:var(--cinza);font-size:12px}
-.jornada .vitrine{display:block;justify-self:center;width:100%;max-width:520px}
-.jornada .vitrine img{width:100%;height:auto;display:block;filter:drop-shadow(0 24px 40px rgba(60,30,80,.18));animation:flutua 6s ease-in-out infinite}
-@keyframes flutua{50%{transform:translateY(-10px) rotate(-.6deg)}}
-@media (prefers-reduced-motion:reduce){.jornada .vitrine img{animation:none}}
-@media (max-width:860px){.jornada .grade{grid-template-columns:1fr}.jornada .vitrine{max-width:380px;order:-1}.jornada .precos{grid-template-columns:1fr 1fr 1fr}}
-@media (max-width:420px){.jornada .precos{grid-template-columns:1fr}}
-
-/* Novo produto em destaque */
-.acoes-abertura{display:flex;flex-wrap:wrap;gap:20px 28px;align-items:center}
-.musica{background:var(--noite);color:var(--noite-texto);padding-block:clamp(64px,9vw,120px)}
-.musica .grade{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,96px);align-items:center}
-.musica h2{font-size:clamp(46px,6vw,84px);margin:18px 0 22px;color:var(--noite-texto)}
-.musica h2 em{font-style:italic;color:#C9A66B}
-.musica .lead{color:color-mix(in srgb,var(--noite-texto) 78%,transparent);font-size:16px;max-width:50ch}
-.musica .rotulo{color:color-mix(in srgb,var(--noite-texto) 70%,transparent)}
-.musica-itens{list-style:none;margin:22px 0 30px;padding:0;border-top:1px solid color-mix(in srgb,var(--noite-texto) 18%,transparent)}
-.musica-itens li{padding:11px 0;border-bottom:1px solid color-mix(in srgb,var(--noite-texto) 18%,transparent);font-size:14px}
-.disco{display:grid;place-items:center;width:100%;max-width:420px;aspect-ratio:1;justify-self:center;border-radius:50%;text-decoration:none;
-  background:#100f0d;box-shadow:0 30px 60px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.05),inset 0 0 0 40px #141210,inset 0 0 0 41px rgba(255,255,255,.05),inset 0 0 0 80px #141210,inset 0 0 0 81px rgba(255,255,255,.05)}
-.selo-disco{will-change:transform;animation:gira 9s linear infinite;width:60%;aspect-ratio:1;border-radius:50%;background:#EFE4CC;box-shadow:0 0 0 4px #9C7A44;display:grid;place-items:center;position:relative}
-.selo-disco::after{content:"";position:absolute;width:6%;aspect-ratio:1;border-radius:50%;background:var(--noite)}
-.selo-disco i{font-style:normal;font-family:var(--display);font-size:clamp(20px,3vw,30px);color:#333230;transform:translateY(-38%)}
-.selo-disco em{font-style:italic;color:#9C7A44}
-@keyframes gira{to{transform:rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){.selo-disco{animation:none}}
-@media (max-width:760px){.musica .grade{grid-template-columns:1fr}.disco{max-width:280px}}
-.novo{padding-block:clamp(64px,9vw,128px);border-bottom:1px solid var(--pedra)}
-.novo .grade{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center}
-.novo h2{font-size:clamp(46px,6vw,84px);margin:18px 0 22px}
-.novo h2 em{font-style:italic;color:var(--ambar)}
-.novo .lead{color:var(--cinza);font-size:16px;max-width:48ch}
-.selo-novo{display:inline-block;background:var(--ambar);color:#fff;padding:3px 9px;margin-right:10px;letter-spacing:.14em}
-.precos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:30px 0 28px;max-width:460px}
-.preco-op{display:flex;flex-direction:column;gap:4px;border:1px solid var(--pedra);padding:16px 18px;text-decoration:none;transition:border-color .2s}
-.preco-op:hover{border-color:var(--tinta)}
-.preco-op span{font-size:13px;color:var(--cinza)}
-.preco-op b{font-family:var(--display);font-weight:400;font-size:32px;line-height:1}
-.novo-amostra{background:var(--areia);padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:18px}
-.novo-amostra .ritmo{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
-.novo-amostra .ritmo div{display:flex;flex-direction:column;align-items:center;padding:10px 2px;font-size:11px;line-height:1.3;border:1px solid transparent}
-.novo-amostra .ritmo b{font-size:15px;font-weight:500}
-.novo-amostra .ritmo i{font-style:normal;color:var(--ambar)}
-.novo-amostra .f{background:#EDF2EA;color:#4F6F4B}.novo-amostra .m{background:#F4F0E4;color:#7A6A45}.novo-amostra .d{background:#F6EAE6;color:#8E4E3F}
-.novo-amostra .top{border-color:var(--ambar)!important}
-.novo-amostra ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--pedra)}
-.novo-amostra li{padding:12px 0;border-bottom:1px solid var(--pedra);font-size:14px;color:var(--cinza)}
-.novo-amostra li b{display:block;font-family:var(--display);font-weight:400;font-size:21px;color:var(--tinta)}
-@media (max-width:860px){.novo .grade{grid-template-columns:1fr}}
-@media (max-width:420px){.precos{grid-template-columns:1fr}}
-
-/* Atendimento */
-.atendimento{background:var(--papel);border-top:1px solid var(--pedra)}
-.atendimento .grade{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center}
-.roda{aspect-ratio:1/1;max-width:min(100%,520px);width:100%;justify-self:center}
-.atendimento h2{font-size:clamp(40px,5vw,66px);margin-block:14px 22px}
-.atendimento p{color:var(--cinza);max-width:46ch;font-size:16px}
-.contato{display:flex;flex-direction:column;align-items:flex-start;gap:22px;margin-top:32px}
-.numero{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-size:14px}
-.numero span{font-family:var(--display);font-size:24px;font-variant-numeric:lining-nums tabular-nums;color:var(--tinta);user-select:all}
-.copiar{background:none;border:none;border-bottom:1px solid var(--cinza);padding:0 0 2px;font:inherit;font-size:12px;letter-spacing:.06em;color:var(--cinza);cursor:pointer}
-@media (max-width:760px){.atendimento .grade{grid-template-columns:1fr}.roda{max-width:360px}}
-
-/* Rodapé */
-footer{background:var(--noite);color:var(--noite-texto);padding-block:72px 40px;font-size:13px}
-footer .colunas{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:40px}
-footer .marca{font-size:34px}
-footer h4{font-family:var(--texto);font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;margin:0 0 14px;color:color-mix(in srgb,var(--noite-texto) 55%,transparent)}
-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
-footer a{text-decoration:none}
-footer a:hover{text-decoration:underline;text-underline-offset:4px}
-footer .base{margin-top:64px;padding-top:24px;border-top:1px solid color-mix(in srgb,var(--noite-texto) 18%,transparent);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:color-mix(in srgb,var(--noite-texto) 55%,transparent);font-size:12px}
-footer .frase{color:color-mix(in srgb,var(--noite-texto) 70%,transparent);max-width:32ch;margin-top:14px;line-height:1.6}
-@media (max-width:860px){footer .colunas{grid-template-columns:1fr 1fr}footer .colunas>div:first-child{grid-column:1/-1}}
-
-/* Entrada suave, sempre partindo de um estado visível */
-@keyframes surgir{from{opacity:.001;transform:translateY(14px)}to{opacity:1;transform:none}}
-.abertura .texto>*{animation:surgir 1s cubic-bezier(.2,.7,.2,1) both}
-.abertura .texto>*:nth-child(2){animation-delay:.12s}
-.abertura .texto>*:nth-child(3){animation-delay:.24s}
-.abertura .texto>*:nth-child(4){animation-delay:.36s}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
-</style>
-
+<link rel="preload" href="fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<!-- Textura de papel usada nas imagens dos produtos -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <filter id="grao" x="0" y="0" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/>
-      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .09 0"/>
-    </filter>
-    <radialGradient id="luz-ouro" cx="50%" cy="38%" r="65%">
-      <stop offset="0" stop-color="#E9DCC0"/><stop offset="1" stop-color="#CDB98F"/>
-    </radialGradient>
-    <radialGradient id="luz-rosa" cx="50%" cy="30%" r="70%">
-      <stop offset="0" stop-color="#F6E6EA"/><stop offset="1" stop-color="#E7CFD6"/>
-    </radialGradient>
-    <linearGradient id="mar" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#C9CFCB"/><stop offset=".58" stop-color="#AEB7B2"/><stop offset=".58" stop-color="#5D6C6A"/><stop offset="1" stop-color="#3F4B4A"/>
-    </linearGradient>
-  </defs>
-</svg>
+<div id="nebulosa" aria-hidden="true"></div>
+<canvas id="ceu" aria-hidden="true"></canvas>
 
-<div class="aviso">Novidade · Jornada: o app para aprender astrologia, mitologia e filosofia a partir do próprio mapa · <a href="https://jornada.eusouodu.com/">começar grátis</a></div>
-
-<header class="cabecalho">
-  <div class="envelope">
-    <a class="marca" href="#topo">eu<i>sou</i>odu</a>
-    <nav class="menu" aria-label="Seções">
-      <a href="https://jornada.eusouodu.com/" class="sempre">Jornada</a>
-      <a href="/musica/">Música Astral</a>
-      <a href="#seu-mapa">Seu mapa</a>
-      <a href="#semana">A semana</a>
-      <a href="#leituras">Leituras</a>
-      <a href="#odisseia">Odisseia</a>
-      <a href="#atendimento" class="sempre">Atendimento</a>
-    </nav>
-  </div>
+<header class="topo">
+  <a class="marca" href="#topo" aria-label="eusouodu, início">eusouodu</a>
+  <nav aria-label="Principal">
+    <a href="#jornada">Jornada</a>
+    <a href="#musica-astral">Música Astral</a>
+    <a href="#semana">A semana</a>
+    <a href="#leituras">Leituras</a>
+    <a href="#odisseia">Odisseia</a>
+    <a href="#atendimento">Atendimento</a>
+  </nav>
 </header>
 
 <main id="topo">
 
-  <section class="abertura">
-    <div class="quadro" aria-hidden="true"><canvas id="ceu"></canvas></div>
-    <div class="texto">
-      <p class="rotulo">Astrologia · Simbolismo · Mitologia</p>
-      <h1>O mapa como um <em>caminho de volta</em></h1>
-      <p class="lead">Há mais de dez anos o Eduardo lê o céu ao lado da mitologia e do simbolismo. Aqui estão as leituras, os produtos e a energia astrológica de cada semana.</p>
-      <div class="acoes-abertura"><a class="botao" href="/mapa/">Ver os próximos dias no meu mapa</a><a class="link" href="#leituras">Conhecer as leituras <span aria-hidden="true">→</span></a></div>
+  <section class="abertura" aria-labelledby="titulo">
+    <svg class="lua-grande" id="lua-grande" viewBox="0 0 40 40" role="img" aria-label="A Lua de hoje"></svg>
+    <h1 id="titulo">O mapa como um caminho de volta.</h1>
+    <p class="apoio">Há mais de dez anos o Eduardo lê o céu ao lado da mitologia e do simbolismo. Apps, leituras e a energia de cada semana, a partir do seu mapa.</p>
+    <div class="acoes">
+      <a class="botao" href="https://jornada.eusouodu.com/">Começar a Jornada grátis</a>
+      <a class="link-claro" href="https://eusouodu.com/mapa/">Ver a semana no meu mapa<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    </div>
+    <div class="cupula" aria-hidden="true"></div>
+    <p class="hoje"><span id="hoje-texto">O céu de hoje</span></p>
+  </section>
+
+  <section class="guia" aria-labelledby="guia-t">
+    <h2 id="guia-t">Seis portas para o mesmo céu.</h2>
+    <p class="lead">Comece de graça e vá mais fundo quando quiser. Tudo parte da data, da hora e da cidade em que você nasceu.</p>
+    <ol class="portas">
+      <li data-tom="jornada"><a href="#jornada"><span class="ponto" aria-hidden="true"></span><b>App grátis</b><strong>A Jornada</strong><span class="o-que">Aprender astrologia um passo por dia, como um jogo.</span></a></li>
+      <li data-tom="musica"><a href="#musica-astral"><span class="ponto" aria-hidden="true"></span><b>App grátis</b><strong>Música Astral</strong><span class="o-que">O seu mapa vira um disco, com uma música nova por dia.</span></a></li>
+      <li data-tom="semana"><a href="#semana"><span class="ponto" aria-hidden="true"></span><b>Toda semana</b><strong>A energia da semana</strong><span class="o-que">O céu dos próximos dias, e como ele passa pelo seu mapa.</span></a></li>
+      <li data-tom="leituras"><a href="#leituras"><span class="ponto" aria-hidden="true"></span><b>Leituras</b><strong>Mitologia e livros</strong><span class="o-que">A sua mitologia e os seus livros, calculados no mapa.</span></a></li>
+      <li data-tom="odisseia"><a href="#odisseia"><span class="ponto" aria-hidden="true"></span><b>Curso</b><strong>Odisseia</strong><span class="o-que">Doze episódios, uma volta pelo zodíaco até Ítaca.</span></a></li>
+      <li data-tom="atendimento"><a href="#atendimento"><span class="ponto" aria-hidden="true"></span><b>Consulta</b><strong>Com o Eduardo</strong><span class="o-que">Uma conversa terapêutica a partir do seu mapa.</span></a></li>
+    </ol>
+  </section>
+
+  <section class="cena" id="jornada" data-tom="jornada" aria-labelledby="jornada-t">
+    <h2 id="jornada-t" class="gigante">A Jornada.</h2>
+    <p class="selo"><b>App</b>Grátis para começar</p>
+    <p class="lead">Astrologia, mitologia e filosofia, um passo por dia, como um jogo. A data, a hora e a cidade de nascimento entram, o mapa é calculado na hora, e cada lição acende um pedaço dele.</p>
+
+    <ol class="trilha">
+      <li><span class="estrela" aria-hidden="true"></span><h3>A linguagem</h3><p>Os doze signos com a mitologia, o planeta regente e uma ideia filosófica. 60 lições.</p></li>
+      <li><span class="estrela" aria-hidden="true"></span><h3>O próprio mapa</h3><p>Doze lições montadas a partir do mapa natal de quem joga, do Ascendente à síntese.</p></li>
+      <li><span class="estrela" aria-hidden="true"></span><h3>Os trânsitos</h3><p>O céu de verdade passando sobre o mapa: fases da Lua, retrogradações, eclipses, o retorno de Saturno. E uma lição nova todo dia.</p></li>
+    </ol>
+
+    <dl class="precos">
+      <div><dt>Para começar</dt><dd><strong>Grátis</strong>Áries e a lição do dia</dd></div>
+      <div><dt>Passe semanal</dt><dd><strong>R$ 9,90</strong>no Pix, não renova</dd></div>
+      <div><dt>Mensal</dt><dd><strong>R$ 29,90</strong>no cartão, cancela quando quiser</dd></div>
+    </dl>
+    <div class="acoes">
+      <a class="botao" href="https://jornada.eusouodu.com/">Começar a Jornada grátis</a>
+      <a class="link-claro" href="https://jornada.eusouodu.com/#lpInstalar">Como instalar no celular<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    </div>
+    <p class="nota">Instala na tela de início do celular, sem loja de aplicativos.</p>
+  </section>
+
+  <section class="cena cena-disco" id="musica-astral" data-tom="musica" aria-labelledby="musica-t">
+    <div class="disco-texto">
+      <h2 id="musica-t" class="gigante">Música Astral.</h2>
+      <p class="selo"><b>App</b>Grátis, uma música nova por dia</p>
+      <p class="lead">O mapa se desenha na tela e vira um disco. No Lado A, as músicas do Sol, da Lua e do Ascendente. No Lado B, a música de hoje, escolhida pelo trânsito que mais toca o mapa.</p>
+      <ul class="lista">
+        <li>Uma música nova todo dia</li>
+        <li>A imagem do disco pronta para o story</li>
+        <li>A música do dia no e-mail, se quiser</li>
+      </ul>
+      <div class="acoes"><a class="botao" href="https://eusouodu.com/musica/">Ouvir a música do meu mapa</a></div>
+    </div>
+    <div class="disco" aria-hidden="true">
+      <svg viewBox="0 0 400 400" id="disco-svg"></svg>
     </div>
   </section>
 
-  <section class="jornada" id="jornada" aria-labelledby="t-jornada">
-    <div class="envelope grade">
-      <div class="jornada-texto">
-        <p class="rotulo"><span class="selo-novo">Novidade</span> App · grátis para começar</p>
-        <h2 id="t-jornada">A <em>Jornada</em></h2>
-        <p class="lead">Um app para aprender astrologia, mitologia e filosofia um passo por dia, como um jogo. A data, a hora e a cidade de nascimento entram, o mapa é calculado na hora, e cada lição acende um pedaço dele. Instala na tela de início do celular, sem loja de aplicativos.</p>
-        <ul class="jornada-trilhas">
-          <li><span class="n">1</span><div><b>A linguagem</b><span>Os doze signos com a mitologia, o planeta regente e uma ideia filosófica. 60 lições.</span></div></li>
-          <li><span class="n">2</span><div><b>O próprio mapa</b><span>Doze lições montadas a partir do mapa natal de quem joga, do Ascendente à síntese.</span></div></li>
-          <li><span class="n">3</span><div><b>Os trânsitos</b><span>O céu de verdade passando sobre o mapa: fases da Lua, retrogradações, eclipses, o retorno de Saturno. E uma lição nova todo dia.</span></div></li>
-        </ul>
-        <div class="precos">
-          <a class="preco-op" href="https://jornada.eusouodu.com/"><span>Para começar</span><b>Grátis</b><small>Áries e a lição do dia</small></a>
-          <a class="preco-op" href="https://jornada.eusouodu.com/"><span>Passe semanal</span><b>R$ 9,90</b><small>no Pix, não renova</small></a>
-          <a class="preco-op" href="https://jornada.eusouodu.com/"><span>Mensal</span><b>R$ 29,90</b><small>no cartão, cancela quando quiser</small></a>
-        </div>
-        <div class="acoes-abertura"><a class="botao" href="https://jornada.eusouodu.com/">Começar a Jornada grátis</a><a class="link" href="https://jornada.eusouodu.com/#lpInstalar">Como instalar no celular <span aria-hidden="true">→</span></a></div>
-      </div>
-      <a class="vitrine" href="https://jornada.eusouodu.com/" aria-label="Abrir a Jornada"><img src="/jornada/vitrine.webp" width="862" height="1000" alt="Duas telas da Jornada: o mapa natal aceso e uma lição sobre o Sol em Câncer" loading="lazy"></a>
-    </div>
-  </section>
+  <section class="cena" id="semana" data-tom="semana" aria-labelledby="semana-t">
+    <h2 id="semana-t" class="gigante">A energia da semana.</h2>
+    <p class="selo"><b>Toda semana</b>A energia astrológica dos próximos dias</p>
+    <div class="semana" id="semana-luas" hidden aria-label="A Lua de cada dia da semana, como aparece no hemisfério sul"></div>
+    <p class="nota" id="semana-nota" hidden>A Lua de cada dia, desenhada como aparece no céu do hemisfério sul.</p>
 
-  <section class="musica" id="musica-astral" aria-labelledby="t-musica">
-    <div class="envelope grade">
-      <a class="disco" href="/musica/" aria-label="Abrir a Música Astral"><span class="selo-disco"><i>eu<em>sou</em>odu</i></span></a>
-      <div class="musica-texto">
-        <p class="rotulo">Grátis</p>
-        <h2 id="t-musica">Música <em>Astral</em></h2>
-        <p class="lead">A data, a hora e a cidade entram, o mapa se desenha na tela e vira um disco. No Lado A, as músicas do Sol, da Lua e do Ascendente. No Lado B, a música de hoje, escolhida pelo trânsito que mais toca o mapa, com a leitura do tom explicando por quê.</p>
-        <ul class="musica-itens"><li>Uma música nova todo dia</li><li>A imagem do disco pronta para o story</li><li>A música do dia no e-mail, se quiser</li></ul>
-        <a class="botao claro" href="/musica/">Ouvir a música do meu mapa</a>
-      </div>
-    </div>
-  </section>
+    <!-- filled from semana.json, the only file that changes every week -->
+    <article class="leitura" id="semana-leitura" hidden>
+      <h3 id="semana-titulo"></h3>
+      <div id="semana-corpo"></div>
+      <a class="link-claro" id="semana-insta" href="https://instagram.com/eusouodu">Assistir o vídeo completo no Instagram<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    </article>
 
-  <section class="novo" id="seu-mapa" aria-labelledby="t-novo">
-    <div class="envelope grade">
-      <div class="novo-texto">
-        <p class="rotulo"><span class="selo-novo">Novo</span> Leitura personalizada</p>
-        <h2 id="t-novo">A semana no <em>seu</em> mapa</h2>
-        <p class="lead">Os movimentos do céu dos próximos 7 ou 30 dias cruzados com o mapa natal de cada pessoa. Os dez planetas lidos pelas casas do mapa, as fases da Lua, o que trabalhar em cada dia e os dias mais fluidos e mais desafiadores. Tudo num e-mail, logo depois da compra.</p>
-        <div class="precos">
-          <a class="preco-op" href="/mapa/?plano=7#comprar"><span>Os próximos 7 dias</span><b>R$ 37</b></a>
-          <a class="preco-op" href="/mapa/?plano=30#comprar"><span>Os próximos 30 dias</span><b>R$ 97</b></a>
-        </div>
-        <a class="botao" href="/mapa/">Quero a minha leitura</a>
-      </div>
-      <div class="novo-amostra" aria-label="Exemplo do relatório">
-        <p class="rotulo">Exemplo · o ritmo da semana</p>
-        <div class="ritmo" id="ritmo-ex" data-estrela='<i>★</i>'>
-          <div class="m">ter<b>13</b></div><div class="f top">qua<b>14</b><i>★</i></div><div class="m">qui<b>15</b></div><div class="f top">sex<b>16</b><i>★</i></div><div class="d">sáb<b>17</b></div><div class="m">dom<b>18</b></div><div class="f">seg<b>19</b></div>
-        </div>
-        <ul>
-          <li><b>A chave da semana</b>o trabalho central do período no mapa</li>
-          <li><b>A carta</b>um arcano do Tarot de Marselha por semana</li>
-          <li><b>A cor, o incenso e o óleo</b>escolhidos pela energia do momento</li>
-          <li><b>Dia a dia</b>o que trabalhar, pontos fortes e desafios</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="secao semana" id="semana" aria-labelledby="t-semana" hidden>
-    <div class="envelope grade">
-      <div class="lado">
-        <p class="rotulo">Energia astrológica da semana</p>
-        <p class="data" id="s-datas"></p>
-        <p style="color:var(--cinza);font-size:14px">O vídeo completo sai no Instagram toda semana. Aqui fica o resumo para voltar a ele quando quiser.</p>
-      </div>
-      <div>
-        <h2 id="t-semana">Energia astrológica da semana</h2>
-        <div class="corpo" id="s-corpo"></div>
-        <div class="luas" id="luas" aria-label="A Lua em cada dia da semana"></div>
-        <p class="nota" id="s-fases">A Lua de cada dia, desenhada como aparece no céu do hemisfério sul.</p>
-        <div class="chamada">
-          <p class="rotulo">A semana no seu mapa</p>
-          <p id="s-chamada">Cada mapa recebe essa semana de um jeito. A leitura de como esses dias tocam as casas e os planetas de cada pessoa, dia a dia, já está disponível.</p>
-          <a class="link" id="s-chamada-link" href="/mapa/"><span id="s-chamada-rotulo">Ver a semana no meu mapa</span> <span aria-hidden="true">→</span></a>
-        </div>
-        <p style="margin-top:32px"><a class="link" href="https://instagram.com/eusouodu" target="_blank" rel="noopener">Assistir no Instagram <span aria-hidden="true">→</span></a></p>
+    <div class="oferta" id="seu-mapa">
+      <h3>Essa semana no seu mapa.</h3>
+      <p>Os movimentos do céu cruzados com o seu mapa natal. Os dez planetas lidos pelas casas, as fases da Lua, o que trabalhar em cada dia, os dias mais fluidos e os mais desafiadores, mais a carta de Tarot de Marselha, a cor, o incenso e o óleo da semana. Tudo num e-mail, logo depois da compra.</p>
+      <div class="planos">
+        <a href="https://eusouodu.com/mapa/?plano=7#comprar"><span>Os próximos 7 dias</span><strong>R$ 37</strong></a>
+        <a href="https://eusouodu.com/mapa/?plano=30#comprar"><span>Os próximos 30 dias</span><strong>R$ 97</strong></a>
       </div>
     </div>
   </section>
 
-  <section class="secao" id="leituras" aria-labelledby="t-leituras">
-    <div class="envelope">
-      <div class="cab-secao">
-        <p class="rotulo">Leituras e produtos</p>
-        <div>
-          <h2 id="t-leituras">Para ler o próprio mapa com calma</h2>
-          <p style="margin-top:16px">Cada leitura nasce dos dados de nascimento e chega pronta, para ser lida e relida no próprio tempo.</p>
-        </div>
-      </div>
+  <section class="cena" id="leituras" data-tom="leituras" aria-labelledby="leituras-t">
+    <h2 id="leituras-t" class="gigante">Para ler o próprio mapa com calma.</h2>
+    <p class="selo"><b>Leituras</b>Calculadas a partir do seu mapa</p>
+    <p class="lead">Cada leitura nasce dos dados de nascimento e chega pronta, para ser lida e relida no próprio tempo.</p>
 
-      <div class="vitrine">
-
-        <a class="item" href="https://mitologia.eusouodu.com" target="_blank" rel="noopener">
-          <div class="imagem">
-            <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-              <rect width="400" height="500" fill="url(#luz-ouro)"/>
-              <g fill="none" stroke="#8A6B39" stroke-width="1" opacity=".55">
-                <circle cx="200" cy="215" r="150"/><circle cx="200" cy="215" r="112"/><ellipse cx="200" cy="215" rx="150" ry="46" transform="rotate(-18 200 215)"/>
-              </g>
-              <circle cx="61" cy="263" r="5" fill="#7A5C2E"/>
-              <!-- coluna jônica -->
-              <g fill="#F4ECDA" stroke="#8A6B39" stroke-width="1">
-                <path d="M138 182 h124 v12 h-124z"/>
-                <path d="M146 194 q-22 0 -22 16 q0 14 16 14 q12 0 12 -10 q0 -8 -8 -8" fill="none"/>
-                <path d="M254 194 q22 0 22 16 q0 14 -16 14 q-12 0 -12 -10 q0 -8 8 -8" fill="none"/>
-                <path d="M152 194 h96 v18 h-96z"/>
-                <path d="M162 212 h76 v222 h-76z"/>
-                <path d="M144 434 h112 v14 h-112z"/><path d="M132 448 h136 v16 h-136z"/>
-              </g>
-              <g stroke="#8A6B39" stroke-width="1" opacity=".7">
-                <line x1="174" y1="216" x2="174" y2="430"/><line x1="187" y1="216" x2="187" y2="430"/><line x1="200" y1="216" x2="200" y2="430"/><line x1="213" y1="216" x2="213" y2="430"/><line x1="226" y1="216" x2="226" y2="430"/>
-              </g>
-              <rect width="400" height="500" filter="url(#grao)"/>
-            </svg>
-          </div>
-          <p class="rotulo">Mitologia do Mapa</p>
-          <h3>Que mitologia se parece com o seu mapa?</h3>
-          <p class="desc">Entre 24 mitologias, a que mais ecoa no mapa natal, contada por inteiro e acompanhada de exercícios para trabalhar essa história na vida.</p>
-          <dl class="ficha">
-            <dt>Formato</dt><dd>Leitura online</dd>
-            <dt>Entrega</dt><dd>Logo após o pagamento</dd>
-          </dl>
-          <div class="preco-linha"><span class="preco">R$ 37</span><span class="link">Descobrir <span aria-hidden="true">→</span></span></div>
-        </a>
-
-        <a class="item" href="https://livros.eusouodu.com" target="_blank" rel="noopener">
-          <div class="imagem">
-            <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-              <rect width="400" height="500" fill="url(#luz-rosa)"/>
-              <rect x="0" y="392" width="400" height="108" fill="#D9BCC5"/>
-              <g stroke="#3B3346" stroke-width="1">
-                <rect x="88"  y="200" width="30" height="192" fill="#FFB3D6"/>
-                <rect x="118" y="230" width="26" height="162" fill="#A8EFD4"/>
-                <rect x="144" y="176" width="34" height="216" fill="#D2BCFF"/>
-                <rect x="178" y="248" width="24" height="144" fill="#F4FF9C"/>
-                <rect x="202" y="210" width="30" height="182" fill="#B5E3FF"/>
-                <rect x="232" y="238" width="28" height="154" fill="#FFCBA8"/>
-                <rect x="268" y="196" width="30" height="196" fill="#FFB3D6" transform="rotate(9 268 392)"/>
-              </g>
-              <g fill="#3B3346" font-family="Georgia,serif" font-size="13" text-anchor="middle">
-                <text x="103" y="226">☉</text><text x="131" y="254">☽</text><text x="161" y="202">☿</text><text x="190" y="272">♀</text><text x="217" y="236">♂</text><text x="246" y="262">♃</text>
-              </g>
-              <text x="200" y="456" fill="#3B3346" font-family="Georgia,serif" font-size="15" letter-spacing="6" text-anchor="middle">2027</text>
-              <rect width="400" height="500" filter="url(#grao)"/>
-            </svg>
-          </div>
-          <p class="rotulo">7 Livros para 2027</p>
-          <h3>Os livros que o seu mapa pede para o próximo ano</h3>
-          <p class="desc">Sete indicações, uma por planeta, cruzando o mapa natal com os trânsitos e os eclipses de 2027. Uma biblioteca escolhida a dedo pelo Eduardo.</p>
-          <dl class="ficha">
-            <dt>Formato</dt><dd>Leitura online</dd>
-            <dt>Entrega</dt><dd>Logo após o pagamento</dd>
-          </dl>
-          <div class="preco-linha"><span class="preco">R$ 37</span><span class="link">Ver meus livros <span aria-hidden="true">→</span></span></div>
-        </a>
-
-        <a class="item" href="https://pay.hotmart.com/T107852297P" target="_blank" rel="noopener">
-          <div class="imagem">
-            <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-              <rect width="400" height="500" fill="url(#mar)"/>
-              <circle cx="262" cy="168" r="46" fill="#E9E1CC" opacity=".9"/>
-              <g fill="none" stroke="#C9CFCB" stroke-width="1" opacity=".5">
-                <path d="M0 330 q25 -8 50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0"/>
-                <path d="M0 370 q25 -8 50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0"/>
-                <path d="M0 418 q25 -8 50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0"/>
-              </g>
-              <!-- barco -->
-              <g transform="translate(118 222)">
-                <path d="M0 64 h96 l-14 16 h-68z" fill="#2B2724"/>
-                <line x1="48" y1="64" x2="48" y2="-6" stroke="#2B2724" stroke-width="2"/>
-                <path d="M50 -2 q34 30 0 62z" fill="#E9E1CC"/>
-                <path d="M46 6 q-26 24 0 50z" fill="#D8CFB8"/>
-              </g>
-              <rect width="400" height="500" filter="url(#grao)"/>
-            </svg>
-          </div>
-          <p class="rotulo">Odisseia, o Retorno</p>
-          <h3>A Odisseia de Homero lida pela roda do zodíaco</h3>
-          <p class="desc">Doze episódios, cada ilha da viagem lida por um signo, com um material de estudo ligado ao próprio mapa em cada capítulo.</p>
-          <dl class="ficha">
-            <dt>Formato</dt><dd>12 episódios em vídeo</dd>
-            <dt>Acesso</dt><dd>Um ano, pela Hotmart</dd>
-          </dl>
-          <div class="preco-linha"><span class="preco">R$ 297<small>pré-venda</small></span><span class="link">Garantir vaga <span aria-hidden="true">→</span></span></div>
-        </a>
-
-      </div>
+    <div class="duas">
+      <a class="produto" href="https://mitologia.eusouodu.com/">
+        <svg class="constelacao" viewBox="0 0 200 160" aria-hidden="true"><path d="M60 20 L100 62 M140 26 L100 62 M100 62 L84 88 M100 62 L116 88 M84 88 L100 90 L116 88 M84 88 L58 142 M116 88 L146 136"/><circle cx="60" cy="20" r="4.5"/><circle cx="140" cy="26" r="3.5"/><circle cx="100" cy="62" r="2.5"/><circle cx="84" cy="88" r="3"/><circle cx="100" cy="90" r="3"/><circle cx="116" cy="88" r="3"/><circle cx="58" cy="142" r="3.5"/><circle cx="146" cy="136" r="5"/></svg>
+        <h3>Mitologia do mapa.</h3>
+        <p class="pergunta">Que mitologia se parece com o seu mapa?</p>
+        <p>Entre 24 mitologias, a que mais ecoa no mapa natal, contada por inteiro e com exercícios para trabalhar essa história na vida.</p>
+        <span class="preco">R$ 37 <em>Leitura online · Descobrir</em></span>
+      </a>
+      <a class="produto" href="https://livros.eusouodu.com/">
+        <svg class="constelacao" viewBox="0 0 200 160" aria-hidden="true"><path d="M14 52 L52 40 L86 50 L112 70 L118 108 L170 118 L176 74 L112 70"/><circle cx="14" cy="52" r="3.5"/><circle cx="52" cy="40" r="3.5"/><circle cx="86" cy="50" r="3.5"/><circle cx="112" cy="70" r="3"/><circle cx="118" cy="108" r="3.5"/><circle cx="170" cy="118" r="4"/><circle cx="176" cy="74" r="4.5"/></svg>
+        <h3>7 livros para 2027.</h3>
+        <p class="pergunta">Os livros que o seu mapa pede para o próximo ano.</p>
+        <p>Sete indicações, uma por planeta, cruzando o mapa natal com os trânsitos e os eclipses de 2027. Uma biblioteca escolhida a dedo pelo Eduardo.</p>
+        <span class="preco">R$ 37 <em>Leitura online · Ver meus livros</em></span>
+      </a>
     </div>
   </section>
 
-  <section class="secao manifesto" aria-label="Manifesto">
-    <div class="envelope">
-      <blockquote>O mapa não diz quem a gente é. Mostra onde a gente costuma se perder, e por onde é possível voltar.</blockquote>
-      <span class="rotulo">eusouodu</span>
+  <section class="cena cena-odisseia" id="odisseia" data-tom="odisseia" aria-labelledby="odisseia-t">
+    <svg class="roda" viewBox="0 0 600 600" id="roda" aria-hidden="true"></svg>
+    <div class="odisseia-texto">
+      <h2 id="odisseia-t" class="gigante">Odisseia, o Retorno.</h2>
+      <p class="selo"><b>Curso em vídeo</b>Na Hotmart</p>
+      <p class="lead">Vinte anos longe de casa. Cada ilha dessa viagem é um lugar onde a gente também fica preso: a que conforta, a que faz esquecer, a que tira o nome, a que canta bonito demais. Uma volta inteira na roda do zodíaco até Ítaca.</p>
+      <p class="nota-forte">Estreia em 31 de outubro. Doze episódios, sete dias de garantia.</p>
+      <p class="nota">R$ 297 na pré-venda até 26 de outubro, ou 12x de R$ 24,75. Depois, R$ 497.</p>
+      <div class="acoes"><a class="botao" href="https://pay.hotmart.com/T107852297P">Garantir minha vaga</a></div>
     </div>
   </section>
 
-  <section class="destaque" id="odisseia" aria-labelledby="t-odisseia">
-    <div class="imagem" aria-hidden="true">
-      <svg viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice">
-        <rect width="600" height="600" fill="#3F4B4A"/>
-        <g fill="none" stroke="#C9C2AC" stroke-width="1" opacity=".55">
-          <circle cx="300" cy="300" r="230"/><circle cx="300" cy="300" r="176"/>
-        </g>
-        <g id="raios" stroke="#C9C2AC" stroke-width="1" opacity=".55"></g>
-        <g id="signos" fill="#E9E1CC" font-family="Georgia,'Apple Symbols','Segoe UI Symbol',serif" font-size="22" text-anchor="middle" dominant-baseline="central"></g>
-        <circle cx="300" cy="300" r="120" fill="#E9E1CC"/>
-        <g transform="translate(300 300)">
-          <path d="M-70 26 q35 -10 70 0 t70 0" fill="none" stroke="#3F4B4A" stroke-width="1.2"/>
-          <path d="M-70 46 q35 -10 70 0 t70 0" fill="none" stroke="#3F4B4A" stroke-width="1.2"/>
-          <path d="M-30 6 h60 l-10 12 h-40z" fill="#2B2724"/>
-          <line x1="0" y1="6" x2="0" y2="-54" stroke="#2B2724" stroke-width="2"/>
-          <path d="M2 -50 q28 24 0 52z" fill="#2B2724"/>
-        </g>
-        <rect width="600" height="600" filter="url(#grao)"/>
-      </svg>
-    </div>
-    <div class="texto">
-      <p class="rotulo">Em destaque · Hotmart</p>
-      <h2 id="t-odisseia">Odisseia, <em>o Retorno</em></h2>
-      <p>Vinte anos longe de casa. Cada ilha dessa viagem é um lugar onde a gente também fica preso: a que conforta, a que faz esquecer, a que tira o nome, a que canta bonito demais. Uma volta inteira na roda do zodíaco até Ítaca.</p>
-      <div class="episodios">
-        <div><b>12</b><span>episódios</span></div>
-        <div><b>31.10</b><span>estreia</span></div>
-        <div><b>7 dias</b><span>de garantia</span></div>
-      </div>
-      <p style="font-size:14px">R$ 297 na pré-venda até 26 de outubro, ou 12x de R$ 24,75. Depois, R$ 497.</p>
-      <div class="acoes">
-        <a class="botao" href="https://pay.hotmart.com/T107852297P" target="_blank" rel="noopener">Garantir minha vaga</a>
-      </div>
+  <section class="cena" id="atendimento" data-tom="atendimento" aria-labelledby="atendimento-t">
+    <h2 id="atendimento-t" class="gigante">Leitura de mapa com o Eduardo.</h2>
+    <p class="selo"><b>Consulta</b>Atendimento individual com o Eduardo</p>
+    <p class="lead">Uma conversa terapêutica a partir do mapa natal e da Revolução Solar, para olhar com cuidado o que se repete, o que pede passagem e o que ainda não tem nome.</p>
+    <p class="nota">Sessão de 1h15 pelo Google Meet, gravada e enviada depois.</p>
+    <div class="acoes">
+      <a class="botao" href="https://agenda.eusouodu.com/">Ver horários e agendar</a>
+      <a class="link-claro" href="https://wa.me/5571982872284?text=Oi%20Eduardo%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20a%20leitura%20de%20mapa">Dúvidas pelo WhatsApp<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
     </div>
   </section>
 
-
-  <section class="secao atendimento" id="atendimento" aria-labelledby="t-atendimento">
-    <div class="envelope grade">
-      <svg class="roda" viewBox="0 0 400 400" aria-hidden="true" id="roda"></svg>
-      <div>
-        <p class="rotulo">Atendimento individual</p>
-        <h2 id="t-atendimento">Leitura de mapa com o Eduardo</h2>
-        <p>Uma conversa terapêutica a partir do mapa natal e da Revolução Solar, para olhar com cuidado o que se repete, o que pede passagem e o que ainda não tem nome. Sessão de 1h15 pelo Google Meet, gravada e enviada depois.</p>
-        <div class="contato">
-          <a class="botao" href="https://agenda.eusouodu.com">Ver horários e agendar</a>
-          <a class="link" href="https://wa.me/5571982872284?text=Oi%20Eduardo%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20a%20leitura%20de%20mapa" target="_blank" rel="noopener">Dúvidas pelo WhatsApp <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
-    </div>
+  <section class="fecho" aria-label="Encerramento">
+    <blockquote>O mapa não diz quem a gente é. Mostra onde a gente costuma se perder, e por onde é possível voltar.</blockquote>
   </section>
-
 </main>
 
-<footer>
-  <div class="envelope">
-    <div class="colunas">
-      <div>
-        <a class="marca" href="#topo" style="color:var(--noite-texto)">eu<i>sou</i>odu</a>
-        <p class="frase">Astrologia, simbolismo e mitologia, há mais de dez anos.</p>
-      </div>
-      <div>
-        <h4>Leituras</h4>
-        <ul>
-          <li><a href="https://agenda.eusouodu.com">Leitura de mapa</a></li>
-          <li><a href="https://mitologia.eusouodu.com" target="_blank" rel="noopener">Mitologia do Mapa</a></li>
-          <li><a href="https://livros.eusouodu.com" target="_blank" rel="noopener">7 Livros para 2027</a></li>
-          <li><a href="https://pay.hotmart.com/T107852297P" target="_blank" rel="noopener">Odisseia, o Retorno</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Atendimento</h4>
-        <ul>
-          <li><a href="https://wa.me/5571982872284" target="_blank" rel="noopener">WhatsApp</a></li>
-          <li>+55 71 98287-2284</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contato</h4>
-        <ul>
-          <li><a href="https://instagram.com/eusouodu" target="_blank" rel="noopener">Instagram @eusouodu</a></li>
-          <li>falecom@eusouodu.com</li>
-        </ul>
-      </div>
-    </div>
-    <div class="base"><span>eusouodu.com</span><span>Salvador, Bahia</span></div>
-  </div>
+<footer class="rodape">
+  <span class="marca">eusouodu</span>
+  <nav aria-label="Contato">
+    <a href="https://instagram.com/eusouodu">Instagram</a>
+    <a href="https://wa.me/5571982872284">WhatsApp</a>
+    <a href="https://agenda.eusouodu.com/">Agenda</a>
+  </nav>
 </footer>
 
-<script>
-(function(){
-  /* ---------- Esfera armilar animada da abertura ---------- */
-  const cv=document.getElementById('ceu');
-  const ctx=cv.getContext('2d');
-  const calmo=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const EPS=23.44*Math.PI/180;
-  const GL=['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
-  let W=1,H=1,dpr=1,S=1,cx=0,cy=0,estrelas=[],constel=[],fundo=null,grao=null;
-  let alvoX=0,alvoY=0,tx=0,ty=0,cadentes=[],proxCadente=2600,visivel=true,rodando=false,t0=null;
-  let A=0,B=0,C=0;
-  function semente(s){return()=>{s=(s*16807)%2147483647;return s/2147483647}}
-
-  function medir(){
-    dpr=Math.min(window.devicePixelRatio||1,2);
-    const r=cv.getBoundingClientRect();W=Math.max(1,r.width);H=Math.max(1,r.height);
-    cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
-    S=Math.min(W,H)*.3;cx=W*.5;cy=H*.5;
-    const R=semente(11);
-    estrelas=Array.from({length:Math.round(W*H/3200)},()=>({x:R()*W,y:R()*H,r:Math.pow(R(),3)*1.7+.25,f:R()*6.28,v:.5+R()*1.6,l:1+Math.floor(R()*3)}));
-    constel=[];
-    for(let k=0;k<5;k++){
-      let x=R()*W,y=R()*H;const pts=[];
-      for(let i=0;i<5+Math.floor(R()*2);i++){pts.push([x,y]);x+=(R()-.35)*W*.09;y+=(R()-.5)*H*.1}
-      constel.push({pts,fase:R()*6.28,vel:.00016+R()*.00018});
-    }
-    /* fundo limpo, off-white liso */
-    fundo=document.createElement('canvas');fundo.width=cv.width;fundo.height=cv.height;
-    const f=fundo.getContext('2d');f.fillStyle='#FFFFFF';f.fillRect(0,0,fundo.width,fundo.height);
-    grao=document.createElement('canvas');grao.width=grao.height=180;
-    const gg=grao.getContext('2d'),im=gg.createImageData(180,180);
-    for(let i=0;i<im.data.length;i+=4){const q=R()*255;im.data[i]=im.data[i+1]=im.data[i+2]=q;im.data[i+3]=9}
-    gg.putImageData(im,0,0);
-  }
-
-  /* geometria 3D */
-  function girar(p){
-    const [x,y,z]=p;
-    const x1=x*Math.cos(A)+z*Math.sin(A),z1=-x*Math.sin(A)+z*Math.cos(A);
-    const y2=y*Math.cos(B)-z1*Math.sin(B),z2=y*Math.sin(B)+z1*Math.cos(B);
-    return [x1*Math.cos(C)-y2*Math.sin(C),x1*Math.sin(C)+y2*Math.cos(C),z2];
-  }
-  function proj(p){const k=3.8/(3.8-p[2]);return [cx+p[0]*k*S,cy-p[1]*k*S,p[2],k]}
-  function pt(a,t){const c=Math.cos(t),s=Math.sin(t);return [a.o[0]+a.r*(c*a.u[0]+s*a.v[0]),a.o[1]+a.r*(c*a.u[1]+s*a.v[1]),a.o[2]+a.r*(c*a.u[2]+s*a.v[2])]}
-  const se=Math.sin(EPS),ce=Math.cos(EPS);
-  const ecl={o:[0,0,0],r:1,u:[1,0,0],v:[0,se,ce]};
-  const nE=[0,ce,-se];
-  const aneis=[
-    {o:[0,0,0],r:1,u:[1,0,0],v:[0,0,1],w:.9,a:.75,atraso:0},
-    {o:[0,se,0],r:ce,u:[1,0,0],v:[0,0,1],w:.6,a:.45,atraso:.12},
-    {o:[0,-se,0],r:ce,u:[1,0,0],v:[0,0,1],w:.6,a:.45,atraso:.16},
-    {o:[0,0,0],r:1,u:[0,1,0],v:[1,0,0],w:.8,a:.6,atraso:.06},
-    {o:[0,0,0],r:1,u:[0,1,0],v:[0,0,1],w:.8,a:.6,atraso:.09},
-    {o:[nE[0]*.045,nE[1]*.045,nE[2]*.045],r:1,u:ecl.u,v:ecl.v,w:1.2,a:1,atraso:.2},
-    {o:[-nE[0]*.045,-nE[1]*.045,-nE[2]*.045],r:1,u:ecl.u,v:ecl.v,w:1.2,a:1,atraso:.22},
-  ];
-  const corpos=[
-    {nome:'mercurio',r:.62,vel:.00042,fase:.6, tam:3.4,cor:'214,200,170',incl:.05},
-    {nome:'venus',   r:.78,vel:.00027,fase:2.4,tam:4.8,cor:'232,208,160',incl:-.04},
-    {nome:'marte',   r:1,  vel:.00016,fase:4.2,tam:4.1,cor:'206,158,116', incl:0},
-    {nome:'jupiter', r:1,  vel:.00009,fase:1.1,tam:6.6,cor:'204,164,96',incl:0},
-    {nome:'saturno', r:1,  vel:.00006,fase:5.3,tam:5.6,cor:'190,154,98',incl:0,anel:true},
-  ];
-  function posCorpo(c,t){
-    const ang=c.fase+t*c.vel;
-    const a={o:[0,0,0],r:c.r,u:ecl.u,v:[ecl.v[0],ecl.v[1]+c.incl,ecl.v[2]]};
-    return {ang,a,p:proj(girar(pt(a,ang)))};
-  }
-
-  function alfa(z){return z>=0?.55+.45*Math.min(1,z):.1+.22*(1+Math.max(-1,z))}
-
-  function desenharAnel(proj_,frente,a,w,cor){
-    for(let i=1;i<proj_.length;i++){
-      const p=proj_[i],q=proj_[i-1],z=(p[2]+q[2])/2;
-      if((z>=0)!==frente)continue;
-      ctx.strokeStyle=`rgba(${cor},${alfa(z)*a})`;ctx.lineWidth=w*p[3];
-      ctx.beginPath();ctx.moveTo(q[0],q[1]);ctx.lineTo(p[0],p[1]);ctx.stroke();
-    }
-  }
-
-  function astro(c,P,t){
-    const [x,y,z,k]=P.p,r=c.tam*k*S/150;
-    ctx.globalAlpha=z>=0?1:.45;
-    /* rastro dourado ao longo da órbita */
-    for(let i=1;i<26;i++){
-      const q=proj(girar(pt(P.a,P.ang-i*.022))),q0=proj(girar(pt(P.a,P.ang-(i-1)*.022)));
-      ctx.strokeStyle=`rgba(${c.cor},${(1-i/26)*.5})`;ctx.lineWidth=r*.7*(1-i/26);
-      ctx.beginPath();ctx.moveTo(q0[0],q0[1]);ctx.lineTo(q[0],q[1]);ctx.stroke();
-    }
-    const h=ctx.createRadialGradient(x,y,0,x,y,r*5);
-    h.addColorStop(0,`rgba(${c.cor},.32)`);h.addColorStop(1,`rgba(${c.cor},0)`);
-    ctx.fillStyle=h;ctx.beginPath();ctx.arc(x,y,r*5,0,6.283);ctx.fill();
-    const dx=cx-x,dy=cy-y,d=Math.hypot(dx,dy)||1;
-    const g=ctx.createRadialGradient(x+dx/d*r*.5,y+dy/d*r*.5,0,x,y,r);
-    g.addColorStop(0,'#FFFFFF');g.addColorStop(.22,'#FBF3E2');g.addColorStop(.6,`rgb(${c.cor})`);g.addColorStop(1,'#7E6032');
-    ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fill();
-    const ir=ctx.createLinearGradient(x-r,y-r,x+r,y+r);ir.addColorStop(0,'rgba(236,196,214,.55)');ir.addColorStop(.5,'rgba(255,255,255,0)');ir.addColorStop(1,'rgba(196,216,236,.55)');
-    ctx.strokeStyle=ir;ctx.lineWidth=Math.max(.8,r*.18);ctx.beginPath();ctx.arc(x,y,r*.92,0,6.283);ctx.stroke();
-    if(c.anel){ctx.strokeStyle=`rgba(${c.cor},.85)`;ctx.lineWidth=.9;ctx.beginPath();ctx.ellipse(x,y,r*2.1,r*.62,-.35+Math.sin(t*.0002)*.1,0,6.283);ctx.stroke()}
-    ctx.globalAlpha=1;
-  }
-
-  function posLua(t){
-    const ang=t*.00062+2;
-    const a={o:[0,0,0],r:.4,u:ecl.u,v:[0,Math.sin(EPS+.09),Math.cos(EPS+.09)]};
-    const P=proj(girar(pt(a,ang)));return {P,a,ang};
-  }
-  function desenharLua(L){
-    const [x,y,z,k]=L.P,r=4.2*k*S/150;
-    ctx.globalAlpha=z>=0?1:.5;
-    const h=ctx.createRadialGradient(x,y,0,x,y,r*4);h.addColorStop(0,'rgba(220,214,226,.45)');h.addColorStop(1,'rgba(220,214,226,0)');
-    ctx.fillStyle=h;ctx.beginPath();ctx.arc(x,y,r*4,0,6.283);ctx.fill();
-    const dx=cx-x,dy=cy-y,d=Math.hypot(dx,dy)||1;
-    ctx.fillStyle='#CDBE9E';ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fill();
-    const g=ctx.createRadialGradient(x+dx/d*r*.9,y+dy/d*r*.9,r*.2,x+dx/d*r*.9,y+dy/d*r*.9,r*1.7);
-    g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(.5,'rgba(244,238,240,.95)');g.addColorStop(1,'rgba(232,226,236,0)');
-    ctx.save();ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.clip();ctx.fillStyle=g;ctx.fillRect(x-r,y-r,r*2,r*2);ctx.restore();
-    ctx.globalAlpha=1;
-  }
-
-  function sol(t,e){
-    const r=S*.12*(.6+.4*e);
-    let g=ctx.createRadialGradient(cx,cy,0,cx,cy,r*6);
-    g.addColorStop(0,'rgba(232,196,120,.5)');g.addColorStop(.25,'rgba(232,206,150,.2)');g.addColorStop(1,'rgba(232,206,150,0)');
-    ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,r*6,0,6.283);ctx.fill();
-    ctx.save();ctx.translate(cx,cy);
-    for(let anel=0;anel<2;anel++){
-      ctx.rotate((anel?-1:1)*t*.00005);
-      const n=anel?36:60;
-      for(let i=0;i<n;i++){
-        const ang=i/n*6.283,puls=.55+.45*Math.sin(t*.0011+i*2.3+anel*4);
-        const L=r*(1.35+(anel?.9:1.8)*puls*e);
-        ctx.strokeStyle=`rgba(176,136,68,${(anel?.22:.4)*puls})`;ctx.lineWidth=anel?1.4:.6;
-        ctx.beginPath();ctx.moveTo(Math.cos(ang)*r*1.12,Math.sin(ang)*r*1.12);ctx.lineTo(Math.cos(ang)*L,Math.sin(ang)*L);ctx.stroke();
-      }
-    }
-    ctx.restore();
-    g=ctx.createRadialGradient(cx-r*.35,cy-r*.35,0,cx,cy,r);
-    g.addColorStop(0,'#FFFFFF');g.addColorStop(.2,'#FBF0D4');g.addColorStop(.6,'#E2BE76');g.addColorStop(1,'#9A7034');
-    ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,r,0,6.283);ctx.fill();
-    ctx.strokeStyle='rgba(168,132,72,.55)';ctx.lineWidth=.8;ctx.beginPath();ctx.arc(cx,cy,r*1.55,0,6.283);ctx.stroke();
-  }
-
-  function quadro(agora){
-    if(t0===null)t0=agora;
-    const t=calmo?0:agora-t0;
-    const pr=calmo?1:Math.min(1,t/3200),e=1-Math.pow(1-pr,3);
-    tx+=(alvoX-tx)*.035;ty+=(alvoY-ty)*.035;
-    A=.7+t*.00007+tx*.6;B=.38+ty*.28+Math.sin(t*.00011)*.05;C=-.16+tx*.06;
-
-    ctx.drawImage(fundo,0,0,W,H);
-
-    /* estrelas em três camadas, com cintilação e paralaxe */
-    for(const s of estrelas){
-      const px=s.x+tx*s.l*-10,py=s.y+ty*s.l*-8;
-      const a=(.25+.55*(.5+.5*Math.sin(t*.001*s.v+s.f)))*(.5+.5*e);
-      ctx.fillStyle=`rgba(184,146,80,${a*.85})`;ctx.beginPath();ctx.arc(px,py,s.r,0,6.283);ctx.fill();
-      if(s.r>1.4){ctx.strokeStyle=`rgba(184,146,80,${a*.5})`;ctx.lineWidth=.5;ctx.beginPath();ctx.moveTo(px-s.r*4,py);ctx.lineTo(px+s.r*4,py);ctx.moveTo(px,py-s.r*4);ctx.lineTo(px,py+s.r*4);ctx.stroke()}
-    }
-    /* constelações que se acendem e apagam */
-    for(const k of constel){
-      const a=Math.max(0,Math.sin(t*k.vel+k.fase))*.32*e;if(a<.01)continue;
-      ctx.strokeStyle=`rgba(168,130,66,${a*1.1})`;ctx.lineWidth=.6;ctx.beginPath();
-      k.pts.forEach(([x,y],i)=>{x-=tx*20;y-=ty*16;i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();
-      for(const [x,y] of k.pts){ctx.fillStyle=`rgba(176,138,70,${Math.min(1,a*2.6)})`;ctx.beginPath();ctx.arc(x-tx*20,y-ty*16,1.5,0,6.283);ctx.fill()}
-    }
-    /* estrelas cadentes */
-    if(!calmo&&t>proxCadente){
-      const R=Math.random;cadentes.push({x:R()*W,y:R()*H*.5,ang:.35+R()*.5,v:.5+R()*.4,ini:t,dur:900+R()*500});
-      proxCadente=t+4500+R()*6000;
-    }
-    cadentes=cadentes.filter(c=>t-c.ini<c.dur);
-    for(const c of cadentes){
-      const p=(t-c.ini)/c.dur,d=p*c.v*W*.5,x=c.x+Math.cos(c.ang)*d,y=c.y+Math.sin(c.ang)*d,L=90*(1-Math.abs(p-.5)*2)+10;
-      const g=ctx.createLinearGradient(x,y,x-Math.cos(c.ang)*L,y-Math.sin(c.ang)*L);
-      g.addColorStop(0,`rgba(190,150,82,${.9*(1-p)})`);g.addColorStop(1,'rgba(190,150,82,0)');
-      ctx.strokeStyle=g;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-Math.cos(c.ang)*L,y-Math.sin(c.ang)*L);ctx.stroke();
-    }
-
-    /* moldura fixa graduada, como o meridiano de bronze de uma esfera armilar */
-    const RM=S*1.42;
-    ctx.save();ctx.translate(cx,cy);ctx.rotate(C*.6);
-    ctx.strokeStyle=`rgba(168,132,72,${.5*e})`;ctx.lineWidth=1;
-    ctx.beginPath();ctx.arc(0,0,RM,-Math.PI/2,-Math.PI/2+6.283*e);ctx.stroke();
-    ctx.beginPath();ctx.arc(0,0,RM*1.035,-Math.PI/2,-Math.PI/2+6.283*e);ctx.stroke();
-    for(let i=0;i<180*e;i++){
-      const a=i/180*6.283-Math.PI/2,l=i%15===0?RM*.07:(i%5===0?RM*.035:RM*.018);
-      ctx.strokeStyle=`rgba(168,132,72,${i%15===0?.7:.4})`;
-      ctx.beginPath();ctx.moveTo(Math.cos(a)*RM,Math.sin(a)*RM);ctx.lineTo(Math.cos(a)*(RM-l),Math.sin(a)*(RM-l));ctx.stroke();
-    }
-    ctx.restore();
-
-    /* anéis: projeções do quadro, depois metade de trás, Sol, metade da frente */
-    const N=180,pAneis=aneis.map(a=>{const lim=Math.floor(Math.max(0,Math.min(1,(e-a.atraso)/(1-a.atraso)))*N);const arr=[];for(let i=0;i<=lim;i++)arr.push(proj(girar(pt(a,i/N*6.283))));return arr});
-    const eixo=[proj(girar([0,1.32,0])),proj(girar([0,-1.32,0]))];
-    const ps=corpos.map(c=>posCorpo(c,t)),L=posLua(t);
-    const ticks=[];
-    for(let i=0;i<72*e;i++){const ang=i/72*6.283,lg=i%6===0?.07:.035;ticks.push([proj(girar(pt({o:[0,0,0],r:1-lg/2,u:ecl.u,v:ecl.v},ang))),proj(girar(pt({o:[0,0,0],r:1+lg/2,u:ecl.u,v:ecl.v},ang))),i%6===0])}
-    const glifos=GL.map((g,i)=>[g,proj(girar(pt({o:[0,0,0],r:1.14,u:ecl.u,v:ecl.v},(i*30+15)*Math.PI/180)))]);
-
-    function camada(frente){
-      pAneis.forEach((arr,i)=>desenharAnel(arr,frente,aneis[i].a,aneis[i].w*1.15,'168,132,72'));
-      if((eixo[0][2]>=0)===frente){ctx.strokeStyle=`rgba(168,132,72,${.6*e})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(eixo[0][0],eixo[0][1]);ctx.stroke();ctx.fillStyle='#A8823F';ctx.beginPath();ctx.arc(eixo[0][0],eixo[0][1],2.6*eixo[0][3],0,6.283);ctx.fill()}
-      if((eixo[1][2]>=0)===frente){ctx.strokeStyle=`rgba(168,132,72,${.6*e})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(eixo[1][0],eixo[1][1]);ctx.stroke();ctx.fillStyle='#A8823F';ctx.beginPath();ctx.arc(eixo[1][0],eixo[1][1],2.6*eixo[1][3],0,6.283);ctx.fill()}
-      for(const [p,q,maior] of ticks){const z=(p[2]+q[2])/2;if((z>=0)!==frente)continue;ctx.strokeStyle=`rgba(168,132,72,${alfa(z)*(maior?1:.7)})`;ctx.lineWidth=(maior?1.1:.6)*p[3];ctx.beginPath();ctx.moveTo(p[0],p[1]);ctx.lineTo(q[0],q[1]);ctx.stroke()}
-      ctx.textAlign='center';ctx.textBaseline='middle';
-      for(const [g,p] of glifos){if((p[2]>=0)!==frente)continue;ctx.fillStyle=`rgba(146,110,56,${alfa(p[2])*e})`;ctx.font=`${Math.round(Math.max(10,S*.085)*p[3])}px Georgia,'Apple Symbols','Segoe UI Symbol',serif`;ctx.fillText(g+'︎',p[0],p[1])}
-      ps.forEach((P,i)=>{if((P.p[2]>=0)===frente&&e>.5)astro(corpos[i],P,t)});
-      if((L.P[2]>=0)===frente&&e>.5)desenharLua(L);
-    }
-    camada(false);
-    sol(t,e);
-    camada(true);
-
-    /* grão de papel por cima de tudo */
-
-    if(!calmo&&visivel)requestAnimationFrame(quadro);else rodando=false;
-  }
-  function iniciar(){if(!rodando){rodando=true;requestAnimationFrame(quadro)}}
-
-  medir();
-  if(calmo){quadro(0)}else{iniciar()}
-  addEventListener('resize',()=>{medir();if(calmo)quadro(0)});
-  const heroi=document.querySelector('.abertura');
-  heroi.addEventListener('pointermove',ev=>{const r=cv.getBoundingClientRect();alvoX=Math.max(-.5,Math.min(.5,(ev.clientX-r.left)/r.width-.5));alvoY=Math.max(-.5,Math.min(.5,(ev.clientY-r.top)/r.height-.5))});
-  heroi.addEventListener('pointerleave',()=>{alvoX=0;alvoY=0});
-  if('IntersectionObserver' in window){new IntersectionObserver(es=>{visivel=es[0].isIntersecting;if(visivel&&!calmo)iniciar()}).observe(cv)}
-
-  /* ---------- Semana: lê semana.json e desenha a Lua de cada dia (hemisfério sul) ---------- */
-  const abrev={segunda:'seg','terça':'ter',quarta:'qua',quinta:'qui',sexta:'sex','sábado':'sáb',domingo:'dom'};
-  function desenhoLua(p){
-    const r=15,c=18,k=Math.cos(2*Math.PI*p),rx=Math.abs(k)*r;
-    let d;
-    if(p<.5){d=`M${c} ${c-r} A${r} ${r} 0 0 1 ${c} ${c+r} A${rx} ${r} 0 0 ${p<.25?0:1} ${c} ${c-r}Z`}
-    else{d=`M${c} ${c-r} A${r} ${r} 0 0 0 ${c} ${c+r} A${rx} ${r} 0 0 ${p>.75?1:0} ${c} ${c-r}Z`}
-    return `<svg viewBox="0 0 36 36"><circle cx="${c}" cy="${c}" r="${r}" fill="#D8D2C2"/><g transform="translate(36 0) scale(-1 1)"><path d="${d}" fill="#FFFFFF"/></g><circle cx="${c}" cy="${c}" r="${r}" fill="none" stroke="#333230" stroke-width=".8"/></svg>`;
-  }
-  const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
-  function mostrarSemana(s){
-    document.getElementById('s-datas').textContent=s.rotuloDatas;
-    document.getElementById('t-semana').textContent=s.titulo;
-    document.getElementById('s-corpo').innerHTML=s.paragrafos.map(p=>`<p>${esc(p)}</p>`).join('');
-    document.getElementById('luas').innerHTML=s.dias.map(d=>`<div class="lua" title="Lua em ${esc(d.luaSigno)}">${desenhoLua(d.fase)}<span>${abrev[d.dia]||esc(d.dia)}</span><b>${+d.data.slice(8)}</b></div>`).join('');
-    const f=(s.fasesDaLua||[]).map(x=>`${x.fase} ${x.dia}, ${+x.data.slice(8)}/${+x.data.slice(5,7)}, às ${x.hora.replace(':','h')}, em ${x.signo}`);
-    document.getElementById('s-fases').textContent=(f.length?f.join(' · ')+'. ':'')+'A Lua de cada dia, desenhada como aparece no céu do hemisfério sul.';
-    if(s.chamada){
-      document.getElementById('s-chamada').textContent=s.chamada.texto;
-      document.getElementById('s-chamada-rotulo').textContent=s.chamada.rotulo;
-      document.getElementById('s-chamada-link').href=s.chamada.link;
-    }
-  }
-  /* Só mostra a semana se o semana.json cobrir hoje (fuso da Bahia). Texto de semana passada nunca aparece. */
-  const hojeBA=new Date(Date.now()-3*3600e3).toISOString().slice(0,10);
-  fetch('semana.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(s=>{
-    if(s&&s.titulo&&s.fim>=hojeBA&&s.inicio<=hojeBA){mostrarSemana(s);document.getElementById('semana').hidden=false}
-  }).catch(()=>{});
-
-  /* ---------- Roda zodiacal (destaque e atendimento) ---------- */
-  const glifos=['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
-  const raios=document.getElementById('raios'),signos=document.getElementById('signos');
-  let rs='',ss='';
-  for(let i=0;i<12;i++){
-    const a=(i*30-90)*Math.PI/180,b=(i*30-75)*Math.PI/180;
-    rs+=`<line x1="${300+176*Math.cos(a)}" y1="${300+176*Math.sin(a)}" x2="${300+230*Math.cos(a)}" y2="${300+230*Math.sin(a)}"/>`;
-    ss+=`<text x="${300+203*Math.cos(b)}" y="${300+203*Math.sin(b)}">${glifos[i]}︎</text>`;
-  }
-  raios.innerHTML=rs;signos.innerHTML=ss;
-
-  const roda=document.getElementById('roda');
-  let h=`<circle cx="200" cy="200" r="190" fill="#EBE8D8"/>`;
-  h+=`<g fill="none" stroke="#333230" stroke-width=".8"><circle cx="200" cy="200" r="182"/><circle cx="200" cy="200" r="148"/><circle cx="200" cy="200" r="70"/></g>`;
-  for(let i=0;i<12;i++){
-    const a=(i*30+180)*Math.PI/180,b=(i*30+195)*Math.PI/180;
-    h+=`<line x1="${200+70*Math.cos(a)}" y1="${200-70*Math.sin(a)}" x2="${200+182*Math.cos(a)}" y2="${200-182*Math.sin(a)}" stroke="#333230" stroke-width=".6"/>`;
-    h+=`<text x="${200+165*Math.cos(b)}" y="${200-165*Math.sin(b)}" font-size="15" fill="#333230" text-anchor="middle" dominant-baseline="central" font-family="Georgia,'Apple Symbols','Segoe UI Symbol',serif">${glifos[i]}︎</text>`;
-    h+=`<text x="${200+90*Math.cos(b)}" y="${200-90*Math.sin(b)}" font-size="10" fill="#6F6B62" text-anchor="middle" dominant-baseline="central" font-family="Albert Sans,Arial,sans-serif">${i+1}</text>`;
-  }
-  h+=`<g stroke="#9C7A44" stroke-width=".9" opacity=".8"><line x1="${200+130*Math.cos(.6)}" y1="${200-130*Math.sin(.6)}" x2="${200+130*Math.cos(2.7)}" y2="${200-130*Math.sin(2.7)}"/><line x1="${200+130*Math.cos(2.7)}" y1="${200-130*Math.sin(2.7)}" x2="${200+130*Math.cos(4.8)}" y2="${200-130*Math.sin(4.8)}"/><line x1="${200+130*Math.cos(4.8)}" y1="${200-130*Math.sin(4.8)}" x2="${200+130*Math.cos(.6)}" y2="${200-130*Math.sin(.6)}"/></g>`;
-  [.6,2.7,4.8,1.5,3.9].forEach((a,i)=>{h+=`<circle cx="${200+130*Math.cos(a)}" cy="${200-130*Math.sin(a)}" r="${i<3?5:3.5}" fill="${i<3?'#9C7A44':'#333230'}"/>`});
-  h+=`<line x1="10" y1="200" x2="390" y2="200" stroke="#333230" stroke-width="1"/><text x="18" y="190" font-size="10" fill="#333230" font-family="Albert Sans,Arial,sans-serif" letter-spacing="1.5">ASC</text>`;
-  roda.innerHTML=h;
-
-  /* ---------- Copiar número ---------- */
-  const bt=document.getElementById('copiar'),tel=document.getElementById('tel');
-  if(bt)bt.addEventListener('click',()=>{
-    const ok=()=>{bt.textContent='Número copiado';setTimeout(()=>bt.textContent='Copiar número',2200)};
-    const sel=()=>{const r=document.createRange();r.selectNodeContents(tel);const s=getSelection();s.removeAllRanges();s.addRange(r);bt.textContent='Número selecionado'};
-    try{navigator.clipboard.writeText('+5571982872284').then(ok,sel)}catch(e){sel()}
-  });
-})();
-</script>
-
-<script>
-/* Exemplo do ritmo: sempre os próximos 7 dias a partir de amanhã (fuso da Bahia). */
-(function(){var el=document.getElementById('ritmo-ex');if(!el)return;
-var nomes=['dom','seg','ter','qua','qui','sex','sáb'],cls=['m','f top','m','f top','d','m','f'],est=el.getAttribute('data-estrela'),h='';
-var base=new Date(Date.now()-3*3600e3);base.setUTCHours(12,0,0,0);
-for(var i=0;i<7;i++){var d=new Date(base.getTime()+(i+1)*864e5);
-h+='<div class="'+cls[i]+'">'+nomes[d.getUTCDay()]+'<b>'+d.getUTCDate()+'</b>'+(cls[i].indexOf('top')>-1?est:'')+'</div>'}
-el.innerHTML=h})();
-</script>
+<script src="main.js"></script>
 </body>
 </html>
