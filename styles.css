@@ -67,7 +67,11 @@ main, .topo, .rodape { position: relative; z-index: 1; }
   position: sticky; top: 0; z-index: 10;
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
   padding: 18px var(--margem);
-  background: linear-gradient(var(--cupula) 30%, rgba(5, 6, 10, 0));
+  /* frosted bar: content scrolls under it without colliding with the nav text */
+  background: rgba(5, 6, 10, .9);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-bottom: 1px solid rgba(245, 243, 238, .06);
 }
 .marca { font-weight: 650; font-size: 19px; letter-spacing: -.02em; text-decoration: none; }
 .topo nav { display: flex; gap: 28px; font-size: 14px; color: var(--luz-2); }
