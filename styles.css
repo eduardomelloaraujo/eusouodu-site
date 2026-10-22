@@ -317,7 +317,7 @@ h1 {
 .fecho { padding: clamp(120px, 22vh, 240px) var(--margem); display: flex; justify-content: center; }
 blockquote { margin: 0; max-width: 18ch; text-align: center; font-size: clamp(32px, 4.6vw, 64px); line-height: 1.08; letter-spacing: -.035em; font-weight: 600; }
 .rodape { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; padding: 32px var(--margem) 48px; border-top: 1px solid var(--linha); color: var(--luz-2); font-size: 15px; }
-.rodape nav { display: flex; gap: 24px; }
+.rodape nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
 .rodape a { text-decoration: none; }
 .rodape a:hover { color: var(--luz); }
 
