@@ -1,0 +1,18 @@
+/* Páginas legais: o mesmo céu escuro do site, feitas para ler com calma. */
+@font-face{font-family:"Schibsted Grotesk";src:url("/fonts/schibsted-grotesk-latin-wght-normal.woff2") format("woff2");font-weight:100 900;font-display:swap}
+body{margin:0;background:#05060A;color:#B9B7C4;font-family:"Schibsted Grotesk",system-ui,sans-serif;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;color-scheme:dark}
+main{max-width:680px;margin:0 auto;padding:40px max(20px,env(safe-area-inset-left,0px)) 80px}
+a{color:#FFB547}
+strong,h1,h2,.logo{color:#F5F3EE}
+h1,h2,.logo{letter-spacing:-.03em}
+h1{font-weight:650;font-size:clamp(38px,8vw,52px);line-height:1;margin:28px 0 10px}
+h2{font-weight:600;font-size:22px;margin:40px 0 6px;scroll-margin-top:24px}
+.logo{font-weight:650;font-size:22px;text-decoration:none}
+.data{color:#8E8C9C;font-size:15px}
+li{margin-bottom:8px}
+.indice{display:flex;flex-wrap:wrap;gap:8px 18px;margin:28px 0 8px;padding:16px 0;border-block:1px solid #1B1D2A;font-size:15px}
+.indice a{color:#B9B7C4;text-decoration:none}
+.indice a:hover{color:#F5F3EE}
+.falta{background:#FF7A5C;color:#05060A;padding:0 6px;border-radius:4px}
+.aviso{border-left:2px solid #FF7A5C;padding-left:16px;color:#F5F3EE}
+.rodape-legal{margin-top:56px;padding-top:20px;border-top:1px solid #1B1D2A;font-size:15px}
