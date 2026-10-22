@@ -49,6 +49,14 @@
     document.getElementById("hoje-texto").textContent = `O céu de hoje · ${data} · ${nomeFase(idade)}`;
   }
 
+  // The tab icon is today's Moon too; only the .ico stays as Safari's fallback, other pages keep the fixed crescent.
+  const icone = document.createElementNS(NS, "svg");
+  desenharLua(icone, idadeLua(hoje));
+  const favicon = Object.assign(document.createElement("link"), { rel: "icon", type: "image/svg+xml" });
+  favicon.href = "data:image/svg+xml," + encodeURIComponent(`<svg xmlns="${NS}" viewBox="0 0 40 40"><rect width="40" height="40" rx="9" fill="#05060A"/><g transform="translate(2 2) scale(.9)">${icone.innerHTML}<circle cx="20" cy="20" r="18" fill="none" stroke="#F5F3EE" stroke-opacity=".18" stroke-width=".6"/></g></svg>`);
+  document.querySelectorAll('link[rel="icon"]:not([sizes="any"])').forEach((l) => l.remove());
+  document.head.append(favicon);
+
   // The week comes from semana.json and only shows while it covers today (Bahia time), never a past week.
   const hojeBA = new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 10);
   const esc = (t) => String(t).replace(/[&<>"]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[m]));
