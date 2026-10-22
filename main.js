@@ -115,22 +115,54 @@
     roda.innerHTML = s;
   }
 
-  // Passages: between two sections, a constellation fading from one product's colour to the next.
+  // Each product is a place in the sky: a constellation drawn in stars, with its own name.
+  const seq = (n) => Array.from({ length: n - 1 }, (_, i) => [i, i + 1]);
+  const lua = (() => {
+    const fora = Array.from({ length: 7 }, (_, i) => { const t = (105 + i * 25) * Math.PI / 180; return [200 + Math.cos(t) * 100, 120 + Math.sin(t) * 100]; });
+    const dentro = [135, 180, 225].map((g) => { const t = g * Math.PI / 180; return [245 + Math.cos(t) * 80, 120 + Math.sin(t) * 80]; });
+    return { pts: [...fora, ...dentro], arestas: [...seq(7), [0, 7], [7, 8], [8, 9], [9, 6]] };
+  })();
+  const LUGARES = {
+    jornada: { nome: "A Jornada", figura: "A Trilha", pts: [[20, 205], [85, 170], [140, 195], [200, 135], [255, 158], [305, 85], [380, 35]], arestas: seq(7) },
+    musica: { nome: "Música Astral", figura: "A Onda", pts: [[20, 120], [68, 62], [116, 120], [164, 178], [212, 120], [260, 62], [308, 120], [356, 178]], arestas: seq(8) },
+    semana: { nome: "A energia da semana", figura: "A Lua", ...lua },
+    leituras: { nome: "Mitologia e livros", figura: "O Livro", pts: [[50, 60], [125, 42], [200, 70], [275, 42], [350, 60], [350, 192], [275, 174], [200, 205], [125, 174], [50, 192]], arestas: [...seq(10), [9, 0], [2, 7]] },
+    odisseia: { nome: "Odisseia", figura: "O Navio", pts: [[60, 160], [340, 160], [295, 212], [105, 212], [200, 160], [200, 25], [292, 135], [200, 135]], arestas: [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7]] },
+    atendimento: { nome: "Com o Eduardo", figura: "O Encontro", pts: [[130, 85], [88, 145], [172, 145], [100, 212], [160, 212], [270, 85], [228, 145], [312, 145], [240, 212], [300, 212], [200, 40]], arestas: [[0, 1], [0, 2], [1, 3], [2, 4], [5, 6], [5, 7], [6, 8], [7, 9], [0, 10], [10, 5]] },
+  };
   const cenas = [...document.querySelectorAll("main > section.cena[data-tom]")];
-  cenas.forEach((sec, i) => {
-    const de = i ? corDe(cenas[i - 1]) : "#F5F3EE", para = corDe(sec);
-    let sem = (i + 3) * 7919;
-    const r = () => (sem = (sem * 16807) % 2147483647) / 2147483647;
-    const pts = Array.from({ length: 6 }, (_, k) => [40 + k * 184, 18 + r() * 84]);
+  const passagens = cenas.map((sec, i) => {
+    const L = LUGARES[sec.dataset.tom];
     const div = document.createElement("div");
     div.className = "passagem";
+    div.dataset.tom = sec.dataset.tom;
     div.setAttribute("aria-hidden", "true");
-    div.innerHTML = `<svg viewBox="0 0 1000 120"><defs><linearGradient id="pg${i}" gradientUnits="userSpaceOnUse" x1="0" x2="1000"><stop offset="0" stop-color="${de}"/><stop offset="1" stop-color="${para}"/></linearGradient></defs>`
-      + `<path pathLength="1" stroke="url(#pg${i})" stroke-opacity=".6" d="M${pts.map((p) => p.join(" ")).join(" L")}"/>`
-      + pts.map(([x, y], k) => `<circle cx="${x}" cy="${y}" r="${k % 3 ? 3 : 4.5}" fill="${k < 3 ? de : para}" style="transition-delay:${.3 + k * .3}s"/>`).join("")
-      + `</svg>`;
+    div.innerHTML = `<div class="figura"><svg viewBox="0 0 400 240">`
+      + L.arestas.map(([u, v], k) => `<path pathLength="1" style="transition-delay:${.5 + k * .12}s" d="M${L.pts[u].join(" ")} L${L.pts[v].join(" ")}"/>`).join("")
+      + L.pts.map(([x, y], k) => `<circle cx="${x}" cy="${y}" r="${k % 3 ? 3.2 : 5}" style="transition-delay:${k * .07}s"/>`).join("")
+      + `</svg><p class="placa"><span>Constelação ${i + 1} de ${cenas.length}</span>${L.figura}</p></div>`;
     sec.before(div);
+    return div;
   });
+
+  // The galaxy map: a dot for every place, the one in view lit up.
+  const mapa = document.createElement("nav");
+  mapa.className = "galaxia";
+  mapa.setAttribute("aria-label", "Onde você está no site");
+  mapa.innerHTML = `<ol>${cenas.map((sec) => `<li data-tom="${sec.dataset.tom}"><a href="#${sec.id}" aria-label="${LUGARES[sec.dataset.tom].nome}"></a></li>`).join("")}</ol><span class="aqui"></span>`;
+  document.body.append(mapa);
+  const aqui = mapa.querySelector(".aqui");
+  let lugar = null;
+  function chegar(tom) {
+    lugar = tom;
+    mapa.classList.toggle("aberta", !!tom);
+    mapa.querySelectorAll("li").forEach((li) => {
+      const a = li.firstChild, sim = li.dataset.tom === tom;
+      li.classList.toggle("atual", sim);
+      sim ? a.setAttribute("aria-current", "location") : a.removeAttribute("aria-current");
+    });
+    if (tom) { aqui.textContent = LUGARES[tom].nome; aqui.dataset.tom = tom; }
+  }
 
   // Entrances, and the sky's glow takes the colour of the section in view.
   if ("IntersectionObserver" in window) {
@@ -150,9 +182,11 @@
 
     const nebulosa = document.getElementById("nebulosa");
     const tom = new IntersectionObserver((es) => es.forEach((e) => {
-      if (e.isIntersecting) nebulosa.style.setProperty("--tom", e.target.dataset.tom ? corDe(e.target) : "#FFB547");
+      if (!e.isIntersecting) return;
+      nebulosa.style.setProperty("--tom", e.target.dataset.tom ? corDe(e.target) : "#FFB547");
+      chegar(e.target.dataset.tom || null);
     }), { rootMargin: "-45% 0px -45% 0px" });
-    document.querySelectorAll("main > section").forEach((el) => tom.observe(el));
+    document.querySelectorAll("main > section, .passagem").forEach((el) => tom.observe(el));
   }
 
   // The dome: a starfield that turns with time and scroll around a pole below the horizon.
@@ -181,30 +215,91 @@
         c: CORES[Math.floor(rnd() * CORES.length)],
         z: .75 + rnd() * .5,          // depth: near stars turn faster with scroll
         v: .5 + rnd(),                // own twinkle speed
+        k: i % 3 === 0,               // one star in three takes the colour of the place
       });
     }
   }
-  let giro = 0, alvo = 0, inicio = performance.now();
+  // Every place has its own sky; the values glide from one place to the next.
+  const CALMO = { fluxo: 0, pulso: 0, onda: 0, po: 0, tam: 1, ritmo: 1 };
+  const CEUS = {
+    jornada: { fluxo: 1 },                  // the stars walk
+    musica: { pulso: 1 },                   // the sky beats
+    semana: { ritmo: .35, tam: 1.1 },       // slow, like the Moon
+    leituras: { po: 1, tam: 1.3 },          // closer stars and falling dust
+    odisseia: { onda: 1 },                  // the sea
+    atendimento: { ritmo: .3 },             // quiet
+  };
+  const P = { ...CALMO };
+  const CORES_LUGAR = Object.fromEntries(passagens.map((d) => [d.dataset.tom, corDe(d)]));
+  const tinta = { cor: null, m: 0 };
+  const po = Array.from({ length: 70 }, () => ({ x: Math.random(), y: Math.random(), v: .00003 + Math.random() * .00006, f: Math.random() * 6, c: Math.random() < .5 ? "#FFB547" : "#FF8FB8", t: .6 + Math.random() * 1.2 }));
+  // The crossing: strongest just above each constellation, gone by the time it is drawn.
+  function dobra() {
+    let k = 0;
+    for (const d of passagens) {
+      const r = d.getBoundingClientRect();
+      const x = Math.abs(r.top + r.height * .08 - h / 2) / (h * .5);
+      if (x < 1) k = Math.max(k, (1 - x * x) ** 2);
+    }
+    return k;
+  }
+  let giro = 0, alvo = 0, inicio = performance.now(), ultimo = inicio, fluxo = 0, piscar = 0;
   function quadro(agora) {
+    const dt = Math.min(50, agora - ultimo); ultimo = agora;
     alvo = scrollY / 2600;
     giro += (alvo - giro) * .08;
+    const quer = { ...CALMO, ...(lugar && CEUS[lugar]) };
+    for (const k in P) P[k] = calma ? quer[k] : P[k] + (quer[k] - P[k]) * .035;
+    const corLugar = lugar ? CORES_LUGAR[lugar] : null;
+    if (tinta.cor !== corLugar) { tinta.m -= calma ? 1 : .04; if (tinta.m <= 0) { tinta.m = 0; tinta.cor = corLugar; } }
+    else if (tinta.cor) tinta.m = Math.min(1, tinta.m + (calma ? 1 : .02));
     const deriva = calma ? 0 : (agora - inicio) / 240000;
+    if (!calma) { fluxo += dt * P.fluxo / 30000; piscar += dt * P.ritmo; }
+    const k = calma ? 0 : dobra();
+    const batida = calma ? 0 : P.pulso * (1 - ((agora % 625) / 625)) ** 3;
     ctx.clearRect(0, 0, w, h);
-    const px = w / 2, py = h * 1.35;
+    const px = w / 2, py = h * 1.35, cx = w / 2, cy = h / 2;
+    ctx.lineCap = "round";
     for (const e of estrelas) {
-      const ang = e.a + deriva + giro * e.z;
-      const x = px + Math.cos(ang) * e.r, y = py + Math.sin(ang) * e.r;
+      const ang = e.a + deriva + fluxo * e.z + giro * e.z;
+      let x = px + Math.cos(ang) * e.r, y = py + Math.sin(ang) * e.r;
+      if (P.onda > .01) y += Math.sin(x / 140 + agora / 1400) * 12 * P.onda;
       if (x < -8 || x > w + 8 || y < -8 || y > h + 8) continue;
-      const pisca = calma ? 1 : .55 + .45 * Math.sin((agora / 700) * e.v + e.p);
-      ctx.globalAlpha = e.o * pisca;
+      const pisca = calma ? 1 : .55 + .45 * Math.sin((piscar / 700) * e.v + e.p);
+      const brilho = e.o * pisca * (1 - .4 * P.pulso + .7 * batida);
+      const tam = e.t * P.tam;
+      const tingida = e.k && tinta.m > 0;
+      if (k > .01) {
+        // warp: every star stretches away from the centre of the screen
+        const dx = (x - cx) * k * .32, dy = (y - cy) * k * .32;
+        ctx.globalAlpha = Math.min(1, brilho * (1 + k));
+        ctx.strokeStyle = tingida && tinta.m > .5 ? tinta.cor : e.c;
+        ctx.lineWidth = tam * 1.3;
+        ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + dx, y + dy); ctx.stroke();
+        continue;
+      }
+      ctx.globalAlpha = brilho * (tingida ? 1 - tinta.m : 1);
       ctx.fillStyle = e.c;
-      ctx.beginPath(); ctx.arc(x, y, e.t, 0, 7); ctx.fill();
+      ctx.beginPath(); ctx.arc(x, y, tam, 0, 7); ctx.fill();
+      if (tingida) {
+        ctx.globalAlpha = brilho * tinta.m;
+        ctx.fillStyle = tinta.cor;
+        ctx.beginPath(); ctx.arc(x, y, tam, 0, 7); ctx.fill();
+      }
       if (e.t > 2) {
         // the brightest stars sparkle with a small cross
         const l = 4 + 6 * pisca;
-        ctx.globalAlpha = e.o * pisca * .5;
+        ctx.globalAlpha = brilho * .5;
         ctx.fillRect(x - l, y - .5, l * 2, 1);
         ctx.fillRect(x - .5, y - l, 1, l * 2);
+      }
+    }
+    if (P.po > .01) {
+      for (const g of po) {
+        g.y += g.v * dt; if (g.y > 1.02) { g.y = -.02; g.x = Math.random(); }
+        ctx.globalAlpha = .7 * P.po * (.5 + .5 * Math.sin(agora / 900 + g.f));
+        ctx.fillStyle = g.c;
+        ctx.beginPath(); ctx.arc(g.x * w + Math.sin(agora / 2000 + g.f) * 14, g.y * h, g.t, 0, 7); ctx.fill();
       }
     }
     if (!calma) {
