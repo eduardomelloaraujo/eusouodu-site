@@ -29,6 +29,8 @@
 [data-tom="jornada"] { --cor: #8AB4FF; }
 [data-tom="musica"] { --cor: #FFB547; }
 [data-tom="semana"] { --cor: #B9A6FF; }
+[data-tom="espelho"] { --cor: #C9D6EE; }
+[data-tom="juri"] { --cor: #FF7A5C; }
 [data-tom="leituras"] { --cor: #FF8FB8; }
 [data-tom="odisseia"] { --cor: #5FE0C5; }
 [data-tom="atendimento"] { --cor: #FFE2A0; }
@@ -160,8 +162,9 @@ h1 {
 /* guide: every product in one row */
 .guia { padding: clamp(96px, 14vh, 160px) var(--margem) 0; max-width: 1360px; margin: 0 auto; }
 .guia h2 { font-size: clamp(36px, 5vw, 64px); line-height: 1; letter-spacing: -.04em; font-weight: 650; max-width: 14ch; }
-.portas { list-style: none; margin: 72px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); position: relative; }
-.portas::before { content: ""; position: absolute; top: 7px; left: 0; right: 0; height: 1px; opacity: .55; background: linear-gradient(90deg, #8AB4FF, #FFB547, #B9A6FF, #FF8FB8, #5FE0C5, #FFE2A0); }
+.portas { list-style: none; margin: 72px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); row-gap: 56px; position: relative; }
+.portas li { position: relative; }
+.portas li::before { content: ""; position: absolute; top: 7px; left: 0; right: 0; height: 1px; opacity: .55; background: linear-gradient(90deg, var(--cor), transparent); }
 .portas a { display: flex; flex-direction: column; gap: 6px; padding-right: 22px; text-decoration: none; }
 .portas .ponto { width: 15px; height: 15px; border-radius: 50%; background: var(--cor); box-shadow: 0 0 0 6px var(--cupula), 0 0 22px 3px var(--cor); margin-bottom: 22px; transition: transform .5s var(--ease); }
 .portas a:hover .ponto { transform: scale(1.4); }
@@ -271,16 +274,16 @@ h1 {
 .planos strong { font-size: clamp(32px, 3.4vw, 44px); font-weight: 600; letter-spacing: -.03em; }
 
 /* leituras */
-.duas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 72px; border-top: 1px solid var(--linha); }
+.duas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; margin-top: 72px; border-top: 1px solid var(--linha); }
 .produto {
   display: flex; flex-direction: column;
   padding: clamp(40px, 5vw, 64px) clamp(24px, 4vw, 56px) clamp(32px, 4vw, 48px) 0;
   text-decoration: none;
 }
 .produto + .produto { padding-left: clamp(24px, 4vw, 56px); border-left: 1px solid var(--linha); }
-/* a partir do 4º produto a grade quebra linha: o primeiro de cada linha não leva a borda da esquerda */
-.duas .produto:nth-child(3n+1) { padding-left: 0; border-left: 0; }
-.duas .produto:nth-child(n+4) { border-top: 1px solid var(--linha); }
+/* a partir do 3º produto a grade quebra linha: o primeiro de cada linha não leva a borda da esquerda */
+.duas .produto:nth-child(2n+1) { padding-left: 0; border-left: 0; }
+.duas .produto:nth-child(n+3) { border-top: 1px solid var(--linha); }
 .constelacao { width: 60%; max-width: 220px; margin-bottom: 40px; overflow: visible; }
 .constelacao path { fill: none; stroke: color-mix(in srgb, var(--cor) 45%, transparent); stroke-width: 1; transition: stroke .5s var(--ease); }
 .constelacao circle { fill: var(--cor); filter: drop-shadow(0 0 6px var(--cor)); }
@@ -291,6 +294,19 @@ h1 {
 .preco { margin-top: auto; padding-top: 36px; display: flex; justify-content: space-between; align-items: baseline; font-size: 28px; font-weight: 600; letter-spacing: -.02em; }
 .preco em { font-style: normal; font-size: 16px; font-weight: 500; color: var(--luz-2); }
 .produto:hover .preco em { color: var(--luz); }
+
+/* apps: espelho e júri */
+.cena-app { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
+.cena-app-inversa { grid-template-columns: 1fr 1.05fr; }
+.espelho-arte, .tribunal-arte { width: 100%; max-width: 560px; justify-self: center; overflow: visible; }
+.espelho-arte .roda-e { transform-box: fill-box; transform-origin: center; animation: girar 90s linear infinite; }
+.espelho-arte .roda-e + .roda-e { animation-direction: reverse; }
+.anima .espelho-arte .fio { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s var(--ease) var(--d, .6s); }
+.anima .espelho-arte.visivel .fio { stroke-dashoffset: 0; }
+.anima .tribunal-arte .assento { opacity: 0; transform: translateY(14px); transition: opacity .8s var(--ease) var(--d, 0s), transform .8s var(--ease) var(--d, 0s); transform-box: fill-box; transform-origin: center; }
+.anima .tribunal-arte.visivel .assento { opacity: 1; transform: none; }
+.tribunal-arte .minerva { transform-box: fill-box; transform-origin: center; animation: pisca 3.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .espelho-arte .roda-e, .tribunal-arte .minerva { animation: none; } }
 
 /* odisseia */
 .cena-odisseia { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
@@ -313,14 +329,16 @@ blockquote { margin: 0; max-width: 18ch; text-align: center; font-size: clamp(32
   .topo nav a { white-space: nowrap; min-height: 32px; display: inline-flex; align-items: center; }
   .abertura { min-height: calc(100svh - 100px); padding-bottom: 16vh; }
   .trilha, .precos, .portas { grid-template-columns: 1fr; }
-  .portas::before { top: 0; bottom: 0; left: 7px; right: auto; width: 1px; height: auto; background: linear-gradient(#8AB4FF, #FFB547, #B9A6FF, #FF8FB8, #5FE0C5, #FFE2A0); }
+  .portas { row-gap: 0; }
+  .portas li::before { top: 7px; bottom: 0; left: 7px; right: auto; width: 1px; height: auto; background: linear-gradient(var(--cor), transparent); }
   .portas li { position: relative; padding: 0 0 32px 44px; }
   .portas .ponto { position: absolute; left: 0; top: 4px; margin: 0; }
   .trilha::before { top: 0; bottom: 0; left: 7px; right: auto; width: 1px; height: auto; }
   .trilha li { padding: 0 0 40px 44px; }
   .estrela { position: absolute; left: 0; top: 6px; }
   .precos div { padding: 24px 0; border-bottom: 1px solid var(--linha); }
-  .cena-disco, .cena-odisseia, .duas, .planos { grid-template-columns: 1fr; }
+  .cena-disco, .cena-odisseia, .cena-app, .duas, .planos { grid-template-columns: 1fr; }
+  .espelho-arte, .tribunal-arte { max-width: 360px; order: -1; }
   .produto, .produto + .produto { padding-left: 0; padding-right: 0; border-left: 0; }
   .produto + .produto { border-top: 1px solid var(--linha); }
   .planos a, .planos a + a { padding-left: 0; padding-right: 0; border-left: 0; }

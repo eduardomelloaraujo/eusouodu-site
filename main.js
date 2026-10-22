@@ -123,6 +123,40 @@
     roda.innerHTML = s;
   }
 
+  // Espelho de duas: two wheels facing each other across a mirror, with the threads between them.
+  const espelho = document.getElementById("espelho-svg");
+  if (espelho) {
+    const polar = (cx, r, g) => [cx + Math.cos(g * Math.PI / 180) * r, 200 + Math.sin(g * Math.PI / 180) * r];
+    const rodaE = (cx) => `<g class="roda-e" style="stroke:var(--cor)" fill="none" stroke-opacity=".5"><circle cx="${cx}" cy="200" r="118"/><circle cx="${cx}" cy="200" r="92" stroke-opacity=".3"/>`
+      + Array.from({ length: 12 }, (_, i) => { const [x1, y1] = polar(cx, 92, i * 30), [x2, y2] = polar(cx, 118, i * 30); return `<path d="M${x1} ${y1} L${x2} ${y2}"/>`; }).join("") + "</g>";
+    const angA = [40, 95, 140, 195, 235, 280, 320];
+    const A = angA.map((g) => polar(150, 64, g)), B = angA.map((g) => polar(290, 64, 180 - g));
+    const fios = [[0, 0, 1], [2, 3, 1], [5, 5, 1], [3, 1, 1], [1, 4, 0], [6, 2, 0]];
+    let s = `<defs><linearGradient id="vidro" gradientUnits="userSpaceOnUse" x1="0" y1="30" x2="0" y2="370"><stop offset="0" stop-color="#C9D6EE" stop-opacity="0"/><stop offset=".5" stop-color="#C9D6EE" stop-opacity=".7"/><stop offset="1" stop-color="#C9D6EE" stop-opacity="0"/></linearGradient></defs>`;
+    s += rodaE(150) + rodaE(290);
+    s += `<path d="M220 30 L220 370" stroke="url(#vidro)" stroke-width="1.5"/>`;
+    s += fios.map(([a, b, une], k) => `<path class="fio" pathLength="1" style="--d:${.6 + k * .18}s" d="M${A[a].join(" ")} Q220 ${200 + (k % 2 ? -1 : 1) * (30 + k * 12)} ${B[b].join(" ")}" fill="none" stroke="${une ? "#C9D6EE" : "#FF8FB8"}" stroke-width="1.3" ${une ? "" : 'stroke-dasharray="4 5"'} stroke-opacity=".85"/>`).join("");
+    s += A.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="4.5" fill="#F5F3EE"/>`).join("") + B.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="4.5" style="fill:var(--cor);filter:drop-shadow(0 0 6px var(--cor))"/>`).join("");
+    s += `<text x="150" y="352" fill="#8E8C9C" font-size="15" font-family="Schibsted Grotesk" text-anchor="middle">você</text><text x="290" y="352" fill="#8E8C9C" font-size="15" font-family="Schibsted Grotesk" text-anchor="middle">a outra pessoa</text>`;
+    espelho.innerHTML = s;
+  }
+
+  // O Júri do céu: six planets in a half circle vote three to three; the tie is the visitor's to break.
+  const tribunal = document.getElementById("tribunal-svg");
+  if (tribunal) {
+    const glifos = ["☉", "☽", "☿", "♀", "♂", "♃"], votos = [1, 0, 0, 1, 1, 0];
+    const COR_VOTO = ["#8AB4FF", "#FFB547"];      // contra, a favor: the Júri app's own colours
+    let s = `<path d="M40 300 A180 180 0 0 1 400 300" fill="none" style="stroke:var(--cor)" stroke-opacity=".35"/><path d="M40 300 L400 300" stroke="#F5F3EE" stroke-opacity=".12"/>`;
+    const lugares = glifos.map((_, i) => { const t = (195 + i * 30) * Math.PI / 180; return [220 + Math.cos(t) * 180, 300 + Math.sin(t) * 180]; });
+    s += lugares.map(([x, y], i) => `<path d="M${x} ${y} L220 262" stroke="${COR_VOTO[votos[i]]}" stroke-opacity=".28"/>`).join("");
+    s += lugares.map(([x, y], i) => `<g class="assento" style="--d:${.2 + i * .12}s"><circle cx="${x}" cy="${y}" r="24" fill="#05060A" stroke="${COR_VOTO[votos[i]]}" stroke-width="1.5"/><text x="${x}" y="${y + 7}" fill="#F5F3EE" font-size="21" text-anchor="middle">${glifos[i]}︎</text></g>`).join("");
+    s += `<text x="220" y="215" fill="#F5F3EE" font-size="46" font-weight="600" font-family="Schibsted Grotesk" text-anchor="middle" letter-spacing="-1.5">3 a 3</text>`;
+    s += `<path class="minerva" d="M220 246 L225 257 L236 262 L225 267 L220 278 L215 267 L204 262 L215 257Z" style="fill:var(--cor);filter:drop-shadow(0 0 8px var(--cor))"/>`;
+    s += `<text x="220" y="332" fill="#8E8C9C" font-size="15" font-family="Schibsted Grotesk" text-anchor="middle"><tspan fill="#FFB547">3 a favor</tspan> · <tspan fill="#8AB4FF">3 contra</tspan></text>`;
+    s += `<text x="220" y="358" fill="#8E8C9C" font-size="16" font-family="Schibsted Grotesk" text-anchor="middle">o voto de Minerva é seu</text>`;
+    tribunal.innerHTML = s;
+  }
+
   // Each product is a place in the sky: a constellation drawn in stars, with its own name.
   const seq = (n) => Array.from({ length: n - 1 }, (_, i) => [i, i + 1]);
   const lua = (() => {
@@ -134,6 +168,8 @@
     jornada: { nome: "A Jornada", figura: "A Trilha", pts: [[20, 205], [85, 170], [140, 195], [200, 135], [255, 158], [305, 85], [380, 35]], arestas: seq(7) },
     musica: { nome: "Música Astral", figura: "A Onda", pts: [[20, 120], [68, 62], [116, 120], [164, 178], [212, 120], [260, 62], [308, 120], [356, 178]], arestas: seq(8) },
     semana: { nome: "A energia da semana", figura: "A Lua", ...lua },
+    espelho: { nome: "Espelho de duas", figura: "O Espelho", pts: [[60, 40], [140, 80], [170, 150], [110, 205], [40, 140], [340, 40], [260, 80], [230, 150], [290, 205], [360, 140]], arestas: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 0], [5, 6], [6, 7], [7, 8], [8, 9], [9, 5], [2, 7]] },
+    juri: { nome: "O Júri do céu", figura: "A Balança", pts: [[200, 30], [200, 215], [70, 70], [330, 70], [30, 150], [110, 150], [290, 150], [370, 150], [150, 215], [250, 215]], arestas: [[0, 1], [2, 3], [2, 4], [2, 5], [4, 5], [3, 6], [3, 7], [6, 7], [8, 9]] },
     leituras: { nome: "Leituras", figura: "O Livro", pts: [[50, 60], [125, 42], [200, 70], [275, 42], [350, 60], [350, 192], [275, 174], [200, 205], [125, 174], [50, 192]], arestas: [...seq(10), [9, 0], [2, 7]] },
     odisseia: { nome: "Odisseia", figura: "O Navio", pts: [[60, 160], [340, 160], [295, 212], [105, 212], [200, 160], [200, 25], [292, 135], [200, 135]], arestas: [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7]] },
     atendimento: { nome: "Com o Eduardo", figura: "O Encontro", pts: [[130, 85], [88, 145], [172, 145], [100, 212], [160, 212], [270, 85], [228, 145], [312, 145], [240, 212], [300, 212], [200, 40]], arestas: [[0, 1], [0, 2], [1, 3], [2, 4], [5, 6], [5, 7], [6, 8], [7, 9], [0, 10], [10, 5]] },
@@ -176,7 +212,7 @@
   if ("IntersectionObserver" in window) {
     if (!calma) {
       document.documentElement.classList.add("anima");
-      document.querySelectorAll(".guia h2, .guia .lead, .portas li, .cena .gigante, .cena .selo, .cena .lead, .trilha li, .precos div, .lista, .leitura, .oferta, .produto, .disco, .roda, .semana, blockquote")
+      document.querySelectorAll(".guia h2, .guia .lead, .portas li, .cena .gigante, .cena .selo, .cena .lead, .trilha li, .precos div, .lista, .leitura, .oferta, .produto, .disco, .roda, .espelho-arte, .tribunal-arte, .semana, blockquote")
         .forEach((el) => {
           el.classList.add("revelar");
           const irmaos = [...el.parentElement.children].filter((c) => c.tagName === el.tagName);
@@ -233,6 +269,8 @@
     jornada: { fluxo: 1 },                  // the stars walk
     musica: { pulso: 1 },                   // the sky beats
     semana: { ritmo: .35, tam: 1.1 },       // slow, like the Moon
+    espelho: { ritmo: .6, tam: 1.15 },      // a held breath, mirrored
+    juri: { ritmo: .25, pulso: .35 },       // the court in session: slow, with a low heartbeat
     leituras: { po: 1, tam: 1.3 },          // closer stars and falling dust
     odisseia: { onda: 1 },                  // the sea
     atendimento: { ritmo: .3 },             // quiet
