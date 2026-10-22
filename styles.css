@@ -271,7 +271,7 @@ h1 {
 .planos strong { font-size: clamp(32px, 3.4vw, 44px); font-weight: 600; letter-spacing: -.03em; }
 
 /* leituras */
-.duas { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 72px; border-top: 1px solid var(--linha); }
+.duas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 72px; border-top: 1px solid var(--linha); }
 .produto {
   display: flex; flex-direction: column;
   padding: clamp(40px, 5vw, 64px) clamp(24px, 4vw, 56px) clamp(32px, 4vw, 48px) 0;
