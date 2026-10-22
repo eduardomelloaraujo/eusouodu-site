@@ -278,6 +278,9 @@ h1 {
   text-decoration: none;
 }
 .produto + .produto { padding-left: clamp(24px, 4vw, 56px); border-left: 1px solid var(--linha); }
+/* a partir do 4º produto a grade quebra linha: o primeiro de cada linha não leva a borda da esquerda */
+.duas .produto:nth-child(3n+1) { padding-left: 0; border-left: 0; }
+.duas .produto:nth-child(n+4) { border-top: 1px solid var(--linha); }
 .constelacao { width: 60%; max-width: 220px; margin-bottom: 40px; overflow: visible; }
 .constelacao path { fill: none; stroke: color-mix(in srgb, var(--cor) 45%, transparent); stroke-width: 1; transition: stroke .5s var(--ease); }
 .constelacao circle { fill: var(--cor); filter: drop-shadow(0 0 6px var(--cor)); }
