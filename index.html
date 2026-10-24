@@ -65,6 +65,19 @@
     </ol>
   </section>
 
+  <section class="cena ceu-agora" id="ceu-de-agora" aria-labelledby="ceu-agora-t">
+    <header>
+      <h2 id="ceu-agora-t" class="gigante">O céu de agora.</h2>
+      <p class="lead">Os planetas onde estão neste segundo, vistos daqui da Terra, no centro.</p>
+      <p class="agora"><span class="vivo" aria-hidden="true"></span><span id="ceu-agora-data"></span></p>
+    </header>
+    <div class="palco" id="ceu-agora-palco" aria-hidden="true"></div>
+    <div class="leitura-ceu">
+      <p class="lua-hoje" id="ceu-agora-lua"></p>
+      <ol class="posicoes" id="ceu-agora-posicoes"></ol>
+    </div>
+  </section>
+
   <section class="cena" id="jornada" data-tom="jornada" aria-labelledby="jornada-t">
     <h2 id="jornada-t" class="gigante">A Jornada.</h2>
     <p class="selo"><b>App</b>Grátis para começar</p>
@@ -227,5 +240,18 @@
 </footer>
 
 <script src="main.js"></script>
+<script type="module">
+  // O céu de agora pesa (Three.js); só carrega quando a seção se aproxima da tela
+  const ceu = document.getElementById("ceu-de-agora");
+  const io = new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting) return;
+    io.disconnect();
+    const s = document.createElement("script");
+    s.src = "vendor/astronomy.browser.min.js";
+    s.onload = () => import("./ceu-de-agora.js");
+    document.head.append(s);
+  }, { rootMargin: "800px 0px" });
+  io.observe(ceu);
+</script>
 </body>
 </html>

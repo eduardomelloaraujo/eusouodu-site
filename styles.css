@@ -350,4 +350,43 @@ blockquote { margin: 0; max-width: 18ch; text-align: center; font-size: clamp(32
   .dia span { font-size: 12px; }
 }
 
+/* O céu de agora: planetas ao vivo em 3D (ceu-de-agora.js) */
+.ceu-agora { --lua-sombra: #1B1D2A; }
+.ceu-agora header { text-align: center; }
+.ceu-agora .lead { margin-left: auto; margin-right: auto; max-width: 30em; }
+.ceu-agora .agora { margin-top: 18px; font-size: 14px; letter-spacing: .02em; color: var(--sol); font-feature-settings: "tnum"; min-height: 1.4em; }
+.ceu-agora .vivo { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--sol); margin-right: 10px; vertical-align: 2px; animation: pisca 2.6s ease-in-out infinite; }
+.ceu-agora .palco { position: relative; height: min(78vh, 760px); min-height: 420px; min-width: 0; overflow: hidden; margin-top: clamp(8px, 2vh, 24px); }
+.ceu-agora .palco canvas { display: block; position: absolute; inset: 0; }
+.ceu-agora svg.g { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; vertical-align: -.14em; overflow: visible; }
+.ceu-agora svg.g .p { fill: currentColor; stroke: none; }
+.ceu-agora .rot { pointer-events: none; line-height: 0; }
+.ceu-agora .rot.signo { font-size: 17px; color: var(--luz-3); }
+.ceu-agora .rot.planeta { font-size: 19px; color: var(--luz); }
+.ceu-agora .rot.planeta > span { display: block; transition: transform .6s var(--ease); }
+.ceu-agora .rot.planeta svg.g { stroke-width: 1.6; filter: drop-shadow(0 0 3px var(--cupula)) drop-shadow(0 0 6px var(--cupula)); }
+.ceu-agora .rot.planeta.sol { color: var(--sol); }
+.leitura-ceu { max-width: 1100px; margin: 0 auto; }
+.lua-hoje { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0 0 clamp(32px, 5vh, 56px); font-size: 17px; color: var(--luz-2); min-height: 28px; }
+.lua-hoje svg { width: 28px; height: 28px; flex: none; }
+.lua-hoje b { color: var(--luz); font-weight: 500; }
+.posicoes { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--linha); }
+.posicoes li { padding: 22px 20px 24px; border-bottom: 1px solid var(--linha); display: grid; grid-template-columns: auto 1fr; column-gap: 12px; row-gap: 4px; align-items: baseline; align-content: start; }
+.posicoes li + li { border-left: 1px solid var(--linha); }
+.posicoes li:nth-child(5n+1) { border-left: 0; }
+.posicoes .ic { grid-row: span 3; font-size: 20px; color: var(--luz); align-self: start; padding-top: 2px; }
+.posicoes .nome { font-size: 17px; font-weight: 500; color: var(--luz); }
+.posicoes .onde { font-size: 15px; color: var(--luz-2); font-feature-settings: "tnum"; }
+.posicoes .retro { font-size: 14px; color: var(--luz-3); }
+.posicoes .sol .ic, .posicoes .sol .nome { color: var(--sol); }
+@media (max-width: 860px) {
+  .posicoes { grid-template-columns: repeat(2, 1fr); }
+  .posicoes li:nth-child(5n+1) { border-left: 1px solid var(--linha); }
+  .posicoes li:nth-child(2n+1) { border-left: 0; }
+  .posicoes li { padding: 18px 12px 20px; column-gap: 10px; }
+  .posicoes .onde { font-size: 14px; white-space: nowrap; }
+  .ceu-agora .palco { height: min(86vw, 560px); min-height: 300px; }
+}
+@media (prefers-reduced-motion: reduce) { .ceu-agora .vivo { animation: none; } .ceu-agora .rot.planeta > span { transition: none; } }
+
 [hidden] { display: none !important; }
