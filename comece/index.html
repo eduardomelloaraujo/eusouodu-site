@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Comece aqui · eusouodu</title>
+<meta name="description" content="Uma viagem guiada pelas oito portas do eusouodu: apps grátis, leituras do mapa, o curso Odisseia e a consulta com o Eduardo.">
+<meta name="theme-color" content="#05060A">
+<meta property="og:title" content="Comece aqui · eusouodu">
+<meta property="og:description" content="Oito portas para o mesmo céu. Uma viagem guiada pelo eusouodu, a partir do seu mapa.">
+<meta property="og:url" content="https://eusouodu.com/comece/">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preload" href="/fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="comece.css">
+</head>
+<body>
+<canvas id="ceu" aria-hidden="true"></canvas>
+<a class="pular" href="#viagem">Pular para a viagem</a>
+
+<header class="topo">
+  <a class="marca" href="/" aria-label="eusouodu, página inicial">eusouodu</a>
+  <p class="hud" id="hud-hoje">Viagem guiada</p>
+</header>
+
+<main>
+  <section class="chegada" aria-labelledby="chegada-t">
+    <div class="orbitas" aria-hidden="true">
+      <svg viewBox="0 0 600 600" id="orbitas"></svg>
+    </div>
+    <p class="sobretitulo">Comece aqui</p>
+    <h1 id="chegada-t">Oito portas<br>para o mesmo céu.</h1>
+    <p class="lead">Apps, leituras, um curso e uma conversa com o Eduardo. Tudo parte da data, da hora e da cidade em que você nasceu. Esta página te leva por todas as portas em dois minutos.</p>
+    <div class="acoes">
+      <a class="botao" href="#viagem">Começar a viagem</a>
+      <a class="link-claro" href="#bussola">Já sei o que procuro<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    </div>
+  </section>
+
+  <section class="bussola" id="bussola" aria-labelledby="bussola-t">
+    <p class="sobretitulo">A bússola</p>
+    <h2 id="bussola-t">O que você procura hoje?</h2>
+    <ul class="intencoes">
+      <li><button type="button" data-ir="jornada" style="--cor:#8AB4FF">Quero aprender astrologia</button></li>
+      <li><button type="button" data-ir="musica" style="--cor:#FFB547">Quero ouvir o meu mapa</button></li>
+      <li><button type="button" data-ir="espelho" style="--cor:#C9D6EE">Quero entender uma relação</button></li>
+      <li><button type="button" data-ir="juri" style="--cor:#FF7A5C">Tenho uma decisão para tomar</button></li>
+      <li><button type="button" data-ir="semana" style="--cor:#B9A6FF">Quero saber da minha semana</button></li>
+      <li><button type="button" data-ir="atendimento" style="--cor:#FFE2A0">Quero conversar com alguém</button></li>
+    </ul>
+    <p class="nota" id="bussola-resposta" role="status"></p>
+  </section>
+
+  <section class="viagem" id="viagem" aria-label="As oito portas">
+    <div class="trilho" aria-hidden="true"><span class="trilho-luz" id="trilho-luz"></span></div>
+
+    <p class="ato"><span>Ato I</span>Comece grátis</p>
+
+    <article class="estacao" id="jornada" data-tom="jornada" style="--cor:#8AB4FF">
+      <span class="no" aria-hidden="true"></span>
+      <div class="estacao-corpo">
+        <p class="rotulo"><b>01</b>App grátis</p>
+        <h3>A Jornada</h3>
+        <p class="pergunta">Aprender astrologia um passo por dia, como um jogo.</p>
+        <p>Os doze signos com a mitologia, o seu próprio mapa e os trânsitos de verdade, uma lição por dia. Instala na tela do celular, sem loja de aplicativos.</p>
+        <p class="preco">Grátis para começar <em>Passe semanal R$ 9,90 · mensal R$ 29,90</em></p>
+        <a class="botao" href="https://jornada.eusouodu.com/">Começar a Jornada grátis</a>
+      </div>
+      <svg class="figura" data-figura="jornada" viewBox="0 0 400 240" aria-hidden="true"></svg>
+    </article>
+
+    <article class="estacao" id="musica" data-tom="musica" style="--cor:#FFB547">
+      <span class="no" aria-hidden="true"></span>
+      <div class="estacao-corpo">
+        <p class="rotulo"><b>02</b>App grátis</p>
+        <h3>Música Astral</h3>
+        <p class="pergunta">O seu mapa vira um disco, com uma música nova por dia.</p>
+        <p>No Lado A, as músicas do Sol, da Lua e do Ascendente. No Lado B, a música de hoje, escolhida pelo trânsito que mais toca o seu mapa.</p>
+        <p class="preco">Grátis <em>A imagem do disco pronta para o story</em></p>
+        <a class="botao" href="/musica/">Ouvir a música do meu mapa</a>
+      </div>
+      <svg class="figura" data-figura="musica" viewBox="0 0 400 240" aria-hidden="true"></svg>
+    </article>
+
+    <article class="estacao" id="espelho" data-tom="espelho" style="--cor:#C9D6EE">
+      <span class="no" aria-hidden="true"></span>
+      <div class="estacao-corpo">
+        <p class="rotulo"><b>03</b>App grátis · novo</p>
+        <h3>Espelho de duas</h3>
+        <p class="pergunta">O que se forma entre dois mapas?</p>
+        <p>Você coloca o seu mapa e manda o link para a outra pessoa. As duas rodas se fundem numa constelação, com os fios que unem e os que atritam.</p>
+        <p class="preco">Grátis <em>Leitura completa R$ 27, abre para as duas</em></p>
+        <a class="botao" href="https://espelho.eusouodu.com/">Abrir o espelho</a>
+      </div>
+      <svg class="figura" data-figura="espelho" viewBox="0 0 400 240" aria-hidden="true"></svg>
+    </article>
+
+    <article class="estacao" id="juri" data-tom="juri" style="--cor:#FF7A5C">
+      <span class="no" aria-hidden="true"></span>
+      <div class="estacao-corpo">
+        <p class="rotulo"><b>04</b>App grátis · novo</p>
+        <h3>O Júri do céu</h3>
+        <p class="pergunta">Uma decisão que não sai da cabeça?</p>
+        <p>Os planetas de hoje viram um júri de deuses e filósofos. Eles debatem o seu caso, com acusação e defesa, e votam. O voto de Minerva, o que desempata, fica com você.</p>
+        <p class="preco">1 julgamento grátis por dia <em>Depois R$ 9,90 · sem cadastro</em></p>
+        <a class="botao" href="https://juri-eusouodu.vercel.app/juri">Levar a julgamento</a>
+      </div>
+      <svg class="figura" data-figura="juri" viewBox="0 0 400 240" aria-hidden="true"></svg>
+    </article>
+
+    <p class="ato"><span>Ato II</span>Vá mais fundo</p>
+
+    <article class="estacao" id="semana" data-tom="semana" style="--cor:#B9A6FF">
+      <span class="no" aria-hidden="true"></span>
+      <div class="estacao-corpo">
+        <p class="rotulo"><b>05</b>Toda semana</p>
+        <h3>A energia da semana</h3>
+        <p class="pergunta">O céu dos próximos dias, e como ele passa pelo seu mapa.</p>
+        <p>Um vídeo toda semana no Instagram. E a semana no seu mapa, por e-mail: os dez planetas pelas casas, as fases da Lua, os dias mais fluidos e os mais desafiadores, e a carta de Tarot de Marselha.</p>
+        <p class="preco">R$ 37 <em>Os próximos 7 dias · 30 dias por R$ 97</em></p>
+        <a class="botao" href="/mapa/">Ver a semana no meu mapa</a>
+      </div>
+      <svg class="figura" data-figura="semana" viewBox="0 0 400 240" aria-hidden="true"></svg>
+    </article>
+
+    <article class="estacao" id="leituras" data-tom="leituras" style="--cor:#FF8FB8">
+      <span class="no" aria-hidden="true"></span>
+      <div class="estacao-corpo">
+        <p class="rotulo"><b>06</b>Leituras</p>
+        <h3>Mitologia e livros</h3>
+        <p class="pergunta">A sua mitologia, e os livros que o seu mapa pede.</p>
+        <p>Entre 24 mitologias, a que mais ecoa no seu mapa, contada por inteiro e com exercícios. E sete livros para 2027, um por planeta, cruzando o mapa com os trânsitos e os eclipses do ano.</p>
+        <p class="preco">R$ 37 <em>cada leitura, online</em></p>
+        <div class="duplo">
+          <a class="botao" href="https://mitologia.eusouodu.com/">Descobrir a minha mitologia</a>
+          <a class="link-claro" href="https://livros.eusouodu.com/">Ver os meus 7 livros<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+      <svg class="figura" data-figura="leituras" viewBox="0 0 400 240" aria-hidden="true"></svg>
+    </article>
+
+    <p class="ato"><span>Ato III</span>Com o Eduardo</p>
+
+    <article class="estacao" id="odisseia" data-tom="odisseia" style="--cor:#5FE0C5">
+      <span class="no" aria-hidden="true"></span>
+      <div class="estacao-corpo">
+        <p class="rotulo"><b>07</b>Curso em vídeo</p>
+        <h3>Odisseia, o Retorno</h3>
+        <p class="pergunta">Doze episódios, uma volta pelo zodíaco até Ítaca.</p>
+        <p>Cada ilha da viagem de Ulisses é um lugar onde a gente também fica preso. Estreia em 31 de outubro, com sete dias de garantia.</p>
+        <p class="preco">R$ 297 <em>Pré-venda até 26 de outubro, ou 12x de R$ 24,75. Depois, R$ 497</em></p>
+        <a class="botao" href="https://pay.hotmart.com/T107852297P">Garantir minha vaga</a>
+      </div>
+      <svg class="figura" data-figura="odisseia" viewBox="0 0 400 240" aria-hidden="true"></svg>
+    </article>
+
+    <article class="estacao" id="atendimento" data-tom="atendimento" style="--cor:#FFE2A0">
+      <span class="no" aria-hidden="true"></span>
+      <div class="estacao-corpo">
+        <p class="rotulo"><b>08</b>Consulta</p>
+        <h3>Com o Eduardo</h3>
+        <p class="pergunta">Uma conversa terapêutica a partir do seu mapa.</p>
+        <p>O mapa natal e a Revolução Solar, para olhar com cuidado o que se repete e o que pede passagem. Sessão de 1h15 pelo Google Meet, gravada e enviada depois.</p>
+        <div class="duplo">
+          <a class="botao" href="https://agenda.eusouodu.com/">Ver horários e agendar</a>
+          <a class="link-claro" href="https://agenda.eusouodu.com/?tipo=sinastria">Sinastria, para dois mapas<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        </div>
+      </div>
+      <svg class="figura" data-figura="atendimento" viewBox="0 0 400 240" aria-hidden="true"></svg>
+    </article>
+  </section>
+
+  <section class="destino" aria-labelledby="destino-t">
+    <p class="sobretitulo">Fim da viagem</p>
+    <h2 id="destino-t">O caminho de volta<br>para quem a gente é.</h2>
+    <p class="lead">Se você não sabe por onde começar, comece pela Jornada. É grátis, e cada lição acende um pedaço do seu mapa.</p>
+    <div class="acoes">
+      <a class="botao" href="https://jornada.eusouodu.com/">Começar a Jornada grátis</a>
+      <a class="link-claro" href="/">Ver o site inteiro<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    </div>
+  </section>
+</main>
+
+<nav class="telemetria" id="telemetria" aria-label="Portas da viagem">
+  <ol id="telemetria-pontos"></ol>
+  <span class="telemetria-texto" id="telemetria-texto" aria-live="polite"></span>
+</nav>
+
+<footer class="rodape">
+  <span>eusouodu · Eduardo Mello</span>
+  <nav aria-label="Contato"><a href="https://instagram.com/eusouodu">Instagram</a><a href="https://wa.me/5571982872284">WhatsApp</a></nav>
+</footer>
+<script src="comece.js"></script>
+</body>
+</html>

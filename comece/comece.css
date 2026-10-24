@@ -1,0 +1,161 @@
+@font-face {
+  font-family: "Schibsted Grotesk";
+  src: url("/fonts/schibsted-grotesk-latin-wght-normal.woff2") format("woff2");
+  font-weight: 400 900;
+  font-display: swap;
+}
+:root {
+  color-scheme: dark;
+  --cupula: #05060A;
+  --luz: #F5F3EE;
+  --luz-2: #B9B7C4;   /* 9.6:1 on the dome */
+  --luz-3: #8E8C9C;   /* 5.9:1 on the dome */
+  --linha: rgba(245, 243, 238, .14);
+  --margem: clamp(20px, 5vw, 72px);
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --cor: #FFB547;
+  --tom: #FFB547;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--cupula);
+  color: var(--luz);
+  font: 400 17px/1.55 "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+/* the dome takes the colour of the door in view */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(120% 70% at 50% 115%, color-mix(in srgb, var(--tom) 22%, transparent), transparent 62%);
+  transition: background 1.2s var(--ease);
+}
+#ceu { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+main, .topo, .rodape { position: relative; z-index: 1; }
+a { color: inherit; }
+h1, h2, h3, p { margin: 0; }
+:focus-visible { outline: 2px solid var(--luz); outline-offset: 4px; border-radius: 6px; }
+.pular { position: absolute; left: 16px; top: -60px; z-index: 10; padding: 10px 16px; background: var(--luz); color: var(--cupula); border-radius: 999px; }
+.pular:focus { top: 12px; }
+
+.topo { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px var(--margem); }
+.marca { font-size: 22px; font-weight: 650; letter-spacing: -.03em; text-decoration: none; }
+.hud { font-size: 13px; color: var(--luz-2); font-variant-numeric: tabular-nums; letter-spacing: .02em; text-align: right; }
+.hud b { color: var(--luz); font-weight: 600; }
+
+.sobretitulo { font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--tom); }
+.lead { margin-top: 24px; max-width: 34em; font-size: clamp(18px, 1.7vw, 22px); line-height: 1.5; color: var(--luz-2); }
+.nota { margin-top: 18px; font-size: 15px; color: var(--luz-3); min-height: 1.5em; }
+.acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; margin-top: 36px; }
+.botao {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px;
+  background: var(--luz); color: var(--cupula); border-radius: 999px; font-weight: 600; text-decoration: none;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), background .3s var(--ease);
+}
+.botao:hover { background: #fff; transform: translateY(-1px); box-shadow: 0 10px 40px -12px var(--cor); }
+.link-claro { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-weight: 500; text-decoration: none; color: var(--luz); }
+.link-claro svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; transition: transform .3s var(--ease); }
+.link-claro:hover svg { transform: translateX(4px); }
+
+/* arrival */
+.chegada { position: relative; min-height: calc(100svh - 70px); padding: 8vh var(--margem) 10vh; display: flex; flex-direction: column; justify-content: center; max-width: 1360px; margin: 0 auto; }
+.chegada h1 { margin-top: 18px; font-size: clamp(52px, 9vw, 132px); line-height: .95; letter-spacing: -.05em; font-weight: 650; max-width: 9ch; }
+.orbitas { position: absolute; right: 0; top: 50%; width: min(640px, 62vw); aspect-ratio: 1; transform: translateY(-50%); pointer-events: none; }
+.orbitas svg { width: 100%; height: 100%; overflow: visible; }
+.orbitas .giro { transform-box: view-box; transform-origin: 300px 300px; animation: girar var(--t, 80s) linear infinite; }
+@keyframes girar { to { transform: rotate(360deg); } }
+
+/* compass */
+.bussola { padding: clamp(72px, 12vh, 140px) var(--margem) 0; max-width: 1360px; margin: 0 auto; }
+.bussola h2, .destino h2 { margin-top: 14px; font-size: clamp(36px, 5vw, 64px); line-height: 1; letter-spacing: -.04em; font-weight: 650; }
+.intencoes { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.intencoes button {
+  width: 100%; min-height: 64px; padding: 16px 20px 16px 48px; position: relative; text-align: left;
+  font: 500 17px/1.3 inherit; font-family: inherit; color: var(--luz); cursor: pointer;
+  background: rgba(245, 243, 238, .04); border: 1px solid var(--linha); border-radius: 16px;
+  transition: border-color .3s var(--ease), background .3s var(--ease), transform .3s var(--ease);
+}
+.intencoes button::before { content: ""; position: absolute; left: 20px; top: 50%; width: 10px; height: 10px; margin-top: -5px; border-radius: 50%; background: var(--cor); box-shadow: 0 0 12px var(--cor); }
+.intencoes button:hover, .intencoes button[aria-pressed="true"] { border-color: var(--cor); background: color-mix(in srgb, var(--cor) 10%, transparent); }
+.intencoes button:active { transform: scale(.98); }
+
+/* the journey: a rail that fills as you scroll, eight stations along it */
+.viagem { position: relative; max-width: 1360px; margin: 0 auto; padding: clamp(96px, 14vh, 160px) var(--margem) 0 calc(var(--margem) + var(--recuo)); --recuo: 56px; }
+.trilho { position: absolute; left: calc(var(--margem) + 7px); top: clamp(96px, 14vh, 160px); bottom: 0; width: 2px; background: var(--linha); border-radius: 2px; }
+.trilho-luz { position: absolute; left: 0; top: 0; width: 100%; height: 100%; transform-origin: 0 0; transform: scaleY(var(--p, 0)); background: linear-gradient(#8AB4FF, #FFB547, #C9D6EE, #FF7A5C, #B9A6FF, #FF8FB8, #5FE0C5, #FFE2A0); border-radius: 2px; }
+.ato { position: relative; display: flex; align-items: baseline; gap: 14px; margin: 0 0 40px; font-size: clamp(24px, 2.6vw, 34px); font-weight: 650; letter-spacing: -.03em; }
+.ato span { font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--luz-3); }
+.ato + .estacao { margin-top: 0; }
+.estacao { position: relative; display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(24px, 5vw, 80px); align-items: center; padding: clamp(40px, 6vh, 72px) 0; margin-bottom: clamp(48px, 8vh, 96px); border-top: 1px solid var(--linha); scroll-margin-top: 40px; }
+.estacao .no { position: absolute; left: calc(var(--recuo) * -1 + 1px); top: clamp(48px, 6.6vh, 80px); width: 14px; height: 14px; border-radius: 50%; background: var(--cupula); border: 2px solid color-mix(in srgb, var(--cor) 55%, transparent); transition: background .5s var(--ease), box-shadow .5s var(--ease), transform .5s var(--ease); }
+.estacao.passou .no { background: var(--cor); border-color: var(--cor); }
+.estacao.aqui .no { transform: scale(1.5); box-shadow: 0 0 0 6px var(--cupula), 0 0 22px 4px var(--cor); }
+.rotulo { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; font-size: 14px; font-weight: 600; color: var(--cor); letter-spacing: .02em; }
+.rotulo b { font-variant-numeric: tabular-nums; color: var(--luz-3); font-weight: 600; }
+.estacao h3 { margin-top: 12px; font-size: clamp(40px, 5.4vw, 76px); line-height: 1; letter-spacing: -.045em; font-weight: 650; }
+.pergunta { margin-top: 16px; font-size: clamp(19px, 1.8vw, 24px); line-height: 1.35; color: var(--luz); max-width: 26em; }
+.estacao-corpo > p:not(.rotulo):not(.pergunta):not(.preco) { margin-top: 14px; color: var(--luz-2); max-width: 34em; }
+.preco { margin-top: 24px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; font-size: 22px; font-weight: 600; letter-spacing: -.02em; }
+.preco em { font-style: normal; font-size: 15px; font-weight: 500; color: var(--luz-3); letter-spacing: 0; }
+.estacao .botao, .estacao .duplo { margin-top: 24px; }
+.duplo { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+.duplo .botao { margin-top: 0; }
+.estacao.escolhida { border-top-color: var(--cor); }
+.estacao.escolhida .rotulo::after { content: "Seu ponto de partida"; white-space: nowrap; padding: 3px 10px; border-radius: 999px; font-size: 12px; color: var(--cupula); background: var(--cor); }
+.figura { width: 100%; max-width: 440px; justify-self: center; overflow: visible; }
+.figura path { fill: none; stroke: var(--cor); stroke-width: 1.3; stroke-opacity: .7; }
+.figura circle { fill: var(--luz); filter: drop-shadow(0 0 4px var(--cor)) drop-shadow(0 0 10px var(--cor)); }
+.anima .figura path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.1s var(--ease); }
+.anima .figura circle { transform-box: fill-box; transform-origin: center; transform: scale(0); transition: transform .7s var(--ease); }
+.anima .estacao.passou .figura path { stroke-dashoffset: 0; }
+.anima .estacao.passou .figura circle { transform: scale(1); }
+.anima .estacao-corpo { opacity: 0; transform: translateY(24px); transition: opacity 1s var(--ease), transform 1.2s var(--ease); }
+.anima .estacao.passou .estacao-corpo { opacity: 1; transform: none; }
+
+/* end */
+.destino { padding: clamp(80px, 12vh, 140px) var(--margem) clamp(120px, 18vh, 200px); max-width: 1360px; margin: 0 auto; text-align: center; }
+.destino .lead { margin-left: auto; margin-right: auto; }
+.destino .acoes { justify-content: center; }
+
+/* telemetry: where you are on the journey */
+.telemetria {
+  position: fixed; left: 50%; bottom: max(16px, env(safe-area-inset-bottom)); z-index: 5; transform: translate(-50%, 24px);
+  display: flex; align-items: center; gap: 14px; padding: 10px 18px 10px 14px; border-radius: 999px;
+  background: rgba(5, 6, 10, .72); border: 1px solid var(--linha); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  opacity: 0; pointer-events: none; transition: opacity .5s var(--ease), transform .5s var(--ease);
+}
+.telemetria.aberta { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+.telemetria ol { display: flex; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.telemetria a { display: grid; place-items: center; width: 24px; height: 44px; }
+.telemetria a::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--cor); opacity: .4; transition: transform .4s var(--ease), opacity .4s var(--ease); }
+.telemetria .atual a::after { opacity: 1; transform: scale(1.7); box-shadow: 0 0 10px 2px var(--cor); }
+.telemetria-texto { font-size: 13px; font-weight: 600; white-space: nowrap; color: var(--tom); font-variant-numeric: tabular-nums; min-width: 12.5em; }
+
+.rodape { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 32px var(--margem) 96px; border-top: 1px solid var(--linha); color: var(--luz-2); font-size: 15px; }
+.rodape nav { display: flex; gap: 24px; }
+.rodape a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+
+@media (max-width: 860px) {
+  .orbitas { position: relative; right: auto; top: auto; transform: none; width: min(250px, 66vw); margin: 0 auto 4px; order: -1; }
+  .chegada .lead { margin-top: 18px; font-size: 17px; }
+  .chegada .acoes { margin-top: 26px; }
+  .chegada { justify-content: flex-start; padding-top: 4vh; }
+  .intencoes { grid-template-columns: 1fr; }
+  .estacao { grid-template-columns: 1fr; }
+  .viagem { --recuo: 34px; }
+  .figura { order: -1; max-width: 300px; justify-self: start; }
+  .estacao .no { top: clamp(48px, 6.6vh, 80px); }
+  .hud { max-width: 15em; }
+}
+@media (max-width: 420px) {
+  .telemetria { gap: 8px; padding: 8px 12px 8px 8px; }
+  .telemetria a { width: 18px; }
+  .telemetria-texto { min-width: 0; font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .orbitas .giro { animation: none; }
+  .telemetria, .botao, body::before { transition: none; }
+}
