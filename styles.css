@@ -357,7 +357,7 @@ blockquote { margin: 0; max-width: 18ch; text-align: center; font-size: clamp(32
 }
 
 /* O céu de agora: planetas ao vivo em 3D (ceu-de-agora.js) */
-.ceu-agora { --lua-sombra: #1B1D2A; }
+.ceu-agora { --lua-sombra: #1B1D2A; overflow-x: clip; }
 .ceu-agora header { text-align: center; }
 .ceu-agora .lead { margin-left: auto; margin-right: auto; max-width: 30em; }
 .ceu-agora .agora { margin-top: 18px; font-size: 14px; letter-spacing: .02em; color: var(--sol); font-feature-settings: "tnum"; min-height: 1.4em; }
@@ -376,7 +376,7 @@ blockquote { margin: 0; max-width: 18ch; text-align: center; font-size: clamp(32
 .lua-hoje { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 0 0 clamp(32px, 5vh, 56px); font-size: 17px; color: var(--luz-2); min-height: 28px; }
 .lua-hoje svg { width: 28px; height: 28px; flex: none; }
 .lua-hoje b { color: var(--luz); font-weight: 500; }
-.posicoes { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--linha); }
+.posicoes { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--linha); }
 .posicoes li { padding: 22px 20px 24px; border-bottom: 1px solid var(--linha); display: grid; grid-template-columns: auto 1fr; column-gap: 12px; row-gap: 4px; align-items: baseline; align-content: start; }
 .posicoes li + li { border-left: 1px solid var(--linha); }
 .posicoes li:nth-child(5n+1) { border-left: 0; }
@@ -386,11 +386,11 @@ blockquote { margin: 0; max-width: 18ch; text-align: center; font-size: clamp(32
 .posicoes .retro { font-size: 14px; color: var(--luz-3); }
 .posicoes .sol .ic, .posicoes .sol .nome { color: var(--sol); }
 @media (max-width: 860px) {
-  .posicoes { grid-template-columns: repeat(2, 1fr); }
+  .posicoes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .posicoes li:nth-child(5n+1) { border-left: 1px solid var(--linha); }
   .posicoes li:nth-child(2n+1) { border-left: 0; }
   .posicoes li { padding: 18px 12px 20px; column-gap: 10px; }
-  .posicoes .onde { font-size: 14px; white-space: nowrap; }
+  .posicoes .onde { font-size: 14px; }
   .ceu-agora .palco { height: min(86vw, 560px); min-height: 300px; }
 }
 @media (prefers-reduced-motion: reduce) { .ceu-agora .vivo { animation: none; } .ceu-agora .rot.planeta > span { transition: none; } }
