@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Passe do céu · eusouodu</title>
+<meta name="description" content="Um passe, todos os apps do eusouodu abertos por 30 dias, com o relatório do mês no seu mapa.">
+<meta name="theme-color" content="#05060A">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="preload" href="/fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: "Schibsted Grotesk"; src: url("/fonts/schibsted-grotesk-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+:root {
+  --cupula: #05060A; --luz: #F5F3EE; --luz-2: #B9B7C4; --luz-3: #8E8C9C; --sol: #FFB547;
+  --linha: rgba(245,243,238,.14); --cartao: rgba(245,243,238,.045);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--cupula); color: var(--luz); font-family: "Schibsted Grotesk", system-ui, sans-serif; font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased;
+  background-image: radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255,181,71,.14), transparent 70%); background-repeat: no-repeat; }
+a { color: inherit; }
+h1, h2, h3, p { margin: 0; text-wrap: balance; }
+main { max-width: 560px; margin: 0 auto; padding: 24px 16px 64px; }
+.topo { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; max-width: 560px; margin: 0 auto; }
+.marca { font-weight: 800; text-decoration: none; letter-spacing: -.01em; }
+.link { color: var(--luz-2); font-size: 15px; background: none; border: 0; font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; padding: 8px 0; }
+.rotulo { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--sol); font-weight: 700; }
+h1 { font-size: clamp(40px, 11vw, 60px); line-height: 1.02; letter-spacing: -.03em; margin: 10px 0 14px; }
+h2 { font-size: 26px; line-height: 1.15; letter-spacing: -.02em; margin: 40px 0 14px; }
+.lead { color: var(--luz-2); font-size: 18px; }
+.preco { margin: 28px 0 18px; padding: 22px; border: 1px solid rgba(255,181,71,.45); border-radius: 18px; background: rgba(255,181,71,.06); }
+.preco strong { font-size: 44px; letter-spacing: -.03em; }
+.preco small { color: var(--luz-2); font-size: 16px; }
+.preco p { color: var(--luz-2); font-size: 15px; margin-top: 6px; }
+.botao { display: block; width: 100%; text-align: center; background: var(--sol); color: var(--cupula); font: inherit; font-weight: 800; font-size: 18px; border: 0; border-radius: 14px; padding: 16px; text-decoration: none; cursor: pointer; }
+.botao.claro { background: transparent; color: var(--luz); border: 1px solid var(--linha); }
+.nota { color: var(--luz-3); font-size: 14px; text-align: center; margin-top: 10px; }
+.apps { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.app { display: flex; gap: 14px; align-items: center; padding: 16px; border: 1px solid var(--linha); border-radius: 16px; background: var(--cartao); text-decoration: none; }
+.app .ponto { flex: none; width: 12px; height: 12px; border-radius: 50%; background: var(--cor); box-shadow: 0 0 14px var(--cor); }
+.app b { display: block; font-size: 17px; }
+.app span { display: block; color: var(--luz-2); font-size: 14px; line-height: 1.4; }
+.app .antes { margin-left: auto; flex: none; text-align: right; color: var(--luz-3); font-size: 13px; }
+.app .antes s { display: block; }
+.app .seta { margin-left: auto; flex: none; color: var(--luz-3); font-size: 20px; }
+.relatorio { margin: 8px 0 0; padding: 20px; border-radius: 18px; border: 1px solid rgba(185,166,255,.5); background: rgba(185,166,255,.08); }
+.relatorio h3 { font-size: 20px; margin-bottom: 6px; }
+.relatorio p { color: var(--luz-2); font-size: 15px; margin-bottom: 14px; }
+.relatorio .botao { background: #B9A6FF; }
+.relatorio.usado .botao { background: transparent; color: var(--luz-3); border: 1px dashed var(--linha); cursor: default; }
+.estado { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--linha); color: var(--luz-2); font-size: 15px; }
+.estado b { color: var(--luz); }
+.faq details { border-bottom: 1px solid var(--linha); padding: 14px 0; }
+.faq summary { cursor: pointer; font-weight: 700; }
+.faq p { color: var(--luz-2); font-size: 15px; margin-top: 8px; }
+.esboco { position: sticky; top: 0; z-index: 5; background: #1b1405; color: var(--sol); font-size: 13px; text-align: center; padding: 8px 16px; border-bottom: 1px solid rgba(255,181,71,.3); }
+.esboco button { font: inherit; color: var(--cupula); background: var(--sol); border: 0; border-radius: 8px; padding: 4px 10px; margin-left: 8px; font-weight: 700; cursor: pointer; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="esboco">Esboço para aprovar, nada aqui cobra ainda.<button id="trocar" type="button">Ver a central do assinante</button></div>
+<header class="topo"><a class="marca" href="/">eusouodu</a><button class="link" type="button" id="jaSou">Já sou assinante</button></header>
+
+<main>
+  <!-- ===== Página de venda ===== -->
+  <section id="venda">
+    <p class="rotulo">Passe do céu</p>
+    <h1>Todos os apps do eusouodu, abertos.</h1>
+    <p class="lead">Um passe de 30 dias. A Mitologia, os 7 Livros, o Espelho, o Júri, os Sonhos e a Jornada inteira, quantas vezes quiser. E o relatório do mês no seu mapa.</p>
+
+    <div class="preco">
+      <strong>R$ 47</strong> <small>por 30 dias</small>
+      <p>No Pix ou no cartão. Não renova sozinho: perto do fim chega um e-mail, e você decide.</p>
+    </div>
+    <a class="botao" href="#assinar">Assinar o passe</a>
+    <p class="nota">Só o relatório do mês sai por R$ 97 avulso.</p>
+
+    <h2>O que abre</h2>
+    <ul class="apps">
+      <li class="app" style="--cor:#FF8FB8"><i class="ponto"></i><div><b>Mitologia do Mapa</b><span>Os mitos que ecoam no seu mapa.</span></div><div class="antes"><s>R$ 37</s>incluído</div></li>
+      <li class="app" style="--cor:#FF8FB8"><i class="ponto"></i><div><b>7 Livros para 2027</b><span>Os livros que o seu céu pede para o ano.</span></div><div class="antes"><s>R$ 37</s>incluído</div></li>
+      <li class="app" style="--cor:#7FB0FF"><i class="ponto"></i><div><b>Sonhos no Mapa</b><span>A leitura simbólica de um sonho, com a mandala.</span></div><div class="antes"><s>R$ 37</s>até 8 por mês</div></li>
+      <li class="app" style="--cor:#FF7A5C"><i class="ponto"></i><div><b>O Júri do céu</b><span>O céu de agora julga a sua decisão.</span></div><div class="antes"><s>R$ 9,90</s>até 5 por dia</div></li>
+      <li class="app" style="--cor:#C9D6EE"><i class="ponto"></i><div><b>Espelho de duas</b><span>A leitura completa entre dois mapas.</span></div><div class="antes"><s>R$ 27</s>incluído</div></li>
+      <li class="app" style="--cor:#8AB4FF"><i class="ponto"></i><div><b>Jornada completa</b><span>As três jornadas e todas as cartas.</span></div><div class="antes"><s>R$ 29,90</s>incluído</div></li>
+      <li class="app" style="--cor:#B9A6FF"><i class="ponto"></i><div><b>O mês no seu mapa</b><span>Um relatório de 30 dias por passe, no e-mail.</span></div><div class="antes"><s>R$ 97</s>1 por mês</div></li>
+    </ul>
+
+    <h2>Como funciona</h2>
+    <div class="faq">
+      <details><summary>Preciso criar senha?</summary><p>Não. Você entra com o e-mail e recebe um link para abrir. É o mesmo acesso da Jornada: se você já tem, é só usar o mesmo e-mail.</p></details>
+      <details><summary>E nos apps, como eles sabem que eu assino?</summary><p>Você abre cada app pela sua central. Daí em diante, o app lembra de você neste celular.</p></details>
+      <details><summary>Quantos relatórios do mês eu tenho?</summary><p>Um a cada passe de 30 dias. O seguinte libera quando você renovar.</p></details>
+      <details><summary>E se eu me arrepender?</summary><p>Até 7 dias depois da compra, o valor volta inteiro. É só escrever para falecom@eusouodu.com.</p></details>
+    </div>
+    <div style="margin-top:28px"><a class="botao" href="#assinar">Assinar por R$ 47</a></div>
+  </section>
+
+  <!-- ===== Central do assinante ===== -->
+  <section id="central" hidden>
+    <p class="rotulo">Sua central</p>
+    <h1 style="font-size:clamp(34px,9vw,48px)">Oi, Marina. Tudo aberto.</h1>
+    <div class="estado"><span>Passe do céu</span><b>vale até 25 de novembro</b></div>
+    <div class="estado"><span>marina@email.com</span><button class="link" type="button">Sair</button></div>
+
+    <h2>O mês no seu mapa</h2>
+    <div class="relatorio" id="rel">
+      <h3>O relatório deste passe</h3>
+      <p id="relTexto">Os 30 dias do céu passando pelo seu mapa, dia a dia. Chega no seu e-mail em alguns minutos.</p>
+      <button class="botao" type="button" id="relBotao">Emitir meu relatório do mês</button>
+    </div>
+
+    <h2>Seus apps</h2>
+    <ul class="apps">
+      <li><a class="app" style="--cor:#FF8FB8" href="https://mitologia.eusouodu.com/"><i class="ponto"></i><div><b>Mitologia do Mapa</b><span>Aberto</span></div><span class="seta">›</span></a></li>
+      <li><a class="app" style="--cor:#FF8FB8" href="https://livros.eusouodu.com/"><i class="ponto"></i><div><b>7 Livros para 2027</b><span>Aberto</span></div><span class="seta">›</span></a></li>
+      <li><a class="app" style="--cor:#7FB0FF" href="https://sonhos.eusouodu.com/"><i class="ponto"></i><div><b>Sonhos no Mapa</b><span>2 de 8 sonhos usados neste passe</span></div><span class="seta">›</span></a></li>
+      <li><a class="app" style="--cor:#FF7A5C" href="https://ceu.eusouodu.com/juri"><i class="ponto"></i><div><b>O Júri do céu</b><span>Até 5 julgamentos por dia</span></div><span class="seta">›</span></a></li>
+      <li><a class="app" style="--cor:#C9D6EE" href="https://espelho.eusouodu.com/"><i class="ponto"></i><div><b>Espelho de duas</b><span>Aberto</span></div><span class="seta">›</span></a></li>
+      <li><a class="app" style="--cor:#8AB4FF" href="https://jornada.eusouodu.com/"><i class="ponto"></i><div><b>Jornada</b><span>As três jornadas abertas</span></div><span class="seta">›</span></a></li>
+      <li><a class="app" style="--cor:#FFB547" href="https://eusouodu.com/musica/"><i class="ponto"></i><div><b>Música Astral</b><span>Grátis para todo mundo</span></div><span class="seta">›</span></a></li>
+    </ul>
+    <div style="margin-top:28px"><a class="botao claro" href="#renovar">Renovar o passe</a></div>
+  </section>
+</main>
+
+<script>
+// esboço: só alterna as duas telas e simula o relatório usado
+const venda = document.getElementById('venda'), central = document.getElementById('central'), trocar = document.getElementById('trocar');
+function mostrar(c) { venda.hidden = c; central.hidden = !c; trocar.textContent = c ? 'Ver a página de venda' : 'Ver a central do assinante'; scrollTo(0, 0); }
+trocar.onclick = () => mostrar(venda.hidden === false);
+document.getElementById('jaSou').onclick = () => mostrar(true);
+document.getElementById('relBotao').onclick = () => {
+  const r = document.getElementById('rel');
+  if (r.classList.contains('usado')) return;
+  r.classList.add('usado');
+  document.getElementById('relTexto').textContent = 'Enviado para marina@email.com em 24 de outubro. O próximo relatório libera quando você renovar o passe, a partir de 25 de novembro.';
+  document.getElementById('relBotao').textContent = 'Já emitido neste passe';
+};
+</script>
+</body>
+</html>
