@@ -456,8 +456,9 @@ async function passeUsar(req, res, dir) {
 async function passeCortesia(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ erro: 'use POST' });
   const b = corpo(req);
-  const okChave = [process.env.JORNADA_ADMIN_KEY, process.env.ADMIN_KEY].some(k => k && String(b.key || '') === k);
-  if (!okChave) return res.status(403).json({ erro: 'sem permissão' });
+  // na prévia, a chave de bypass da Vercel também vale, para testar sem a ADMIN_KEY de produção
+  const chaves = [process.env.JORNADA_ADMIN_KEY, process.env.ADMIN_KEY, process.env.VERCEL_ENV === 'preview' && process.env.VERCEL_AUTOMATION_BYPASS_SECRET];
+  if (!chaves.some(k => k && String(b.key || '') === k)) return res.status(403).json({ erro: 'sem permissão' });
   const email = emailDe(req);
   if (!okEmail(email)) return res.status(400).json({ erro: 'Confira o e-mail.' });
   const u = (await lerUser(email)) || { email, perfil: null, progresso: null, plano: null, criado: new Date().toISOString(), origem: 'passe' };
