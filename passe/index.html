@@ -53,13 +53,22 @@ h2 { font-size: 26px; line-height: 1.15; letter-spacing: -.02em; margin: 40px 0 
 .faq details { border-bottom: 1px solid var(--linha); padding: 14px 0; }
 .faq summary { cursor: pointer; font-weight: 700; }
 .faq p { color: var(--luz-2); font-size: 15px; margin-top: 8px; }
-.esboco { position: sticky; top: 0; z-index: 5; background: #1b1405; color: var(--sol); font-size: 13px; text-align: center; padding: 8px 16px; border-bottom: 1px solid rgba(255,181,71,.3); }
-.esboco button { font: inherit; color: var(--cupula); background: var(--sol); border: 0; border-radius: 8px; padding: 4px 10px; margin-left: 8px; font-weight: 700; cursor: pointer; }
+.campo { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; position: relative; }
+.campo label { font-size: 14px; color: var(--luz-2); }
+.campo input { font: inherit; font-size: 17px; padding: 14px 16px; border: 1px solid var(--linha); background: rgba(245,243,238,.04); color: var(--luz); border-radius: 14px; width: 100%; }
+.campo input:focus { outline: none; border-color: var(--sol); }
+.dupla { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.sugestoes { position: absolute; top: 100%; left: 0; right: 0; background: #11131C; border: 1px solid var(--linha); border-radius: 14px; z-index: 5; max-height: 240px; overflow: auto; }
+.sugestoes button { display: block; width: 100%; text-align: left; font: inherit; font-size: 15px; color: var(--luz); background: none; border: 0; padding: 12px 14px; cursor: pointer; }
+.sugestoes small { color: var(--luz-3); }
+.aceite { display: flex; gap: 10px; font-size: 14px; color: var(--luz-2); margin: 4px 0 14px; }
+.aviso { padding: 14px 16px; border-radius: 14px; background: rgba(95,224,197,.1); border: 1px solid rgba(95,224,197,.4); font-size: 15px; margin-bottom: 18px; }
+.erro { color: #FF9B85; font-size: 15px; min-height: 1px; margin-top: 8px; }
+.folha { margin-top: 14px; }
 [hidden] { display: none !important; }
 </style>
 </head>
 <body>
-<div class="esboco">Esboço para aprovar, nada aqui cobra ainda.<button id="trocar" type="button">Ver a central do assinante</button></div>
 <header class="topo"><a class="marca" href="/">eusouodu</a><button class="link" type="button" id="jaSou">Já sou assinante</button></header>
 
 <main>
@@ -67,14 +76,27 @@ h2 { font-size: 26px; line-height: 1.15; letter-spacing: -.02em; margin: 40px 0 
   <section id="venda">
     <p class="rotulo">Passe do céu</p>
     <h1>Todos os apps do eusouodu, abertos.</h1>
-    <p class="lead">Um passe de 30 dias. A Mitologia, os 7 Livros, o Espelho, o Júri, os Sonhos e a Jornada inteira, quantas vezes quiser. E o relatório do mês no seu mapa.</p>
+    <p class="lead">Um passe de 30 dias com todos os apps abertos: a Mitologia, os 7 Livros, o Espelho, o Júri, os Sonhos e a Jornada inteira. E o relatório do mês no seu mapa.</p>
 
     <div class="preco">
       <strong>R$ 47</strong> <small>por 30 dias</small>
       <p>No Pix ou no cartão. Não renova sozinho: perto do fim chega um e-mail, e você decide.</p>
     </div>
-    <a class="botao" href="#assinar">Assinar o passe</a>
+    <div id="avisoVenda" class="aviso" hidden></div>
+    <form class="folha" id="fAssinar" novalidate>
+      <div class="campo"><label for="emailAssinar">Seu e-mail</label><input id="emailAssinar" type="email" autocomplete="email" inputmode="email" placeholder="nome@email.com" required></div>
+      <button class="botao" id="bAssinar">Assinar o passe</button>
+      <p class="erro" id="eAssinar" role="alert"></p>
+    </form>
     <p class="nota">Só o relatório do mês sai por R$ 97 avulso.</p>
+
+    <form class="folha" id="fEntrar" novalidate hidden>
+      <h2 style="margin-top:28px">Entrar na central</h2>
+      <p class="lead" style="font-size:16px;margin-bottom:14px">O link para entrar chega no seu e-mail. Sem senha.</p>
+      <div class="campo"><label for="emailEntrar">E-mail usado no passe</label><input id="emailEntrar" type="email" autocomplete="email" inputmode="email" placeholder="nome@email.com" required></div>
+      <button class="botao claro" id="bEntrar">Receber o link</button>
+      <p class="erro" id="eEntrar" role="alert"></p>
+    </form>
 
     <h2>O que abre</h2>
     <ul class="apps">
@@ -94,50 +116,51 @@ h2 { font-size: 26px; line-height: 1.15; letter-spacing: -.02em; margin: 40px 0 
       <details><summary>Quantos relatórios do mês eu tenho?</summary><p>Um a cada passe de 30 dias. O seguinte libera quando você renovar.</p></details>
       <details><summary>E se eu me arrepender?</summary><p>Até 7 dias depois da compra, o valor volta inteiro. É só escrever para falecom@eusouodu.com.</p></details>
     </div>
-    <div style="margin-top:28px"><a class="botao" href="#assinar">Assinar por R$ 47</a></div>
+    <div style="margin-top:28px"><a class="botao" href="#fAssinar" id="subir">Assinar por R$ 47</a></div>
   </section>
 
   <!-- ===== Central do assinante ===== -->
   <section id="central" hidden>
     <p class="rotulo">Sua central</p>
-    <h1 style="font-size:clamp(34px,9vw,48px)">Oi, Marina. Tudo aberto.</h1>
-    <div class="estado"><span>Passe do céu</span><b>vale até 25 de novembro</b></div>
-    <div class="estado"><span>marina@email.com</span><button class="link" type="button">Sair</button></div>
+    <h1 style="font-size:clamp(34px,9vw,48px)" id="oi">Tudo aberto.</h1>
+    <div id="avisoCentral" class="aviso" hidden></div>
+    <div class="estado"><span>Passe do céu</span><b id="ate"></b></div>
+    <div class="estado"><span id="quem"></span><button class="link" type="button" id="sair">Sair</button></div>
 
     <h2>O mês no seu mapa</h2>
     <div class="relatorio" id="rel">
       <h3>O relatório deste passe</h3>
-      <p id="relTexto">Os 30 dias do céu passando pelo seu mapa, dia a dia. Chega no seu e-mail em alguns minutos.</p>
-      <button class="botao" type="button" id="relBotao">Emitir meu relatório do mês</button>
+      <p id="relTexto">Os 30 dias do céu passando pelo seu mapa, dia a dia, a partir de amanhã. Chega no seu e-mail em alguns minutos.</p>
+      <form id="fRel" novalidate>
+        <div id="dadosRel">
+          <div class="campo"><label for="nome">Nome</label><input id="nome" autocomplete="name" required></div>
+          <div class="dupla">
+            <div class="campo"><label for="data">Data de nascimento</label><input id="data" type="date" required></div>
+            <div class="campo"><label for="hora">Hora</label><input id="hora" type="time" required></div>
+          </div>
+          <div class="campo"><label for="cidade">Cidade de nascimento</label><input id="cidade" autocomplete="off" placeholder="Digite e escolha na lista" required><div class="sugestoes" id="sugestoes" hidden></div></div>
+        </div>
+        <p id="dadosProntos" class="nota" style="text-align:left;margin:0 0 12px" hidden></p>
+        <label class="aceite"><input type="checkbox" id="aceite"><span>Entendo que o relatório é aconselhamento simbólico, que aponta tendências e não destinos, e que as decisões são minhas.</span></label>
+        <button class="botao" id="relBotao">Emitir meu relatório do mês</button>
+        <p class="erro" id="eRel" role="alert"></p>
+      </form>
     </div>
 
     <h2>Seus apps</h2>
     <ul class="apps">
-      <li><a class="app" style="--cor:#FF8FB8" href="https://mitologia.eusouodu.com/"><i class="ponto"></i><div><b>Mitologia do Mapa</b><span>Aberto</span></div><span class="seta">›</span></a></li>
-      <li><a class="app" style="--cor:#FF8FB8" href="https://livros.eusouodu.com/"><i class="ponto"></i><div><b>7 Livros para 2027</b><span>Aberto</span></div><span class="seta">›</span></a></li>
-      <li><a class="app" style="--cor:#7FB0FF" href="https://sonhos.eusouodu.com/"><i class="ponto"></i><div><b>Sonhos no Mapa</b><span>2 de 8 sonhos usados neste passe</span></div><span class="seta">›</span></a></li>
-      <li><a class="app" style="--cor:#FF7A5C" href="https://ceu.eusouodu.com/juri"><i class="ponto"></i><div><b>O Júri do céu</b><span>Até 5 julgamentos por dia</span></div><span class="seta">›</span></a></li>
-      <li><a class="app" style="--cor:#C9D6EE" href="https://espelho.eusouodu.com/"><i class="ponto"></i><div><b>Espelho de duas</b><span>Aberto</span></div><span class="seta">›</span></a></li>
-      <li><a class="app" style="--cor:#8AB4FF" href="https://jornada.eusouodu.com/"><i class="ponto"></i><div><b>Jornada</b><span>As três jornadas abertas</span></div><span class="seta">›</span></a></li>
-      <li><a class="app" style="--cor:#FFB547" href="https://eusouodu.com/musica/"><i class="ponto"></i><div><b>Música Astral</b><span>Grátis para todo mundo</span></div><span class="seta">›</span></a></li>
+      <li><a class="app" data-app style="--cor:#FF8FB8" href="https://mitologia.eusouodu.com/"><i class="ponto"></i><div><b>Mitologia do Mapa</b><span>Aberto</span></div><span class="seta">›</span></a></li>
+      <li><a class="app" data-app style="--cor:#FF8FB8" href="https://livros.eusouodu.com/"><i class="ponto"></i><div><b>7 Livros para 2027</b><span>Aberto</span></div><span class="seta">›</span></a></li>
+      <li><a class="app" data-app style="--cor:#7FB0FF" href="https://sonhos.eusouodu.com/"><i class="ponto"></i><div><b>Sonhos no Mapa</b><span id="usoSonhos">Até 8 sonhos neste passe</span></div><span class="seta">›</span></a></li>
+      <li><a class="app" data-app style="--cor:#FF7A5C" href="https://ceu.eusouodu.com/juri"><i class="ponto"></i><div><b>O Júri do céu</b><span id="usoJuri">Até 5 julgamentos por dia</span></div><span class="seta">›</span></a></li>
+      <li><a class="app" data-app style="--cor:#C9D6EE" href="https://espelho.eusouodu.com/"><i class="ponto"></i><div><b>Espelho de duas</b><span>Aberto</span></div><span class="seta">›</span></a></li>
+      <li><a class="app" data-app style="--cor:#8AB4FF" href="https://jornada.eusouodu.com/"><i class="ponto"></i><div><b>Jornada</b><span>As três jornadas abertas</span></div><span class="seta">›</span></a></li>
+      <li><a class="app" data-app style="--cor:#FFB547" href="https://eusouodu.com/musica/"><i class="ponto"></i><div><b>Música Astral</b><span>Grátis para todo mundo</span></div><span class="seta">›</span></a></li>
     </ul>
-    <div style="margin-top:28px"><a class="botao claro" href="#renovar">Renovar o passe</a></div>
+    <div style="margin-top:28px"><button class="botao claro" type="button" id="renovar">Renovar o passe por mais 30 dias</button><p class="erro" id="eRenovar" role="alert"></p></div>
   </section>
 </main>
 
-<script>
-// esboço: só alterna as duas telas e simula o relatório usado
-const venda = document.getElementById('venda'), central = document.getElementById('central'), trocar = document.getElementById('trocar');
-function mostrar(c) { venda.hidden = c; central.hidden = !c; trocar.textContent = c ? 'Ver a página de venda' : 'Ver a central do assinante'; scrollTo(0, 0); }
-trocar.onclick = () => mostrar(venda.hidden === false);
-document.getElementById('jaSou').onclick = () => mostrar(true);
-document.getElementById('relBotao').onclick = () => {
-  const r = document.getElementById('rel');
-  if (r.classList.contains('usado')) return;
-  r.classList.add('usado');
-  document.getElementById('relTexto').textContent = 'Enviado para marina@email.com em 24 de outubro. O próximo relatório libera quando você renovar o passe, a partir de 25 de novembro.';
-  document.getElementById('relBotao').textContent = 'Já emitido neste passe';
-};
-</script>
+<script src="passe.js"></script>
 </body>
 </html>

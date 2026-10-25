@@ -4,14 +4,16 @@ import {
   temBanco, redis, K, okEmail, sessao, lerToken, lerUser, salvarUser, planoAtivo, planoPublico, unidadesPagas, conteudoJornadas,
   mp, atualizarAssinatura, refAssinatura, processarPix, enviarEmail, emailBoasVindas, emailEntrada, emailFimPasse,
   APP, SITE, PRECO_SEMANA, PRECO_MES,
+  PRECO_PASSE, PASSE_LIMITES, passeAtivo, planoDe, periodoUso, ativarPasse, emailEntradaPasse, emailPasseAtivo, emailFimPasseCeu,
 } from '../lib/jornada.mjs';
 
 export const config = { maxDuration: 60 };
 
 const corpo = req => typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
+// a sessão vem no cabeçalho (Jornada, central) ou no campo t (os outros apps, servidor a servidor)
 const quem = req => {
   const h = req.headers.authorization || '';
-  return lerToken(h.startsWith('Bearer ') ? h.slice(7) : '', 's');
+  return lerToken(h.startsWith('Bearer ') ? h.slice(7) : String((req.query || {}).t || (req.method === 'POST' ? corpo(req).t : '') || ''), 's');
 };
 const limparPerfil = p => {
   p = p || {};
@@ -37,7 +39,7 @@ const limparProgresso = g => {
   };
 };
 const resposta = u => ({
-  email: u.email, perfil: u.perfil, progresso: u.progresso || null, plano: planoPublico(u.plano),
+  email: u.email, perfil: u.perfil, progresso: u.progresso || null, plano: planoPublico(planoDe(u)),
   precos: { semana: PRECO_SEMANA, mes: PRECO_MES }, mpPublic: CARTAO_NO_APP ? (MP_PUBLIC || null) : null,
 });
 
@@ -71,6 +73,12 @@ export default async function handler(req, res) {
       case 'diario': return await diario(req, res);
       case 'sair-emails': return await sairEmails(req, res);
       case 'status': return await status(req, res);
+      case 'passe-assinar': return await passeAssinar(req, res);
+      case 'passe-link': return await passeLink(req, res);
+      case 'passe': return await passe(req, res);
+      case 'passe-usar': return await passeUsar(req, res, 1);
+      case 'passe-devolver': return await passeUsar(req, res, -1);
+      case 'passe-cortesia': return await passeCortesia(req, res);
       default: return res.status(404).json({ erro: 'ação desconhecida' });
     }
   } catch (e) {
@@ -116,7 +124,7 @@ async function abrir(req, res) {
   if (!email) return res.status(400).send(pagina('Link vencido', 'Esse link já passou de 48 horas ou está incompleto. Na tela de entrada, toque em "Já tenho uma conta" e peça outro.'));
   const u = await lerUser(email);
   if (!u) return res.status(404).send(pagina('Conta não encontrada', 'Não achamos uma jornada com esse e-mail. Dá para começar uma nova agora.'));
-  res.setHeader('location', `${APP}/#s=${encodeURIComponent(sessao(email))}`);
+  res.setHeader('location', `${req.query.p ? SITE + '/passe/' : APP + '/'}#s=${encodeURIComponent(sessao(email))}`);
   return res.status(302).send('');
 }
 
@@ -149,7 +157,7 @@ async function conteudo(req, res) {
   const email = quem(req);
   if (!email) return res.status(401).json({ erro: 'Sessão expirada.' });
   const u = await lerUser(email);
-  if (!u || !planoAtivo(u.plano)) return res.status(402).json({ erro: 'Essas lições são para quem tem um plano ativo.' });
+  if (!u || !planoAtivo(planoDe(u))) return res.status(402).json({ erro: 'Essas lições são para quem tem um plano ativo.' });
   return res.status(200).json({ unidades: unidadesPagas(), ...conteudoJornadas() });
 }
 
@@ -340,6 +348,14 @@ async function diario(req, res) {
       try { await enviarEmail({ para: e, chave: `jornada-fim-${e}-${fim}`, ...emailFimPasse({ ...u, nome: u.perfil?.nome }) }); avisados++; } catch (x) { console.error('fim passe', x.message); }
     }
   }
+  for (const e of (await redis('SMEMBERS', K.passes)) || []) {
+    const u = await lerUser(e);
+    const fim = Number(u?.passe?.until || 0);
+    if (fim < agora) { await redis('SREM', K.passes, e); continue; }
+    if (fim - agora <= 30 * 3600e3) {
+      try { await enviarEmail({ para: e, chave: `passe-fim-${e}-${fim}`, ...emailFimPasseCeu(u) }); avisados++; } catch (x) { console.error('fim passe do céu', x.message); }
+    }
+  }
   return res.status(200).json({ ativos: emails.length, avisados, removidos });
 }
 
@@ -363,4 +379,89 @@ async function status(req, res) {
   out.cadastros = await redis('SCARD', K.leads);
   out.passesAtivos = await redis('SCARD', K.semana);
   return res.status(200).json(out);
+}
+
+/* ---------- Passe do céu ---------- */
+const emailDe = req => String(corpo(req).email || '').trim().toLowerCase().slice(0, 254);
+
+// Abre o pagamento do passe só com o e-mail. A conta nasce aqui; o link da central chega no e-mail depois do pagamento.
+async function passeAssinar(req, res) {
+  if (req.method !== 'POST') return res.status(405).json({ erro: 'use POST' });
+  const email = emailDe(req);
+  if (!okEmail(email)) return res.status(400).json({ erro: 'Confira o e-mail: falta algo como nome@email.com.' });
+  if (!(await lerUser(email))) await salvarUser({ email, perfil: null, progresso: null, plano: null, criado: new Date().toISOString(), origem: 'passe' });
+  const pref = {
+    items: [{ id: 'passe-do-ceu', title: 'Passe do céu · 30 dias', quantity: 1, unit_price: PRECO_PASSE, currency_id: 'BRL' }],
+    payer: { email },
+    payment_methods: { excluded_payment_types: [{ id: 'ticket' }, { id: 'atm' }], installments: 1 },
+    metadata: { produto: 'jornada', plano: 'passe', email },
+    back_urls: { success: `${SITE}/passe/?pago=1`, pending: `${SITE}/passe/?pago=pendente`, failure: `${SITE}/passe/?pago=falhou` },
+    auto_return: 'approved',
+    notification_url: `${SITE}/api/jornada?a=webhook`,
+    statement_descriptor: 'EUSOUODU',
+    external_reference: `passe:${Date.now()}`,
+  };
+  const j = await mp('/checkout/preferences', { method: 'POST', body: JSON.stringify(pref) });
+  return res.status(200).json({ url: j.init_point });
+}
+
+async function passeLink(req, res) {
+  if (req.method !== 'POST') return res.status(405).json({ erro: 'use POST' });
+  const email = emailDe(req);
+  if (!okEmail(email)) return res.status(400).json({ erro: 'Confira o e-mail: falta algo como nome@email.com.' });
+  const u = await lerUser(email);
+  if (u) { try { await enviarEmail({ para: email, ...emailEntradaPasse(u) }); } catch (e) { console.error('link passe', e.message); } }
+  return res.status(200).json({ ok: true }); // mesma resposta exista ou não a conta
+}
+
+// Estado do passe: a central usa para desenhar a tela, e cada app usa (servidor a servidor) para saber se libera
+async function passe(req, res) {
+  const email = quem(req);
+  if (!email) return res.status(401).json({ erro: 'Sessão expirada. Peça um link novo para entrar.' });
+  const u = await lerUser(email);
+  if (!u) return res.status(401).json({ erro: 'Conta não encontrada.' });
+  const ativo = passeAtivo(u);
+  const out = { email, ativo, nome: u.perfil?.nome || '', until: u.passe?.until || null, perfil: u.perfil || null, preco: PRECO_PASSE };
+  if (ativo) {
+    const rel = await redis('GET', K.passeRel(email, u.passe.ciclo));
+    out.relatorio = { usado: !!rel, em: rel ? Number(rel) : null };
+    out.usos = {};
+    for (const [app, lim] of Object.entries(PASSE_LIMITES)) out.usos[app] = { usados: Number(await redis('GET', K.passeUso(app, email, periodoUso(u, app))) || 0), limite: lim.n, por: lim.por };
+  }
+  return res.status(200).json(out);
+}
+
+// Conta um uso de um app com limite (dir = 1) ou devolve quando o app falhou (dir = -1)
+async function passeUsar(req, res, dir) {
+  if (req.method !== 'POST') return res.status(405).json({ erro: 'use POST' });
+  const app = String(corpo(req).app || '');
+  const lim = PASSE_LIMITES[app];
+  if (!lim) return res.status(400).json({ erro: 'app sem limite' });
+  const email = quem(req);
+  const u = email && await lerUser(email);
+  if (!passeAtivo(u)) return res.status(402).json({ erro: 'O Passe do céu não está ativo.' });
+  const k = K.passeUso(app, email, periodoUso(u, app));
+  if (dir < 0) { const n = Number(await redis('DECR', k)); if (n < 0) await redis('SET', k, '0'); return res.status(200).json({ ok: true }); }
+  const n = Number(await redis('INCR', k));
+  if (n === 1) await redis('EXPIRE', k, 40 * 86400);
+  if (n > lim.n) {
+    await redis('DECR', k);
+    const quando = lim.por === 'dia' ? 'amanhã' : 'quando você renovar o passe';
+    return res.status(429).json({ erro: `O passe já usou os ${lim.n} ${app === 'sonhos' ? 'sonhos deste ciclo' : 'julgamentos de hoje'}. Libera de novo ${quando}.`, usados: lim.n, limite: lim.n });
+  }
+  return res.status(200).json({ ok: true, email, usados: n, limite: lim.n });
+}
+
+// Passe de presente (e para testar, já que o Mercado Pago não deixa pagar para a própria conta). Protegido pela ADMIN_KEY.
+async function passeCortesia(req, res) {
+  if (req.method !== 'POST') return res.status(405).json({ erro: 'use POST' });
+  const b = corpo(req);
+  const okChave = [process.env.JORNADA_ADMIN_KEY, process.env.ADMIN_KEY].some(k => k && String(b.key || '') === k);
+  if (!okChave) return res.status(403).json({ erro: 'sem permissão' });
+  const email = emailDe(req);
+  if (!okEmail(email)) return res.status(400).json({ erro: 'Confira o e-mail.' });
+  const u = (await lerUser(email)) || { email, perfil: null, progresso: null, plano: null, criado: new Date().toISOString(), origem: 'passe' };
+  await ativarPasse(u, 'cortesia-' + Date.now(), 0);
+  if (b.avisar !== false) { try { await enviarEmail({ para: email, ...emailPasseAtivo(u) }); } catch (e) { console.error('cortesia passe', e.message); } }
+  return res.status(200).json({ ok: true, until: u.passe.until });
 }
