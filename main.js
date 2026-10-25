@@ -170,6 +170,7 @@
     semana: { nome: "A energia da semana", figura: "A Lua", ...lua },
     espelho: { nome: "Espelho de duas", figura: "O Espelho", pts: [[60, 40], [140, 80], [170, 150], [110, 205], [40, 140], [340, 40], [260, 80], [230, 150], [290, 205], [360, 140]], arestas: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 0], [5, 6], [6, 7], [7, 8], [8, 9], [9, 5], [2, 7]] },
     juri: { nome: "O Júri do céu", figura: "A Balança", pts: [[200, 30], [200, 215], [70, 70], [330, 70], [30, 150], [110, 150], [290, 150], [370, 150], [150, 215], [250, 215]], arestas: [[0, 1], [2, 3], [2, 4], [2, 5], [4, 5], [3, 6], [3, 7], [6, 7], [8, 9]] },
+    sonhos: { nome: "Sonhos no Mapa", figura: "A Mandala", pts: [[200, 120], [200, 25], [267, 53], [295, 120], [267, 187], [200, 215], [133, 187], [105, 120], [133, 53]], arestas: [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 1], [0, 1], [0, 3], [0, 5], [0, 7]] },
     leituras: { nome: "Leituras", figura: "O Livro", pts: [[50, 60], [125, 42], [200, 70], [275, 42], [350, 60], [350, 192], [275, 174], [200, 205], [125, 174], [50, 192]], arestas: [...seq(10), [9, 0], [2, 7]] },
     odisseia: { nome: "Odisseia", figura: "O Navio", pts: [[60, 160], [340, 160], [295, 212], [105, 212], [200, 160], [200, 25], [292, 135], [200, 135]], arestas: [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7]] },
     atendimento: { nome: "Com o Eduardo", figura: "O Encontro", pts: [[130, 85], [88, 145], [172, 145], [100, 212], [160, 212], [270, 85], [228, 145], [312, 145], [240, 212], [300, 212], [200, 40]], arestas: [[0, 1], [0, 2], [1, 3], [2, 4], [5, 6], [5, 7], [6, 8], [7, 9], [0, 10], [10, 5]] },
@@ -212,7 +213,7 @@
   if ("IntersectionObserver" in window) {
     if (!calma) {
       document.documentElement.classList.add("anima");
-      document.querySelectorAll(".guia h2, .guia .lead, .portas li, .cena .gigante, .cena .selo, .cena .lead, .trilha li, .precos div, .lista, .leitura, .oferta, .produto, .disco, .roda, .espelho-arte, .tribunal-arte, .semana, blockquote")
+      document.querySelectorAll(".guia h2, .guia .lead, .portas li, .cena .gigante, .cena .selo, .cena .lead, .trilha li, .precos div, .lista, .leitura, .oferta, .produto, .disco, .roda, .espelho-arte, .tribunal-arte, .sonhos-arte, .semana, blockquote")
         .forEach((el) => {
           el.classList.add("revelar");
           const irmaos = [...el.parentElement.children].filter((c) => c.tagName === el.tagName);
