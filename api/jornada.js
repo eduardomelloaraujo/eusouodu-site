@@ -4,7 +4,7 @@ import {
   temBanco, redis, K, okEmail, sessao, lerToken, lerUser, salvarUser, planoAtivo, planoPublico, unidadesPagas, conteudoJornadas,
   mp, atualizarAssinatura, refAssinatura, processarPix, enviarEmail, emailBoasVindas, emailEntrada, emailFimPasse,
   APP, SITE, PRECO_SEMANA, PRECO_MES,
-  PRECO_PASSE, PASSE_LIMITES, passeAtivo, planoDe, periodoUso, ativarPasse, emailEntradaPasse, emailPasseAtivo, emailFimPasseCeu,
+  PRECO_PASSE, PASSE_LIMITES, passeAtivo, planoDe, periodoUso, ativarPasse, emailEntradaPasse, emailPasseAtivo, emailFimPasseCeu, linkCentral,
 } from '../lib/jornada.mjs';
 
 export const config = { maxDuration: 60 };
@@ -464,5 +464,7 @@ async function passeCortesia(req, res) {
   const u = (await lerUser(email)) || { email, perfil: null, progresso: null, plano: null, criado: new Date().toISOString(), origem: 'passe' };
   await ativarPasse(u, 'cortesia-' + Date.now(), 0);
   if (b.avisar !== false) { try { await enviarEmail({ para: email, ...emailPasseAtivo(u) }); } catch (e) { console.error('cortesia passe', e.message); } }
-  return res.status(200).json({ ok: true, until: u.passe.until });
+  // na prévia, devolve o link de entrada para testar sem abrir o e-mail
+  const teste = process.env.VERCEL_ENV === 'preview' ? { link: linkCentral(email) } : {};
+  return res.status(200).json({ ok: true, until: u.passe.until, ...teste });
 }
