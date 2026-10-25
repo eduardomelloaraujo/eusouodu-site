@@ -12,7 +12,7 @@
 
   const PORTAS = [
     ["jornada", "A Jornada", "#8AB4FF"], ["musica", "Música Astral", "#FFB547"], ["espelho", "Espelho de duas", "#C9D6EE"], ["juri", "O Júri do céu", "#FF7A5C"],
-    ["semana", "A energia da semana", "#B9A6FF"], ["leituras", "Mitologia e livros", "#FF8FB8"], ["odisseia", "Odisseia", "#5FE0C5"], ["atendimento", "Com o Eduardo", "#FFE2A0"],
+    ["sonhos", "Sonhos no Mapa", "#C7A8FF"], ["semana", "A energia da semana", "#B9A6FF"], ["leituras", "Mitologia e livros", "#FF8FB8"], ["odisseia", "Odisseia", "#5FE0C5"], ["atendimento", "Com o Eduardo", "#FFE2A0"],
   ];
 
   // Arrival: eight doors orbiting today's Moon, like a planetarium console.
@@ -48,6 +48,7 @@
     musica: { pts: [[20, 120], [68, 62], [116, 120], [164, 178], [212, 120], [260, 62], [308, 120], [356, 178]], arestas: seq(8) },
     espelho: { pts: [[60, 40], [140, 80], [170, 150], [110, 205], [40, 140], [340, 40], [260, 80], [230, 150], [290, 205], [360, 140]], arestas: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 0], [5, 6], [6, 7], [7, 8], [8, 9], [9, 5], [2, 7]] },
     juri: { pts: [[200, 30], [200, 215], [70, 70], [330, 70], [30, 150], [110, 150], [290, 150], [370, 150], [150, 215], [250, 215]], arestas: [[0, 1], [2, 3], [2, 4], [2, 5], [4, 5], [3, 6], [3, 7], [6, 7], [8, 9]] },
+    sonhos: { pts: [[200, 120], [200, 25], [267, 53], [295, 120], [267, 187], [200, 215], [133, 187], [105, 120], [133, 53]], arestas: [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 1], [0, 1], [0, 3], [0, 5], [0, 7]] },
     semana: lua,
     leituras: { pts: [[50, 60], [125, 42], [200, 70], [275, 42], [350, 60], [350, 192], [275, 174], [200, 205], [125, 174], [50, 192]], arestas: [...seq(10), [9, 0], [2, 7]] },
     odisseia: { pts: [[60, 160], [340, 160], [295, 212], [105, 212], [200, 160], [200, 25], [292, 135], [200, 135]], arestas: [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7]] },
@@ -72,7 +73,7 @@
       li.classList.toggle("atual", j === i);
       j === i ? li.firstChild.setAttribute("aria-current", "location") : li.firstChild.removeAttribute("aria-current");
     });
-    texto.textContent = `Porta ${String(i + 1).padStart(2, "0")} de 08 · ${nome}`;
+    texto.textContent = `Porta ${String(i + 1).padStart(2, "0")} de ${String(PORTAS.length).padStart(2, "0")} · ${nome}`;
     document.documentElement.style.setProperty("--tom", cor);
   }
   if ("IntersectionObserver" in window) {
