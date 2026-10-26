@@ -84,7 +84,7 @@
       el.append(nome, svg, num);
       faixa.append(el);
     }
-    for (const id of ["semana-lua-bloco", "semana-leitura"]) document.getElementById(id).hidden = false;
+    for (const id of ["semana-lua-bloco"]) document.getElementById(id).hidden = false;
   }).catch(() => {});
 
   // Música Astral: the chart as a record.
