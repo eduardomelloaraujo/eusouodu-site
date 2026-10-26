@@ -64,6 +64,7 @@
   if (document.getElementById("semana-luas")) fetch("/semana.json?t=" + Date.now(), { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((s) => {
     if (!s || !s.titulo || s.inicio > daquiDoisDias || s.fim < hojeBA) return;
     document.getElementById("semana-t").textContent = s.rotuloDatas + ".";
+    document.getElementById("semana-lua-datas").textContent = s.rotuloDatas;
     document.getElementById("semana-titulo").textContent = s.titulo;
     document.getElementById("semana-corpo").innerHTML = s.paragrafos.map((p) => `<p>${esc(p)}</p>`).join("");
     if (s.instagram) document.getElementById("semana-insta").href = s.instagram;
@@ -83,7 +84,7 @@
       el.append(nome, svg, num);
       faixa.append(el);
     }
-    for (const id of ["semana-luas", "semana-nota", "semana-leitura"]) document.getElementById(id).hidden = false;
+    for (const id of ["semana-lua-bloco", "semana-leitura"]) document.getElementById(id).hidden = false;
   }).catch(() => {});
 
   // Música Astral: the chart as a record.

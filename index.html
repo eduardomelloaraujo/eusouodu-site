@@ -78,6 +78,11 @@
       <p class="lua-hoje" id="ceu-agora-lua"></p>
       <ol class="posicoes" id="ceu-agora-posicoes"></ol>
     </div>
+    <div class="lua-semana" id="semana-lua-bloco" hidden>
+      <p class="selo"><b>A Lua desta semana</b><span id="semana-lua-datas"></span></p>
+      <div class="semana" id="semana-luas" aria-label="A Lua de cada dia da semana, como aparece no hemisfério sul"></div>
+      <p class="nota" id="semana-nota">A Lua de cada dia, desenhada como aparece no céu do hemisfério sul.</p>
+    </div>
   </section>
 
   <section class="cena" id="jornada" data-tom="jornada" aria-labelledby="jornada-t">
@@ -174,8 +179,6 @@
   <section class="cena" id="semana" data-tom="semana" aria-labelledby="semana-t">
     <h2 id="semana-t" class="gigante">A energia da semana.</h2>
     <p class="selo"><b>Toda semana</b>A energia astrológica dos próximos dias</p>
-    <div class="semana" id="semana-luas" hidden aria-label="A Lua de cada dia da semana, como aparece no hemisfério sul"></div>
-    <p class="nota" id="semana-nota" hidden>A Lua de cada dia, desenhada como aparece no céu do hemisfério sul.</p>
 
     <!-- filled from semana.json, the only file that changes every week -->
     <article class="leitura" id="semana-leitura" hidden>
