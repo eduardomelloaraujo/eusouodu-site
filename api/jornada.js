@@ -4,7 +4,7 @@ import {
   temBanco, redis, K, okEmail, sessao, lerToken, lerUser, salvarUser, planoAtivo, planoPublico, unidadesPagas, conteudoJornadas,
   mp, atualizarAssinatura, refAssinatura, processarPix, enviarEmail, emailBoasVindas, emailEntrada, emailFimPasse,
   APP, SITE, PRECO_SEMANA, PRECO_MES,
-  PRECO_PASSE, PASSE_LIMITES, passeAtivo, planoDe, periodoUso, ativarPasse, emailEntradaPasse, emailPasseAtivo, emailFimPasseCeu, linkCentral,
+  PRECO_PASSE, CUPOM_ODISSEIA, PASSE_LIMITES, passeAtivo, planoDe, periodoUso, ativarPasse, emailEntradaPasse, emailPasseAtivo, emailFimPasseCeu, linkCentral,
 } from '../lib/jornada.mjs';
 
 export const config = { maxDuration: 60 };
@@ -424,6 +424,7 @@ async function passe(req, res) {
   const out = { email, ativo, nome: u.perfil?.nome || '', until: u.passe?.until || null, perfil: u.perfil || null, preco: PRECO_PASSE };
   if (ativo) {
     const rel = await redis('GET', K.passeRel(email, u.passe.ciclo));
+    out.cupom = CUPOM_ODISSEIA;
     out.relatorio = { usado: !!rel, em: rel ? Number(rel) : null };
     out.usos = {};
     for (const [app, lim] of Object.entries(PASSE_LIMITES)) out.usos[app] = { usados: Number(await redis('GET', K.passeUso(app, email, periodoUso(u, app))) || 0), limite: lim.n, por: lim.por };

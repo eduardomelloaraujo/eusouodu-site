@@ -43,6 +43,12 @@ h2 { font-size: 26px; line-height: 1.15; letter-spacing: -.02em; margin: 40px 0 
 .app .antes { margin-left: auto; flex: none; text-align: right; color: var(--luz-3); font-size: 13px; }
 .app .antes s { display: block; }
 .app .seta { margin-left: auto; flex: none; color: var(--luz-3); font-size: 20px; }
+.bonus { margin: 0 0 18px; padding: 18px 20px; border-radius: 18px; border: 1px solid rgba(95,224,197,.55); background: rgba(95,224,197,.08); display: flex; gap: 14px; align-items: flex-start; }
+.bonus .selo { flex: none; padding: 6px 10px; border-radius: 10px; background: #5FE0C5; color: var(--cupula); font-weight: 800; font-size: 18px; letter-spacing: -.02em; }
+.bonus b { display: block; margin-bottom: 2px; }
+.bonus p { color: var(--luz-2); font-size: 15px; margin: 0; }
+.bonus code { font: inherit; font-weight: 800; color: #5FE0C5; letter-spacing: .04em; }
+.bonus .botao { margin-top: 12px; padding: 12px; font-size: 16px; background: #5FE0C5; }
 .relatorio { margin: 8px 0 0; padding: 20px; border-radius: 18px; border: 1px solid rgba(185,166,255,.5); background: rgba(185,166,255,.08); }
 .relatorio h3 { font-size: 20px; margin-bottom: 6px; }
 .relatorio p { color: var(--luz-2); font-size: 15px; margin-bottom: 14px; }
@@ -82,6 +88,10 @@ h2 { font-size: 26px; line-height: 1.15; letter-spacing: -.02em; margin: 40px 0 
       <strong>R$ 127</strong> <small>por 30 dias</small>
       <p>No Pix ou no cartão. Não renova sozinho: perto do fim chega um e-mail, e você decide.</p>
     </div>
+    <div class="bonus" style="--cor:#5FE0C5">
+      <span class="selo">-20%</span>
+      <div><b>Bônus do passe: 20% na Odisseia, o Retorno</b><p>O curso em vídeo, em doze episódios, é à parte. Quem tem o passe ganha 20% de desconto nele, com um cupom que aparece na sua central.</p></div>
+    </div>
     <div id="avisoVenda" class="aviso" hidden></div>
     <form class="folha" id="fAssinar" novalidate>
       <div class="campo"><label for="emailAssinar">Seu e-mail</label><input id="emailAssinar" type="email" autocomplete="email" inputmode="email" placeholder="nome@email.com" required></div>
@@ -114,6 +124,7 @@ h2 { font-size: 26px; line-height: 1.15; letter-spacing: -.02em; margin: 40px 0 
       <details><summary>Preciso criar senha?</summary><p>Não. Você entra com o e-mail e recebe um link para abrir. É o mesmo acesso da Jornada: se você já tem, é só usar o mesmo e-mail.</p></details>
       <details><summary>E nos apps, como eles sabem que eu assino?</summary><p>Você abre cada app pela sua central. Daí em diante, o app lembra de você neste celular.</p></details>
       <details><summary>Quantos relatórios do mês eu tenho?</summary><p>Um a cada passe de 30 dias. O seguinte libera quando você renovar.</p></details>
+      <details><summary>A Odisseia entra no passe?</summary><p>Não: a Odisseia, o Retorno é um curso à parte, na Hotmart. Mas quem tem o passe ganha 20% de desconto nela, com o cupom da central.</p></details>
       <details><summary>E se eu me arrepender?</summary><p>Até 7 dias depois da compra, o valor volta inteiro. É só escrever para falecom@eusouodu.com.</p></details>
     </div>
     <div style="margin-top:28px"><a class="botao" href="#fAssinar" id="subir">Assinar por R$ 127</a></div>
@@ -145,6 +156,12 @@ h2 { font-size: 26px; line-height: 1.15; letter-spacing: -.02em; margin: 40px 0 
         <button class="botao" id="relBotao">Emitir meu relatório do mês</button>
         <p class="erro" id="eRel" role="alert"></p>
       </form>
+    </div>
+
+    <h2>Seu bônus</h2>
+    <div class="bonus">
+      <span class="selo">-20%</span>
+      <div><b>20% na Odisseia, o Retorno</b><p>O curso em vídeo em doze episódios, com o cupom <code id="cupom"></code>.</p><a class="botao" id="cupomLink" href="https://pay.hotmart.com/T107852297P" target="_blank" rel="noopener">Usar o desconto na Hotmart</a></div>
     </div>
 
     <h2>Seus apps</h2>

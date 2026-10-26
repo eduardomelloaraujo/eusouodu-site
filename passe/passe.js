@@ -74,6 +74,8 @@
     const e = estado, nome = (e.nome || '').split(/\s+/)[0];
     $('oi').textContent = nome ? `Oi, ${nome}. Tudo aberto.` : 'Tudo aberto.';
     $('ate').textContent = 'vale até ' + quando(e.until);
+    // o cupom da Odisseia só vem do servidor para quem tem o passe ativo
+    if (e.cupom) { $('cupom').textContent = e.cupom; $('cupomLink').href = 'https://pay.hotmart.com/T107852297P?offDiscount=' + encodeURIComponent(e.cupom); }
     $('quem').textContent = e.email;
     const s = e.usos && e.usos.sonhos, j = e.usos && e.usos.juri;
     if (s) $('usoSonhos').textContent = `${s.usados} de ${s.limite} sonhos usados neste passe`;
