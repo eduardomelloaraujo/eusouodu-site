@@ -57,11 +57,12 @@
   document.querySelectorAll('link[rel="icon"]').forEach((l) => l.remove());
   document.head.append(favicon);
 
-  // The week comes from semana.json and only shows while it covers today (Bahia time), never a past week.
+  // The week comes from semana.json and shows while it covers today (Bahia time), or from two days before it starts; never a past week.
   const hojeBA = new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 10);
+  const daquiDoisDias = new Date(Date.now() - 3 * 3600e3 + 2 * 864e5).toISOString().slice(0, 10);
   const esc = (t) => String(t).replace(/[&<>"]/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[m]));
   if (document.getElementById("semana-luas")) fetch("/semana.json?t=" + Date.now(), { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((s) => {
-    if (!s || !s.titulo || s.inicio > hojeBA || s.fim < hojeBA) return;
+    if (!s || !s.titulo || s.inicio > daquiDoisDias || s.fim < hojeBA) return;
     document.getElementById("semana-t").textContent = s.rotuloDatas + ".";
     document.getElementById("semana-titulo").textContent = s.titulo;
     document.getElementById("semana-corpo").innerHTML = s.paragrafos.map((p) => `<p>${esc(p)}</p>`).join("");
