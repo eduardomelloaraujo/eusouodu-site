@@ -3,6 +3,10 @@
   "outputDirectory": ".",
   "routes": [
     {
+      "src": "/api/leitura",
+      "dest": "/api/jornada?leitura=1"
+    },
+    {
       "src": "/lib/(.*)",
       "status": 307,
       "headers": {
@@ -77,9 +81,6 @@
       "includeFiles": "{musica/motor.js,musica/catalogo.json,lib/vendor/**}"
     },
     "api/jornada.js": {
-      "includeFiles": "lib/jornada/**"
-    },
-    "api/leitura.js": {
       "includeFiles": "lib/jornada/**"
     }
   },

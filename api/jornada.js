@@ -6,6 +6,7 @@ import {
   APP, SITE, PRECO_SEMANA, PRECO_MES,
   PRECO_PASSE, CUPOM_ODISSEIA, PASSE_LIMITES, passeAtivo, planoDe, periodoUso, ativarPasse, emailEntradaPasse, emailPasseAtivo, emailFimPasseCeu, linkCentral,
 } from '../lib/jornada.mjs';
+import leitura from '../lib/leitura-api.mjs';
 
 export const config = { maxDuration: 60 };
 
@@ -56,6 +57,7 @@ const CARTAO_NO_APP = false;
 const MP_PUBLIC = process.env.MP_PUBLIC_KEY || 'APP_USR-22d3eeb4-e031-4907-ad43-d0c6e4632b54';
 
 export default async function handler(req, res) {
+  if ((req.query || {}).leitura) return leitura(req, res); // /api/leitura, ver vercel.json
   const a = String((req.query || {}).a || '');
   res.setHeader('cache-control', 'no-store');
   try {
