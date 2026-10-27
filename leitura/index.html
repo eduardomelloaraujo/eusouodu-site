@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>O seu mapa fala · eusouodu</title>
+<meta name="description" content="O mapa natal aberto na tela: toque no Vênus, na Lua, numa casa ou num aspecto, e ele mesmo explica o que significa no seu mapa e o que o céu de agora está fazendo com ele.">
+<meta property="og:title" content="O seu mapa fala · eusouodu">
+<meta property="og:description" content="Toque num planeta do seu mapa e ele explica, em voz alta, o que significa.">
+<meta name="theme-color" content="#05060A">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preload" href="/fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+<style>
+.envelope { max-width: 1360px; margin: 0 auto; padding-inline: var(--margem); }
+main h1, main h2 { letter-spacing: -.04em; font-weight: 650; line-height: 1; }
+main h1 em, main h2 em { font-style: normal; color: var(--cor); }
+.rotulo { font-size: 15px; font-weight: 500; color: var(--luz-2); }
+[hidden] { display: none !important; }
+
+/* entrada */
+.entrada { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(40px, 6vw, 96px); align-items: center; padding-block: clamp(48px, 9vh, 110px); }
+.entrada h1 { font-size: clamp(48px, 7vw, 96px); }
+.entrada .lead { margin-top: 28px; max-width: 34em; font-size: clamp(17px, 1.6vw, 20px); color: var(--luz-2); }
+.entrada ul { margin: 28px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; color: var(--luz-2); font-size: 16px; }
+.entrada li::before { content: "✦\FE0E"; color: var(--cor); margin-right: 10px; }
+form { display: flex; flex-direction: column; gap: 20px; }
+.cartao { border: 1px solid var(--linha); border-radius: 28px; padding: clamp(22px, 3vw, 32px); background: rgba(245, 243, 238, .03); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.campo { display: flex; flex-direction: column; gap: 8px; position: relative; }
+.campo label { font-size: 14px; font-weight: 500; color: var(--luz-2); }
+.campo input { font: inherit; font-size: 17px; padding: 14px 16px; border: 1px solid var(--linha); background: rgba(245, 243, 238, .04); color: var(--luz); border-radius: 14px; width: 100%; }
+.campo input:focus { outline: none; border-color: var(--cor); }
+.campo .ajuda { font-size: 14px; color: var(--luz-3); }
+.dupla { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.dupla > * { min-width: 0; }
+.sugestoes { position: absolute; top: calc(100% - 22px); left: 0; right: 0; background: #11131C; border: 1px solid var(--linha); border-radius: 14px; z-index: 5; max-height: 260px; overflow: auto; box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+.sugestoes button { display: block; width: 100%; text-align: left; font: inherit; font-size: 15px; padding: 12px 16px; border: 0; background: none; cursor: pointer; color: var(--luz); }
+.sugestoes button:hover, .sugestoes button:focus { background: rgba(245,243,238,.07); outline: none; }
+.sugestoes small { color: var(--luz-3); }
+button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; cursor: pointer; align-self: flex-start; }
+.botao[disabled] { opacity: .6; cursor: wait; }
+.erro { color: #FF9A8C; font-size: 15px; min-height: 1em; }
+.aviso { border: 1px solid var(--cor); border-radius: 18px; padding: 16px 18px; color: var(--luz); background: color-mix(in srgb, var(--cor) 10%, transparent); }
+.link { background: none; border: 0; font: inherit; color: var(--luz-2); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 0; align-self: flex-start; }
+.aceite { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; color: var(--luz-2); line-height: 1.55; }
+.aceite input { margin-top: 3px; accent-color: var(--cor); width: 18px; height: 18px; flex: none; }
+
+/* o mapa */
+.leitura { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 64px); align-items: start; padding-block: 24px 80px; }
+.quem { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+.quem h1 { font-size: clamp(32px, 4vw, 52px); }
+.quem p { color: var(--luz-3); font-size: 14px; }
+#roda { width: 100%; height: auto; display: block; touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+#roda .signo text { font-size: 19px; text-anchor: middle; dominant-baseline: central; }
+#roda .alvo { cursor: pointer; }
+#roda .alvo:focus { outline: none; }
+#roda .casa path { fill: transparent; transition: fill .3s; }
+#roda .casa:hover path, #roda .casa.ativo path { fill: color-mix(in srgb, var(--cor) 9%, transparent); }
+#roda .casa text { font-size: 12px; fill: var(--luz-3); text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+#roda .astro circle.fundo { fill: var(--cupula); stroke: var(--linha); transition: stroke .3s, fill .3s; }
+#roda .astro text { font-size: 19px; fill: var(--luz); text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+#roda .astro:hover circle.fundo, #roda .astro:focus-visible circle.fundo { stroke: var(--cor); }
+#roda .astro.ativo circle.fundo { fill: color-mix(in srgb, var(--cor) 30%, var(--cupula)); stroke: var(--cor); }
+#roda .astro .halo { fill: var(--cor); opacity: 0; transition: opacity .3s; pointer-events: none; }
+#roda .astro.ativo .halo { opacity: .28; }
+#roda .astro.fechado text { fill: var(--luz-3); }
+#roda .aspecto line.ver { stroke-width: 1.2; stroke-opacity: .55; transition: stroke-opacity .3s, stroke-width .3s; pointer-events: none; }
+#roda .aspecto line.toque { stroke: transparent; stroke-width: 12; }
+#roda .aspecto:hover line.ver, #roda .aspecto.ativo line.ver { stroke-opacity: 1; stroke-width: 2.4; }
+.grupos { margin-top: 22px; display: grid; gap: 16px; }
+.grupo p { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--luz-3); margin-bottom: 8px; }
+.fichas { display: flex; flex-wrap: wrap; gap: 6px; }
+.ficha { font: inherit; font-size: 14px; color: var(--luz-2); background: rgba(245,243,238,.04); border: 1px solid var(--linha); border-radius: 999px; padding: 7px 12px; cursor: pointer; transition: border-color .2s, color .2s; }
+.ficha:hover { color: var(--luz); border-color: rgba(245,243,238,.35); }
+.ficha.ativo { color: var(--cupula); background: var(--cor); border-color: var(--cor); }
+.ficha.fechado::after { content: " ·\00a0🔒\FE0E"; font-size: 11px; opacity: .6; }
+
+.palco { position: sticky; top: 16px; }
+.orbe-linha { display: flex; gap: 18px; align-items: center; }
+.orbe { width: 84px; height: 84px; border-radius: 50%; flex: none; display: grid; place-items: center; font-size: 38px; color: var(--cupula); background: radial-gradient(circle at 35% 30%, #fff, var(--cor) 55%, color-mix(in srgb, var(--cor) 40%, #000)); box-shadow: 0 0 calc(18px + var(--vol, 0) * 70px) calc(2px + var(--vol, 0) * 18px) var(--cor); transform: scale(calc(1 + var(--vol, 0) * .18)); transition: transform .08s linear, box-shadow .08s linear; }
+.palco h2 { font-size: clamp(30px, 3.4vw, 44px); }
+.palco .sub { color: var(--luz-3); font-size: 15px; margin-top: 6px; }
+.acoes-fala { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.acoes-fala button { font: inherit; font-size: 15px; font-weight: 600; border-radius: 999px; padding: 11px 18px; cursor: pointer; border: 1px solid var(--linha); background: rgba(245,243,238,.05); color: var(--luz); }
+.acoes-fala button.forte { background: var(--luz); color: var(--cupula); border-color: var(--luz); }
+.acoes-fala button[disabled] { opacity: .6; cursor: wait; }
+.legenda { margin-top: 20px; font-size: 19px; line-height: 1.5; color: var(--luz); border-left: 2px solid var(--cor); padding-left: 16px; }
+.base { margin-top: 26px; color: var(--luz-2); line-height: 1.6; display: grid; gap: 10px; max-height: 46vh; overflow: auto; padding-right: 6px; }
+.base p { font-size: 16px; margin: 0; }
+.base h3 { color: var(--luz); font-size: 17px; font-weight: 600; margin: 10px 0 0; }
+.base .q { color: var(--cor); font-weight: 500; }
+.trava { margin-top: 24px; }
+.trava h3 { font-size: 24px; letter-spacing: -.02em; margin-bottom: 10px; }
+.trava p { color: var(--luz-2); margin: 0; font-size: 16px; }
+.trava .preco { font-size: 44px; font-weight: 650; letter-spacing: -.03em; color: var(--luz); margin: 18px 0 2px; }
+.trava form { margin-top: 18px; }
+.rodape-leitura { color: var(--luz-3); font-size: 13px; margin-top: 18px; }
+
+@media (max-width: 920px) {
+  .entrada, .leitura { grid-template-columns: 1fr; }
+  .palco { position: static; }
+  /* no celular, quem fala aparece logo abaixo da roda, antes das fichas */
+  .leitura { gap: 24px; }
+  .leitura > div { display: contents; }
+  .palco { order: 1; } #grupos { order: 2; margin-top: 0; }
+  .base { max-height: none; }
+}
+@media (max-width: 480px) { .dupla { grid-template-columns: 1fr; } .orbe { width: 64px; height: 64px; font-size: 30px; } }
+@media (prefers-reduced-motion: reduce) { .orbe { transition: none; transform: none; } }
+</style>
+</head>
+<body data-tom="semana">
+<div id="nebulosa" aria-hidden="true"></div>
+<canvas id="ceu" aria-hidden="true"></canvas>
+<header class="topo">
+  <a class="marca" href="/" aria-label="eusouodu, início">eusouodu</a>
+  <nav aria-label="Principal"><a href="/">Voltar ao site</a></nav>
+</header>
+<main>
+  <section class="envelope entrada" id="entrada">
+    <div>
+      <h1>O seu mapa <em>fala</em>.</h1>
+      <p class="lead">O mapa natal aberto na tela. Toque no Vênus, na Lua, numa casa ou numa quadratura, e o próprio ponto explica, em voz alta, o que ele significa no seu mapa e o que o céu de agora está fazendo com ele.</p>
+      <ul>
+        <li>Os dez planetas, os nodos e a Roda da Fortuna</li>
+        <li>Ascendente, Meio do Céu, Fundo do Céu e as doze casas</li>
+        <li>Conjunções, sextis, quadraturas, trígonos e oposições</li>
+        <li>O trânsito de cada planeta, hoje e nos próximos meses</li>
+      </ul>
+    </div>
+    <div class="cartao">
+      <p class="aviso" id="avisoEntrada" hidden></p>
+      <form id="fMapa" novalidate>
+        <div class="campo"><label for="nome">Nome</label><input id="nome" autocomplete="name" required></div>
+        <div class="dupla">
+          <div class="campo"><label for="data">Data de nascimento</label><input id="data" type="date" min="1900-01-01" required></div>
+          <div class="campo"><label for="hora">Hora de nascimento</label><input id="hora" type="time" required></div>
+        </div>
+        <div class="campo">
+          <label for="cidade">Cidade de nascimento</label>
+          <input id="cidade" autocomplete="off" placeholder="Digite e escolha na lista" required aria-autocomplete="list" aria-controls="sugestoes">
+          <div class="sugestoes" id="sugestoes" hidden></div>
+          <span class="ajuda" id="cidadeOk">A cidade define o fuso e a posição exata das casas.</span>
+        </div>
+        <p class="erro" id="eMapa" role="alert"></p>
+        <button class="botao" id="bMapa" type="submit">Abrir o meu mapa</button>
+        <button class="link" type="button" id="jaComprei">Já comprei: receber o link de novo</button>
+      </form>
+      <form id="fLink" novalidate hidden>
+        <div class="campo"><label for="emailLink">E-mail usado na compra</label><input id="emailLink" type="email" autocomplete="email" inputmode="email" required></div>
+        <p class="erro" id="eLink" role="alert"></p>
+        <button class="botao" id="bLink" type="submit">Mandar o link</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="envelope leitura" id="leitura" hidden>
+    <div>
+      <div class="quem"><h1 id="titulo">O mapa</h1><p id="dados"></p></div>
+      <svg id="roda" viewBox="-300 -300 600 600" role="group" aria-label="Roda do mapa natal"></svg>
+      <div class="grupos" id="grupos"></div>
+    </div>
+    <aside class="palco" id="palco" aria-live="polite">
+      <div class="orbe-linha"><div class="orbe" id="orbe" aria-hidden="true">☉&#xFE0E;</div><div><h2 id="pTitulo"></h2><p class="sub" id="pSub"></p></div></div>
+      <div class="acoes-fala" id="acoes">
+        <button class="forte" id="bOuvir" type="button">Ouvir</button>
+        <button id="bTransito" type="button">E o céu de agora?</button>
+        <button id="bParar" type="button" hidden>Parar</button>
+      </div>
+      <p class="legenda" id="legenda" hidden></p>
+      <div class="base" id="base"></div>
+      <div class="trava" id="trava" hidden>
+        <h3>Este ponto abre com o mapa inteiro.</h3>
+        <p>O Sol fala de graça. Os outros planetas, os nodos, a Roda da Fortuna, os ângulos, as doze casas e todos os aspectos falam com a leitura completa, e ela fica guardada para consultar quando quiser durante seis meses.</p>
+        <p class="preco" id="preco"></p>
+        <p class="rotulo">pagamento único · 6 meses de acesso</p>
+        <form id="fComprar" novalidate>
+          <div class="campo"><label for="email">E-mail para receber o acesso</label><input id="email" type="email" autocomplete="email" inputmode="email" required></div>
+          <label class="aceite"><input type="checkbox" id="aceite"><span>Entendo que esta leitura é aconselhamento simbólico, que aponta tendências e não destinos, e que as decisões são minhas.</span></label>
+          <p class="erro" id="eComprar" role="alert"></p>
+          <button class="botao" id="bComprar" type="submit">Abrir o mapa inteiro</button>
+          <p class="rodape-leitura">Pagamento pelo Mercado Pago, com Pix ou cartão. O link de acesso chega no e-mail logo depois da confirmação.</p>
+        </form>
+      </div>
+    </aside>
+  </section>
+</main>
+<footer class="rodape">
+  <a class="marca" href="/">eusouodu</a>
+  <nav aria-label="Contato">
+    <a href="mailto:falecom@eusouodu.com">falecom@eusouodu.com</a>
+    <a href="/privacidade/">Privacidade</a>
+    <a href="/termos/">Termos</a>
+  </nav>
+</footer>
+<script src="/leitura/leitura.js"></script>
+<script src="/main.js"></script>
+</body>
+</html>

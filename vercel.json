@@ -78,6 +78,9 @@
     },
     "api/jornada.js": {
       "includeFiles": "lib/jornada/**"
+    },
+    "api/leitura.js": {
+      "includeFiles": "lib/jornada/**"
     }
   },
   "crons": [
