@@ -23,7 +23,7 @@ function pacote(p, aberto) {
   const m = calcular(p), idx = indice(m), textos = {};
   for (const id of [...idx.planetas, ...idx.pontos, ...idx.casas, ...idx.aspectos]) {
     const it = item(m, id);
-    textos[id] = aberto || id === GRATIS ? { titulo: it.titulo, sub: it.sub, base: it.base, pergunta: it.pergunta, temTransito: !!it.transito } : { titulo: it.titulo, sub: it.sub, fechado: true };
+    textos[id] = aberto || id === GRATIS ? { titulo: it.titulo, sub: it.sub, base: it.base, pergunta: it.pergunta, temTransito: !!it.transito, grau: it.grau, filosofia: it.filosofia, livros: it.livros } : { titulo: it.titulo, sub: it.sub, fechado: true };
   }
   return { mapa: m, indice: idx, textos };
 }

@@ -52,23 +52,61 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
 .quem { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
 .quem h1 { font-size: clamp(32px, 4vw, 52px); }
 .quem p { color: var(--luz-3); font-size: 14px; }
-#roda { width: 100%; height: auto; display: block; touch-action: manipulation; user-select: none; -webkit-user-select: none; }
-#roda .signo text { font-size: 19px; text-anchor: middle; dominant-baseline: central; }
+#roda { width: 100%; height: auto; display: block; touch-action: manipulation; user-select: none; -webkit-user-select: none; overflow: visible; filter: drop-shadow(0 30px 80px rgba(120, 90, 255, .12)); }
+#roda text { text-anchor: middle; dominant-baseline: central; }
+#roda .signo text { font-size: 18px; }
 #roda .alvo { cursor: pointer; }
 #roda .alvo:focus { outline: none; }
-#roda .casa path { fill: transparent; transition: fill .3s; }
-#roda .casa:hover path, #roda .casa.ativo path { fill: color-mix(in srgb, var(--cor) 9%, transparent); }
-#roda .casa text { font-size: 12px; fill: var(--luz-3); text-anchor: middle; dominant-baseline: central; pointer-events: none; }
-#roda .astro circle.fundo { fill: var(--cupula); stroke: var(--linha); transition: stroke .3s, fill .3s; }
-#roda .astro text { font-size: 19px; fill: var(--luz); text-anchor: middle; dominant-baseline: central; pointer-events: none; }
-#roda .astro:hover circle.fundo, #roda .astro:focus-visible circle.fundo { stroke: var(--cor); }
-#roda .astro.ativo circle.fundo { fill: color-mix(in srgb, var(--cor) 30%, var(--cupula)); stroke: var(--cor); }
-#roda .astro .halo { fill: var(--cor); opacity: 0; transition: opacity .3s; pointer-events: none; }
-#roda .astro.ativo .halo { opacity: .28; }
-#roda .astro.fechado text { fill: var(--luz-3); }
-#roda .aspecto line.ver { stroke-width: 1.2; stroke-opacity: .55; transition: stroke-opacity .3s, stroke-width .3s; pointer-events: none; }
+#roda .casa path { transition: fill-opacity .3s; }
+#roda .casa:hover path, #roda .casa.ativo path { fill: var(--cor); fill-opacity: .1 !important; }
+#roda .casa text { font-size: 11px; fill: rgba(245,243,238,.42); pointer-events: none; font-weight: 500; }
+#roda .casa.ativo text { fill: var(--luz); }
+#roda .eixo { stroke: #FFE2A0; stroke-width: 1.3; stroke-opacity: .55; }
+#roda .eixo.horizonte { stroke-dasharray: none; }
+#roda .eixo.meridiano { stroke-dasharray: 2 4; }
+#roda .raio-sol { stroke: #FFC75A; stroke-width: 1; stroke-opacity: .35; stroke-dasharray: 1 3; }
+#roda .raio-ativo { stroke-width: 1.4; opacity: 0; transition: opacity .3s; filter: url(#brilhoFraco); }
+#roda .astro circle.fundo { fill: #0B0C16; stroke: var(--pc); stroke-opacity: .5; stroke-width: 1.2; transition: stroke-opacity .3s, fill .3s; }
+#roda .astro .glifo { font-size: 18px; fill: var(--pc); pointer-events: none; }
+#roda .astro .sigla { font-size: 10.5px; font-weight: 700; letter-spacing: .04em; }
+#roda .astro .grau { font-size: 9.5px; fill: rgba(245,243,238,.55); pointer-events: none; font-variant-numeric: tabular-nums; }
+#roda .astro .halo { fill: var(--pc); opacity: .0; transition: opacity .35s; pointer-events: none; }
+#roda .astro:hover circle.fundo, #roda .astro:focus-visible circle.fundo { stroke-opacity: 1; }
+#roda .astro:hover .halo { opacity: .18; }
+#roda .astro.ativo .halo { opacity: .45; }
+#roda .astro.ativo circle.fundo { fill: color-mix(in srgb, var(--pc) 22%, #0B0C16); stroke-opacity: 1; }
+#roda .astro.fechado .glifo { opacity: .55; }
+#roda .aspecto line.ver { stroke-width: 1.1; stroke-opacity: .5; transition: stroke-opacity .35s, stroke-width .35s; pointer-events: none; }
 #roda .aspecto line.toque { stroke: transparent; stroke-width: 12; }
-#roda .aspecto:hover line.ver, #roda .aspecto.ativo line.ver { stroke-opacity: 1; stroke-width: 2.4; }
+#roda .aspecto:hover line.ver { stroke-opacity: .95; stroke-width: 2; }
+#roda.foco .aspecto line.ver { stroke-opacity: .1; }
+#roda.foco .aspecto.ligado line.ver, #roda .aspecto.ativo line.ver { stroke-opacity: 1; stroke-width: 2.2; }
+/* entrada da roda: o céu se acende de fora para dentro */
+#roda.entrou .c-zod, #roda.entrou .c-casas { animation: girar 1.4s cubic-bezier(.2,.7,.2,1) both; transform-origin: 0 0; }
+#roda.entrou .c-asp line.ver:not([stroke-dasharray="3 5"]) { stroke-dashoffset: var(--len); animation: tracar 1.6s .7s ease-out forwards; }
+#roda.entrou .c-linhas { animation: surgir 1s .5s both; }
+#roda.entrou .astro { animation: surgir .6s calc(.6s + var(--atraso, 0ms)) both; }
+@keyframes girar { from { opacity: 0; transform: rotate(-24deg) scale(.94); } }
+@keyframes tracar { to { stroke-dashoffset: 0; } }
+@keyframes surgir { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { #roda.entrou * { animation: none !important; stroke-dashoffset: 0 !important; } }
+.legenda-asp { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; font-size: 12.5px; color: var(--luz-3); justify-content: center; }
+.legenda-asp span::before { content: ""; display: inline-block; width: 16px; height: 2px; background: var(--c); vertical-align: middle; margin-right: 6px; border-radius: 2px; }
+.ficha-grau { margin-top: 24px; display: flex; gap: 22px; align-items: center; border: 1px solid color-mix(in srgb, var(--cor) 35%, transparent); border-radius: 22px; padding: 18px 20px; background: linear-gradient(135deg, color-mix(in srgb, var(--cor) 10%, transparent), transparent 70%); }
+.g-num { font-size: 64px; font-weight: 650; letter-spacing: -.05em; line-height: .9; color: var(--cor); font-variant-numeric: tabular-nums; }
+.g-num span { font-size: 22px; letter-spacing: 0; color: var(--luz-3); margin-left: 2px; }
+.ficha-grau dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 16px; margin: 0; flex: 1; }
+.ficha-grau dl .larga { grid-column: 1 / -1; }
+.ficha-grau dt { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--luz-3); font-weight: 600; }
+.ficha-grau dd { margin: 3px 0 0; font-size: 14.5px; color: var(--luz); line-height: 1.35; }
+.dupla-fichas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+.dupla-fichas > div { border: 1px solid var(--linha); border-radius: 22px; padding: 16px 18px; background: rgba(245,243,238,.025); }
+.dupla-fichas .rot { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--cor); font-weight: 600; margin: 0 0 8px; }
+.ficha-filo p:not(.rot) { margin: 0; font-size: 15px; line-height: 1.5; color: var(--luz-2); font-style: italic; }
+.ficha-livros ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.ficha-livros li { display: flex; flex-direction: column; font-size: 15px; line-height: 1.3; }
+.ficha-livros li b { font-weight: 600; color: var(--luz); }
+.ficha-livros li span { font-size: 13px; color: var(--luz-3); }
 .grupos { margin-top: 22px; display: grid; gap: 16px; }
 .grupo p { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--luz-3); margin-bottom: 8px; }
 .fichas { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -107,7 +145,7 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
   .palco { order: 1; } #grupos { order: 2; margin-top: 0; }
   .base { max-height: none; }
 }
-@media (max-width: 480px) { .dupla { grid-template-columns: 1fr; } .orbe { width: 64px; height: 64px; font-size: 30px; } }
+@media (max-width: 480px) { .dupla, .dupla-fichas { grid-template-columns: 1fr; } .ficha-grau { flex-direction: column; align-items: flex-start; } .ficha-grau dl { grid-template-columns: 1fr 1fr; } .orbe { width: 64px; height: 64px; font-size: 30px; } }
 @media (prefers-reduced-motion: reduce) { .orbe { transition: none; transform: none; } }
 </style>
 </head>
@@ -159,7 +197,8 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
   <section class="envelope leitura" id="leitura" hidden>
     <div>
       <div class="quem"><h1 id="titulo">O mapa</h1><p id="dados"></p></div>
-      <svg id="roda" viewBox="-300 -300 600 600" role="group" aria-label="Roda do mapa natal"></svg>
+      <svg id="roda" viewBox="-332 -332 664 664" role="group" aria-label="Roda do mapa natal"></svg>
+      <div class="legenda-asp" aria-hidden="true"><span style="--c:#FFE2A0">ângulos</span><span style="--c:#7FE8A8">trígono</span><span style="--c:#8AB4FF">sextil</span><span style="--c:#FF7A6B">quadratura</span><span style="--c:#FF9A5C">oposição</span></div>
       <div class="grupos" id="grupos"></div>
     </div>
     <aside class="palco" id="palco" aria-live="polite">
@@ -170,6 +209,8 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
         <button id="bParar" type="button" hidden>Parar</button>
       </div>
       <p class="legenda" id="legenda" hidden></p>
+      <div class="ficha-grau" id="ficha-grau" hidden></div>
+      <div class="dupla-fichas"><div class="ficha-filo" id="ficha-filo" hidden></div><div class="ficha-livros" id="ficha-livros" hidden></div></div>
       <div class="base" id="base"></div>
       <div class="trava" id="trava" hidden>
         <h3>Este ponto abre com o mapa inteiro.</h3>

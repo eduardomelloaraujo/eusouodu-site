@@ -10,6 +10,7 @@
   const GLIFO = { sol: '☉', lua: '☽', merc: '☿', venus: '♀', marte: '♂', jupiter: '♃', saturno: '♄', urano: '♅', netuno: '♆', plutao: '♇', nn: '☊', ns: '☋', fortuna: '⊗', asc: 'AC', mc: 'MC', fc: 'FC', dc: 'DC' };
   const SIGNOS = ['♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓'];
   const ELEM = ['#FF8A5B', '#A8D88E', '#9DB8FF', '#6FD3E0']; // fogo, terra, ar, água
+  const PCOR = { sol: '#FFC75A', lua: '#E6E9F2', merc: '#7FE0D0', venus: '#FF9EC4', marte: '#FF6B5A', jupiter: '#FFB06A', saturno: '#D9C49A', urano: '#7FD8FF', netuno: '#7FA8FF', plutao: '#C08AFF', nn: '#B9A6FF', ns: '#9A93B8', fortuna: '#FFE2A0', asc: '#FFE2A0', mc: '#FFE2A0', fc: '#FFE2A0', dc: '#FFE2A0' };
   const COR_ASP = { conjuncao: '#FFE2A0', sextil: '#8AB4FF', trigono: '#7FE8A8', quadratura: '#FF7A6B', oposicao: '#FF9A5C' };
   const GLIFO_ASP = { conjuncao: '☌', sextil: '⚹', quadratura: '□', trigono: '△', oposicao: '☍' };
   const NOME_CURTO = { sol: 'Sol', lua: 'Lua', merc: 'Mercúrio', venus: 'Vênus', marte: 'Marte', jupiter: 'Júpiter', saturno: 'Saturno', urano: 'Urano', netuno: 'Netuno', plutao: 'Plutão', nn: 'Nodo Norte', ns: 'Nodo Sul', fortuna: 'Roda da Fortuna', asc: 'Ascendente', mc: 'Meio do Céu', fc: 'Fundo do Céu', dc: 'Descendente' };
@@ -113,37 +114,62 @@
   function desenhar() {
     const svg = $('roda'), M = S.mapa; svg.innerHTML = '';
     asc = M.pts.asc.lon;
-    el('circle', { r: 292, fill: 'none', stroke: 'var(--linha)' }, svg);
-    el('circle', { r: 252, fill: 'none', stroke: 'var(--linha)' }, svg);
-    el('circle', { r: 120, fill: 'none', stroke: 'var(--linha)' }, svg);
-    // signos
+    const defs = el('defs', {}, svg);
+    defs.innerHTML = `
+      <radialGradient id="gFundo"><stop offset="0" stop-color="#1A1630"/><stop offset=".55" stop-color="#0C0D1A"/><stop offset="1" stop-color="#06070C"/></radialGradient>
+      <radialGradient id="gMiolo"><stop offset="0" stop-color="#B9A6FF" stop-opacity=".22"/><stop offset="1" stop-color="#B9A6FF" stop-opacity="0"/></radialGradient>
+      <filter id="brilho" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="brilhoFraco" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>`;
+    const camada = n => el('g', { class: 'camada ' + n }, svg);
+    const cFundo = camada('c-fundo'), cZod = camada('c-zod'), cCasas = camada('c-casas'), cLinhas = camada('c-linhas'), cAsp = camada('c-asp'), cAstros = camada('c-astros');
+
+    // o disco do céu
+    el('circle', { r: 300, fill: 'url(#gFundo)' }, cFundo);
+    el('circle', { r: 118, fill: 'url(#gMiolo)' }, cFundo);
+    for (const r of [300, 284, 246, 120]) el('circle', { r, fill: 'none', stroke: r === 246 || r === 284 ? 'rgba(245,243,238,.22)' : 'rgba(245,243,238,.12)' }, cFundo);
+    // régua dos graus: um traço por grau, maior a cada 5° e a cada 10°
+    let reg = '';
+    for (let d = 0; d < 360; d++) { const l = d % 10 === 0 ? 9 : d % 5 === 0 ? 6 : 3, [x1, y1] = xy(d, 284), [x2, y2] = xy(d, 284 - l); reg += `M${x1.toFixed(1)},${y1.toFixed(1)}L${x2.toFixed(1)},${y2.toFixed(1)}`; }
+    el('path', { d: reg, stroke: 'rgba(245,243,238,.28)', 'stroke-width': .7 }, cFundo);
+
+    // signos: faixa externa, na cor do elemento
     for (let i = 0; i < 12; i++) {
-      const g = el('g', { class: 'signo' }, svg);
-      el('path', { d: arco(i * 30, i * 30 + 30, 252, 292), fill: ELEM[i % 4], 'fill-opacity': .07, stroke: 'var(--linha)' }, g);
-      const [x, y] = xy(i * 30 + 15, 272);
-      el('text', { x, y, fill: ELEM[i % 4] }, g).textContent = SIGNOS[i] + T;
+      const g = el('g', { class: 'signo' }, cZod), cor = ELEM[i % 4];
+      el('path', { d: arco(i * 30, i * 30 + 30, 284, 300), fill: cor, 'fill-opacity': .1 }, g);
+      const [a, b] = xy(i * 30, 246), [c, d] = xy(i * 30, 300);
+      el('line', { x1: a, y1: b, x2: c, y2: d, stroke: 'rgba(245,243,238,.18)' }, g);
+      const [x, y] = xy(i * 30 + 15, 265);
+      el('text', { x, y, fill: cor, filter: 'url(#brilhoFraco)' }, g).textContent = SIGNOS[i] + T;
     }
+
     // casas
     const C = M.cuspides;
     for (let h = 0; h < 12; h++) {
-      const id = 'casa' + (h + 1), g = el('g', { class: 'alvo casa', tabindex: 0, role: 'button', 'data-id': id, 'aria-label': S.textos[id].titulo }, svg);
-      el('path', { d: arco(C[h], C[(h + 1) % 12], 120, 252) }, g);
-      const meio = C[h] + (((C[(h + 1) % 12] - C[h]) % 360 + 360) % 360) / 2, [x, y] = xy(meio, 134);
+      const id = 'casa' + (h + 1), g = el('g', { class: 'alvo casa', tabindex: 0, role: 'button', 'data-id': id, 'aria-label': S.textos[id].titulo }, cCasas);
+      el('path', { d: arco(C[h], C[(h + 1) % 12], 120, 246), 'fill-opacity': h % 2 ? .0 : .025, fill: '#F5F3EE' }, g);
+      const meio = C[h] + (((C[(h + 1) % 12] - C[h]) % 360 + 360) % 360) / 2, [x, y] = xy(meio, 132);
       el('text', { x, y }, g).textContent = h + 1;
-      const angular = h % 3 === 0, [x1, y1] = xy(C[h], 120), [x2, y2] = xy(C[h], angular ? 300 : 252);
-      el('line', { x1, y1, x2, y2, stroke: angular ? 'var(--luz-2)' : 'var(--linha)', 'stroke-width': angular ? 1.4 : 1, 'pointer-events': 'none' }, svg);
+      if (h % 3) { const [x1, y1] = xy(C[h], 120), [x2, y2] = xy(C[h], 246); el('line', { x1, y1, x2, y2, stroke: 'rgba(245,243,238,.16)', 'pointer-events': 'none' }, cCasas); }
     }
+
+    // a cruz do mapa: horizonte (AC–DC) e meridiano (MC–FC) atravessam o céu inteiro
+    const eixo = (l1, l2, cls) => { const [x1, y1] = xy(l1, 300), [x2, y2] = xy(l2, 300); el('line', { class: 'eixo ' + cls, x1, y1, x2, y2 }, cLinhas); };
+    eixo(M.pts.asc.lon, M.pts.dc.lon, 'horizonte'); eixo(M.pts.mc.lon, M.pts.fc.lon, 'meridiano');
+    // o raio do Sol: do centro até o Sol, como o ponteiro de um relógio de sol
+    { const [x, y] = xy(M.pts.sol.lon, 246); el('line', { class: 'raio-sol', x1: 0, y1: 0, x2: x, y2: y }, cLinhas); }
+    el('line', { class: 'raio-ativo', id: 'raio', x1: 0, y1: 0, x2: 0, y2: 0 }, cLinhas);
+
     // aspectos
-    const gA = el('g', {}, svg);
     for (const id of S.indice.aspectos) {
       const [a, b, tp] = id.split('-');
       if (tp === 'conjuncao') continue; // a conjunção é um encontro no mesmo lugar: aparece nas fichas
-      const g = el('g', { class: 'alvo aspecto', tabindex: 0, role: 'button', 'data-id': id, 'aria-label': S.textos[id].titulo }, gA);
-      const [x1, y1] = xy(M.pts[a].lon, 118), [x2, y2] = xy(M.pts[b].lon, 118);
-      el('line', { class: 'ver', x1, y1, x2, y2, stroke: COR_ASP[tp], 'stroke-dasharray': tp === 'sextil' ? '4 4' : 'none' }, g);
+      const g = el('g', { class: 'alvo aspecto', tabindex: 0, role: 'button', 'data-id': id, 'data-a': a, 'data-b': b, 'aria-label': S.textos[id].titulo }, cAsp);
+      const [x1, y1] = xy(M.pts[a].lon, 118), [x2, y2] = xy(M.pts[b].lon, 118), len = Math.hypot(x2 - x1, y2 - y1);
+      el('line', { class: 'ver', x1, y1, x2, y2, stroke: COR_ASP[tp], 'stroke-dasharray': tp === 'sextil' ? '3 5' : `${len} ${len}`, style: `--len:${len}` }, g);
       el('line', { class: 'toque', x1, y1, x2, y2 }, g);
     }
-    // planetas e pontos, afastados quando se amontoam
+
+    // planetas e pontos, abertos em leque quando se amontoam
     const ids = [...S.indice.planetas, 'nn', 'ns', 'fortuna'];
     const MIN = 10, pos = ids.map(id => ({ id, lon: M.pts[id].lon })).sort((p, q) => p.lon - q.lon);
     // começa a volta no maior vão, para nenhum grupo ficar partido no 0° de Áries
@@ -167,28 +193,42 @@
       }
       if (!mexeu) break;
     }
-    for (const p of pos) {
-      const [tx, ty] = xy(p.lon, 252), [tx2, ty2] = xy(p.lon, 240);
-      el('line', { x1: tx, y1: ty, x2: tx2, y2: ty2, stroke: 'var(--luz-2)', 'pointer-events': 'none' }, svg);
-      const [x, y] = xy(p.v, 214), tx3 = S.textos[p.id];
-      const g = el('g', { class: 'alvo astro' + (tx3.fechado ? ' fechado' : ''), tabindex: 0, role: 'button', 'data-id': p.id, 'aria-label': tx3.titulo + (tx3.fechado ? ', fechado' : '') }, svg);
-      el('circle', { class: 'halo', cx: x, cy: y, r: 26 }, g);
-      el('circle', { class: 'fundo', cx: x, cy: y, r: 17 }, g);
-      el('text', { x, y }, g).textContent = GLIFO[p.id] + T;
-      if (M.pts[p.id].retro) el('text', { x: x + 15, y: y + 13, style: 'font-size:10px;fill:var(--luz-3)' }, g).textContent = 'R';
-    }
-    // ângulos
+    fila.forEach((p, n) => {
+      const cor = PCOR[p.id], [tx, ty] = xy(p.lon, 246), [tx2, ty2] = xy(p.lon, 234);
+      el('line', { x1: tx, y1: ty, x2: tx2, y2: ty2, stroke: cor, 'stroke-width': 1.4, 'pointer-events': 'none' }, cAstros);
+      el('circle', { cx: tx, cy: ty, r: 1.8, fill: cor, 'pointer-events': 'none' }, cAstros);
+      const [x, y] = xy(p.v, 206), tx3 = S.textos[p.id], gi = tx3.grau;
+      const g = el('g', { class: 'alvo astro' + (tx3.fechado ? ' fechado' : ''), tabindex: 0, role: 'button', 'data-id': p.id, 'aria-label': tx3.titulo + (tx3.fechado ? ', fechado' : ''), style: `--pc:${cor};--atraso:${(n * 45)}ms` }, cAstros);
+      el('circle', { class: 'halo', cx: x, cy: y, r: 24, filter: 'url(#brilho)' }, g);
+      el('circle', { class: 'fundo', cx: x, cy: y, r: 16 }, g);
+      el('text', { x, y, class: 'glifo' }, g).textContent = GLIFO[p.id] + T;
+      const [gx, gy] = xy(p.v, 176);
+      el('text', { x: gx, y: gy, class: 'grau' }, g).textContent = Math.floor(M.pts[p.id].lon % 30) + '°' + (M.pts[p.id].retro ? ' ℞' : '');
+    });
+    // os quatro ângulos nas pontas da cruz
     for (const id of ['asc', 'mc', 'fc', 'dc']) {
-      const [x, y] = xy(M.pts[id].lon, 316 - 14);
-      const g = el('g', { class: 'alvo astro' + (S.textos[id].fechado ? ' fechado' : ''), tabindex: 0, role: 'button', 'data-id': id, 'aria-label': S.textos[id].titulo }, svg);
-      el('circle', { class: 'halo', cx: x * .97, cy: y * .97, r: 20 }, g);
-      el('circle', { class: 'fundo', cx: x * .97, cy: y * .97, r: 14 }, g);
-      el('text', { x: x * .97, y: y * .97, style: 'font-size:11px;font-weight:600' }, g).textContent = GLIFO[id];
+      const [x, y] = xy(M.pts[id].lon, 312);
+      const g = el('g', { class: 'alvo astro angulo' + (S.textos[id].fechado ? ' fechado' : ''), tabindex: 0, role: 'button', 'data-id': id, 'aria-label': S.textos[id].titulo, style: '--pc:#FFE2A0' }, cAstros);
+      el('circle', { class: 'halo', cx: x, cy: y, r: 20, filter: 'url(#brilho)' }, g);
+      el('circle', { class: 'fundo', cx: x, cy: y, r: 15 }, g);
+      el('text', { x, y, class: 'glifo sigla' }, g).textContent = GLIFO[id];
     }
+    svg.classList.remove('entrou'); void svg.getBoundingClientRect(); svg.classList.add('entrou');
     svg.querySelectorAll('.alvo').forEach(g => {
       g.addEventListener('click', () => escolher(g.dataset.id, true));
       g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); escolher(g.dataset.id, true); } });
     });
+  }
+
+  // o ponto escolhido ganha um raio do centro, e só as linhas dele ficam acesas
+  function destacar(id) {
+    const svg = $('roda'), M = S.mapa, raio = $('raio');
+    const lon = M.pts[id] ? M.pts[id].lon : null;
+    if (lon != null) { const [x, y] = xy(lon, 246); raio.setAttribute('x2', x); raio.setAttribute('y2', y); raio.style.stroke = PCOR[id] || '#FFE2A0'; raio.style.opacity = 1; }
+    else raio.style.opacity = 0;
+    const tp = id.split('-')[2];
+    svg.classList.toggle('foco', !!(lon != null && !id.startsWith('casa')) || !!tp);
+    svg.querySelectorAll('.aspecto').forEach(g => g.classList.toggle('ligado', g.dataset.id === id || g.dataset.a === id || g.dataset.b === id));
   }
 
   function fichas() {
@@ -215,6 +255,7 @@
     if (S.preco) $('preco').textContent = 'R$ ' + String(S.preco).replace('.', ',');
     desenhar(); fichas();
     escolher('sol', false);
+    $('roda').classList.remove('foco'); // na abertura, todas as linhas aparecem
     window.scrollTo({ top: 0 });
   }
 
@@ -234,6 +275,18 @@
     $('bTransito').hidden = !tx.temTransito;
     $('base').innerHTML = tx.fechado ? '' : (tx.base || []).map(l => l.startsWith('## ') ? `<h3>${esc(l.slice(3))}</h3>` : `<p>${esc(l)}</p>`).join('') + (tx.pergunta ? `<p class="q">${esc(tx.pergunta)}</p>` : '');
     $('base').scrollTop = 0;
+    // a cor do palco é a do planeta tocado
+    $('palco').style.setProperty('--cor', PCOR[id] || PCOR[(id.split('-')[0])] || '#B9A6FF');
+    const gi = tx.grau;
+    $('ficha-grau').hidden = !gi || !!tx.fechado;
+    if (gi) $('ficha-grau').innerHTML = `<div class="g-num">${gi.grau}<span>°${String(gi.minuto).padStart(2, '0')}'</span></div>
+      <dl><div><dt>Decanato</dt><dd>${gi.decanato}º de 3</dd></div><div><dt>Face</dt><dd>${esc(gi.face)}</dd></div><div><dt>Tom do elemento</dt><dd>${esc(gi.triplicidade)}</dd></div>
+      ${gi.dignidade ? `<div class="larga"><dt>Dignidade</dt><dd>${esc(gi.dignidade)}</dd></div>` : ''}${gi.critico ? `<div class="larga"><dt>Grau crítico</dt><dd>${esc(gi.critico)}</dd></div>` : ''}</dl>`;
+    $('ficha-filo').hidden = !tx.filosofia || !!tx.fechado;
+    $('ficha-filo').innerHTML = tx.filosofia ? `<p class="rot">Filosofia e mito</p><p>${esc(tx.filosofia)}</p>` : '';
+    $('ficha-livros').hidden = !(tx.livros && tx.livros.length) || !!tx.fechado;
+    $('ficha-livros').innerHTML = tx.livros ? `<p class="rot">Para ler</p><ul>${tx.livros.map(l => `<li><b>${esc(l.titulo)}</b><span>${esc(l.autor)}</span></li>`).join('')}</ul>` : '';
+    destacar(id);
     if (rolar && window.innerWidth <= 920) $('palco').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
