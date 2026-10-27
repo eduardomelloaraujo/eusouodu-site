@@ -12,6 +12,8 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
 <link rel="preload" href="/fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 <style>
 .envelope { max-width: 1360px; margin: 0 auto; padding-inline: var(--margem); }
@@ -22,7 +24,13 @@ main h1 em, main h2 em { font-style: normal; color: var(--cor); }
 
 /* entrada */
 .entrada { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(40px, 6vw, 96px); align-items: center; padding-block: clamp(48px, 9vh, 110px); }
-.entrada h1 { font-size: clamp(48px, 7vw, 96px); }
+.entrada { position: relative; isolation: isolate; }
+main { overflow-x: clip; }
+.zodiaco-fundo { position: absolute; z-index: -1; width: min(1100px, 120vw); aspect-ratio: 1; left: 50%; top: 50%; translate: -18% -50%; opacity: .9; animation: girarFundo 240s linear infinite; pointer-events: none; mask-image: radial-gradient(circle, #000 45%, transparent 72%); -webkit-mask-image: radial-gradient(circle, #000 45%, transparent 72%); }
+@keyframes girarFundo { to { rotate: 360deg; } }
+@media (prefers-reduced-motion: reduce) { .zodiaco-fundo, #roda #miolo .m-aro { animation: none; } }
+.entrada h1 { font-size: clamp(52px, 7.4vw, 108px); }
+.entrada h1 em { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 600; letter-spacing: -.02em; font-size: 1.12em; }
 .entrada .lead { margin-top: 28px; max-width: 34em; font-size: clamp(17px, 1.6vw, 20px); color: var(--luz-2); }
 .entrada ul { margin: 28px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; color: var(--luz-2); font-size: 16px; }
 .entrada li::before { content: "✦\FE0E"; color: var(--cor); margin-right: 10px; }
@@ -48,9 +56,12 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
 .aceite input { margin-top: 3px; accent-color: var(--cor); width: 18px; height: 18px; flex: none; }
 
 /* o mapa */
-.leitura { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 64px); align-items: start; padding-block: 24px 80px; }
+.leitura { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(360px, .95fr); gap: clamp(28px, 3.5vw, 56px); align-items: start; padding-block: 20px 80px; max-width: 1560px; }
+.roda-casa { position: relative; max-width: min(100%, calc(100vh - 200px)); margin: 0 auto; }
+.roda-casa::before { content: ""; position: absolute; inset: 6%; border-radius: 50%; background: radial-gradient(circle, rgba(140,110,255,.18), transparent 65%); filter: blur(40px); z-index: -1; }
 .quem { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
-.quem h1 { font-size: clamp(32px, 4vw, 52px); }
+.quem h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: clamp(34px, 3.6vw, 54px); letter-spacing: -.01em; }
+.quem h1 b { font-weight: 600; font-style: italic; color: var(--cor); }
 .quem p { color: var(--luz-3); font-size: 14px; }
 #roda { width: 100%; height: auto; display: block; touch-action: manipulation; user-select: none; -webkit-user-select: none; overflow: visible; filter: drop-shadow(0 30px 80px rgba(120, 90, 255, .12)); }
 #roda text { text-anchor: middle; dominant-baseline: central; }
@@ -81,6 +92,14 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
 #roda .aspecto:hover line.ver { stroke-opacity: .95; stroke-width: 2; }
 #roda.foco .aspecto line.ver { stroke-opacity: .1; }
 #roda.foco .aspecto.ligado line.ver, #roda .aspecto.ativo line.ver { stroke-opacity: 1; stroke-width: 2.2; }
+#roda #miolo { --mc: #B9A6FF; }
+#roda #miolo .m-halo { fill: var(--mc); opacity: calc(.16 + var(--vol, 0) * .55); transform: scale(calc(1 + var(--vol, 0) * .3)); transform-box: fill-box; transform-origin: center; transition: fill .5s; }
+#roda #miolo .m-disco { fill: #090A14; fill-opacity: .92; stroke: var(--mc); stroke-opacity: .55; }
+#roda #miolo .m-aro { fill: none; stroke: var(--mc); stroke-opacity: .25; stroke-dasharray: 1 5; animation: girarAro 60s linear infinite; transform-origin: 0 0; }
+#roda #miolo .m-glifo { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 40px; fill: var(--mc); filter: url(#brilhoFraco); }
+#roda #miolo .m-glifo.sigla { font-family: inherit; font-size: 20px; font-weight: 700; letter-spacing: .04em; }
+#roda #miolo .m-rot { font-size: 11px; font-variant-numeric: lining-nums tabular-nums; fill: rgba(245,243,238,.7); letter-spacing: .08em; font-variant-numeric: tabular-nums; }
+@keyframes girarAro { to { transform: rotate(360deg); } }
 /* entrada da roda: o céu se acende de fora para dentro */
 #roda.entrou .c-zod, #roda.entrou .c-casas { animation: girar 1.4s cubic-bezier(.2,.7,.2,1) both; transform-origin: 0 0; }
 #roda.entrou .c-asp line.ver:not([stroke-dasharray="3 5"]) { stroke-dashoffset: var(--len); animation: tracar 1.6s .7s ease-out forwards; }
@@ -93,9 +112,9 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
 .legenda-asp { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; font-size: 12.5px; color: var(--luz-3); justify-content: center; }
 .legenda-asp span::before { content: ""; display: inline-block; width: 16px; height: 2px; background: var(--c); vertical-align: middle; margin-right: 6px; border-radius: 2px; }
 .ficha-grau { margin-top: 24px; display: flex; gap: 22px; align-items: center; border: 1px solid color-mix(in srgb, var(--cor) 35%, transparent); border-radius: 22px; padding: 18px 20px; background: linear-gradient(135deg, color-mix(in srgb, var(--cor) 10%, transparent), transparent 70%); }
-.g-num { font-size: 64px; font-weight: 650; letter-spacing: -.05em; line-height: .9; color: var(--cor); font-variant-numeric: tabular-nums; }
+.g-num { font-size: 68px; font-weight: 300; letter-spacing: -.05em; line-height: .85; font-variant-numeric: tabular-nums; color: var(--cor); font-variant-numeric: tabular-nums; }
 .g-num span { font-size: 22px; letter-spacing: 0; color: var(--luz-3); margin-left: 2px; }
-.ficha-grau dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 16px; margin: 0; flex: 1; }
+.ficha-grau dl { display: grid; grid-template-columns: auto auto minmax(0, 1.4fr); gap: 10px 16px; margin: 0; flex: 1; }
 .ficha-grau dl .larga { grid-column: 1 / -1; }
 .ficha-grau dt { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--luz-3); font-weight: 600; }
 .ficha-grau dd { margin: 3px 0 0; font-size: 14.5px; color: var(--luz); line-height: 1.35; }
@@ -115,16 +134,32 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
 .ficha.ativo { color: var(--cupula); background: var(--cor); border-color: var(--cor); }
 .ficha.fechado::after { content: " ·\00a0🔒\FE0E"; font-size: 11px; opacity: .6; }
 
-.palco { position: sticky; top: 16px; }
-.orbe-linha { display: flex; gap: 18px; align-items: center; }
-.orbe { width: 84px; height: 84px; border-radius: 50%; flex: none; display: grid; place-items: center; font-size: 38px; color: var(--cupula); background: radial-gradient(circle at 35% 30%, #fff, var(--cor) 55%, color-mix(in srgb, var(--cor) 40%, #000)); box-shadow: 0 0 calc(18px + var(--vol, 0) * 70px) calc(2px + var(--vol, 0) * 18px) var(--cor); transform: scale(calc(1 + var(--vol, 0) * .18)); transition: transform .08s linear, box-shadow .08s linear; }
-.palco h2 { font-size: clamp(30px, 3.4vw, 44px); }
-.palco .sub { color: var(--luz-3); font-size: 15px; margin-top: 6px; }
-.acoes-fala { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-.acoes-fala button { font: inherit; font-size: 15px; font-weight: 600; border-radius: 999px; padding: 11px 18px; cursor: pointer; border: 1px solid var(--linha); background: rgba(245,243,238,.05); color: var(--luz); }
-.acoes-fala button.forte { background: var(--luz); color: var(--cupula); border-color: var(--luz); }
-.acoes-fala button[disabled] { opacity: .6; cursor: wait; }
-.legenda { margin-top: 20px; font-size: 19px; line-height: 1.5; color: var(--luz); border-left: 2px solid var(--cor); padding-left: 16px; }
+.palco { position: sticky; top: 16px; border: 1px solid rgba(245,243,238,.09); border-radius: 32px; padding: clamp(22px, 2.6vw, 34px); background: linear-gradient(180deg, color-mix(in srgb, var(--cor) 7%, rgba(12,13,24,.82)), rgba(8,9,16,.78) 45%); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 40px 120px -40px color-mix(in srgb, var(--cor) 35%, transparent); transition: box-shadow .6s, background .6s; max-height: calc(100vh - 32px); overflow: auto; scrollbar-width: thin; }
+.orbe-linha { display: flex; gap: 20px; align-items: center; }
+.orbe { width: 88px; height: 88px; border-radius: 50%; flex: none; display: grid; place-items: center; font-size: 40px; color: var(--cupula); background: radial-gradient(circle at 35% 30%, #fff, var(--cor) 55%, color-mix(in srgb, var(--cor) 40%, #000)); box-shadow: 0 0 calc(18px + var(--vol, 0) * 70px) calc(2px + var(--vol, 0) * 18px) var(--cor), inset 0 -8px 18px rgba(0,0,0,.25); transform: scale(calc(1 + var(--vol, 0) * .18)); transition: transform .08s linear, box-shadow .08s linear; }
+.palco h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: clamp(36px, 3.6vw, 52px); letter-spacing: -.01em; line-height: .95; }
+.palco .sub { color: var(--luz-3); font-size: 14px; margin-top: 8px; letter-spacing: .02em; }
+.player { margin-top: 24px; display: flex; align-items: center; gap: 16px; padding: 10px 18px 10px 10px; border-radius: 999px; background: rgba(245,243,238,.05); border: 1px solid rgba(245,243,238,.1); }
+.play { width: 54px; height: 54px; border-radius: 50%; border: 0; flex: none; cursor: pointer; display: grid; place-items: center; background: var(--luz); color: var(--cupula); position: relative; box-shadow: 0 0 0 0 var(--cor); transition: transform .2s, box-shadow .3s; }
+.play:hover { transform: scale(1.05); box-shadow: 0 0 0 6px color-mix(in srgb, var(--cor) 25%, transparent); }
+.play svg { width: 22px; height: 22px; fill: currentColor; }
+.play .i-parar, .play .i-gira { display: none; }
+.player[data-estado="tocando"][data-tipo="natal"] .i-play, .player[data-estado="carregando"] .i-play { display: none; }
+.player[data-estado="tocando"][data-tipo="natal"] .i-parar { display: block; }
+.player[data-estado="tocando"][data-tipo="transito"] .play { background: rgba(245,243,238,.15); color: var(--luz); }
+.player[data-estado="carregando"] .i-gira { display: block; width: 22px; height: 22px; border-radius: 50%; border: 2.5px solid rgba(5,6,10,.25); border-top-color: var(--cupula); animation: gira .8s linear infinite; }
+@keyframes gira { to { transform: rotate(360deg); } }
+.faixa { flex: 1; min-width: 0; }
+.faixa-rot { margin: 0 0 8px; font-size: 14px; font-weight: 600; color: var(--luz); line-height: 1.25; }
+.barra { height: 3px; border-radius: 3px; background: rgba(245,243,238,.12); overflow: hidden; }
+.barra span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, color-mix(in srgb, var(--cor) 60%, #fff), var(--cor)); box-shadow: 0 0 10px var(--cor); }
+.tempo { font-size: 12.5px; color: var(--luz-3); font-variant-numeric: tabular-nums; flex: none; }
+.ceu-agora { margin-top: 12px; font: inherit; font-size: 14.5px; font-weight: 600; color: var(--luz-2); background: none; border: 1px solid rgba(245,243,238,.12); border-radius: 999px; padding: 9px 16px; cursor: pointer; transition: color .2s, border-color .2s; }
+.ceu-agora span { color: var(--cor); margin-right: 4px; }
+.ceu-agora:hover { color: var(--luz); border-color: var(--cor); }
+.ceu-agora[disabled] { opacity: .5; cursor: wait; }
+.player[data-tipo="transito"][data-estado="tocando"] ~ .ceu-agora { border-color: var(--cor); color: var(--luz); }
+.legenda { margin-top: 22px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 22px; line-height: 1.45; color: var(--luz); border-left: 2px solid var(--cor); padding-left: 18px; white-space: pre-line; }
 .base { margin-top: 26px; color: var(--luz-2); line-height: 1.6; display: grid; gap: 10px; max-height: 46vh; overflow: auto; padding-right: 6px; }
 .base p { font-size: 16px; margin: 0; }
 .base h3 { color: var(--luz); font-size: 17px; font-weight: 600; margin: 10px 0 0; }
@@ -137,12 +172,13 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
 .rodape-leitura { color: var(--luz-3); font-size: 13px; margin-top: 18px; }
 
 @media (max-width: 920px) {
-  .entrada, .leitura { grid-template-columns: 1fr; }
-  .palco { position: static; }
+  .entrada, .leitura { grid-template-columns: minmax(0, 1fr); }
+  .palco { position: static; max-height: none; overflow: visible; }
   /* no celular, quem fala aparece logo abaixo da roda, antes das fichas */
   .leitura { gap: 24px; }
   .leitura > div { display: contents; }
   .palco { order: 1; } #grupos { order: 2; margin-top: 0; }
+  .roda-casa { margin-inline: calc(var(--margem) * -.7); max-width: none; }
   .base { max-height: none; }
 }
 @media (max-width: 480px) { .dupla, .dupla-fichas { grid-template-columns: 1fr; } .ficha-grau { flex-direction: column; align-items: flex-start; } .ficha-grau dl { grid-template-columns: 1fr 1fr; } .orbe { width: 64px; height: 64px; font-size: 30px; } }
@@ -158,6 +194,7 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
 </header>
 <main>
   <section class="envelope entrada" id="entrada">
+    <svg class="zodiaco-fundo" id="zodiacoFundo" aria-hidden="true"></svg>
     <div>
       <h1>O seu mapa <em>fala</em>.</h1>
       <p class="lead">O mapa natal aberto na tela. Toque no Vênus, na Lua, numa casa ou numa quadratura, e o próprio ponto explica, em voz alta, o que ele significa no seu mapa e o que o céu de agora está fazendo com ele.</p>
@@ -197,17 +234,18 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
   <section class="envelope leitura" id="leitura" hidden>
     <div>
       <div class="quem"><h1 id="titulo">O mapa</h1><p id="dados"></p></div>
-      <svg id="roda" viewBox="-332 -332 664 664" role="group" aria-label="Roda do mapa natal"></svg>
+      <div class="roda-casa"><svg id="roda" viewBox="-332 -332 664 664" role="group" aria-label="Roda do mapa natal"></svg></div>
       <div class="legenda-asp" aria-hidden="true"><span style="--c:#FFE2A0">ângulos</span><span style="--c:#7FE8A8">trígono</span><span style="--c:#8AB4FF">sextil</span><span style="--c:#FF7A6B">quadratura</span><span style="--c:#FF9A5C">oposição</span></div>
       <div class="grupos" id="grupos"></div>
     </div>
     <aside class="palco" id="palco" aria-live="polite">
       <div class="orbe-linha"><div class="orbe" id="orbe" aria-hidden="true">☉&#xFE0E;</div><div><h2 id="pTitulo"></h2><p class="sub" id="pSub"></p></div></div>
-      <div class="acoes-fala" id="acoes">
-        <button class="forte" id="bOuvir" type="button">Ouvir</button>
-        <button id="bTransito" type="button">E o céu de agora?</button>
-        <button id="bParar" type="button" hidden>Parar</button>
+      <div class="player" id="acoes">
+        <button class="play" id="bOuvir" type="button" aria-label="Ouvir"><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg><svg class="i-parar" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="6" width="3.6" height="12" rx="1"/><rect x="13.4" y="6" width="3.6" height="12" rx="1"/></svg><span class="i-gira" aria-hidden="true"></span></button>
+        <div class="faixa"><p class="faixa-rot" id="faixaRot">Ouvir</p><div class="barra"><span id="barra"></span></div></div>
+        <span class="tempo" id="tempo"></span>
       </div>
+      <button class="ceu-agora" id="bTransito" type="button"><span aria-hidden="true">✦&#xFE0E;</span> E o céu de agora?</button>
       <p class="legenda" id="legenda" hidden></p>
       <div class="ficha-grau" id="ficha-grau" hidden></div>
       <div class="dupla-fichas"><div class="ficha-filo" id="ficha-filo" hidden></div><div class="ficha-livros" id="ficha-livros" hidden></div></div>

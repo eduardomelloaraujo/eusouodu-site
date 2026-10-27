@@ -15,6 +15,19 @@
   const GLIFO_ASP = { conjuncao: '☌', sextil: '⚹', quadratura: '□', trigono: '△', oposicao: '☍' };
   const NOME_CURTO = { sol: 'Sol', lua: 'Lua', merc: 'Mercúrio', venus: 'Vênus', marte: 'Marte', jupiter: 'Júpiter', saturno: 'Saturno', urano: 'Urano', netuno: 'Netuno', plutao: 'Plutão', nn: 'Nodo Norte', ns: 'Nodo Sul', fortuna: 'Roda da Fortuna', asc: 'Ascendente', mc: 'Meio do Céu', fc: 'Fundo do Céu', dc: 'Descendente' };
 
+  // o zodíaco gigante que gira devagar atrás da entrada
+  (function fundo() {
+    const svg = $('zodiacoFundo'); if (!svg) return;
+    const NS = 'http://www.w3.org/2000/svg', p = (a, r) => [r * Math.cos(a * Math.PI / 180), r * Math.sin(a * Math.PI / 180)];
+    let h = '<circle r="300" fill="none" stroke="rgba(245,243,238,.10)"/><circle r="250" fill="none" stroke="rgba(245,243,238,.10)"/><circle r="120" fill="none" stroke="rgba(245,243,238,.06)"/>';
+    let ticks = '';
+    for (let d = 0; d < 360; d += 2) { const l = d % 30 === 0 ? 50 : d % 10 === 0 ? 12 : 6, [a, b] = p(d, 300), [c, e] = p(d, 300 - l); ticks += `M${a.toFixed(1)},${b.toFixed(1)}L${c.toFixed(1)},${e.toFixed(1)}`; }
+    h += `<path d="${ticks}" stroke="rgba(245,243,238,.16)" stroke-width=".8"/>`;
+    for (let i = 0; i < 12; i++) { const [x, y] = p(i * 30 + 15, 275); h += `<text x="${x.toFixed(1)}" y="${y.toFixed(1)}" fill="${ELEM[i % 4]}" fill-opacity=".55" font-size="22" text-anchor="middle" dominant-baseline="central">${SIGNOS[i]}${T}</text>`; }
+    for (let i = 0; i < 6; i++) { const [a, b] = p(i * 30, 250), [c, e] = p(i * 30 + 180, 250); h += `<line x1="${a}" y1="${b}" x2="${c}" y2="${e}" stroke="rgba(245,243,238,.05)"/>`; }
+    svg.setAttribute('viewBox', '-310 -310 620 620'); svg.innerHTML = h;
+  })();
+
   let S = null;          // { mapa, indice, textos, preco?, pessoa? }
   let pessoa = null;     // dados de nascimento (amostra grátis)
   let sessao = null, atual = null;
@@ -169,6 +182,13 @@
       el('line', { class: 'toque', x1, y1, x2, y2 }, g);
     }
 
+    // o medalhão do centro: quem foi tocado aparece aqui, e pulsa com a voz
+    const mi = el('g', { id: 'miolo', 'pointer-events': 'none' }, cAsp);
+    el('circle', { class: 'm-halo', r: 62, filter: 'url(#brilho)' }, mi);
+    el('circle', { class: 'm-disco', r: 46 }, mi);
+    el('circle', { class: 'm-aro', r: 52 }, mi);
+    el('text', { class: 'm-glifo', id: 'mGlifo', y: -7 }, mi);
+    el('text', { class: 'm-rot', id: 'mRot', y: 25 }, mi);
     // planetas e pontos, abertos em leque quando se amontoam
     const ids = [...S.indice.planetas, 'nn', 'ns', 'fortuna'];
     const MIN = 10, pos = ids.map(id => ({ id, lon: M.pts[id].lon })).sort((p, q) => p.lon - q.lon);
@@ -226,7 +246,12 @@
     const lon = M.pts[id] ? M.pts[id].lon : null;
     if (lon != null) { const [x, y] = xy(lon, 246); raio.setAttribute('x2', x); raio.setAttribute('y2', y); raio.style.stroke = PCOR[id] || '#FFE2A0'; raio.style.opacity = 1; }
     else raio.style.opacity = 0;
-    const tp = id.split('-')[2];
+    const tp = id.split('-')[2], tx = S.textos[id];
+    // medalhão
+    $('miolo').style.setProperty('--mc', PCOR[id] || PCOR[id.split('-')[0]] || '#B9A6FF');
+    $('mGlifo').textContent = id.startsWith('casa') ? id.slice(4) : tp ? GLIFO_ASP[tp] + T : GLIFO[id].length < 2 ? GLIFO[id] + T : GLIFO[id];
+    $('mGlifo').classList.toggle('sigla', /^(asc|mc|fc|dc)$/.test(id) || id.startsWith('casa'));
+    $('mRot').textContent = tx && tx.grau ? `${tx.grau.grau}°${String(tx.grau.minuto).padStart(2, '0')}'` : tp ? tx.sub.split(' · ')[0] : '';
     svg.classList.toggle('foco', !!(lon != null && !id.startsWith('casa')) || !!tp);
     svg.querySelectorAll('.aspecto').forEach(g => g.classList.toggle('ligado', g.dataset.id === id || g.dataset.a === id || g.dataset.b === id));
   }
@@ -249,7 +274,7 @@
     $('entrada').hidden = true; $('leitura').hidden = false;
     const p = S.pessoa || pessoa || {};
     const nome = String(p.nome || '').split(/\s+/)[0];
-    $('titulo').textContent = nome ? `O mapa de ${nome}` : 'O seu mapa';
+    $('titulo').innerHTML = nome ? `O mapa de <b>${esc(nome)}</b>` : 'O seu <b>mapa</b>';
     const [y, mo, d] = String(p.data || '').split('-');
     $('dados').textContent = [d && `${d}/${mo}/${y}`, p.hora, p.cidade].filter(Boolean).join(' · ') + (p.until ? ` · acesso até ${new Date(p.until).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}` : '');
     if (S.preco) $('preco').textContent = 'R$ ' + String(S.preco).replace('.', ',');
@@ -287,64 +312,77 @@
     $('ficha-livros').hidden = !(tx.livros && tx.livros.length) || !!tx.fechado;
     $('ficha-livros').innerHTML = tx.livros ? `<p class="rot">Para ler</p><ul>${tx.livros.map(l => `<li><b>${esc(l.titulo)}</b><span>${esc(l.autor)}</span></li>`).join('')}</ul>` : '';
     destacar(id);
+    rotuloFaixa();
     if (rolar && window.innerWidth <= 920) $('palco').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   let audio = null, ctx = null, raf = 0, falando = false;
-  function vol(v) { $('orbe').style.setProperty('--vol', v.toFixed(3)); }
+  // o volume da voz faz pulsar o orbe do palco e o medalhão no centro da roda
+  function vol(v) { const x = v.toFixed(3); $('orbe').style.setProperty('--vol', x); $('roda').style.setProperty('--vol', x); }
+  const mmss = t => isFinite(t) ? `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}` : '';
+  function estado(e, tipo) {
+    $('acoes').dataset.estado = e || '';
+    $('acoes').dataset.tipo = tipo || '';
+    $('bOuvir').setAttribute('aria-label', e === 'tocando' ? 'Parar' : 'Ouvir');
+    $('bTransito').disabled = e === 'carregando';
+    if (!e) { $('barra').style.width = '0%'; $('tempo').textContent = ''; }
+  }
   function parar() {
     falando = false;
     if (audio) { audio.pause(); audio = null; }
     try { speechSynthesis.cancel(); } catch (e) {}
     cancelAnimationFrame(raf); vol(0);
-    $('bParar').hidden = true; $('bOuvir').disabled = false; $('bTransito').disabled = false;
-    $('bOuvir').textContent = 'Ouvir';
+    estado('');
   }
 
   async function ouvir(tipo) {
     const id = atual; parar();
-    const bt = tipo === 'transito' ? $('bTransito') : $('bOuvir');
-    $('bOuvir').disabled = $('bTransito').disabled = true;
-    const txtOriginal = bt.textContent; bt.textContent = 'Chamando…';
+    estado('carregando', tipo);
+    $('faixaRot').textContent = tipo === 'transito' ? 'Buscando o céu de agora…' : 'Chamando a voz…';
     // o pedido de áudio precisa sair do toque para o iPhone deixar tocar
     if (!ctx) try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {}
     if (ctx && ctx.state === 'suspended') ctx.resume();
     let f;
     try { f = await post('falar', { id, tipo, ...(sessao ? {} : pessoa) }); }
     catch (e) {
-      bt.textContent = txtOriginal; $('bOuvir').disabled = $('bTransito').disabled = false;
-      if (e.status === 402) { $('trava').hidden = false; $('acoes').hidden = true; }
+      estado(''); rotuloFaixa();
+      if (e.status === 402) { $('trava').hidden = false; $('acoes').hidden = true; $('bTransito').hidden = true; }
       $('legenda').hidden = false; $('legenda').textContent = e.message; return;
     }
-    bt.textContent = txtOriginal;
     if (atual !== id) return;
     $('legenda').hidden = false; $('legenda').textContent = f.texto;
-    $('bParar').hidden = false; falando = true;
+    $('faixaRot').textContent = tipo === 'transito' ? 'O céu de agora' : rotuloFala();
+    falando = true; estado('tocando', tipo);
     if (f.audio) {
       audio = new Audio('data:audio/mpeg;base64,' + f.audio);
+      let an = null, buf = null;
       if (ctx) {
         try {
-          const src = ctx.createMediaElementSource(audio), an = ctx.createAnalyser(); an.fftSize = 256;
-          src.connect(an); an.connect(ctx.destination);
-          const buf = new Uint8Array(an.frequencyBinCount);
-          const loop = () => { an.getByteTimeDomainData(buf); let s = 0; for (const b of buf) s += ((b - 128) / 128) ** 2; vol(Math.min(1, Math.sqrt(s / buf.length) * 4)); if (falando) raf = requestAnimationFrame(loop); };
-          loop();
-        } catch (e) {}
+          const src = ctx.createMediaElementSource(audio); an = ctx.createAnalyser(); an.fftSize = 256;
+          src.connect(an); an.connect(ctx.destination); buf = new Uint8Array(an.frequencyBinCount);
+        } catch (e) { an = null; }
       }
-      audio.onended = parar;
-      audio.play().catch(() => parar());
+      const loop = () => {
+        if (!falando || !audio) return;
+        if (an) { an.getByteTimeDomainData(buf); let s = 0; for (const b of buf) s += ((b - 128) / 128) ** 2; vol(Math.min(1, Math.sqrt(s / buf.length) * 4)); }
+        if (audio.duration) { $('barra').style.width = (audio.currentTime / audio.duration * 100).toFixed(2) + '%'; $('tempo').textContent = `${mmss(audio.currentTime)} / ${mmss(audio.duration)}`; }
+        raf = requestAnimationFrame(loop);
+      };
+      audio.onended = () => { parar(); rotuloFaixa(); };
+      audio.play().then(loop).catch(() => { parar(); rotuloFaixa(); });
     } else {
       // sem a voz do servidor: a voz do próprio aparelho, com o orbe pulsando nas palavras
       const u = new SpeechSynthesisUtterance(f.texto); u.lang = 'pt-BR'; u.rate = 1.02;
       const v = speechSynthesis.getVoices().find(x => /pt[-_]BR/i.test(x.lang)); if (v) u.voice = v;
       u.onboundary = () => { vol(.9); setTimeout(() => vol(.15), 120); };
-      u.onend = parar;
+      u.onend = () => { parar(); rotuloFaixa(); };
       speechSynthesis.speak(u);
     }
   }
-  $('bOuvir').addEventListener('click', () => ouvir('natal'));
-  $('bTransito').addEventListener('click', () => ouvir('transito'));
-  $('bParar').addEventListener('click', parar);
+  const rotuloFala = () => { const t = S && S.textos[atual]; return t ? `${t.titulo.split(' em ')[0]} fala` : 'Ouvir'; };
+  function rotuloFaixa() { const n = rotuloFala().replace(/ fala$/, ''); $('faixaRot').textContent = /^Casa|☌|⚹|□|△|☍/.test(n) ? `Ouvir: ${n}` : `Ouvir: ${n} se apresenta`; }
+  $('bOuvir').addEventListener('click', () => $('acoes').dataset.estado === 'tocando' ? (parar(), rotuloFaixa()) : ouvir('natal'));
+  $('bTransito').addEventListener('click', () => $('acoes').dataset.estado === 'tocando' && $('acoes').dataset.tipo === 'transito' ? (parar(), rotuloFaixa()) : ouvir('transito'));
 
   /* ---------- compra ---------- */
   $('fComprar').addEventListener('submit', async e => {
