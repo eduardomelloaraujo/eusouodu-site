@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<script src="/pixel.js"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>O seu mapa fala · eusouodu</title>
+<meta name="description" content="Toque num planeta do seu mapa natal e ele mesmo explica, em voz alta, o que significa em você. Dez planetas, dez vozes, os nodos, a Roda da Fortuna, as casas e os aspectos. O Sol fala de graça.">
+<meta property="og:title" content="O seu mapa fala">
+<meta property="og:description" content="Dez planetas, dez vozes. Toque num ponto do seu mapa e ele explica o que é em você. O Sol fala de graça.">
+<meta property="og:image" content="https://eusouodu.com/seu-mapa-fala/img/roda-sol-1.jpg">
+<meta property="og:url" content="https://eusouodu.com/seu-mapa-fala/">
+<meta name="theme-color" content="#05060A">
+<link rel="canonical" href="https://eusouodu.com/seu-mapa-fala/">
+<link rel="icon" href="/favicon.ico?v=3" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preload" href="/fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<style>
+/* sem filter, backdrop-filter nem emoji com seletor de variação: o Safari 27 cai com isso (ver /leitura) */
+:root { --cor: #FFC75A; --serifa: 'Cormorant Garamond', Georgia, serif; }
+main { overflow-x: clip; }
+main img { height: auto; max-width: 100%; }
+.env { max-width: 1240px; margin: 0 auto; padding-inline: var(--margem); }
+.sec { padding-block: clamp(80px, 13vh, 150px); position: relative; }
+.olho { font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--cor); margin: 0 0 18px; }
+h1, h2 { letter-spacing: -.04em; font-weight: 650; line-height: .98; margin: 0; }
+h1 em, h2 em { font-family: var(--serifa); font-style: italic; font-weight: 600; letter-spacing: -.01em; font-size: 1.1em; color: #D9CCFF; }
+h2 { font-size: clamp(40px, 5.6vw, 78px); }
+.lead { font-size: clamp(17px, 1.5vw, 20px); color: var(--luz-2); max-width: 36em; margin: 24px 0 0; line-height: 1.6; }
+.serifa { font-family: var(--serifa); }
+
+/* abertura */
+.hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 5vw, 80px); align-items: center; padding-block: clamp(40px, 8vh, 96px) clamp(60px, 10vh, 120px); }
+.hero h1 { font-size: clamp(60px, 8.4vw, 124px); }
+.hero .acoes { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px 26px; align-items: center; }
+.hero .preco-mini { margin-top: 22px; font-size: 14px; color: var(--luz-3); }
+.roda-hero { position: relative; aspect-ratio: 1; isolation: isolate; }
+.roda-hero .zod { position: absolute; inset: -16%; z-index: -1; opacity: .8; animation: girar 240s linear infinite; }
+.roda-hero .zod svg { width: 100%; height: 100%; }
+.roda-hero::before { content: ""; position: absolute; inset: 4%; border-radius: 50%; z-index: -1; background: radial-gradient(circle, rgba(255,199,90,.18), rgba(140,110,255,.08) 45%, transparent 70%); }
+.roda-hero img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; mask-image: radial-gradient(circle, #000 66%, transparent 71%); -webkit-mask-image: radial-gradient(circle, #000 66%, transparent 71%); }
+.roda-hero .fala { position: absolute; left: 50%; bottom: -2%; translate: -50% 0; white-space: nowrap; font-family: var(--serifa); font-style: italic; font-size: clamp(17px, 1.7vw, 22px); color: var(--luz); background: rgba(10,11,20,.86); border: 1px solid rgba(255,199,90,.35); border-radius: 999px; padding: 10px 20px; }
+.roda-hero .fala b { font-style: normal; font-family: inherit; color: var(--cor); margin-right: 8px; }
+@keyframes girar { to { rotate: 360deg; } }
+
+/* faixa */
+.faixa { border-block: 1px solid var(--linha); overflow: hidden; padding-block: 18px; }
+.faixa ul { display: flex; gap: 42px; width: max-content; margin: 0; padding: 0; list-style: none; animation: correr 50s linear infinite; font-family: var(--serifa); font-size: 22px; color: var(--luz-2); }
+.faixa li { white-space: nowrap; }
+.faixa li span { color: var(--cor); margin-right: 10px; }
+@keyframes correr { to { translate: -50% 0; } }
+
+/* as dez vozes */
+.vozes-grade { margin-top: 56px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.voz { --pc: #fff; position: relative; text-align: left; font: inherit; color: var(--luz); cursor: pointer; border: 1px solid var(--linha); border-radius: 24px; padding: 22px 20px 20px; background: linear-gradient(170deg, color-mix(in srgb, var(--pc) 9%, #0B0C15), #08090F 60%); display: flex; flex-direction: column; gap: 14px; min-height: 230px; transition: border-color .4s var(--ease), transform .4s var(--ease); }
+.voz:hover { border-color: color-mix(in srgb, var(--pc) 55%, transparent); transform: translateY(-3px); }
+.voz:focus-visible { outline: 2px solid var(--pc); outline-offset: 3px; }
+.voz .glifo { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font-family: var(--serifa); font-size: 30px; color: #0A0B12; background: radial-gradient(circle at 35% 30%, #fff, var(--pc) 55%, color-mix(in srgb, var(--pc) 60%, #000)); box-shadow: 0 0 0 0 color-mix(in srgb, var(--pc) 60%, transparent), 0 10px 40px -8px var(--pc); }
+.voz .nome { font-family: var(--serifa); font-size: 26px; font-weight: 600; line-height: 1; }
+.voz .frase { font-size: 14.5px; line-height: 1.5; color: var(--luz-2); flex: 1; }
+.voz .ouvir { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--pc); }
+.voz .ouvir i { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid currentColor; display: grid; place-items: center; }
+.voz .ouvir i::before { content: ""; border-left: 8px solid currentColor; border-block: 5px solid transparent; margin-left: 2px; }
+.voz.tocando { border-color: var(--pc); }
+.voz.tocando .glifo { animation: pulso 1.2s var(--ease) infinite; }
+.voz.tocando .ouvir i::before { border: none; width: 8px; height: 9px; margin: 0; background: linear-gradient(90deg, currentColor 3px, transparent 3px 5px, currentColor 5px); }
+.voz.tocando .ouvir em { font-style: normal; }
+@keyframes pulso { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--pc) 55%, transparent), 0 10px 40px -8px var(--pc); } 100% { box-shadow: 0 0 0 18px transparent, 0 10px 40px -8px var(--pc); } }
+.vozes-nota { margin-top: 22px; font-size: 14px; color: var(--luz-3); }
+
+/* vídeo */
+.video { display: grid; grid-template-columns: minmax(0, 380px) 1fr; gap: clamp(36px, 6vw, 96px); align-items: center; }
+.celular { position: relative; border-radius: 44px; padding: 10px; background: #15161F; border: 1px solid rgba(245,243,238,.12); box-shadow: 0 50px 120px -40px rgba(140,110,255,.45); }
+.celular video { display: block; width: 100%; aspect-ratio: 9 / 16; border-radius: 34px; background: #05060A; object-fit: cover; }
+.celular .som { position: absolute; left: 50%; bottom: 28px; translate: -50% 0; font: inherit; font-size: 14px; font-weight: 600; color: #05060A; background: var(--luz); border: 0; border-radius: 999px; padding: 12px 20px; cursor: pointer; }
+.celular .som[hidden] { display: none; }
+.passos { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 26px; counter-reset: p; }
+.passos li { counter-increment: p; display: grid; grid-template-columns: 52px 1fr; gap: 18px; align-items: start; }
+.passos li::before { content: counter(p); font-family: var(--serifa); font-variant-numeric: lining-nums; font-size: 40px; line-height: 1; color: var(--cor); }
+.passos b { display: block; font-size: 19px; font-weight: 600; margin-bottom: 4px; }
+.passos span { color: var(--luz-2); }
+
+/* toque em qualquer ponto */
+.pontos { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.ponto { margin: 0; border: 1px solid var(--linha); border-radius: 28px; overflow: hidden; background: #08090F; }
+.ponto img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+.ponto figcaption { padding: 20px 22px 24px; }
+.ponto b { font-family: var(--serifa); font-size: 26px; font-weight: 600; display: block; line-height: 1.1; }
+.ponto span { color: var(--luz-2); font-size: 15px; }
+.todos { margin-top: 44px; display: flex; flex-wrap: wrap; gap: 10px; padding: 0; list-style: none; }
+.todos li { border: 1px solid var(--linha); border-radius: 999px; padding: 8px 15px; font-size: 14.5px; color: var(--luz-2); }
+.todos li b { color: var(--luz); font-weight: 600; }
+
+/* o que cada ponto conta */
+.conta { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(36px, 6vw, 90px); align-items: center; }
+.fichas { position: relative; min-height: 600px; }
+.fichas img { position: absolute; width: 56%; border-radius: 24px; box-shadow: 0 40px 100px -30px rgba(0,0,0,.9); }
+.fichas img:first-child { left: 0; top: 0; }
+.fichas img:last-child { right: 0; top: 30%; }
+.camadas { list-style: none; padding: 0; margin: 40px 0 0; display: grid; gap: 0; }
+.camadas li { padding: 20px 0; border-top: 1px solid var(--linha); display: grid; grid-template-columns: 170px 1fr; gap: 20px; }
+.camadas li:last-child { border-bottom: 1px solid var(--linha); }
+.camadas b { font-family: var(--serifa); font-size: 24px; font-weight: 600; line-height: 1.1; color: var(--cor); }
+.camadas span { color: var(--luz-2); }
+
+/* oferta */
+.oferta { text-align: center; }
+.oferta h2 { max-width: 13em; margin-inline: auto; }
+.cartao-preco { margin: 56px auto 0; max-width: 560px; border-radius: 36px; padding: clamp(30px, 4vw, 48px); border: 1px solid rgba(255,199,90,.35); background: radial-gradient(120% 80% at 50% 0%, rgba(255,199,90,.14), transparent 60%), #0A0B13; text-align: left; }
+.cartao-preco .valor { font-size: clamp(64px, 8vw, 92px); font-weight: 650; letter-spacing: -.05em; line-height: 1; }
+.cartao-preco .valor small { font-size: 22px; letter-spacing: 0; color: var(--luz-2); font-weight: 500; margin-right: 6px; vertical-align: 1.4em; }
+.cartao-preco .prazo { color: var(--luz-2); margin-top: 8px; }
+.cartao-preco ul { list-style: none; padding: 0; margin: 28px 0; display: grid; gap: 12px; }
+.cartao-preco li { padding-left: 28px; position: relative; }
+.cartao-preco li::before { content: ""; position: absolute; left: 2px; top: .5em; width: 12px; height: 7px; border-left: 2px solid var(--cor); border-bottom: 2px solid var(--cor); rotate: -45deg; }
+.cartao-preco .botao { width: 100%; justify-content: center; }
+.cartao-preco .gratis { display: block; text-align: center; margin-top: 18px; }
+.cartao-preco .nota { font-size: 13.5px; color: var(--luz-3); margin-top: 18px; text-align: center; }
+
+/* perguntas */
+.faq { max-width: 820px; }
+.faq details { border-top: 1px solid var(--linha); }
+.faq details:last-child { border-bottom: 1px solid var(--linha); }
+.faq summary { cursor: pointer; list-style: none; padding: 24px 40px 24px 0; font-size: 19px; font-weight: 600; position: relative; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 4px; top: 18px; font-size: 28px; font-weight: 300; color: var(--cor); transition: rotate .3s var(--ease); }
+.faq details[open] summary::after { rotate: 45deg; }
+.faq details p { margin: 0 0 24px; color: var(--luz-2); max-width: 44em; }
+
+.final { text-align: center; }
+.final h2 { font-size: clamp(48px, 7vw, 100px); }
+.final .acoes { margin-top: 36px; display: flex; justify-content: center; }
+
+@media (max-width: 1080px) { .vozes-grade { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 920px) {
+  .hero, .video, .conta { grid-template-columns: minmax(0, 1fr); }
+  .hero .roda-hero { max-width: 520px; width: 100%; margin: 20px auto 0; }
+  .celular { max-width: 340px; margin: 0 auto; }
+  .pontos { grid-template-columns: minmax(0, 1fr); }
+  .fichas { min-height: 0; display: grid; gap: 14px; }
+  .fichas img { position: static; width: 100%; }
+  .camadas li { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+}
+@media (max-width: 600px) { .topo nav a:not(.so-celular) { display: none; } }
+.topo nav .so-celular { display: none; }
+@media (max-width: 600px) { .topo nav .so-celular { display: inline; color: var(--luz); font-weight: 600; } }
+@media (max-width: 520px) {
+  .vozes-grade { grid-template-columns: minmax(0, 1fr); }
+  .voz { min-height: 0; display: grid; grid-template-columns: 56px 1fr; column-gap: 16px; row-gap: 8px; }
+  .voz .glifo { grid-row: span 3; }
+  .roda-hero .fala { font-size: 16px; padding: 8px 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .roda-hero .zod, .faixa ul, .voz.tocando .glifo { animation: none; } }
+</style>
+</head>
+<body>
+<header class="topo">
+  <a class="marca" href="/" aria-label="eusouodu, início">eusouodu</a>
+  <nav aria-label="Principal"><a href="#vozes">As vozes</a><a href="#como">Como funciona</a><a href="#abrir">Preço</a><a href="/">Voltar ao site</a><a class="so-celular" href="/leitura/">Ouvir o meu Sol</a></nav>
+</header>
+<main>
+
+  <section class="env hero" aria-labelledby="t-hero">
+    <div>
+      <p class="olho">Lançamento · Leitura viva do mapa</p>
+      <h1 id="t-hero">O seu mapa <em>fala</em>.</h1>
+      <p class="lead">Toque num planeta do seu mapa natal e ele mesmo explica, em voz alta, o que significa em você. Dez planetas, dez vozes. E também os nodos, a Roda da Fortuna, o Ascendente, as doze casas e cada aspecto.</p>
+      <div class="acoes">
+        <a class="botao" href="/leitura/">Ouvir o meu Sol de graça</a>
+        <a class="link-claro" href="#vozes">Ouvir as dez vozes<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+      <p class="preco-mini">O Sol fala de graça. O mapa inteiro abre por R$ 147, por seis meses.</p>
+    </div>
+    <div class="roda-hero">
+      <div class="zod" id="zod" aria-hidden="true"></div>
+      <img src="img/roda-sol-1.jpg" alt="Uma roda do mapa natal com o Sol aceso na casa 11, as linhas do Ascendente e do Meio do Céu e os aspectos no centro" width="1134" height="1134" fetchpriority="high">
+      <p class="fala" aria-hidden="true"><b>☉</b>Eu sou aquilo que você veio ser.</p>
+    </div>
+  </section>
+
+  <div class="faixa" aria-hidden="true"><ul id="faixa"></ul></div>
+
+  <section class="env sec" id="vozes" aria-labelledby="t-vozes">
+    <p class="olho">Aperte e ouça</p>
+    <h2 id="t-vozes">Dez planetas. <em>Dez vozes.</em></h2>
+    <p class="lead">Cada planeta fala com a voz do seu caráter. Saturno é grave e lento, Vênus é suave, Marte é seco, Netuno vem como névoa. São as mesmas vozes que falam dentro do seu mapa.</p>
+    <div class="vozes-grade" id="grade"></div>
+    <p class="vozes-nota">Aqui eles só se apresentam. No seu mapa, cada um fala por cerca de um minuto sobre onde ele está em você.</p>
+  </section>
+
+  <section class="env sec" id="como" aria-labelledby="t-como">
+    <div class="video">
+      <div class="celular">
+        <video id="reel" src="reel.mp4" poster="img/reel-capa.jpg" playsinline muted loop preload="metadata" aria-label="Vídeo: o mapa natal falando, planeta por planeta"></video>
+        <button class="som" id="som" type="button">Assistir com som</button>
+      </div>
+      <div>
+        <p class="olho">Como funciona</p>
+        <h2 id="t-como">Você toca. <em>Ele explica.</em></h2>
+        <ol class="passos">
+          <li><div><b>Você informa quando e onde nasceu</b><span>Data, hora e cidade. O mapa é calculado na hora, com as casas de Placidus, os nodos e a Roda da Fortuna.</span></div></li>
+          <li><div><b>A roda do seu mapa abre na tela</b><span>Com os planetas no grau exato, as linhas do Ascendente e do Meio do Céu e as linhas de cada aspecto.</span></div></li>
+          <li><div><b>Você toca num ponto, e ele fala</b><span>Em primeira pessoa, com a voz dele, sobre o que ele é no seu mapa. O texto aparece escrito enquanto ele fala.</span></div></li>
+          <li><div><b>E pergunta pelo céu de agora</b><span>O mesmo ponto conta o que o trânsito de hoje está mexendo nele.</span></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="env sec" aria-labelledby="t-pontos">
+    <p class="olho">O mapa inteiro fala</p>
+    <h2 id="t-pontos">Toque em <em>qualquer</em> ponto.</h2>
+    <p class="lead">Não são só os planetas. Tudo o que está na roda tem algo a dizer sobre você.</p>
+    <div class="pontos">
+      <figure class="ponto"><img src="img/roda-fortuna-1.jpg" alt="A Roda da Fortuna acesa no mapa" width="1134" height="1134" loading="lazy"><figcaption><b>A Roda da Fortuna</b><span>Onde a vida flui a seu favor, calculada para mapa de dia ou de noite.</span></figcaption></figure>
+      <figure class="ponto"><img src="img/roda-casa10-1.jpg" alt="A casa 10 acesa no mapa" width="1134" height="1134" loading="lazy"><figcaption><b>As doze casas</b><span>Cada área da vida, com o signo na cúspide e o planeta que a rege.</span></figcaption></figure>
+      <figure class="ponto"><img src="img/roda-venus-jupiter-quadratura-1.jpg" alt="Uma quadratura entre Vênus e Júpiter acesa no mapa" width="1134" height="1134" loading="lazy"><figcaption><b>Os aspectos</b><span>A conversa entre dois planetas: conjunção, sextil, quadratura, trígono e oposição.</span></figcaption></figure>
+    </div>
+    <ul class="todos" aria-label="Tudo o que fala">
+      <li><b>10</b> planetas</li><li>Nodo Norte</li><li>Nodo Sul</li><li>Roda da Fortuna</li><li>Ascendente</li><li>Descendente</li><li>Meio do Céu</li><li>Fundo do Céu</li><li><b>12</b> casas</li><li>Conjunções</li><li>Sextis</li><li>Quadraturas</li><li>Trígonos</li><li>Oposições</li>
+    </ul>
+  </section>
+
+  <section class="env sec" aria-labelledby="t-conta">
+    <div class="conta">
+      <div>
+        <p class="olho">Mais fundo que o signo</p>
+        <h2 id="t-conta">Não é só "Saturno em <em>Capricórnio</em>".</h2>
+        <p class="lead">Cada ponto traz as camadas que uma boa leitura traz, e liga o céu à mitologia, à filosofia e aos livros.</p>
+        <ul class="camadas">
+          <li><b>Grau e decanato</b><span>O grau exato, se é o primeiro, o segundo ou o terceiro decanato, a face e o regente dele.</span></li>
+          <li><b>Dignidade</b><span>Se o planeta está em casa, exaltado, em exílio ou em queda, e o que isso muda.</span></li>
+          <li><b>Mito e filosofia</b><span>O mito que ecoa naquele ponto e uma ideia filosófica para pensar a vida com ele.</span></li>
+          <li><b>Um livro para ler</b><span>De Sêneca a Clarissa Pinkola Estés, escolhido para aquele planeta naquele signo.</span></li>
+          <li><b>O céu de agora</b><span>O trânsito que está passando por ali hoje, contado pelo próprio ponto.</span></li>
+        </ul>
+      </div>
+      <div class="fichas">
+        <img src="img/grau-saturno.jpg" alt="Ficha do grau: 25 graus e 15 minutos, terceiro decanato, face do Sol, Saturno em domicílio em Capricórnio" width="912" height="939" loading="lazy">
+        <img src="img/fichas-saturno.jpg" alt="Fichas de filosofia e mito, com os estoicos, e de livros: Sêneca, Marco Aurélio e Boécio" width="912" height="984" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="env sec oferta" id="abrir" aria-labelledby="t-oferta">
+    <p class="olho">Abrir o mapa inteiro</p>
+    <h2 id="t-oferta">Ouça o seu Sol primeiro. <em>Depois decida.</em></h2>
+    <div class="cartao-preco">
+      <div class="valor"><small>R$</small>147</div>
+      <p class="prazo">Pagamento único. Seis meses de acesso ao seu mapa falando.</p>
+      <ul>
+        <li>Os dez planetas, cada um com a sua voz</li>
+        <li>Nodos, Roda da Fortuna, Ascendente, Meio do Céu e Fundo do Céu</li>
+        <li>As doze casas e todos os aspectos do seu mapa</li>
+        <li>Grau, decanato, mito, filosofia e livros em cada ponto</li>
+        <li>O céu de agora em cada ponto, durante os seis meses</li>
+      </ul>
+      <a class="botao" href="/leitura/">Abrir o meu mapa</a>
+      <a class="link-claro gratis" href="/leitura/">Antes, ouvir o meu Sol de graça</a>
+      <p class="nota">Pix ou cartão pelo Mercado Pago. O link de acesso chega no seu e-mail logo depois da compra.</p>
+    </div>
+  </section>
+
+  <section class="env sec" aria-labelledby="t-faq">
+    <p class="olho">Perguntas</p>
+    <h2 id="t-faq">Antes de <em>abrir</em>.</h2>
+    <div class="faq" style="margin-top:44px">
+      <details><summary>Preciso saber a hora em que nasci?</summary><p>Sim. Sem a hora não dá para calcular o Ascendente, o Meio do Céu e as casas. A certidão de nascimento costuma trazer a hora. Se ela for aproximada, a leitura dos planetas nos signos continua valendo, mas as casas podem mudar.</p></details>
+      <details><summary>O que eu ouço de graça?</summary><p>O seu Sol. Você vê o mapa inteiro na tela e ouve o Sol falar sobre onde ele está em você. Os outros pontos abrem com a compra.</p></details>
+      <details><summary>Quem escreve o que cada planeta fala?</summary><p>As falas partem dos textos do Eduardo, que lê o céu ao lado da mitologia e do simbolismo há mais de dez anos. Uma inteligência artificial monta cada fala para o seu mapa específico, a partir desses textos, e cada planeta lê com a sua voz.</p></details>
+      <details><summary>Funciona no celular?</summary><p>Funciona. A roda se ajusta à tela e as falas tocam no próprio navegador, sem instalar nada.</p></details>
+      <details><summary>O que acontece depois de seis meses?</summary><p>O acesso fecha. Se quiser continuar, compra de novo e ganha mais seis meses no mesmo mapa.</p></details>
+      <details><summary>Posso abrir o mapa de outra pessoa?</summary><p>Cada compra abre um mapa. Para outra pessoa, é outra compra com os dados de nascimento dela.</p></details>
+    </div>
+  </section>
+
+  <section class="env sec final" aria-labelledby="t-final">
+    <h2 id="t-final">Você nunca ouviu o seu <em>mapa</em>.</h2>
+    <div class="acoes"><a class="botao" href="/leitura/">Ouvir o meu Sol de graça</a></div>
+  </section>
+
+</main>
+<footer class="rodape">
+  <a class="marca" href="/">eusouodu</a>
+  <nav aria-label="Contato">
+    <a href="mailto:falecom@eusouodu.com">falecom@eusouodu.com</a>
+    <a href="/privacidade/">Privacidade</a>
+    <a href="/termos/">Termos</a>
+  </nav>
+</footer>
+<script>
+(() => {
+  const VOZES = [
+    ['sol', 'Sol', '☉', '#FFC75A', 'Eu sou aquilo que você veio ser.'],
+    ['lua', 'Lua', '☽', '#E6E9F2', 'Guardo o que você sente antes de saber.'],
+    ['merc', 'Mercúrio', '☿', '#7FE0D0', 'Sou o jeito como você pensa e diz.'],
+    ['venus', 'Vênus', '♀', '#FF9EC4', 'Sou o que você ama, e como ama.'],
+    ['marte', 'Marte', '♂', '#FF6B5A', 'Sou a sua coragem. E a sua raiva.'],
+    ['jupiter', 'Júpiter', '♃', '#FFB06A', 'Mostro onde a vida se abre para você.'],
+    ['saturno', 'Saturno', '♄', '#D9C49A', 'Sou o tempo. Ensino devagar.'],
+    ['urano', 'Urano', '♅', '#7FD8FF', 'Quebro o que te prende.'],
+    ['netuno', 'Netuno', '♆', '#7FA8FF', 'Sou a névoa, o sonho, o mar por dentro.'],
+    ['plutao', 'Plutão', '♇', '#C08AFF', 'Desço com você até o fundo. E te devolvo inteiro.'],
+  ];
+  const $ = id => document.getElementById(id);
+
+  fetch('img/zodiaco.svg').then(r => r.text()).then(t => { $('zod').innerHTML = t; }).catch(() => {});
+
+  const faixa = VOZES.map(([, n, g]) => `<li><span>${g}</span>${n}</li>`).join('') + '<li><span>☊</span>Nodos</li><li><span>⊗</span>Roda da Fortuna</li><li><span>AC</span>Ascendente</li><li><span>MC</span>Meio do Céu</li><li><span>12</span>Casas</li><li><span>△</span>Aspectos</li>';
+  $('faixa').innerHTML = faixa + faixa;
+
+  $('grade').innerHTML = VOZES.map(([id, n, g, c, f]) => `<button type="button" class="voz" data-id="${id}" style="--pc:${c}" aria-label="Ouvir ${n}"><span class="glifo" aria-hidden="true">${g}</span><span class="nome">${n}</span><span class="frase">${f}</span><span class="ouvir"><i aria-hidden="true"></i><em>Ouvir</em></span></button>`).join('');
+
+  const audio = new Audio(); let atual = null;
+  const soltar = () => { if (atual) { atual.classList.remove('tocando'); atual.querySelector('em').textContent = 'Ouvir'; } atual = null; };
+  audio.addEventListener('ended', soltar);
+  $('grade').addEventListener('click', e => {
+    const b = e.target.closest('.voz'); if (!b) return;
+    const mesmo = b === atual; audio.pause(); soltar();
+    if (mesmo) return;
+    $('reel').muted = true;
+    audio.src = 'vozes/' + b.dataset.id + '.mp3'; audio.play().catch(() => {});
+    atual = b; b.classList.add('tocando'); b.querySelector('em').textContent = 'Parar';
+  });
+
+  // o vídeo começa mudo quando aparece; o botão liga o som e volta ao começo
+  const v = $('reel');
+  new IntersectionObserver(([en]) => { en.isIntersecting ? v.play().catch(() => {}) : v.pause(); }, { threshold: .4 }).observe(v);
+  $('som').addEventListener('click', () => { audio.pause(); soltar(); v.currentTime = 0; v.muted = false; v.controls = true; v.play().catch(() => {}); $('som').hidden = true; });
+})();
+</script>
+</body>
+</html>

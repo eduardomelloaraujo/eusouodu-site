@@ -15,6 +15,8 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=3">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
 <link rel="preload" href="fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <script src="/pixel.js"></script>
 </head>
@@ -25,6 +27,7 @@
 <header class="topo">
   <a class="marca" href="#topo" aria-label="eusouodu, início">eusouodu</a>
   <nav aria-label="Principal">
+    <a href="/seu-mapa-fala/" class="novo">O seu mapa fala</a>
     <a href="#jornada">Jornada</a>
     <a href="#musica-astral">Música Astral</a>
     <a href="#espelho">Espelho</a>
@@ -50,6 +53,19 @@
     </div>
     <div class="cupula" aria-hidden="true"></div>
     <p class="hoje"><span id="hoje-texto">O céu de hoje</span></p>
+  </section>
+
+  <section class="lancamento" data-tom="mapa-fala" aria-labelledby="lancamento-t">
+    <a class="lancamento-roda" href="/seu-mapa-fala/" tabindex="-1" aria-hidden="true"><img src="/seu-mapa-fala/img/roda-sol-1.jpg" alt="" width="1134" height="1134" loading="lazy"></a>
+    <div>
+      <p class="selo"><b>Novo</b>Leitura viva do mapa</p>
+      <h2 id="lancamento-t" class="gigante">O seu mapa <em>fala</em>.</h2>
+      <p class="lead">Toque num planeta do seu mapa natal e ele mesmo explica, em voz alta, o que significa em você. Dez planetas com dez vozes, os nodos, a Roda da Fortuna, as casas e os aspectos. O Sol fala de graça.</p>
+      <div class="acoes">
+        <a class="botao" href="/seu-mapa-fala/">Conhecer e ouvir as vozes</a>
+        <a class="link-claro" href="/leitura/">Ouvir o meu Sol de graça<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      </div>
+    </div>
   </section>
 
   <section class="guia" aria-labelledby="guia-t">
