@@ -2,6 +2,11 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<script>
+// shortcut: página escondida enquanto o Eduardo testa; abre só com ?teste, com o link de acesso (#s=) ou na volta do pagamento. Apagar este bloco para lançar.
+(function(){var ok=/[?&](teste|pago)\b/.test(location.search)||/[#&]s=/.test(location.hash);try{if(ok)localStorage.setItem('leitura-teste','1');else ok=localStorage.getItem('leitura-teste')==='1'}catch(e){}if(!ok)location.replace('/')})();
+</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>O seu mapa fala · eusouodu</title>
 <meta name="description" content="O mapa natal aberto na tela: toque no Vênus, na Lua, numa casa ou num aspecto, e ele mesmo explica o que significa no seu mapa e o que o céu de agora está fazendo com ele.">
