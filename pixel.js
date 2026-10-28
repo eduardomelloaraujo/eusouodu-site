@@ -1,4 +1,4 @@
-// Pixel da Meta: PageView em toda página que carrega este arquivo; a compra do relatório é marcada em /mapa/obrigado.html
+// Pixel da Meta: PageView em toda página que carrega este arquivo; a compra do relatório é marcada em /mapa/obrigado.html e a da leitura viva na volta para /leitura/?pago=1
 (() => {
   const PIXEL_ID = "1746773097069648"; // conjunto de dados "eusouodu.com" do portfólio @eusouodu
   if (!PIXEL_ID) return;
@@ -13,6 +13,21 @@
     addEventListener("DOMContentLoaded", () => document.getElementById("form")?.addEventListener("submit", () => {
       const plano = document.querySelector("input[name=plano]:checked")?.value;
       fbq("track", "InitiateCheckout", { content_ids: ["mapa-" + plano], currency: "BRL", value: PRECO[plano] || 37 });
+    }));
+  }
+  // leitura viva: R$ 147; a volta do Mercado Pago cai em /leitura/?pago=1 com o payment_id
+  if (caminho === "/leitura/") {
+    const q = new URLSearchParams(location.search);
+    const pagamento = q.get("payment_id") || q.get("collection_id");
+    if (q.get("pago") === "1" && pagamento && q.get("collection_status") !== "pending") {
+      let nova = true;
+      try { nova = !localStorage.getItem("compra-" + pagamento); localStorage.setItem("compra-" + pagamento, "1"); } catch (e) {}
+      if (nova) fbq("track", "Purchase", { content_ids: ["leitura"], currency: "BRL", value: 147 }, { eventID: "leitura-" + pagamento });
+    } else {
+      fbq("track", "ViewContent", { content_ids: ["leitura"], content_type: "product", currency: "BRL", value: 147 });
+    }
+    addEventListener("DOMContentLoaded", () => document.getElementById("fComprar")?.addEventListener("submit", () => {
+      fbq("track", "InitiateCheckout", { content_ids: ["leitura"], currency: "BRL", value: 147 });
     }));
   }
   if (caminho === "/mapa/obrigado.html") {
