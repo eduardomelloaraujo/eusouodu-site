@@ -318,7 +318,7 @@
 
   let audio = null, ctx = null, raf = 0, falando = false;
   // o volume da voz faz pulsar o orbe do palco e o medalhão no centro da roda
-  function vol(v) { const x = v.toFixed(3); $('orbe').style.setProperty('--vol', x); $('roda').style.setProperty('--vol', x); }
+  function vol(v) { const x = v.toFixed(3); $('orbe').style.setProperty('--vol', x); const m = $('miolo'); if (m) m.style.setProperty('--vol', x); } // só no miolo: na roda inteira o Safari recalculava tudo a cada quadro
   const mmss = t => isFinite(t) ? `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}` : '';
   function estado(e, tipo) {
     $('acoes').dataset.estado = e || '';

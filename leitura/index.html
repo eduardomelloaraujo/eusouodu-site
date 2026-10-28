@@ -37,7 +37,7 @@ main { overflow-x: clip; }
 .entrada ul { margin: 28px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; color: var(--luz-2); font-size: 16px; }
 .entrada li::before { content: "✦\FE0E"; color: var(--cor); margin-right: 10px; }
 form { display: flex; flex-direction: column; gap: 20px; }
-.cartao { border: 1px solid var(--linha); border-radius: 28px; padding: clamp(22px, 3vw, 32px); background: rgba(245, 243, 238, .03); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.cartao { border: 1px solid var(--linha); border-radius: 28px; padding: clamp(22px, 3vw, 32px); background: rgba(12, 13, 22, .72); }
 .campo { display: flex; flex-direction: column; gap: 8px; position: relative; }
 .campo label { font-size: 14px; font-weight: 500; color: var(--luz-2); }
 .campo input { font: inherit; font-size: 17px; padding: 14px 16px; border: 1px solid var(--linha); background: rgba(245, 243, 238, .04); color: var(--luz); border-radius: 14px; width: 100%; }
@@ -60,12 +60,12 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
 /* o mapa */
 .leitura { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(360px, .95fr); gap: clamp(28px, 3.5vw, 56px); align-items: start; padding-block: 20px 80px; max-width: 1560px; }
 .roda-casa { position: relative; max-width: min(100%, calc(100vh - 200px)); margin: 0 auto; }
-.roda-casa::before { content: ""; position: absolute; inset: 6%; border-radius: 50%; background: radial-gradient(circle, rgba(140,110,255,.18), transparent 65%); filter: blur(40px); z-index: -1; }
+.roda-casa::before { content: ""; position: absolute; inset: 6%; border-radius: 50%; background: radial-gradient(circle, rgba(140,110,255,.16), rgba(140,110,255,.05) 45%, transparent 70%); z-index: -1; }
 .quem { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
 .quem h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 500; font-size: clamp(34px, 3.6vw, 54px); letter-spacing: -.01em; }
 .quem h1 b { font-weight: 600; font-style: italic; color: var(--cor); }
 .quem p { color: var(--luz-3); font-size: 14px; }
-#roda { width: 100%; height: auto; display: block; touch-action: manipulation; user-select: none; -webkit-user-select: none; overflow: visible; filter: drop-shadow(0 30px 80px rgba(120, 90, 255, .12)); }
+#roda { width: 100%; height: auto; display: block; touch-action: manipulation; user-select: none; -webkit-user-select: none; overflow: visible; }
 #roda text { text-anchor: middle; dominant-baseline: central; }
 #roda .signo text { font-size: 18px; }
 #roda .alvo { cursor: pointer; }
@@ -97,11 +97,12 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
 #roda #miolo { --mc: #B9A6FF; }
 #roda #miolo .m-halo { fill: var(--mc); opacity: calc(.16 + var(--vol, 0) * .55); transform: scale(calc(1 + var(--vol, 0) * .3)); transform-box: fill-box; transform-origin: center; transition: fill .5s; }
 #roda #miolo .m-disco { fill: #090A14; fill-opacity: .92; stroke: var(--mc); stroke-opacity: .55; }
-#roda #miolo .m-aro { fill: none; stroke: var(--mc); stroke-opacity: .25; stroke-dasharray: 1 5; animation: girarAro 60s linear infinite; transform-origin: 0 0; }
+#roda #miolo .m-aro { fill: none; stroke: var(--mc); stroke-opacity: .25; stroke-dasharray: 1 5; }
 #roda #miolo .m-glifo { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 40px; fill: var(--mc); filter: url(#brilhoFraco); }
 #roda #miolo .m-glifo.sigla { font-family: inherit; font-size: 20px; font-weight: 700; letter-spacing: .04em; }
 #roda #miolo .m-rot { font-size: 11px; font-variant-numeric: lining-nums tabular-nums; fill: rgba(245,243,238,.7); letter-spacing: .08em; font-variant-numeric: tabular-nums; }
 @keyframes girarAro { to { transform: rotate(360deg); } }
+/* sem filter/backdrop-filter na roda e no palco: no Safari isso derrubava a página (28/10) */
 /* entrada da roda: o céu se acende de fora para dentro */
 #roda.entrou .c-zod, #roda.entrou .c-casas { animation: girar 1.4s cubic-bezier(.2,.7,.2,1) both; transform-origin: 0 0; }
 #roda.entrou .c-asp line.ver:not([stroke-dasharray="3 5"]) { stroke-dashoffset: var(--len); animation: tracar 1.6s .7s ease-out forwards; }
@@ -136,7 +137,7 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
 .ficha.ativo { color: var(--cupula); background: var(--cor); border-color: var(--cor); }
 .ficha.fechado::after { content: " ·\00a0🔒\FE0E"; font-size: 11px; opacity: .6; }
 
-.palco { position: sticky; top: 16px; border: 1px solid rgba(245,243,238,.09); border-radius: 32px; padding: clamp(22px, 2.6vw, 34px); background: linear-gradient(180deg, color-mix(in srgb, var(--cor) 7%, rgba(12,13,24,.82)), rgba(8,9,16,.78) 45%); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 40px 120px -40px color-mix(in srgb, var(--cor) 35%, transparent); transition: box-shadow .6s, background .6s; max-height: calc(100vh - 32px); overflow: auto; scrollbar-width: thin; }
+.palco { position: sticky; top: 16px; border: 1px solid rgba(245,243,238,.09); border-radius: 32px; padding: clamp(22px, 2.6vw, 34px); background: linear-gradient(180deg, color-mix(in srgb, var(--cor) 7%, rgba(12,13,24,.94)), rgba(8,9,16,.92) 45%); box-shadow: 0 40px 120px -40px color-mix(in srgb, var(--cor) 35%, transparent); transition: box-shadow .6s, background .6s; max-height: calc(100vh - 32px); overflow: auto; scrollbar-width: thin; }
 .orbe-linha { display: flex; gap: 20px; align-items: center; }
 .orbe { width: 88px; height: 88px; border-radius: 50%; flex: none; display: grid; place-items: center; font-size: 40px; color: var(--cupula); background: radial-gradient(circle at 35% 30%, #fff, var(--cor) 55%, color-mix(in srgb, var(--cor) 40%, #000)); box-shadow: 0 0 calc(18px + var(--vol, 0) * 70px) calc(2px + var(--vol, 0) * 18px) var(--cor), inset 0 -8px 18px rgba(0,0,0,.25); transform: scale(calc(1 + var(--vol, 0) * .18)); transition: transform .08s linear, box-shadow .08s linear; }
 .palco h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: clamp(36px, 3.6vw, 52px); letter-spacing: -.01em; line-height: .95; }
