@@ -47,6 +47,11 @@ input:focus,select:focus{outline:none;border-color:var(--tinta)}
     <p id="msg" role="status"></p>
   </form>
   <hr style="border:none;border-top:1px solid var(--pedra);margin:20px 0">
+  <h1 style="font-size:32px">Leitura viva de cortesia</h1>
+  <p>Abre o /leitura completo por 6 meses, sem pagamento, com o nome, o e-mail e o nascimento preenchidos lá em cima. Não manda e-mail: o link aparece aqui.</p>
+  <button class="botao" id="bt4" type="button">Abrir a leitura viva</button>
+  <p id="msg4" role="status" style="word-break:break-all"></p>
+  <hr style="border:none;border-top:1px solid var(--pedra);margin:20px 0">
   <h1 style="font-size:32px">Reenviar uma compra</h1>
   <p>Para quando alguém comprou e o relatório não chegou. O número da operação está no Mercado Pago, em Atividade, abrindo a venda.</p>
   <form id="r">
@@ -74,6 +79,14 @@ $('f').addEventListener('submit',async e=>{e.preventDefault();const m=$('msg');m
     const j=await r.json(); if(!r.ok) throw new Error(j.erro||'Não deu certo.');
     m.style.color='var(--ok)';m.textContent='Pedido aceito. O relatório está sendo escrito e chega no e-mail em alguns minutos (o de 30 dias pode levar até 5).';
   }catch(err){m.style.color='var(--erro)';m.textContent=err.message}finally{$('bt').disabled=false}});
+$('bt4').addEventListener('click',async()=>{const m=$('msg4');m.style.color='';
+  if(!$('chave').value){m.textContent='Preencha a senha de administrador lá em cima.';return}
+  if(!esc){m.textContent='Escolha a cidade na lista lá em cima.';return}
+  $('bt4').disabled=true;m.textContent='Abrindo…';
+  try{const r=await fetch('/api/leitura?a=cortesia',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({key:$('chave').value,nome:$('nome').value,email:$('email').value,data:$('data').value,hora:$('hora').value,cidade:esc.rotulo,lat:esc.lat,lon:esc.lon,tz:esc.tz})});
+    const j=await r.json(); if(!r.ok) throw new Error(j.erro==='sem permissão'?'Senha de administrador incorreta.':(j.erro||'Não deu certo.'));
+    m.style.color='var(--ok)';m.innerHTML='Pronto. <a href="'+j.link+'">Abrir o mapa</a><br>'+j.link;
+  }catch(err){m.style.color='var(--erro)';m.textContent=err.message}finally{$('bt4').disabled=false}});
 $('r').addEventListener('submit',async e=>{e.preventDefault();const m=$('msg2');m.style.color='';
   const k=$('chave').value; if(!k){m.textContent='Preencha a senha de administrador lá em cima.';return}
   $('bt2').disabled=true;m.textContent='Gerando e enviando, isso leva de 1 a 5 minutos. Não feche a página.';
