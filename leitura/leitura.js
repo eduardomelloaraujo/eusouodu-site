@@ -6,6 +6,7 @@
   const L = (pt, en) => EN ? en : pt;
   const API = '/api/leitura?' + (EN ? 'lang=en&' : '') + 'a=';
   const CHAVE = EN ? 'reading-s' : 'leitura-s';
+  const UF = { AL: 'Alabama', AK: 'Alaska', AZ: 'Arizona', AR: 'Arkansas', CA: 'California', CO: 'Colorado', CT: 'Connecticut', DE: 'Delaware', DC: 'District of Columbia', FL: 'Florida', GA: 'Georgia', HI: 'Hawaii', ID: 'Idaho', IL: 'Illinois', IN: 'Indiana', IA: 'Iowa', KS: 'Kansas', KY: 'Kentucky', LA: 'Louisiana', ME: 'Maine', MD: 'Maryland', MA: 'Massachusetts', MI: 'Michigan', MN: 'Minnesota', MS: 'Mississippi', MO: 'Missouri', MT: 'Montana', NE: 'Nebraska', NV: 'Nevada', NH: 'New Hampshire', NJ: 'New Jersey', NM: 'New Mexico', NY: 'New York', NC: 'North Carolina', ND: 'North Dakota', OH: 'Ohio', OK: 'Oklahoma', OR: 'Oregon', PA: 'Pennsylvania', RI: 'Rhode Island', SC: 'South Carolina', SD: 'South Dakota', TN: 'Tennessee', TX: 'Texas', UT: 'Utah', VT: 'Vermont', VA: 'Virginia', WA: 'Washington', WV: 'West Virginia', WI: 'Wisconsin', WY: 'Wyoming' };
   const guardar = (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} };
   const lerLocal = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
   const okEmail = e => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
@@ -52,11 +53,15 @@
   const fechar = () => { box.hidden = true; box.innerHTML = ''; };
   cidade.addEventListener('input', () => {
     escolha = null; $('cidadeOk').textContent = L('A cidade define o fuso e a posição exata das casas.', 'The city sets the time zone and the exact position of the houses.');
-    clearTimeout(t); const q = cidade.value.trim(); if (q.length < 3) return fechar();
+    clearTimeout(t); let q = cidade.value.trim(), filtro = '';
+    // em inglês, "Springfield, OR" ou "Springfield, Oregon" filtra pelo estado (ou país): há dezenas de cidades com o mesmo nome
+    if (EN && q.includes(',')) { [q, filtro] = q.split(/,(.*)/).map(x => (x || '').trim()); filtro = (UF[filtro.toUpperCase()] || filtro).toLowerCase(); }
+    if (q.length < 3) return fechar();
     t = setTimeout(async () => {
       try {
-        const j = await (await fetch('https://geocoding-api.open-meteo.com/v1/search?count=7&language=' + (EN ? 'en' : 'pt') + '&format=json&name=' + encodeURIComponent(q))).json();
-        const res = j.results || [];
+        const j = await (await fetch('https://geocoding-api.open-meteo.com/v1/search?count=' + (filtro ? 100 : 7) + '&language=' + (EN ? 'en' : 'pt') + '&format=json&name=' + encodeURIComponent(q))).json();
+        let res = j.results || [];
+        if (filtro) res = res.filter(c => [c.admin1, c.country, c.country_code].some(v => v && v.toLowerCase().startsWith(filtro))).slice(0, 10);
         if (!res.length) { box.innerHTML = L('<button type="button" disabled>Nenhuma cidade encontrada</button>', '<button type="button" disabled>No city found</button>'); box.hidden = false; return; }
         box.innerHTML = res.map((c, i) => `<button type="button" data-i="${i}">${esc(c.name)}<small> · ${esc([c.admin1, c.country].filter(Boolean).join(', '))}</small></button>`).join('');
         box.hidden = false;

@@ -40,8 +40,13 @@ form { display: flex; flex-direction: column; gap: 20px; }
 .cartao { border: 1px solid var(--linha); border-radius: 28px; padding: clamp(22px, 3vw, 32px); background: rgba(12, 13, 22, .72); }
 .campo { display: flex; flex-direction: column; gap: 8px; position: relative; }
 .campo label { font-size: 14px; font-weight: 500; color: var(--luz-2); }
-.campo input { font: inherit; font-size: 17px; padding: 14px 16px; border: 1px solid var(--linha); background: rgba(245, 243, 238, .04); color: var(--luz); border-radius: 14px; width: 100%; }
-.campo input:focus { outline: none; border-color: var(--cor); }
+.campo input, .campo select { font: inherit; font-size: 17px; padding: 14px 16px; border: 1px solid var(--linha); background: rgba(245, 243, 238, .04); color: var(--luz); border-radius: 14px; width: 100%; }
+.campo input:focus, .campo select:focus { outline: none; border-color: var(--cor); }
+/* a data em mês/dia/ano, igual em qualquer navegador (o campo nativo segue o idioma do computador) */
+.data-linha { grid-column: 1 / -1; }
+.data-us { display: grid; grid-template-columns: 1.5fr .8fr 1fr; gap: 6px; }
+.data-us select { padding: 14px 8px; min-width: 0; }
+.data-us option { color: #05060A; }
 .campo .ajuda { font-size: 14px; color: var(--luz-3); }
 .dupla { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .dupla > * { min-width: 0; }
@@ -214,7 +219,7 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
       <form id="fMapa" novalidate>
         <div class="campo"><label for="nome">Name</label><input id="nome" autocomplete="name" required></div>
         <div class="dupla">
-          <div class="campo"><label for="data">Date of birth</label><input id="data" type="date" min="1900-01-01" required></div>
+          <div class="campo data-linha"><label for="mes">Date of birth</label><input id="data" type="hidden"><div class="data-us"><select id="mes" aria-label="Month"><option value="">Month</option></select><select id="dia" aria-label="Day"><option value="">Day</option></select><select id="ano" aria-label="Year"><option value="">Year</option></select></div></div>
           <div class="campo"><label for="hora">Time of birth</label><input id="hora" type="time" required></div>
         </div>
         <div class="campo">
@@ -279,6 +284,23 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
   </nav>
 </footer>
 <script src="/leitura/leitura.js"></script>
+<script>
+// Month / Day / Year: preenche o campo escondido #data (AAAA-MM-DD) que o leitura.js lê
+(function () {
+  const $ = id => document.getElementById(id), d = $('data'), m = $('mes'), dd = $('dia'), y = $('ano');
+  const p2 = n => String(n).padStart(2, '0');
+  ['January','February','March','April','May','June','July','August','September','October','November','December'].forEach((n, i) => m.add(new Option(n, p2(i + 1))));
+  for (let i = 1; i <= 31; i++) dd.add(new Option(i, p2(i)));
+  for (let i = new Date().getFullYear(); i >= 1900; i--) y.add(new Option(i, i));
+  function juntar() {
+    const v = `${y.value}-${m.value}-${dd.value}`, t = new Date(v + 'T12:00:00Z');
+    // 31 de fevereiro e afins ficam vazios, e o leitura.js pede a data de novo
+    d.value = y.value && m.value && dd.value && t.getUTCDate() === +dd.value ? v : '';
+  }
+  [m, dd, y].forEach(s => s.addEventListener('change', juntar));
+  if (d.value) { const [Y, M, D] = d.value.split('-'); y.value = Y; m.value = M; dd.value = D; } // dados guardados da visita anterior
+})();
+</script>
 <script src="/main.js"></script>
 </body>
 </html>
