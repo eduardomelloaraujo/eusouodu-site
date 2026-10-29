@@ -1,7 +1,11 @@
 // O seu mapa fala: a roda do mapa natal em que cada planeta, ponto, aspecto e casa explica a si mesmo em voz alta.
 (function () {
   const $ = id => document.getElementById(id);
-  const API = '/api/leitura?a=';
+  // a mesma página em inglês (/reading): o idioma vem do <html lang>
+  const EN = document.documentElement.lang === 'en';
+  const L = (pt, en) => EN ? en : pt;
+  const API = '/api/leitura?' + (EN ? 'lang=en&' : '') + 'a=';
+  const CHAVE = EN ? 'reading-s' : 'leitura-s';
   const guardar = (k, v) => { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} };
   const lerLocal = k => { try { return localStorage.getItem(k); } catch (e) { return null; } };
   const okEmail = e => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
@@ -13,7 +17,7 @@
   const PCOR = { sol: '#FFC75A', lua: '#E6E9F2', merc: '#7FE0D0', venus: '#FF9EC4', marte: '#FF6B5A', jupiter: '#FFB06A', saturno: '#D9C49A', urano: '#7FD8FF', netuno: '#7FA8FF', plutao: '#C08AFF', nn: '#B9A6FF', ns: '#9A93B8', fortuna: '#FFE2A0', asc: '#FFE2A0', mc: '#FFE2A0', fc: '#FFE2A0', dc: '#FFE2A0' };
   const COR_ASP = { conjuncao: '#FFE2A0', sextil: '#8AB4FF', trigono: '#7FE8A8', quadratura: '#FF7A6B', oposicao: '#FF9A5C' };
   const GLIFO_ASP = { conjuncao: '☌', sextil: '⚹', quadratura: '□', trigono: '△', oposicao: '☍' };
-  const NOME_CURTO = { sol: 'Sol', lua: 'Lua', merc: 'Mercúrio', venus: 'Vênus', marte: 'Marte', jupiter: 'Júpiter', saturno: 'Saturno', urano: 'Urano', netuno: 'Netuno', plutao: 'Plutão', nn: 'Nodo Norte', ns: 'Nodo Sul', fortuna: 'Roda da Fortuna', asc: 'Ascendente', mc: 'Meio do Céu', fc: 'Fundo do Céu', dc: 'Descendente' };
+  const NOME_CURTO = EN ? { sol: 'Sun', lua: 'Moon', merc: 'Mercury', venus: 'Venus', marte: 'Mars', jupiter: 'Jupiter', saturno: 'Saturn', urano: 'Uranus', netuno: 'Neptune', plutao: 'Pluto', nn: 'North Node', ns: 'South Node', fortuna: 'Part of Fortune', asc: 'Ascendant', mc: 'Midheaven', fc: 'Imum Coeli', dc: 'Descendant' } : { sol: 'Sol', lua: 'Lua', merc: 'Mercúrio', venus: 'Vênus', marte: 'Marte', jupiter: 'Júpiter', saturno: 'Saturno', urano: 'Urano', netuno: 'Netuno', plutao: 'Plutão', nn: 'Nodo Norte', ns: 'Nodo Sul', fortuna: 'Roda da Fortuna', asc: 'Ascendente', mc: 'Meio do Céu', fc: 'Fundo do Céu', dc: 'Descendente' };
 
   // o zodíaco gigante que gira devagar atrás da entrada
   (function fundo() {
@@ -34,46 +38,46 @@
 
   /* ---------- entrada ---------- */
   const m = location.hash.match(/(?:^#|&)s=([^&]+)/);
-  if (m) { guardar('leitura-s', decodeURIComponent(m[1])); history.replaceState(null, '', location.pathname + location.search); }
-  sessao = lerLocal('leitura-s');
+  if (m) { guardar(CHAVE, decodeURIComponent(m[1])); history.replaceState(null, '', location.pathname + location.search); }
+  sessao = lerLocal(CHAVE);
   const pago = new URLSearchParams(location.search).get('pago');
   const avisar = t => { $('avisoEntrada').textContent = t; $('avisoEntrada').hidden = !t; };
-  if (pago === '1') avisar('Pagamento recebido. O link do seu mapa completo chegou no seu e-mail. Se não aparecer em alguns minutos, olhe o spam ou peça de novo em "Já comprei".');
-  if (pago === 'pendente') avisar('O pagamento ainda está sendo confirmado. Quando o Mercado Pago aprovar, o link chega no seu e-mail.');
-  if (pago === 'falhou') avisar('O pagamento não foi concluído. Os dados continuam aqui, é só tentar de novo.');
+  if (pago === '1') avisar(L('Pagamento recebido. O link do seu mapa completo chegou no seu e-mail. Se não aparecer em alguns minutos, olhe o spam ou peça de novo em "Já comprei".', 'Payment received. The link to your full chart is in your e-mail. If it does not show up in a few minutes, check spam or ask again under "I already bought".'));
+  if (pago === 'pendente') avisar(L('O pagamento ainda está sendo confirmado. Quando o Mercado Pago aprovar, o link chega no seu e-mail.', 'Your payment is still being confirmed. When it is approved, the link arrives in your e-mail.'));
+  if (pago === 'falhou') avisar(L('O pagamento não foi concluído. Os dados continuam aqui, é só tentar de novo.', 'The payment was not completed. Your details are still here, just try again.'));
 
   // cidade: a mesma busca do /mapa
   let escolha = null, t = null;
   const cidade = $('cidade'), box = $('sugestoes');
   const fechar = () => { box.hidden = true; box.innerHTML = ''; };
   cidade.addEventListener('input', () => {
-    escolha = null; $('cidadeOk').textContent = 'A cidade define o fuso e a posição exata das casas.';
+    escolha = null; $('cidadeOk').textContent = L('A cidade define o fuso e a posição exata das casas.', 'The city sets the time zone and the exact position of the houses.');
     clearTimeout(t); const q = cidade.value.trim(); if (q.length < 3) return fechar();
     t = setTimeout(async () => {
       try {
-        const j = await (await fetch('https://geocoding-api.open-meteo.com/v1/search?count=7&language=pt&format=json&name=' + encodeURIComponent(q))).json();
+        const j = await (await fetch('https://geocoding-api.open-meteo.com/v1/search?count=7&language=' + (EN ? 'en' : 'pt') + '&format=json&name=' + encodeURIComponent(q))).json();
         const res = j.results || [];
-        if (!res.length) { box.innerHTML = '<button type="button" disabled>Nenhuma cidade encontrada</button>'; box.hidden = false; return; }
+        if (!res.length) { box.innerHTML = L('<button type="button" disabled>Nenhuma cidade encontrada</button>', '<button type="button" disabled>No city found</button>'); box.hidden = false; return; }
         box.innerHTML = res.map((c, i) => `<button type="button" data-i="${i}">${esc(c.name)}<small> · ${esc([c.admin1, c.country].filter(Boolean).join(', '))}</small></button>`).join('');
         box.hidden = false;
         box.querySelectorAll('button[data-i]').forEach(b => b.addEventListener('click', () => {
           const c = res[+b.dataset.i];
           escolha = { rotulo: [c.name, c.admin1, c.country].filter(Boolean).join(', '), lat: c.latitude, lon: c.longitude, tz: c.timezone };
-          cidade.value = escolha.rotulo; $('cidadeOk').textContent = 'Cidade escolhida: ' + escolha.rotulo; fechar();
+          cidade.value = escolha.rotulo; $('cidadeOk').textContent = L('Cidade escolhida: ', 'City chosen: ') + escolha.rotulo; fechar();
         }));
-      } catch (e) { $('cidadeOk').textContent = 'Não foi possível buscar a cidade agora. Tente de novo.'; }
+      } catch (e) { $('cidadeOk').textContent = L('Não foi possível buscar a cidade agora. Tente de novo.', 'Could not search for the city right now. Try again.'); }
     }, 300);
   });
   document.addEventListener('click', e => { if (!box.contains(e.target) && e.target !== cidade) fechar(); });
   cidade.addEventListener('keydown', e => { if (e.key === 'ArrowDown') { const b = box.querySelector('button[data-i]'); if (b) { e.preventDefault(); b.focus(); } } if (e.key === 'Escape') fechar(); });
   box.addEventListener('keydown', e => { const bs = [...box.querySelectorAll('button[data-i]')], i = bs.indexOf(document.activeElement); if (e.key === 'ArrowDown' && bs[i + 1]) { e.preventDefault(); bs[i + 1].focus(); } if (e.key === 'ArrowUp') { e.preventDefault(); (bs[i - 1] || cidade).focus(); } if (e.key === 'Escape') { fechar(); cidade.focus(); } });
 
-  try { const sv = JSON.parse(sessionStorage.getItem('leitura-form') || 'null'); if (sv) { for (const k of ['nome', 'data', 'hora']) $(k).value = sv[k] || ''; if (sv.escolha) { escolha = sv.escolha; cidade.value = escolha.rotulo; $('cidadeOk').textContent = 'Cidade escolhida: ' + escolha.rotulo; } } } catch (e) {}
+  try { const sv = JSON.parse(sessionStorage.getItem('leitura-form') || 'null'); if (sv) { for (const k of ['nome', 'data', 'hora']) $(k).value = sv[k] || ''; if (sv.escolha) { escolha = sv.escolha; cidade.value = escolha.rotulo; $('cidadeOk').textContent = L('Cidade escolhida: ', 'City chosen: ') + escolha.rotulo; } } } catch (e) {}
 
   async function post(acao, corpo) {
     const r = await fetch(API + acao, { method: 'POST', headers: { 'content-type': 'application/json', ...(sessao ? { authorization: 'Bearer ' + sessao } : {}) }, body: JSON.stringify(corpo) });
     const j = await r.json().catch(() => ({}));
-    if (!r.ok) { const e = new Error(j.erro || 'Algo falhou. Tente de novo.'); e.status = r.status; throw e; }
+    if (!r.ok) { const e = new Error(j.erro || L('Algo falhou. Tente de novo.', 'Something went wrong. Try again.')); e.status = r.status; throw e; }
     return j;
   }
 
@@ -81,33 +85,33 @@
     e.preventDefault();
     const erro = $('eMapa'); erro.textContent = '';
     const d = { nome: $('nome').value.trim(), data: $('data').value, hora: $('hora').value };
-    if (d.nome.length < 2) return erro.textContent = 'Informe o nome.';
-    if (!d.data) return erro.textContent = 'Informe a data de nascimento.';
-    if (!d.hora) return erro.textContent = 'Informe a hora de nascimento. Sem ela não dá para calcular as casas.';
-    if (!escolha) return erro.textContent = 'Escolha a cidade de nascimento na lista que aparece ao digitar.';
+    if (d.nome.length < 2) return erro.textContent = L('Informe o nome.', 'Enter your name.');
+    if (!d.data) return erro.textContent = L('Informe a data de nascimento.', 'Enter the date of birth.');
+    if (!d.hora) return erro.textContent = L('Informe a hora de nascimento. Sem ela não dá para calcular as casas.', 'Enter the time of birth. Without it the houses cannot be calculated.');
+    if (!escolha) return erro.textContent = L('Escolha a cidade de nascimento na lista que aparece ao digitar.', 'Choose the city of birth from the list that appears as you type.');
     try { sessionStorage.setItem('leitura-form', JSON.stringify({ ...d, escolha })); } catch (e) {}
-    const bt = $('bMapa'); bt.disabled = true; bt.textContent = 'Calculando o céu…';
+    const bt = $('bMapa'); bt.disabled = true; bt.textContent = L('Calculando o céu…', 'Calculating the sky…');
     try {
       pessoa = { ...d, cidade: escolha.rotulo, lat: escolha.lat, lon: escolha.lon, tz: escolha.tz };
       S = await post('mapa', pessoa);
       abrir();
     } catch (err) { erro.textContent = err.message; }
-    bt.disabled = false; bt.textContent = 'Abrir o meu mapa';
+    bt.disabled = false; bt.textContent = L('Abrir o meu mapa', 'Open my chart');
   });
 
   $('jaComprei').addEventListener('click', () => { $('fLink').hidden = false; $('emailLink').focus(); });
   $('fLink').addEventListener('submit', async e => {
     e.preventDefault();
     const email = $('emailLink').value.trim(), erro = $('eLink');
-    if (!okEmail(email)) return erro.textContent = 'Confira o e-mail.';
+    if (!okEmail(email)) return erro.textContent = L('Confira o e-mail.', 'Check the e-mail.');
     $('bLink').disabled = true;
-    try { await post('link', { email }); erro.textContent = `Se ${email} tem a leitura ativa, o link acabou de chegar lá.`; } catch (err) { erro.textContent = err.message; }
+    try { await post('link', { email }); erro.textContent = L(`Se ${email} tem a leitura ativa, o link acabou de chegar lá.`, `If ${email} has an active reading, the link just arrived there.`); } catch (err) { erro.textContent = err.message; }
     $('bLink').disabled = false;
   });
 
   async function entrarComSessao() {
     const r = await fetch(API + 'meu', { headers: { authorization: 'Bearer ' + sessao } }).catch(() => null);
-    if (!r || r.status === 401) { guardar('leitura-s', null); sessao = null; if (r) avisar('O acesso terminou ou o link não vale mais. Peça um novo em "Já comprei".'); return; }
+    if (!r || r.status === 401) { guardar(CHAVE, null); sessao = null; if (r) avisar(L('O acesso terminou ou o link não vale mais. Peça um novo em "Já comprei".', 'Your access has ended or the link is no longer valid. Ask for a new one under "I already bought".')); return; }
     S = await r.json();
     abrir();
   }
@@ -218,7 +222,7 @@
       el('line', { x1: tx, y1: ty, x2: tx2, y2: ty2, stroke: cor, 'stroke-width': 1.4, 'pointer-events': 'none' }, cAstros);
       el('circle', { cx: tx, cy: ty, r: 1.8, fill: cor, 'pointer-events': 'none' }, cAstros);
       const [x, y] = xy(p.v, 206), tx3 = S.textos[p.id], gi = tx3.grau;
-      const g = el('g', { class: 'alvo astro' + (tx3.fechado ? ' fechado' : ''), tabindex: 0, role: 'button', 'data-id': p.id, 'aria-label': tx3.titulo + (tx3.fechado ? ', fechado' : ''), style: `--pc:${cor};--atraso:${(n * 45)}ms` }, cAstros);
+      const g = el('g', { class: 'alvo astro' + (tx3.fechado ? ' fechado' : ''), tabindex: 0, role: 'button', 'data-id': p.id, 'aria-label': tx3.titulo + (tx3.fechado ? L(', fechado', ', locked') : ''), style: `--pc:${cor};--atraso:${(n * 45)}ms` }, cAstros);
       el('circle', { class: 'halo', cx: x, cy: y, r: 24, filter: 'url(#brilho)' }, g);
       el('circle', { class: 'fundo', cx: x, cy: y, r: 16 }, g);
       el('text', { x, y, class: 'glifo' }, g).textContent = GLIFO[p.id] + T;
@@ -258,11 +262,11 @@
 
   function fichas() {
     const I = S.indice, grupos = [
-      ['Planetas', I.planetas], ['Pontos e ângulos', I.pontos],
-      ['Aspectos', I.aspectos], ['Casas', I.casas],
+      [L('Planetas', 'Planets'), I.planetas], [L('Pontos e ângulos', 'Points and angles'), I.pontos],
+      [L('Aspectos', 'Aspects'), I.aspectos], [L('Casas', 'Houses'), I.casas],
     ];
     const rot = id => {
-      if (id.startsWith('casa')) return 'Casa ' + id.slice(4);
+      if (id.startsWith('casa')) return L('Casa ', 'House ') + id.slice(4);
       if (NOME_CURTO[id]) return GLIFO[id].length < 2 ? GLIFO[id] + T + ' ' + NOME_CURTO[id] : NOME_CURTO[id];
       const [a, b, tp] = id.split('-'); return `${NOME_CURTO[a]} ${GLIFO_ASP[tp]}${T} ${NOME_CURTO[b]}`;
     };
@@ -274,10 +278,10 @@
     $('entrada').hidden = true; $('leitura').hidden = false;
     const p = S.pessoa || pessoa || {};
     const nome = String(p.nome || '').split(/\s+/)[0];
-    $('titulo').innerHTML = nome ? `O mapa de <b>${esc(nome)}</b>` : 'O seu <b>mapa</b>';
+    $('titulo').innerHTML = nome ? L(`O mapa de <b>${esc(nome)}</b>`, `<b>${esc(nome)}</b>’s chart`) : L('O seu <b>mapa</b>', 'Your <b>chart</b>');
     const [y, mo, d] = String(p.data || '').split('-');
-    $('dados').textContent = [d && `${d}/${mo}/${y}`, p.hora, p.cidade].filter(Boolean).join(' · ') + (p.until ? ` · acesso até ${new Date(p.until).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' })}` : '');
-    if (S.preco) $('preco').textContent = 'R$ ' + String(S.preco).replace('.', ',');
+    $('dados').textContent = [d && (EN ? `${mo}/${d}/${y}` : `${d}/${mo}/${y}`), p.hora, p.cidade].filter(Boolean).join(' · ') + (p.until ? L(' · acesso até ', ' · access until ') + new Date(p.until).toLocaleDateString(L('pt-BR', 'en-US'), { day: 'numeric', month: 'long', year: 'numeric' }) : '');
+    if (S.preco) $('preco').textContent = EN ? '$' + S.preco : 'R$ ' + String(S.preco).replace('.', ',');
     desenhar(); fichas();
     escolher('sol', false);
     $('roda').classList.remove('foco'); // na abertura, todas as linhas aparecem
@@ -289,6 +293,10 @@
     parar();
     atual = id;
     const tx = S.textos[id];
+    if (tx.traduzir) {
+      tx.traduzir = false;
+      post('texto', { id, ...(sessao ? {} : pessoa) }).then(t => { Object.assign(tx, t); if (atual === id) escolher(id, false); }).catch(() => { tx.traduzir = true; });
+    }
     document.querySelectorAll('.ativo').forEach(n => n.classList.remove('ativo'));
     document.querySelectorAll(`[data-id="${id}"]`).forEach(n => n.classList.add('ativo'));
     const tp = id.split('-')[2];
@@ -305,12 +313,12 @@
     const gi = tx.grau;
     $('ficha-grau').hidden = !gi || !!tx.fechado;
     if (gi) $('ficha-grau').innerHTML = `<div class="g-num">${gi.grau}<span>°${String(gi.minuto).padStart(2, '0')}'</span></div>
-      <dl><div><dt>Decanato</dt><dd>${gi.decanato}º de 3</dd></div><div><dt>Face</dt><dd>${esc(gi.face)}</dd></div><div><dt>Tom do elemento</dt><dd>${esc(gi.triplicidade)}</dd></div>
-      ${gi.dignidade ? `<div class="larga"><dt>Dignidade</dt><dd>${esc(gi.dignidade)}</dd></div>` : ''}${gi.critico ? `<div class="larga"><dt>Grau crítico</dt><dd>${esc(gi.critico)}</dd></div>` : ''}</dl>`;
+      <dl><div><dt>${L('Decanato', 'Decan')}</dt><dd>${gi.decanato}${L('º de 3', ' of 3')}</dd></div><div><dt>Face</dt><dd>${esc(gi.face)}</dd></div><div><dt>${L('Tom do elemento', 'Element tone')}</dt><dd>${esc(gi.triplicidade)}</dd></div>
+      ${gi.dignidade ? `<div class="larga"><dt>${L('Dignidade', 'Dignity')}</dt><dd>${esc(gi.dignidade)}</dd></div>` : ''}${gi.critico ? `<div class="larga"><dt>${L('Grau crítico', 'Critical degree')}</dt><dd>${esc(gi.critico)}</dd></div>` : ''}</dl>`;
     $('ficha-filo').hidden = !tx.filosofia || !!tx.fechado;
-    $('ficha-filo').innerHTML = tx.filosofia ? `<p class="rot">Filosofia e mito</p><p>${esc(tx.filosofia)}</p>` : '';
+    $('ficha-filo').innerHTML = tx.filosofia ? `<p class="rot">${L('Filosofia e mito', 'Philosophy and myth')}</p><p>${esc(tx.filosofia)}</p>` : '';
     $('ficha-livros').hidden = !(tx.livros && tx.livros.length) || !!tx.fechado;
-    $('ficha-livros').innerHTML = tx.livros ? `<p class="rot">Para ler</p><ul>${tx.livros.map(l => `<li><b>${esc(l.titulo)}</b><span>${esc(l.autor)}</span></li>`).join('')}</ul>` : '';
+    $('ficha-livros').innerHTML = tx.livros ? `<p class="rot">${L('Para ler', 'To read')}</p><ul>${tx.livros.map(l => `<li><b>${esc(l.titulo)}</b><span>${esc(l.autor)}</span></li>`).join('')}</ul>` : '';
     destacar(id);
     rotuloFaixa();
     if (rolar && window.innerWidth <= 920) $('palco').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -323,7 +331,7 @@
   function estado(e, tipo) {
     $('acoes').dataset.estado = e || '';
     $('acoes').dataset.tipo = tipo || '';
-    $('bOuvir').setAttribute('aria-label', e === 'tocando' ? 'Parar' : 'Ouvir');
+    $('bOuvir').setAttribute('aria-label', e === 'tocando' ? L('Parar', 'Stop') : L('Ouvir', 'Listen'));
     $('bTransito').disabled = e === 'carregando';
     if (!e) { $('barra').style.width = '0%'; $('tempo').textContent = ''; }
   }
@@ -338,7 +346,7 @@
   async function ouvir(tipo) {
     const id = atual; parar();
     estado('carregando', tipo);
-    $('faixaRot').textContent = tipo === 'transito' ? 'Buscando o céu de agora…' : 'Chamando a voz…';
+    $('faixaRot').textContent = tipo === 'transito' ? L('Buscando o céu de agora…', 'Reading the sky right now…') : L('Chamando a voz…', 'Calling the voice…');
     // o pedido de áudio precisa sair do toque para o iPhone deixar tocar
     if (!ctx) try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {}
     if (ctx && ctx.state === 'suspended') ctx.resume();
@@ -351,7 +359,7 @@
     }
     if (atual !== id) return;
     $('legenda').hidden = false; $('legenda').textContent = f.texto;
-    $('faixaRot').textContent = tipo === 'transito' ? 'O céu de agora' : rotuloFala();
+    $('faixaRot').textContent = tipo === 'transito' ? L('O céu de agora', 'The sky right now') : rotuloFala();
     falando = true; estado('tocando', tipo);
     if (f.audio) {
       audio = new Audio('data:audio/mpeg;base64,' + f.audio);
@@ -372,15 +380,15 @@
       audio.play().then(loop).catch(() => { parar(); rotuloFaixa(); });
     } else {
       // sem a voz do servidor: a voz do próprio aparelho, com o orbe pulsando nas palavras
-      const u = new SpeechSynthesisUtterance(f.texto); u.lang = 'pt-BR'; u.rate = 1.02;
-      const v = speechSynthesis.getVoices().find(x => /pt[-_]BR/i.test(x.lang)); if (v) u.voice = v;
+      const u = new SpeechSynthesisUtterance(f.texto); u.lang = L('pt-BR', 'en-US'); u.rate = 1.02;
+      const v = speechSynthesis.getVoices().find(x => (EN ? /en[-_]US/i : /pt[-_]BR/i).test(x.lang)); if (v) u.voice = v;
       u.onboundary = () => { vol(.9); setTimeout(() => vol(.15), 120); };
       u.onend = () => { parar(); rotuloFaixa(); };
       speechSynthesis.speak(u);
     }
   }
-  const rotuloFala = () => { const t = S && S.textos[atual]; return t ? `${t.titulo.split(' em ')[0]} fala` : 'Ouvir'; };
-  function rotuloFaixa() { const n = rotuloFala().replace(/ fala$/, ''); $('faixaRot').textContent = /^Casa|☌|⚹|□|△|☍/.test(n) ? `Ouvir: ${n}` : `Ouvir: ${n} se apresenta`; }
+  const rotuloFala = () => { const t = S && S.textos[atual]; return t ? (EN ? `${t.titulo.split(' in ')[0]} speaks` : `${t.titulo.split(' em ')[0]} fala`) : L('Ouvir', 'Listen'); };
+  function rotuloFaixa() { const n = rotuloFala().replace(/ (fala|speaks)$/, ''); $('faixaRot').textContent = /^(Casa|House)|☌|⚹|□|△|☍|Conjunction|Sextile|Square|Trine|Opposition/.test(n) ? L(`Ouvir: ${n}`, `Listen: ${n}`) : L(`Ouvir: ${n} se apresenta`, `Listen: ${n} introduces itself`); }
   $('bOuvir').addEventListener('click', () => $('acoes').dataset.estado === 'tocando' ? (parar(), rotuloFaixa()) : ouvir('natal'));
   $('bTransito').addEventListener('click', () => $('acoes').dataset.estado === 'tocando' && $('acoes').dataset.tipo === 'transito' ? (parar(), rotuloFaixa()) : ouvir('transito'));
 
@@ -388,12 +396,12 @@
   $('fComprar').addEventListener('submit', async e => {
     e.preventDefault();
     const erro = $('eComprar'), email = $('email').value.trim(); erro.textContent = '';
-    if (!okEmail(email)) return erro.textContent = 'Confira o e-mail.';
-    if (!$('aceite').checked) return erro.textContent = 'Marque a caixa de aceite para continuar.';
-    if (!pessoa) return erro.textContent = 'Recarregue a página e preencha os dados de nascimento.';
-    const bt = $('bComprar'); bt.disabled = true; bt.textContent = 'Abrindo o pagamento…';
+    if (!okEmail(email)) return erro.textContent = L('Confira o e-mail.', 'Check the e-mail.');
+    if (!$('aceite').checked) return erro.textContent = L('Marque a caixa de aceite para continuar.', 'Tick the consent box to continue.');
+    if (!pessoa) return erro.textContent = L('Recarregue a página e preencha os dados de nascimento.', 'Reload the page and fill in your birth details.');
+    const bt = $('bComprar'); bt.disabled = true; bt.textContent = L('Abrindo o pagamento…', 'Opening checkout…');
     try { location.href = (await post('checkout', { ...pessoa, email })).url; }
-    catch (err) { erro.textContent = err.message; bt.disabled = false; bt.textContent = 'Abrir o mapa inteiro'; }
+    catch (err) { erro.textContent = err.message; bt.disabled = false; bt.textContent = L('Abrir o mapa inteiro', 'Open the whole chart'); }
   });
 
   if (sessao) entrarComSessao();
