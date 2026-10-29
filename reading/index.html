@@ -220,7 +220,7 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
         <div class="campo"><label for="nome">Name</label><input id="nome" autocomplete="name" required></div>
         <div class="dupla">
           <div class="campo data-linha"><label for="mes">Date of birth</label><input id="data" type="hidden"><div class="data-us"><select id="mes" aria-label="Month"><option value="">Month</option></select><select id="dia" aria-label="Day"><option value="">Day</option></select><select id="ano" aria-label="Year"><option value="">Year</option></select></div></div>
-          <div class="campo"><label for="hora">Time of birth</label><input id="hora" type="time" required></div>
+          <div class="campo data-linha"><label for="h12">Time of birth</label><input id="hora" type="hidden"><div class="data-us"><select id="h12" aria-label="Hour"><option value="">Hour</option></select><select id="min" aria-label="Minute"><option value="">Min</option></select><select id="ampm" aria-label="AM or PM"><option value="AM">AM</option><option value="PM">PM</option></select></div></div>
         </div>
         <div class="campo">
           <label for="cidade">City of birth</label>
@@ -285,7 +285,7 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
 </footer>
 <script src="/leitura/leitura.js"></script>
 <script>
-// Month / Day / Year: preenche o campo escondido #data (AAAA-MM-DD) que o leitura.js lê
+// Month / Day / Year e Hour / Min / AM-PM, iguais em qualquer navegador. Month / Day / Year preenche o campo escondido #data (AAAA-MM-DD) que o leitura.js lê
 (function () {
   const $ = id => document.getElementById(id), d = $('data'), m = $('mes'), dd = $('dia'), y = $('ano');
   const p2 = n => String(n).padStart(2, '0');
@@ -299,6 +299,14 @@ button.botao { border: 0; font: inherit; font-weight: 600; font-size: 17px; curs
   }
   [m, dd, y].forEach(s => s.addEventListener('change', juntar));
   if (d.value) { const [Y, M, D] = d.value.split('-'); y.value = Y; m.value = M; dd.value = D; } // dados guardados da visita anterior
+
+  // Hour / Min / AM-PM: preenche o campo escondido #hora (HH:MM, 24 horas)
+  const hr = $('hora'), h = $('h12'), mi = $('min'), ap = $('ampm');
+  for (let i = 1; i <= 12; i++) h.add(new Option(i, i));
+  for (let i = 0; i < 60; i++) mi.add(new Option(p2(i), p2(i)));
+  const hora = () => { hr.value = h.value && mi.value ? `${p2(+h.value % 12 + (ap.value === 'PM' ? 12 : 0))}:${mi.value}` : ''; };
+  [h, mi, ap].forEach(s => s.addEventListener('change', hora));
+  if (hr.value) { const [H, Mi] = hr.value.split(':'); h.value = +H % 12 || 12; mi.value = Mi; ap.value = +H >= 12 ? 'PM' : 'AM'; }
 })();
 </script>
 <script src="/main.js"></script>
