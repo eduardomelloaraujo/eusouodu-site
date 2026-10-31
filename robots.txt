@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /odisseia-bagagem-7q3k/
 
 Sitemap: https://eusouodu.com/sitemap.xml
